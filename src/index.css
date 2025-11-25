@@ -1,13 +1,142 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply font-sans antialiased text-gray-900 bg-white;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-display font-semibold text-gray-900;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        @apply w-2;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-gray-100;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-primary-300 rounded-full;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-primary-400;
+    }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Custom component styles */
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    }
+
+    .btn-primary {
+        @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 transform hover:scale-105 active:scale-95;
+    }
+
+    .btn-secondary {
+        @apply btn bg-white text-primary-600 border-primary-600 hover:bg-primary-50 focus:ring-primary-500;
+    }
+
+    .card {
+        @apply bg-white rounded-2xl border border-gray-200 shadow-soft hover:shadow-medium transition-all duration-300;
+    }
+
+    .card-hover {
+        @apply card hover:shadow-large hover:-translate-y-1;
+    }
+
+    .input {
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 placeholder-gray-400;
+    }
+
+    .section-padding {
+        @apply py-20 lg:py-24;
+    }
+
+    .gradient-text {
+        @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+    }
+
+    /* Navigation styles */
+    .nav-link {
+        @apply relative text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200;
+    }
+
+    .nav-link::after {
+        @apply content-[''] absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200;
+    }
+
+    .nav-link:hover::after {
+        @apply w-full;
+    }
+}
+
+/* Custom utilities */
+@layer utilities {
+    .backdrop-blur-glass {
+        backdrop-filter: blur(16px) saturate(180%);
+        background-color: rgba(255, 255, 255, 0.72);
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Add these to your existing CSS */
+.section-padding {
+    @apply py-16 lg:py-24;
+}
+
+.container-custom {
+    @apply container mx-auto px-6 sm:px-8 lg:px-12;
+}
+
+.section-header {
+    @apply text-center mb-16;
+}
+
+.section-title {
+    @apply text-3xl md:text-4xl font-bold text-gray-800 mb-4;
+}
+
+.section-subtitle {
+    @apply text-xl text-gray-600 max-w-2xl mx-auto;
+}
+
+.section-divider {
+    @apply w-24 h-1 bg-primary-600 mx-auto mt-6;
+}
+
+.card-hover {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-large transition-all duration-300 hover:-translate-y-1;
+}
+
+.gradient-bg {
+    @apply bg-gradient-to-r from-primary-600 to-primary-800;
+}
+
+.gradient-bg-light {
+    @apply bg-gradient-to-br from-primary-50 to-primary-100;
 }
