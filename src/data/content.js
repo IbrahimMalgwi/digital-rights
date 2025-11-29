@@ -1,5 +1,4 @@
 export const siteContent = {
-
     projects: [
         {
             id: 1,
@@ -10,7 +9,7 @@ export const siteContent = {
             location: "Ghana, Nigeria, Kenya",
             duration: "2023 - 2024",
             impact: "5,000+ people trained",
-            image: "/images/projects/digital-literacy-rural.jpg",
+            image: "/images/DHMH1.jpeg",
             objectives: [
                 "Basic digital literacy training",
                 "Online safety awareness",
@@ -28,7 +27,7 @@ export const siteContent = {
             location: "South Africa, Egypt, Morocco",
             duration: "2022 - Present",
             impact: "2,000+ individuals supported",
-            image: "/images/projects/mental-health-hotline.jpg",
+            image: "/images/DHMH2.jpeg",
             objectives: [
                 "Crisis intervention",
                 "Counseling services",
@@ -46,7 +45,7 @@ export const siteContent = {
             location: "West Africa Region",
             duration: "2023 - 2025",
             impact: "3 policy frameworks developed",
-            image: "/images/projects/policy-advocacy.jpg",
+            image: "/images/DHMH3.jpeg",
             objectives: [
                 "Policy research and analysis",
                 "Stakeholder engagement",
@@ -64,7 +63,7 @@ export const siteContent = {
             location: "Urban Centers across Africa",
             duration: "2023",
             impact: "10,000+ youth reached",
-            image: "/images/projects/youth-wellness.jpg",
+            image: "/images/DHMH4.jpeg",
             objectives: [
                 "Digital wellness workshops",
                 "Peer support networks",
@@ -82,7 +81,7 @@ export const siteContent = {
             location: "Multiple African Countries",
             duration: "2024 - 2025",
             impact: "3,000+ women trained",
-            image: "/images/projects/women-safety.jpg",
+            image: "/images/DHMH5.jpeg",
             objectives: [
                 "Digital self-defense training",
                 "Support groups",
@@ -100,7 +99,7 @@ export const siteContent = {
             location: "Pan-African",
             duration: "2024 - 2026",
             impact: "National policy recommendations",
-            image: "/images/projects/research-study.jpg",
+            image: "/images/DHMH6.jpeg",
             objectives: [
                 "Data collection and analysis",
                 "Academic publications",
@@ -114,9 +113,9 @@ export const siteContent = {
         name: "DRMHI Africa",
         fullName: "Digital Rights and Mental Health Initiative Africa",
         tagline: "Advancing digital rights and mental health awareness across Africa",
-        email: "info@drmhi-africa.org",
-        phone: "+233 XX XXX XXXX",
-        address: "Accra, Ghana",
+        email: "Info@digitalandmentalhealthinitiative.org",
+        phone: "+23480 8524 3034",
+        address: "Abuja, Nigeria",
         social: {
             twitter: "https://twitter.com/drmhi_africa",
             facebook: "https://facebook.com/drmhi-africa",
@@ -179,7 +178,7 @@ export const siteContent = {
             name: "Dr. Amina Bello",
             role: "Executive Director",
             bio: "Digital policy expert with 10+ years in mental health advocacy",
-            image: "/images/team/amina-bello.jpg",
+            image: "/images/DHMH4.jpeg",
             social: {
                 linkedin: "#",
                 twitter: "#"
@@ -190,7 +189,7 @@ export const siteContent = {
             name: "Kwame Mensah",
             role: "Tech Lead",
             bio: "Cybersecurity specialist focused on digital rights protection",
-            image: "/images/team/kwame-mensah.jpg",
+            image: "/images/DHMH4.jpeg",
             social: {
                 linkedin: "#",
                 twitter: "#"
@@ -201,7 +200,7 @@ export const siteContent = {
             name: "Fatima Nkosi",
             role: "Mental Health Coordinator",
             bio: "Clinical psychologist specializing in digital wellness",
-            image: "/images/team/fatima-nkosi.jpg",
+            image: "/images/DHMH4.jpeg",
             social: {
                 linkedin: "#",
                 twitter: "#"
@@ -212,7 +211,7 @@ export const siteContent = {
             name: "David Okafor",
             role: "Research Director",
             bio: "Data scientist researching digital mental health impacts",
-            image: "/images/team/david-okafor.jpg",
+            image: "/images/DHMH4.jpeg",
             social: {
                 linkedin: "#",
                 twitter: "#"
@@ -223,22 +222,22 @@ export const siteContent = {
     partners: [
         {
             name: "African Digital Rights Network",
-            logo: "/images/partners/adrn.jpg",
+            logo: "/images/DHMH1.jpeg",
             description: "Collaborating on digital rights advocacy across the continent"
         },
         {
             name: "Mental Health Foundation Ghana",
-            logo: "/images/partners/mhfg.jpg",
+            logo: "/images/DHMH2.jpeg",
             description: "Joint programs for mental health awareness and support"
         },
         {
             name: "Tech for Social Good",
-            logo: "/images/partners/tech4sg.jpg",
+            logo: "/images/DHMH3.jpeg",
             description: "Technology solutions for social impact initiatives"
         },
         {
             name: "African Union Digital Initiative",
-            logo: "/images/partners/au-digital.jpg",
+            logo: "/images/DHMH4.jpeg",
             description: "Policy development and implementation partnerships"
         }
     ],
@@ -280,7 +279,7 @@ export const siteContent = {
                 author: "Dr. Amina Bello",
                 category: "Research",
                 readTime: "5 min read",
-                image: "/images/blog/digital-rights-mental-health.jpg",
+                image: "/images/DHMH1.jpeg",
                 featured: true
             },
             {
@@ -291,7 +290,7 @@ export const siteContent = {
                 author: "Fatima Nkosi",
                 category: "Wellness",
                 readTime: "4 min read",
-                image: "/images/blog/digital-wellness-strategies.jpg",
+                image: "/images/DHMH2.jpeg",
                 featured: true
             },
             {
@@ -302,7 +301,7 @@ export const siteContent = {
                 author: "David Okafor",
                 category: "Policy",
                 readTime: "6 min read",
-                image: "/images/blog/policy-framework.jpg",
+                image: "/images/DHMH3.jpeg",
                 featured: false
             },
             {
@@ -313,7 +312,7 @@ export const siteContent = {
                 author: "Kwame Mensah",
                 category: "Community",
                 readTime: "4 min read",
-                image: "/images/blog/community-support.jpg",
+                image: "/images/DHMH4.jpeg",
                 featured: false
             }
         ]
@@ -323,21 +322,21 @@ export const siteContent = {
         {
             id: 1,
             title: "Community Workshop in Accra",
-            image: "/images/gallery/workshop-1.jpg",
+            image: "/images/DHMH1.jpeg",
             category: "Events",
             description: "Digital literacy training session with local community members"
         },
         {
             id: 2,
             title: "Policy Roundtable Discussion",
-            image: "/images/gallery/roundtable-1.jpg",
+            image: "/images/DHMH2.jpeg",
             category: "Events",
             description: "Stakeholder meeting on digital rights policy framework"
         },
         {
             id: 3,
             title: "Mental Health Awareness Campaign",
-            image: "/images/gallery/campaign-1.jpg",
+            image: "/images/DHMH3.jpeg",
             category: "Campaigns",
             description: "Public awareness event in Lagos, Nigeria"
         }
@@ -366,4 +365,3 @@ export const siteContent = {
         ]
     }
 };
-

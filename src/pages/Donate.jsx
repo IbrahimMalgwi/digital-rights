@@ -11,7 +11,6 @@ const Donate = () => {
             <PageHeader
                 title="Support Our Work"
                 subtitle="Your donation helps us protect digital rights and promote mental health across Africa"
-                background="bg-primary-600 text-white"
             />
 
             <section className="py-20 bg-white">
@@ -57,9 +56,9 @@ const Donate = () => {
                                     Or enter custom amount
                                 </label>
                                 <div className="flex">
-                  <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
-                    $
-                  </span>
+                                    <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
+                                        $
+                                    </span>
                                     <input
                                         type="number"
                                         value={customAmount}

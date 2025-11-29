@@ -11,11 +11,6 @@ const PageHeader = ({
         <section className={`${background} ${textColor} py-16 md:py-24`}>
             <div className="container mx-auto px-6">
                 <div className="max-w-4xl mx-auto text-center">
-                    {/* Breadcrumb or category can be added here */}
-                    {/* <div className="text-sm text-gray-500 mb-4 uppercase tracking-wider">
-                        Category • Breadcrumb
-                    </div> */}
-
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                         {title}
                     </h1>

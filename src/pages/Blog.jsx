@@ -19,7 +19,6 @@ const Blog = () => {
             <PageHeader
                 title="Blog & Insights"
                 subtitle="Latest research, stories, and updates from our work across Africa"
-                background="bg-gradient-to-r from-primary-600 to-primary-800"
             />
 
             {/* Featured Posts Section */}
@@ -89,7 +88,7 @@ const Blog = () => {
             </section>
 
             {/* Newsletter Section */}
-            <section className="py-20 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
+            <section className="py-20 bg-primary-600 text-white">
                 <div className="container mx-auto px-6 text-center">
                     <div className="max-w-2xl mx-auto">
                         <h2 className="text-3xl md:text-4xl font-bold mb-6">
