@@ -36,18 +36,18 @@ const ProjectCard = ({ project, featured = false }) => {
                         )}
                     </div>
                     <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-            <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColors[project.status]}`}>
-              {project.status}
-            </span>
+                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColors[project.status]}`}>
+                            {project.status}
+                        </span>
                         <span className={`px-3 py-1 rounded-full text-sm font-medium ${categoryColors[project.category]}`}>
-              {project.category}
-            </span>
+                            {project.category}
+                        </span>
                     </div>
                     {project.featured && (
                         <div className="absolute top-4 right-4">
-              <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
-                Featured
-              </span>
+                            <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
+                                Featured
+                            </span>
                         </div>
                     )}
                 </div>
@@ -81,13 +81,13 @@ const ProjectCard = ({ project, featured = false }) => {
                             <div className="flex flex-wrap gap-1">
                                 {project.partners.slice(0, 2).map((partner, index) => (
                                     <span key={index} className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
-                    {partner}
-                  </span>
+                                        {partner}
+                                    </span>
                                 ))}
                                 {project.partners.length > 2 && (
                                     <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
-                    +{project.partners.length - 2} more
-                  </span>
+                                        +{project.partners.length - 2} more
+                                    </span>
                                 )}
                             </div>
                         </div>
@@ -124,9 +124,9 @@ const ProjectCard = ({ project, featured = false }) => {
                     )}
                 </div>
                 <div className="absolute top-3 left-3 flex flex-wrap gap-1">
-          <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[project.status]}`}>
-            {project.status}
-          </span>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[project.status]}`}>
+                        {project.status}
+                    </span>
                 </div>
             </div>
 
@@ -136,11 +136,11 @@ const ProjectCard = ({ project, featured = false }) => {
                         {project.title}
                     </h3>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ml-2 ${categoryColors[project.category]}`}>
-            {project.category}
-          </span>
+                        {project.category}
+                    </span>
                 </div>
 
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                     {project.description}
                 </p>
 
