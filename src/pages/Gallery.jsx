@@ -32,7 +32,21 @@ const Gallery = () => {
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {siteContent.gallery.map((item) => (
                             <div key={item.id} className="group cursor-pointer">
-                                <div className="bg-gradient-to-br from-primary-400 to-primary-600 h-64 rounded-2xl mb-4 relative overflow-hidden">
+                                <div className="h-64 rounded-2xl mb-4 relative overflow-hidden bg-gray-100">
+                                    {item.image ? (
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-2xl">
+                                            <div className="text-center">
+                                                <div className="text-4xl mb-2">📷</div>
+                                                <p className="text-sm">Gallery Image</p>
+                                            </div>
+                                        </div>
+                                    )}
                                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                                         <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
                                             <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,8 +58,8 @@ const Gallery = () => {
                                 <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
                                 <p className="text-gray-600 mb-2">{item.description}</p>
                                 <span className="bg-primary-100 text-primary-600 px-3 py-1 rounded-full text-sm font-medium">
-                  {item.category}
-                </span>
+                                    {item.category}
+                                </span>
                             </div>
                         ))}
                     </div>

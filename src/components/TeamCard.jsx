@@ -4,9 +4,19 @@ const TeamCard = ({ member }) => {
     return (
         <div className="group text-center bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2 border border-gray-100">
             <div className="relative mb-6">
-                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                    {member.name.split(' ').map(n => n[0]).join('')}
-                </div>
+                {member.image ? (
+                    <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-primary-100">
+                        <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                    </div>
+                ) : (
+                    <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                        {member.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                )}
                 <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-primary-400 transition-colors duration-300"></div>
             </div>
 

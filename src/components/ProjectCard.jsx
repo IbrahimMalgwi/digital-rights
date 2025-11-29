@@ -21,7 +21,7 @@ const ProjectCard = ({ project, featured = false }) => {
         return (
             <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
                 <div className="relative overflow-hidden">
-                    <div className="h-64 bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white text-4xl">
+                    <div className="h-64 bg-gray-100 flex items-center justify-center">
                         {project.image ? (
                             <img
                                 src={project.image}
@@ -29,7 +29,7 @@ const ProjectCard = ({ project, featured = false }) => {
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                         ) : (
-                            <div className="text-center p-8">
+                            <div className="text-center p-8 text-gray-500">
                                 <div className="text-6xl mb-4">🚀</div>
                                 <p className="text-lg font-semibold">Project Image</p>
                             </div>
@@ -109,7 +109,7 @@ const ProjectCard = ({ project, featured = false }) => {
     return (
         <div className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:-translate-y-1">
             <div className="relative overflow-hidden">
-                <div className="h-48 bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-2xl">
+                <div className="h-48 bg-gray-100 flex items-center justify-center">
                     {project.image ? (
                         <img
                             src={project.image}
@@ -117,7 +117,7 @@ const ProjectCard = ({ project, featured = false }) => {
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                     ) : (
-                        <div className="text-center p-6">
+                        <div className="text-center p-6 text-gray-500">
                             <div className="text-4xl mb-2">🚀</div>
                             <p className="text-sm font-semibold">Project Image</p>
                         </div>
