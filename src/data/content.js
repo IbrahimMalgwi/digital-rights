@@ -146,11 +146,11 @@ export const siteContent = {
     about: {
         mission: {
             title: "Our Mission",
-            content: "To bridge the gap between digital rights advocacy and mental health support, creating sustainable solutions that address the psychological impacts of digital technologies while safeguarding fundamental rights across Africa."
+            content: "The Digital Rights and Mental Health Initiative Africa(DRMHIA) is a Non-Profit Organization focused on the intersection of digital rights and mental health. Its mission is to address the impact of digital technology on mental well-being, advocating for policies that protect individuals' digital rights while promoting mental health. The initiative works on raising awareness about issues like online privacy, cyberbullying, and digital addiction, and provides support through research, advocacy, and educational programs. By highlighting the need for a balanced approach to digital technology and mental health, DRMHI aims to foster a safer and more supportive online environment.."
         },
         vision: {
             title: "Our Vision",
-            content: "An Africa where digital technologies enhance mental wellbeing, protect user rights, and empower communities through safe, inclusive, and accessible digital spaces."
+            content: "Our mission is to empower women by providing them with the tools, resources, and opportunities needed to overcome social, economic, and cultural barriers. We strive to create a world where every woman can live with dignity, free from discrimination and inequality. Through education, advocacy, and community-driven programs, we aim to inspire positive change, promote gender equality, and build a more inclusive society where women's rights are respected and upheld."
         },
         values: [
             {

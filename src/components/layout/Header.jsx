@@ -10,15 +10,35 @@ const Header = () => {
         <header className="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
             <nav className="container mx-auto px-6 py-4">
                 <div className="flex justify-between items-center">
-                    {/* Logo */}
+                    {/* Logo with Image */}
                     <div className="flex items-center">
-                        <Link to="/" className="flex items-center">
-                            <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                                D
+                        <Link to="/" className="flex items-center space-x-3">
+                            {/* Logo Image */}
+                            <div className="w-12 h-12 flex items-center justify-center">
+                                <img
+                                    src="/images/logo.png"
+                                    alt="DRMHI Africa Logo"
+                                    className="h-10 w-auto object-contain"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.style.display = 'none';
+                                        e.target.parentElement.innerHTML = `
+                                            <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                                D
+                                            </div>
+                                        `;
+                                    }}
+                                />
                             </div>
-                            <span className="ml-3 text-xl font-bold text-gray-800">
-                                {siteContent.site.name}
-                            </span>
+                            {/* Logo Text */}
+                            <div className="flex flex-col">
+                                <span className="text-xl font-bold text-gray-800 leading-tight">
+                                    {siteContent.site.name}
+                                </span>
+                                <span className="text-xs text-gray-500 font-medium">
+                                    Digital Rights & Mental Health
+                                </span>
+                            </div>
                         </Link>
                     </div>
 

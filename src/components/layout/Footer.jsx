@@ -44,11 +44,29 @@ const Footer = () => {
                 <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-8">
                     {/* Brand Section */}
                     <div className="lg:col-span-2">
-                        <div className="flex items-center mb-6">
-                            <div className="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                                D
+                        <div className="flex items-center mb-6 space-x-3">
+                            <div className="w-12 h-12 flex items-center justify-center">
+                                <img
+                                    src="/images/logo.png"
+                                    alt="DRMHI Africa Logo"
+                                    className="h-10 w-auto object-contain"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.style.display = 'none';
+                                        e.target.parentElement.innerHTML = `
+                                            <div class="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                                D
+                                            </div>
+                                        `;
+                                    }}
+                                />
                             </div>
-                            <span className="ml-3 text-xl font-bold">{siteContent.site.name}</span>
+                            <div className="flex flex-col">
+                                <span className="text-xl font-bold">{siteContent.site.name}</span>
+                                <span className="text-sm text-gray-400">
+                                    Digital Rights & Mental Health
+                                </span>
+                            </div>
                         </div>
                         <p className="text-gray-400 mb-6 leading-relaxed max-w-md">
                             {siteContent.site.tagline}
