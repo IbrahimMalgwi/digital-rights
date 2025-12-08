@@ -216,6 +216,17 @@ export const siteContent = {
                 linkedin: "#",
                 twitter: "#"
             }
+        },
+        {
+            id: 5,
+            name: "Saratu Mshelia",
+            role: "Project Lead Women Digital Futures Africa (WDFA)",
+            bio: " Researcher",
+            image: "/images/Saratu.jpeg",
+            social: {
+                linkedin: "#",
+                twitter: "#"
+            }
         }
     ],
 
