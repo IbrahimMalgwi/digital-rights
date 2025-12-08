@@ -175,10 +175,10 @@ export const siteContent = {
     team: [
         {
             id: 1,
-            name: "Dr. Amina Bello",
-            role: "Executive Director",
-            bio: "Digital policy expert with 10+ years in mental health advocacy",
-            image: "/images/DHMH4.jpeg",
+            name: "Kauna Ibrahim Malgwi",
+            role: "Executive Director and founder DRMHI",
+            bio: "Clinical psychologist & Former Facebook content moderator.",
+            image: "/images/Kauna.jpeg",
             social: {
                 linkedin: "#",
                 twitter: "#"
@@ -186,10 +186,10 @@ export const siteContent = {
         },
         {
             id: 2,
-            name: "Kwame Mensah",
-            role: "Tech Lead",
-            bio: "Cybersecurity specialist focused on digital rights protection",
-            image: "/images/DHMH4.jpeg",
+            name: "Rhoda A. Zoaka",
+            role: "Trustee-Secretary DRMHI",
+            bio: "Educationist",
+            image: "/images/Rhoda.jpeg",
             social: {
                 linkedin: "#",
                 twitter: "#"
@@ -197,10 +197,10 @@ export const siteContent = {
         },
         {
             id: 3,
-            name: "Fatima Nkosi",
-            role: "Mental Health Coordinator",
-            bio: "Clinical psychologist specializing in digital wellness",
-            image: "/images/DHMH4.jpeg",
+            name: "Dr. Ibrahim A. Mshelia",
+            role: "Psychiatrist Consultant",
+            bio: "Federal Neuropsychiatric Hospital Maiduguri federal neuropsychiatric hospital maiduguri Borno",
+            image: "/images/Ibrahim.jpeg",
             social: {
                 linkedin: "#",
                 twitter: "#"
@@ -208,10 +208,10 @@ export const siteContent = {
         },
         {
             id: 4,
-            name: "David Okafor",
-            role: "Research Director",
-            bio: "Data scientist researching digital mental health impacts",
-            image: "/images/DHMH4.jpeg",
+            name: "Ms. Ruth Ishaku Balami",
+            role: "Trustee-Treasurer DRMHI",
+            bio: " Public Health Practitioner",
+            image: "/images/Ruth.jpeg",
             social: {
                 linkedin: "#",
                 twitter: "#"
