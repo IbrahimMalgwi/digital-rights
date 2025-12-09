@@ -107,6 +107,101 @@ export const siteContent = {
             ],
             partners: ["Universities", "Research Institutions"],
             featured: false
+        },
+        {
+            id: 7,
+            title: "Women Digital Futures Africa (WDFA)",
+            description: "Empowering African women with digital skills, AI literacy, and safe online practices through practical training, mentorship, and advocacy programs.",
+            category: "Women",
+            status: "Ongoing",
+            location: "Multiple African Countries",
+            duration: "2023 - Present",
+            impact: "500+ women trained across Africa",
+            image: "/images/wdfa-logo.jpg", // You can add this image to your public/images folder
+            website: "https://wdfahub.wixsite.com/wdf-africa",
+            objectives: [
+                "AI literacy and digital empowerment",
+                "Mentorship and peer support networks",
+                "Advocacy for safer digital spaces",
+                "Practical, hands-on training"
+            ],
+            partners: ["Local Women's Organizations", "Tech Companies", "Educational Institutions"],
+            featured: true,
+            programs: [
+                {
+                    name: "Trainings",
+                    description: "Practical, foundational trainings that build AI literacy, digital confidence, and safer online habits using local examples and hands-on activities."
+                },
+                {
+                    name: "Mentorship",
+                    description: "Relational support program pairing women with trained mentors and Peer Pods for goal-setting, confidence-building, and healthy digital habits."
+                },
+                {
+                    name: "Advocacy",
+                    description: "Promoting safer digital spaces free from technology-facilitated gender-based abuse through practical norms and policy engagement."
+                }
+            ],
+            about: "Digital spaces are powerful, but they aren't always safe or inclusive. Many women—especially in underserved communities—face barriers of cost, language, confidence, and online harm. We believe every woman deserves the skills, safeguards, and support to participate fully in the digital space without losing privacy, dignity, or mental health.",
+            services: "We design practical training, mentorship, and advocacy that help women navigate everyday digital tasks, evaluate AI responsibly, and shape safer online spaces. Our work blends hands-on learning with community support and policy engagement—always focused on real needs, real safeguards, real outcomes.",
+            aiProgram: "This six-week program gives women in Africa, particularly from underserved communities, a practical foundation in AI. It uses adult learning with a peer-supported, cohort-based approach that includes WhatsApp group discussions, short one-on-one clinics, local examples, and shared resources. The course is mobile-friendly and low-data, balancing simple theory with hands-on practice."
+        },{
+            id: 8,
+            title: "Data Workers' Inquiry",
+            description: "A global, radically participatory research initiative where data workers themselves become community researchers, identifying urgent issues and creating change across nine countries.",
+            category: "Research",
+            status: "Ongoing",
+            location: "Global (9 countries across 5 continents)",
+            duration: "2022 - Present",
+            impact: "16+ data worker researchers across 9 countries",
+            image: "/images/data-workers-inquiry.jpg", // You can add this image
+            website: "https://data-workers.org/",
+            objectives: [
+                "Empower data workers as community researchers",
+                "Document labor conditions in the AI industry",
+                "Build workplace power and transnational solidarity",
+                "Create scalable mental health interventions"
+            ],
+            partners: ["DAIR Institute", "Academic Institutions", "Worker Collectives"],
+            featured: true,
+            methodology: "The Data Workers' Inquiry is a community-based project where data workers join as community researchers to lead their own inquiries in their workplaces. Using Workers' Inquiry as a Research Methodology (WIRM), it turns hidden and precarious labor into a shared, politicized site for knowledge-making and tangible change.",
+            inquiries: [
+                {
+                    region: "Kenya",
+                    title: "Data Workers in Kenya Organize!",
+                    description: "Learn about grievances of data workers at Sama, Cloud Factory, and Remotasks, and how they organize for better conditions."
+                },
+                {
+                    region: "Syria/Lebanon",
+                    title: "Syrian Data Workers in their own Words",
+                    description: "Challenges faced by refugee data workers in Lebanon and daily life of data workers in Syria."
+                },
+                {
+                    region: "Latin America",
+                    title: "Latin American Data Workers Say Enough!",
+                    description: "Platform-mediated data work experiences from Venezuela and Brazil."
+                },
+                {
+                    region: "Germany",
+                    title: "Content Moderators in Germany speak out",
+                    description: "Grievances of data workers in Europe through podcasts and videos."
+                }
+            ],
+            events: [
+                {
+                    date: "October 21, 2024",
+                    topic: "What impact does content moderation have on workers' mental health?",
+                    speakers: ["Kauna Malgwi", "Botlhokwa Ranta", "Fasica Gebrekidan", "Milagros Miceli"],
+                    recording: true
+                },
+                {
+                    date: "November 11, 2024",
+                    topic: "Who else does data work?",
+                    speakers: ["John López (WGA)", "Alex Minshall", "Oscar Araya", "Rafael Grohmann", "Alex Hanna"],
+                    recording: true
+                }
+            ],
+            about: "A Mental Health Intervention for Data Workers - A scalable mental health intervention designed for data workers, grounded in hands-on insight and evidence-based practice from the dual perspective as a former content moderator and a registered clinical psychologist. By Kauna Ibrahim Malgwi",
+            tagline: "Data workers worldwide report on their workplaces"
         }
     ],
     site: {
@@ -128,6 +223,8 @@ export const siteContent = {
         { name: 'Home', href: '/', current: true },
         { name: 'About', href: '/about', current: false },
         { name: 'Projects', href: '/projects', current: false },
+        { name: 'WDFA', href: '/wdfa', current: false },
+        { name: 'Data Workers', href: '/data-workers-inquiry', current: false },
         { name: 'Team', href: '/team', current: false },
         { name: 'Partners', href: '/partners', current: false },
         { name: 'Blog', href: '/blog', current: false },

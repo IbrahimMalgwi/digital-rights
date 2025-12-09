@@ -4,7 +4,9 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
-import Projects from './pages/Projects'; // Add this import
+import Projects from './pages/Projects';
+import WDFA from './pages/WDFA'; // Add this import
+import DataWorkersInquiry from './pages/DataWorkersInquiry';
 import Blog from './pages/Blog';
 import Gallery from './pages/Gallery';
 import Donate from './pages/Donate';
@@ -22,7 +24,9 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
-                        <Route path="/projects" element={<Projects />} /> {/* Add this route */}
+                        <Route path="/projects" element={<Projects />} />
+                        <Route path="/wdfa" element={<WDFA />} />
+                        <Route path="/data-workers-inquiry" element={<DataWorkersInquiry />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/gallery" element={<Gallery />} />
                         <Route path="/donate" element={<Donate />} />
