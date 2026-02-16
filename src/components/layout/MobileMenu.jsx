@@ -1,159 +1,396 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { siteContent } from '../../data/content';
 
 const MobileMenu = ({ isOpen, onClose }) => {
-    const [activeDropdown, setActiveDropdown] = useState('projects');
+    const [activeDropdown, setActiveDropdown] = useState(null);
     const [nestedDropdown, setNestedDropdown] = useState(null);
+    const [activeTab, setActiveTab] = useState('menu'); // 'menu' or 'programs'
+    const location = useLocation();
 
-    // Define dropdown items (same as in Header component)
+    // Close menu when route changes
+    useEffect(() => {
+        onClose();
+    }, [location, onClose]);
+
+    // Enhanced project items with icons and descriptions
     const projectItems = [
-        { name: 'All Projects', href: '/projects' },
+        {
+            name: 'All Projects',
+            href: '/projects',
+            icon: '📋',
+            description: 'View all our initiatives'
+        },
         {
             name: 'WDFA',
             href: '/wdfa',
+            icon: '👩🏾',
+            description: 'Women Digital Futures Africa',
             subItems: [
-                { name: 'About WDFA', href: '/wdfa' },
-                { name: 'Programs', href: '/wdfa#programs' },
-                { name: 'AI Literacy Program', href: '/wdfa#ai-program' },
-                { name: 'Get Involved', href: '/wdfa#involved' }
+                { name: 'About WDFA', href: '/wdfa', icon: '📖', description: 'Mission and vision' },
+                { name: 'Programs', href: '/wdfa#programs', icon: '🎓', description: 'Digital skills training' },
+                { name: 'AI Literacy Program', href: '/wdfa#ai-program', icon: '🤖', description: '6-week AI course' },
+                { name: 'Get Involved', href: '/wdfa#involved', icon: '🤝', description: 'Join as mentor or partner' }
             ]
         },
         {
             name: 'Data Workers Inquiry',
             href: '/data-workers-inquiry',
+            icon: '🔬',
+            description: 'Global research initiative',
             subItems: [
-                { name: 'About the Inquiry', href: '/data-workers-inquiry' },
-                { name: 'Research Methodology', href: '/data-workers-inquiry#methodology' },
-                { name: 'Regional Inquiries', href: '/data-workers-inquiry#inquiries' },
-                { name: 'Events & Webinars', href: '/data-workers-inquiry#events' },
-                { name: 'Mental Health Intervention', href: '/data-workers-inquiry#mental-health' }
+                { name: 'About the Inquiry', href: '/data-workers-inquiry', icon: '📚', description: 'Participatory research' },
+                { name: 'Research Methodology', href: '/data-workers-inquiry#methodology', icon: '🔍', description: 'How we work' },
+                { name: 'Regional Inquiries', href: '/data-workers-inquiry#inquiries', icon: '🌍', description: 'Across 9 countries' },
+                { name: 'Events & Webinars', href: '/data-workers-inquiry#events', icon: '📅', description: 'Upcoming panels' },
+                { name: 'Mental Health Intervention', href: '/data-workers-inquiry#mental-health', icon: '🧠', description: 'Worker wellbeing' }
             ]
         },
         ...siteContent.projects
             .filter(project => project.featured && project.id !== 7 && project.id !== 8)
-            .slice(0, 3)
+            .slice(0, 2)
             .map(project => ({
                 name: project.title,
-                href: `/projects/${project.id}`
+                href: `/projects/${project.id}`,
+                icon: '🌟',
+                description: project.description?.substring(0, 50) + '...'
             }))
+    ];
+
+    // Navigation items with icons
+    const navigationItems = [
+        { name: 'Home', href: '/', icon: '🏠' },
+        { name: 'About', href: '/about', icon: '📖' },
+        { name: 'Projects', href: '/projects', icon: '🚀', hasDropdown: true },
+        { name: 'Team', href: '/team', icon: '👥' },
+        { name: 'Partners', href: '/partners', icon: '🤝' },
+        { name: 'Blog', href: '/blog', icon: '✍️' },
+        { name: 'Gallery', href: '/gallery', icon: '🖼️' },
+        { name: 'Contact', href: '/contact', icon: '📧' }
     ];
 
     const toggleDropdown = (dropdown) => {
         setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
-        setNestedDropdown(null); // Close nested dropdown when toggling main
+        setNestedDropdown(null);
     };
 
     const toggleNestedDropdown = (dropdown) => {
         setNestedDropdown(nestedDropdown === dropdown ? null : dropdown);
     };
 
-    // Filter navigation for mobile
-    const filteredNavigation = siteContent.navigation.filter(item =>
-        ['Home', 'About', 'Projects', 'Team', 'Partners', 'Blog', 'Gallery', 'Contact'].includes(item.name)
-    );
+    const handleLinkClick = () => {
+        setActiveDropdown(null);
+        setNestedDropdown(null);
+        onClose();
+    };
 
     return (
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-[1000px] py-4' : 'max-h-0'}`}>
-            <div className="space-y-2">
-                {filteredNavigation.map((item) => {
-                    if (item.name === 'Projects') {
-                        return (
-                            <div key={item.name} className="border-b border-gray-100">
-                                <button
-                                    onClick={() => toggleDropdown('projects')}
-                                    className="w-full flex justify-between items-center text-gray-600 hover:text-primary-600 font-medium py-3 px-2 transition-colors"
-                                >
-                                    <span>{item.name}</span>
-                                    <svg
-                                        className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === 'projects' ? 'rotate-180' : ''}`}
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
+        <>
+            {/* Backdrop */}
+            <div
+                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 lg:hidden ${
+                    isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                }`}
+                onClick={onClose}
+            />
 
-                                {/* Projects dropdown content */}
-                                <div className={`transition-all duration-300 overflow-hidden ${activeDropdown === 'projects' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                                    <div className="ml-4 space-y-1 py-2 border-l-2 border-primary-100">
-                                        {projectItems.map((subItem) => (
-                                            <div key={subItem.name}>
-                                                {subItem.subItems ? (
-                                                    // Item with nested dropdown
-                                                    <>
-                                                        <button
-                                                            onClick={() => toggleNestedDropdown(subItem.name)}
-                                                            className="w-full flex justify-between items-center py-2 px-4 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
-                                                        >
-                                                            <span>{subItem.name}</span>
-                                                            <svg
-                                                                className={`w-4 h-4 transition-transform duration-300 ${nestedDropdown === subItem.name ? 'rotate-90' : ''}`}
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                            </svg>
-                                                        </button>
-                                                        {/* Nested dropdown */}
-                                                        <div className={`transition-all duration-300 overflow-hidden ${nestedDropdown === subItem.name ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                                            <div className="ml-4 space-y-1 py-2 border-l-2 border-primary-50">
-                                                                {subItem.subItems.map((nestedItem) => (
-                                                                    <Link
-                                                                        key={nestedItem.name}
-                                                                        to={nestedItem.href}
-                                                                        className="block py-2 px-4 text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
-                                                                        onClick={onClose}
+            {/* Mobile Menu Panel */}
+            <div
+                className={`
+                    fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out lg:hidden
+                    ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+                `}
+            >
+                {/* Header */}
+                <div className="flex items-center justify-between p-6 border-b border-gray-100">
+                    <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                            {siteContent.site.name.split(' ').map(word => word[0]).join('').slice(0, 2)}
+                        </div>
+                        <div>
+                            <h2 className="font-display font-bold text-gray-900">Menu</h2>
+                            <p className="text-xs text-gray-500">Navigate & Explore</p>
+                        </div>
+                    </div>
+                    <button
+                        onClick={onClose}
+                        className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors"
+                        aria-label="Close menu"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Tab Navigation */}
+                <div className="flex border-b border-gray-100">
+                    <button
+                        onClick={() => setActiveTab('menu')}
+                        className={`flex-1 py-4 text-sm font-medium transition-colors relative ${
+                            activeTab === 'menu'
+                                ? 'text-primary-600'
+                                : 'text-gray-500 hover:text-gray-700'
+                        }`}
+                    >
+                        Main Menu
+                        {activeTab === 'menu' && (
+                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-600"></div>
+                        )}
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('programs')}
+                        className={`flex-1 py-4 text-sm font-medium transition-colors relative ${
+                            activeTab === 'programs'
+                                ? 'text-primary-600'
+                                : 'text-gray-500 hover:text-gray-700'
+                        }`}
+                    >
+                        Programs
+                        {activeTab === 'programs' && (
+                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-600"></div>
+                        )}
+                    </button>
+                </div>
+
+                {/* Scrollable Content */}
+                <div className="overflow-y-auto h-[calc(100%-180px)] p-6">
+                    {activeTab === 'menu' ? (
+                        <div className="space-y-2">
+                            {navigationItems.map((item) => {
+                                if (item.hasDropdown) {
+                                    return (
+                                        <div key={item.name} className="border-b border-gray-100 last:border-0">
+                                            <button
+                                                onClick={() => toggleDropdown('projects')}
+                                                className="w-full flex items-center justify-between py-4 px-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-xl transition-all duration-200"
+                                            >
+                                                <div className="flex items-center">
+                                                    <span className="text-xl mr-3">{item.icon}</span>
+                                                    <span className="font-medium">{item.name}</span>
+                                                </div>
+                                                <svg
+                                                    className={`w-5 h-5 transition-transform duration-300 ${
+                                                        activeDropdown === 'projects' ? 'rotate-180' : ''
+                                                    }`}
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </button>
+
+                                            {/* Projects dropdown */}
+                                            <div
+                                                className={`
+                                                    transition-all duration-300 overflow-hidden
+                                                    ${activeDropdown === 'projects' ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}
+                                                `}
+                                            >
+                                                <div className="ml-4 pl-4 border-l-2 border-primary-100 space-y-2 py-2">
+                                                    {projectItems.map((subItem) => (
+                                                        <div key={subItem.name}>
+                                                            {subItem.subItems ? (
+                                                                // Item with nested dropdown
+                                                                <>
+                                                                    <button
+                                                                        onClick={() => toggleNestedDropdown(subItem.name)}
+                                                                        className="w-full flex items-center justify-between py-3 px-3 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-xl transition-all duration-200"
                                                                     >
-                                                                        {nestedItem.name}
-                                                                    </Link>
-                                                                ))}
-                                                            </div>
+                                                                        <div className="flex items-center">
+                                                                            <span className="text-lg mr-2">{subItem.icon}</span>
+                                                                            <div className="text-left">
+                                                                                <span className="text-sm font-medium block">
+                                                                                    {subItem.name}
+                                                                                </span>
+                                                                                <span className="text-xs text-gray-400">
+                                                                                    {subItem.description}
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <svg
+                                                                            className={`w-4 h-4 transition-transform duration-300 ${
+                                                                                nestedDropdown === subItem.name ? 'rotate-90' : ''
+                                                                            }`}
+                                                                            fill="none"
+                                                                            stroke="currentColor"
+                                                                            viewBox="0 0 24 24"
+                                                                        >
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                                                        </svg>
+                                                                    </button>
+
+                                                                    {/* Nested dropdown */}
+                                                                    <div
+                                                                        className={`
+                                                                            transition-all duration-300 overflow-hidden
+                                                                            ${nestedDropdown === subItem.name ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
+                                                                        `}
+                                                                    >
+                                                                        <div className="ml-4 pl-4 border-l-2 border-primary-50 space-y-2 py-2">
+                                                                            {subItem.subItems.map((nestedItem) => (
+                                                                                <Link
+                                                                                    key={nestedItem.name}
+                                                                                    to={nestedItem.href}
+                                                                                    className="flex items-center py-2 px-3 text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-200"
+                                                                                    onClick={handleLinkClick}
+                                                                                >
+                                                                                    <span className="text-base mr-2">{nestedItem.icon}</span>
+                                                                                    <div>
+                                                                                        <span className="block font-medium">{nestedItem.name}</span>
+                                                                                        <span className="text-xs text-gray-400">{nestedItem.description}</span>
+                                                                                    </div>
+                                                                                </Link>
+                                                                            ))}
+                                                                        </div>
+                                                                    </div>
+                                                                </>
+                                                            ) : (
+                                                                // Regular dropdown item
+                                                                <Link
+                                                                    to={subItem.href}
+                                                                    className="flex items-center py-3 px-3 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-xl transition-all duration-200"
+                                                                    onClick={handleLinkClick}
+                                                                >
+                                                                    <span className="text-lg mr-2">{subItem.icon}</span>
+                                                                    <div>
+                                                                        <span className="text-sm font-medium block">{subItem.name}</span>
+                                                                        {subItem.description && (
+                                                                            <span className="text-xs text-gray-400">{subItem.description}</span>
+                                                                        )}
+                                                                    </div>
+                                                                </Link>
+                                                            )}
                                                         </div>
-                                                    </>
-                                                ) : (
-                                                    // Regular dropdown item
-                                                    <Link
-                                                        to={subItem.href}
-                                                        className="block py-2 px-4 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
-                                                        onClick={onClose}
-                                                    >
-                                                        {subItem.name}
-                                                    </Link>
-                                                )}
+                                                    ))}
+                                                </div>
                                             </div>
-                                        ))}
-                                    </div>
+                                        </div>
+                                    );
+                                }
+
+                                // Regular navigation items
+                                return (
+                                    <Link
+                                        key={item.name}
+                                        to={item.href}
+                                        className="flex items-center py-4 px-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-xl transition-all duration-200 border-b border-gray-100 last:border-0"
+                                        onClick={handleLinkClick}
+                                    >
+                                        <span className="text-xl mr-3">{item.icon}</span>
+                                        <span className="font-medium">{item.name}</span>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        // Programs Tab Content
+                        <div className="space-y-4">
+                            <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl p-4">
+                                <h3 className="font-display font-bold text-gray-900 mb-2">Featured Programs</h3>
+                                <p className="text-xs text-gray-500 mb-4">Discover our key initiatives</p>
+
+                                <div className="space-y-3">
+                                    {projectItems.slice(1, 3).map((program) => (
+                                        <Link
+                                            key={program.name}
+                                            to={program.href}
+                                            className="flex items-center p-3 bg-white rounded-xl hover:shadow-soft transition-all duration-300"
+                                            onClick={handleLinkClick}
+                                        >
+                                            <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-600 rounded-xl flex items-center justify-center text-white text-xl">
+                                                {program.icon}
+                                            </div>
+                                            <div className="ml-3">
+                                                <h4 className="font-semibold text-gray-900">{program.name}</h4>
+                                                <p className="text-xs text-gray-500">{program.description}</p>
+                                            </div>
+                                        </Link>
+                                    ))}
                                 </div>
                             </div>
-                        );
-                    }
 
-                    // Regular navigation items
-                    return (
+                            <div className="bg-gray-50 rounded-2xl p-4">
+                                <h3 className="font-display font-bold text-gray-900 mb-3">Quick Actions</h3>
+                                <div className="space-y-2">
+                                    <Link
+                                        to="/donate"
+                                        className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-soft transition-all duration-300"
+                                        onClick={handleLinkClick}
+                                    >
+                                        <div className="flex items-center">
+                                            <span className="text-2xl mr-3">❤️</span>
+                                            <div>
+                                                <span className="font-semibold text-gray-900">Donate Now</span>
+                                                <p className="text-xs text-gray-500">Support our work</p>
+                                            </div>
+                                        </div>
+                                        <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </Link>
+
+                                    <Link
+                                        to="/volunteer"
+                                        className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-soft transition-all duration-300"
+                                        onClick={handleLinkClick}
+                                    >
+                                        <div className="flex items-center">
+                                            <span className="text-2xl mr-3">🤝</span>
+                                            <div>
+                                                <span className="font-semibold text-gray-900">Volunteer</span>
+                                                <p className="text-xs text-gray-500">Join our team</p>
+                                            </div>
+                                        </div>
+                                        <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Footer */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent border-t border-gray-100">
+                    <div className="flex items-center justify-between mb-3">
+                        <div className="flex space-x-4">
+                            {Object.entries(siteContent.site.social).slice(0, 4).map(([platform, url]) => (
+                                <a
+                                    key={platform}
+                                    href={url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-primary-600 hover:text-white transition-colors duration-300"
+                                    aria-label={`Follow us on ${platform}`}
+                                >
+                                    <span className="text-xs font-bold uppercase">{platform[0]}</span>
+                                </a>
+                            ))}
+                        </div>
                         <Link
-                            key={item.name}
-                            to={item.href}
-                            className="block text-gray-600 hover:text-primary-600 font-medium py-3 px-2 border-b border-gray-100 hover:bg-gray-50 rounded-lg transition-colors"
-                            onClick={onClose}
+                            to="/contact"
+                            className="text-xs text-primary-600 font-semibold hover:text-primary-700 transition-colors"
+                            onClick={handleLinkClick}
                         >
-                            {item.name}
+                            Contact Us
                         </Link>
-                    );
-                })}
+                    </div>
 
-                {/* Donate Button */}
-                <Link
-                    to="/donate"
-                    className="block w-full bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-center mt-4"
-                    onClick={onClose}
-                >
-                    Donate
-                </Link>
+                    {/* Donate Button (Mobile) */}
+                    <Link
+                        to="/donate"
+                        className="block w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white py-4 rounded-xl font-semibold hover:from-primary-700 hover:to-accent-700 transition-all duration-300 transform hover:scale-[1.02] text-center"
+                        onClick={handleLinkClick}
+                    >
+                        <span className="mr-2">❤️</span>
+                        Support Our Mission
+                    </Link>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
