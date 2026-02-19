@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PageHeader from '../components/PageHeader';
 import { siteContent } from '../data/content';
 
 const Donate = () => {
@@ -88,15 +87,51 @@ const Donate = () => {
 
     return (
         <div className="overflow-hidden">
-            {/* Hero Header */}
-            <PageHeader
-                title="Support Our Work"
-                subtitle="Your donation helps us protect digital rights and promote mental health across Africa"
-                background="primary"
-                size="large"
-                pattern={true}
-                breadcrumbs={true}
-            />
+            {/* Custom Hero Header - Replaces PageHeader */}
+            <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 py-24 lg:py-32 overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-0 left-0 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+                </div>
+
+                {/* Animated Shapes */}
+                <div className="absolute top-10 right-10 w-20 h-20 border-4 border-primary-200 rounded-full opacity-20 animate-pulse"></div>
+                <div className="absolute bottom-10 left-10 w-32 h-32 border-4 border-accent-200 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 right-20 w-16 h-16 bg-primary-300 rounded-lg opacity-10 transform rotate-45 animate-pulse"></div>
+
+                <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    {/* Breadcrumbs */}
+                    <nav className="flex items-center justify-center space-x-2 text-sm mb-6 text-secondary-500">
+                        <Link to="/" className="hover:text-primary-600 transition-colors">Home</Link>
+                        <span>/</span>
+                        <span className="text-primary-600 font-medium">Donate</span>
+                    </nav>
+
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6">
+                        Support <span className="gradient-text">Our Work</span>
+                    </h1>
+
+                    <p className="text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto leading-relaxed">
+                        Your donation helps us protect digital rights and promote mental health across Africa
+                    </p>
+
+                    {/* Decorative line */}
+                    <div className="flex items-center justify-center space-x-4 mt-8">
+                        <div className="w-12 h-0.5 bg-primary-500 rounded-full"></div>
+                        <div className="w-4 h-4 bg-primary-500 rounded-full"></div>
+                        <div className="w-12 h-0.5 bg-primary-500 rounded-full"></div>
+                    </div>
+                </div>
+
+                {/* Wave Divider at Bottom */}
+                <div className="absolute bottom-0 left-0 right-0">
+                    <svg className="w-full h-auto text-white" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 60L60 52.5C120 45 240 30 360 22.5C480 15 600 15 720 18.75C840 22.5 960 30 1080 33.75C1200 37.5 1320 37.5 1380 37.5L1440 37.5V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="currentColor" fillOpacity="0.1"/>
+                    </svg>
+                </div>
+            </section>
 
             {/* Impact Counter Strip */}
             <section className="relative -mt-16 z-20">

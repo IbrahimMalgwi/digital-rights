@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PageHeader from '../components/PageHeader';
 import TeamCard from '../components/TeamCard';
 import { siteContent } from '../data/content';
 
@@ -61,15 +60,39 @@ const About = () => {
 
     return (
         <div className="overflow-hidden">
-            {/* Hero Header */}
-            <PageHeader
-                title="About Us"
-                subtitle="Learn about our mission, vision, and the work we do across Africa"
-                background="primary"
-                size="large"
-                pattern={true}
-                breadcrumbs={true}
-            />
+            {/* Custom Hero Header - Replaces PageHeader */}
+            <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 py-24 lg:py-32 overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-0 left-0 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+                </div>
+
+                <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    {/* Breadcrumbs */}
+                    <nav className="flex items-center justify-center space-x-2 text-sm mb-6 text-secondary-500">
+                        <Link to="/" className="hover:text-primary-600 transition-colors">Home</Link>
+                        <span>/</span>
+                        <span className="text-primary-600 font-medium">About</span>
+                    </nav>
+
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6">
+                        About Us
+                    </h1>
+
+                    <p className="text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto leading-relaxed">
+                        Learn about our mission, vision, and the work we do across Africa
+                    </p>
+
+                    {/* Decorative line */}
+                    <div className="flex items-center justify-center space-x-4 mt-8">
+                        <div className="w-12 h-0.5 bg-primary-500 rounded-full"></div>
+                        <div className="w-4 h-4 bg-primary-500 rounded-full"></div>
+                        <div className="w-12 h-0.5 bg-primary-500 rounded-full"></div>
+                    </div>
+                </div>
+            </section>
+
 
             {/* Mission & Vision Section - Side by Side */}
             <section className="relative py-24 lg:py-32 bg-white overflow-hidden">

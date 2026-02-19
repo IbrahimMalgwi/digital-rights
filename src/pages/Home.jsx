@@ -3,17 +3,10 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import BlogCard from '../components/BlogCard';
 import ProjectCard from '../components/ProjectCard';
-import TeamCard from '../components/TeamCard';
+// import TeamCard from '../components/TeamCard';
 import { siteContent } from '../data/content';
 
 const Home = () => {
-    // Animation variants for staggered animations
-    const fadeInUp = {
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6 }
-    };
-
     return (
         <div className="overflow-hidden">
             {/* Hero Section */}
@@ -96,22 +89,6 @@ const Home = () => {
                                         </li>
                                     ))}
                                 </ul>
-
-                                {/* Progress Indicator (if applicable) */}
-                                {program.progress && (
-                                    <div className="mt-4">
-                                        <div className="flex justify-between text-xs mb-1">
-                                            <span className="text-secondary-500">Progress</span>
-                                            <span className="font-semibold text-primary-600">{program.progress}%</span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                                            <div
-                                                className="bg-gradient-to-r from-primary-500 to-accent-600 h-1.5 rounded-full transition-all duration-500"
-                                                style={{ width: `${program.progress}%` }}
-                                            ></div>
-                                        </div>
-                                    </div>
-                                )}
 
                                 {/* Learn More Link */}
                                 <Link

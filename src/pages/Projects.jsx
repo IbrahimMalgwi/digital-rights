@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PageHeader from '../components/PageHeader';
 import ProjectCard from '../components/ProjectCard';
 import { siteContent } from '../data/content';
 
@@ -11,15 +10,55 @@ const Projects = () => {
     const [visibleCount, setVisibleCount] = useState(6);
     const [searchQuery, setSearchQuery] = useState('');
 
+    // Enhanced projects with external links for specific projects
+    const allProjects = [
+        // Regular internal projects
+        ...(siteContent.projects || []).filter(p =>
+            !p.title.includes("Data Workers' Inquiry") &&
+            !p.title.includes("WDFA") &&
+            !p.title.includes("Women Digital Futures Africa")
+        ),
+
+        // Data Workers Inquiry as external link
+        {
+            id: 'data-workers-inquiry',
+            title: "Data Workers' Inquiry",
+            description: "A global, radically participatory research initiative where data workers become community researchers, documenting their own labor conditions and building transnational solidarity.",
+            category: "Research",
+            status: "Ongoing",
+            location: "Global",
+            impact: "16 researchers, 9 countries",
+            image: null,
+            featured: true,
+            externalUrl: "https://dataworkers.org", // Replace with actual URL
+            external: true
+        },
+
+        // WDFA as external link
+        {
+            id: 'wdfa',
+            title: "Women Digital Futures Africa (WDFA)",
+            description: "Empowering African women with digital skills, AI literacy, and safe online practices through practical training, mentorship, and advocacy.",
+            category: "Women",
+            status: "Ongoing",
+            location: "Multiple Countries",
+            impact: "500+ women trained",
+            image: null,
+            featured: true,
+            externalUrl: "https://wdfa.org", // Replace with actual URL
+            external: true
+        }
+    ];
+
     // Enhanced categories with icons and counts
     const categories = [
-        { name: 'All', icon: '📋', count: siteContent.projects?.length || 0 },
-        { name: 'Education', icon: '📚', count: siteContent.projects?.filter(p => p.category === 'Education').length || 0 },
-        { name: 'Mental Health', icon: '🧠', count: siteContent.projects?.filter(p => p.category === 'Mental Health').length || 0 },
-        { name: 'Advocacy', icon: '⚖️', count: siteContent.projects?.filter(p => p.category === 'Advocacy').length || 0 },
-        { name: 'Youth', icon: '👥', count: siteContent.projects?.filter(p => p.category === 'Youth').length || 0 },
-        { name: 'Women', icon: '👩', count: siteContent.projects?.filter(p => p.category === 'Women').length || 0 },
-        { name: 'Research', icon: '🔬', count: siteContent.projects?.filter(p => p.category === 'Research').length || 0 }
+        { name: 'All', icon: '📋', count: allProjects.length },
+        { name: 'Education', icon: '📚', count: allProjects.filter(p => p.category === 'Education').length },
+        { name: 'Mental Health', icon: '🧠', count: allProjects.filter(p => p.category === 'Mental Health').length },
+        { name: 'Advocacy', icon: '⚖️', count: allProjects.filter(p => p.category === 'Advocacy').length },
+        { name: 'Youth', icon: '👥', count: allProjects.filter(p => p.category === 'Youth').length },
+        { name: 'Women', icon: '👩', count: allProjects.filter(p => p.category === 'Women').length },
+        { name: 'Research', icon: '🔬', count: allProjects.filter(p => p.category === 'Research').length }
     ];
 
     const statuses = [
@@ -29,15 +68,15 @@ const Projects = () => {
         { name: 'Upcoming', icon: '📅', color: 'purple' }
     ];
 
-    const featuredProjects = siteContent.projects?.filter(project => project.featured) || [];
+    const featuredProjects = allProjects.filter(project => project.featured) || [];
 
     // Filter and search projects
-    const filteredProjects = (siteContent.projects || []).filter(project => {
+    const filteredProjects = allProjects.filter(project => {
         const categoryMatch = activeCategory === 'All' || project.category === activeCategory;
         const statusMatch = activeStatus === 'All' || project.status === activeStatus;
         const searchMatch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            project.location.toLowerCase().includes(searchQuery.toLowerCase());
+            (project.location && project.location.toLowerCase().includes(searchQuery.toLowerCase()));
         return categoryMatch && statusMatch && searchMatch;
     });
 
@@ -45,24 +84,60 @@ const Projects = () => {
 
     // Calculate stats
     const stats = {
-        total: siteContent.projects?.length || 0,
-        ongoing: siteContent.projects?.filter(p => p.status === 'Ongoing').length || 0,
-        completed: siteContent.projects?.filter(p => p.status === 'Completed').length || 0,
+        total: allProjects.length,
+        ongoing: allProjects.filter(p => p.status === 'Ongoing').length,
+        completed: allProjects.filter(p => p.status === 'Completed').length,
         countries: 15,
         impact: '100K+'
     };
 
     return (
         <div className="overflow-hidden">
-            {/* Hero Header */}
-            <PageHeader
-                title="Our Projects"
-                subtitle="Discover our initiatives making an impact across Africa in digital rights and mental health"
-                background="primary"
-                size="large"
-                pattern={true}
-                breadcrumbs={true}
-            />
+            {/* Custom Hero Header */}
+            <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 py-24 lg:py-32 overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-0 left-0 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+                </div>
+
+                {/* Animated Shapes */}
+                <div className="absolute top-10 right-10 w-20 h-20 border-4 border-primary-200 rounded-full opacity-20 animate-pulse"></div>
+                <div className="absolute bottom-10 left-10 w-32 h-32 border-4 border-accent-200 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 right-20 w-16 h-16 bg-primary-300 rounded-lg opacity-10 transform rotate-45 animate-pulse"></div>
+
+                <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    {/* Breadcrumbs */}
+                    <nav className="flex items-center justify-center space-x-2 text-sm mb-6 text-secondary-500">
+                        <Link to="/" className="hover:text-primary-600 transition-colors">Home</Link>
+                        <span>/</span>
+                        <span className="text-primary-600 font-medium">Projects</span>
+                    </nav>
+
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6">
+                        Our <span className="gradient-text">Projects</span>
+                    </h1>
+
+                    <p className="text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto leading-relaxed">
+                        Discover our initiatives making an impact across Africa in digital rights and mental health
+                    </p>
+
+                    {/* Decorative line */}
+                    <div className="flex items-center justify-center space-x-4 mt-8">
+                        <div className="w-12 h-0.5 bg-primary-500 rounded-full"></div>
+                        <div className="w-4 h-4 bg-primary-500 rounded-full"></div>
+                        <div className="w-12 h-0.5 bg-primary-500 rounded-full"></div>
+                    </div>
+                </div>
+
+                {/* Wave Divider at Bottom */}
+                <div className="absolute bottom-0 left-0 right-0">
+                    <svg className="w-full h-auto text-white" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 60L60 52.5C120 45 240 30 360 22.5C480 15 600 15 720 18.75C840 22.5 960 30 1080 33.75C1200 37.5 1320 37.5 1380 37.5L1440 37.5V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="currentColor" fillOpacity="0.1"/>
+                    </svg>
+                </div>
+            </section>
 
             {/* Stats Strip */}
             <section className="relative -mt-16 z-20">
@@ -108,21 +183,25 @@ const Projects = () => {
                                     <span className="gradient-text">Projects</span>
                                 </h2>
                             </div>
-                            <Link
-                                to="/projects/featured"
-                                className="hidden md:flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors group"
-                            >
-                                View All Featured
-                                <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </Link>
                         </div>
 
                         <div className="grid lg:grid-cols-2 gap-8">
                             {featuredProjects.slice(0, 2).map((project, index) => (
                                 <div key={project.id} className="animate-slide-up" style={{ animationDelay: `${index * 200}ms` }}>
-                                    <ProjectCard project={project} featured={true} />
+                                    {project.external ? (
+                                        <a
+                                            href={project.externalUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block group"
+                                        >
+                                            <ProjectCard project={project} featured={true} />
+                                        </a>
+                                    ) : (
+                                        <Link to={`/projects/${project.id}`} className="block group">
+                                            <ProjectCard project={project} featured={true} />
+                                        </Link>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -131,7 +210,20 @@ const Projects = () => {
                             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                                 {featuredProjects.slice(2, 5).map((project, index) => (
                                     <div key={project.id} className="animate-slide-up" style={{ animationDelay: `${(index + 2) * 100}ms` }}>
-                                        <ProjectCard project={project} variant="compact" />
+                                        {project.external ? (
+                                            <a
+                                                href={project.externalUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block group"
+                                            >
+                                                <ProjectCard project={project} variant="compact" />
+                                            </a>
+                                        ) : (
+                                            <Link to={`/projects/${project.id}`} className="block group">
+                                                <ProjectCard project={project} variant="compact" />
+                                            </Link>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -246,6 +338,16 @@ const Projects = () => {
                         </div>
                     </div>
 
+                    {/* External Projects Note */}
+                    <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                        <div className="flex items-center">
+                            <span className="text-2xl mr-3">🔗</span>
+                            <p className="text-blue-700">
+                                <span className="font-semibold">Note:</span> Data Workers' Inquiry and WDFA are external projects. Click on their cards to visit their dedicated websites.
+                            </p>
+                        </div>
+                    </div>
+
                     {/* Results Count */}
                     <div className="flex justify-between items-center mb-6">
                         <p className="text-secondary-600">
@@ -264,7 +366,23 @@ const Projects = () => {
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                     {visibleProjects.map((project, index) => (
                                         <div key={project.id} className="animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
-                                            <ProjectCard project={project} />
+                                            {project.external ? (
+                                                <a
+                                                    href={project.externalUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="block group relative"
+                                                >
+                                                    <div className="absolute top-2 right-2 z-10 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
+                                                        <span className="mr-1">🔗</span> External
+                                                    </div>
+                                                    <ProjectCard project={project} />
+                                                </a>
+                                            ) : (
+                                                <Link to={`/projects/${project.id}`} className="block group">
+                                                    <ProjectCard project={project} />
+                                                </Link>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
@@ -272,7 +390,23 @@ const Projects = () => {
                                 <div className="space-y-6">
                                     {visibleProjects.map((project, index) => (
                                         <div key={project.id} className="animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
-                                            <ProjectCard project={project} variant="horizontal" />
+                                            {project.external ? (
+                                                <a
+                                                    href={project.externalUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="block group relative"
+                                                >
+                                                    <div className="absolute top-2 right-2 z-10 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
+                                                        <span className="mr-1">🔗</span> External
+                                                    </div>
+                                                    <ProjectCard project={project} variant="horizontal" />
+                                                </a>
+                                            ) : (
+                                                <Link to={`/projects/${project.id}`} className="block group">
+                                                    <ProjectCard project={project} variant="horizontal" />
+                                                </Link>
+                                            )}
                                         </div>
                                     ))}
                                 </div>

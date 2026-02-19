@@ -49,6 +49,72 @@ const Footer = () => {
         return icons[platform] || <span className="font-semibold text-sm">{platform[0].toUpperCase()}</span>;
     };
 
+    // External link handler component
+    const FooterLink = ({ to, children, icon, external }) => {
+        if (external) {
+            return (
+                <a
+                    href={to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center text-gray-400 hover:text-white transition-all duration-300"
+                >
+                    {icon && (
+                        <span className="mr-2 text-lg group-hover:scale-110 transition-transform">
+                            {icon}
+                        </span>
+                    )}
+                    <span className="w-0 group-hover:w-2 h-0.5 bg-primary-500 rounded-full group-hover:mr-2 transition-all duration-300"></span>
+                    {children}
+                    <svg className="w-3 h-3 ml-1 text-gray-500 group-hover:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                </a>
+            );
+        }
+
+        return (
+            <Link
+                to={to}
+                className="group flex items-center text-gray-400 hover:text-white transition-all duration-300"
+            >
+                {icon && (
+                    <span className="mr-2 text-lg group-hover:scale-110 transition-transform">
+                        {icon}
+                    </span>
+                )}
+                <span className="w-0 group-hover:w-2 h-0.5 bg-primary-500 rounded-full group-hover:mr-2 transition-all duration-300"></span>
+                {children}
+            </Link>
+        );
+    };
+
+    // Enhanced programs with external links for WDFA and Data Workers Inquiry
+    const programLinks = [
+        ...siteContent.programs.map(program => ({
+            name: program.title,
+            href: `/programs#${program.title.toLowerCase().replace(/\s+/g, '-')}`,
+            icon: '📋',
+            external: false
+        })),
+        // Add WDFA as external link
+        {
+            name: 'WDFA (Women Digital Futures Africa)',
+            href: 'https://wdfa.org', // Replace with actual URL
+            icon: '👩🏾',
+            external: true,
+            description: 'Empowering women in digital spaces'
+        },
+        // Add Data Workers Inquiry as external link
+        {
+            name: 'Data Workers Inquiry',
+            href: 'https://dataworkers.org', // Replace with actual URL
+            icon: '🔬',
+            external: true,
+            description: 'Global research initiative'
+        }
+    ];
+
     // Footer sections data
     const footerSections = [
         {
@@ -58,28 +124,24 @@ const Footer = () => {
         },
         {
             title: 'Programs',
-            links: siteContent.programs.map(program => ({
-                name: program.title,
-                href: `/programs#${program.title.toLowerCase().replace(/\s+/g, '-')}`,
-                icon: '📋'
-            }))
+            links: programLinks
         },
         {
             title: 'Connect',
             links: [
-                { name: 'Contact Us', href: '/contact', icon: '📧' },
-                { name: 'Careers', href: '/careers', icon: '💼' },
-                { name: 'Volunteer', href: '/volunteer', icon: '🤝' },
-                { name: 'Newsletter', href: '/newsletter', icon: '📬' }
+                { name: 'Contact Us', href: '/contact', icon: '📧', external: false },
+                { name: 'Careers', href: '/careers', icon: '💼', external: false },
+                { name: 'Volunteer', href: '/volunteer', icon: '🤝', external: false },
+                { name: 'Newsletter', href: '/newsletter', icon: '📬', external: false }
             ]
         },
         {
             title: 'Resources',
             links: [
-                { name: 'Annual Reports', href: '/reports', icon: '📊' },
-                { name: 'Research Papers', href: '/research', icon: '📚' },
-                { name: 'Blog', href: '/blog', icon: '✍️' },
-                { name: 'Media Kit', href: '/media', icon: '📎' }
+                { name: 'Annual Reports', href: '/reports', icon: '📊', external: false },
+                { name: 'Research Papers', href: '/research', icon: '📚', external: false },
+                { name: 'Blog', href: '/blog', icon: '✍️', external: false },
+                { name: 'Media Kit', href: '/media', icon: '📎', external: false }
             ]
         }
     ];
@@ -125,11 +187,11 @@ const Footer = () => {
                     <div className="lg:col-span-2">
                         <div className="flex items-center mb-6">
                             <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-accent-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-soft transform hover:scale-105 transition-transform">
-                                {siteContent.site.name.split(' ').map(word => word[0]).join('').slice(0, 2)}
+                                {siteContent.site?.name?.split(' ').map(word => word[0]).join('').slice(0, 2) || 'D'}
                             </div>
                             <div className="ml-4">
                                 <span className="text-2xl font-display font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                                    {siteContent.site.name}
+                                    {siteContent.site?.name || 'DRMHI Africa'}
                                 </span>
                                 <span className="block text-sm text-gray-400 mt-1">
                                     Digital Rights & Mental Health
@@ -138,7 +200,7 @@ const Footer = () => {
                         </div>
 
                         <p className="text-gray-400 mb-8 leading-relaxed max-w-md">
-                            {siteContent.site.tagline}
+                            {siteContent.site?.tagline || 'Protecting digital rights and promoting mental health across Africa'}
                         </p>
 
                         {/* Contact Info */}
@@ -148,25 +210,25 @@ const Footer = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span className="text-sm">{siteContent.site.address}</span>
+                                <span className="text-sm">{siteContent.site?.address || 'Nairobi, Kenya'}</span>
                             </div>
                             <div className="flex items-center text-gray-400">
                                 <svg className="w-5 h-5 text-primary-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
-                                <span className="text-sm">{siteContent.site.email}</span>
+                                <span className="text-sm">{siteContent.site?.email || 'info@drmhiafrica.org'}</span>
                             </div>
                             <div className="flex items-center text-gray-400">
                                 <svg className="w-5 h-5 text-primary-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
-                                <span className="text-sm">{siteContent.site.phone}</span>
+                                <span className="text-sm">{siteContent.site?.phone || '+254 700 000 000'}</span>
                             </div>
                         </div>
 
                         {/* Social Links */}
                         <div className="flex space-x-3">
-                            {Object.entries(siteContent.site.social).map(([platform, url]) => (
+                            {Object.entries(siteContent.site?.social || {}).map(([platform, url]) => (
                                 <a
                                     key={platform}
                                     href={url}
@@ -199,13 +261,9 @@ const Footer = () => {
                                         <ul className="space-y-3">
                                             {firstColumn.map((item, idx) => (
                                                 <li key={idx}>
-                                                    <Link
-                                                        to={item.href}
-                                                        className="group flex items-center text-gray-400 hover:text-white transition-all duration-300"
-                                                    >
-                                                        <span className="w-0 group-hover:w-2 h-0.5 bg-primary-500 rounded-full group-hover:mr-2 transition-all duration-300"></span>
+                                                    <FooterLink to={item.href} external={false}>
                                                         {item.name}
-                                                    </Link>
+                                                    </FooterLink>
                                                 </li>
                                             ))}
                                         </ul>
@@ -214,13 +272,9 @@ const Footer = () => {
                                         <ul className="space-y-3">
                                             {secondColumn.map((item, idx) => (
                                                 <li key={idx}>
-                                                    <Link
-                                                        to={item.href}
-                                                        className="group flex items-center text-gray-400 hover:text-white transition-all duration-300"
-                                                    >
-                                                        <span className="w-0 group-hover:w-2 h-0.5 bg-primary-500 rounded-full group-hover:mr-2 transition-all duration-300"></span>
+                                                    <FooterLink to={item.href} external={false}>
                                                         {item.name}
-                                                    </Link>
+                                                    </FooterLink>
                                                 </li>
                                             ))}
                                         </ul>
@@ -231,18 +285,13 @@ const Footer = () => {
                                 <ul className="space-y-3">
                                     {section.links.map((link, linkIndex) => (
                                         <li key={linkIndex}>
-                                            <Link
+                                            <FooterLink
                                                 to={link.href}
-                                                className="group flex items-center text-gray-400 hover:text-white transition-all duration-300"
+                                                icon={link.icon}
+                                                external={link.external}
                                             >
-                                                {link.icon && (
-                                                    <span className="mr-2 text-lg group-hover:scale-110 transition-transform">
-                                                        {link.icon}
-                                                    </span>
-                                                )}
-                                                <span className="w-0 group-hover:w-2 h-0.5 bg-primary-500 rounded-full group-hover:mr-2 transition-all duration-300"></span>
                                                 {link.name}
-                                            </Link>
+                                            </FooterLink>
                                         </li>
                                     ))}
                                 </ul>
@@ -257,7 +306,7 @@ const Footer = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <p className="text-gray-400 text-sm text-center md:text-left">
-                            © {currentYear} {siteContent.site.fullName}. All rights reserved.
+                            © {currentYear} {siteContent.site?.fullName || 'Digital Rights & Mental Health Initiative Africa'}. All rights reserved.
                             <span className="mx-2 text-gray-600">|</span>
                             <span className="text-gray-500">Registered 501(c)(3) nonprofit</span>
                         </p>

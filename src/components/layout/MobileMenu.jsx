@@ -13,60 +13,120 @@ const MobileMenu = ({ isOpen, onClose }) => {
         onClose();
     }, [location, onClose]);
 
-    // Enhanced project items with icons and descriptions
+    // Handle external link click
+    const handleExternalLink = (e, url) => {
+        e.preventDefault();
+        window.open(url, '_blank', 'noopener noreferrer');
+        handleLinkClick();
+    };
+
+    // Custom link component that handles both internal and external links
+    const MenuLink = ({ to, children, className, icon, description, external, onClick, ...props }) => {
+        const handleClick = (e) => {
+            if (external) {
+                handleExternalLink(e, to);
+            } else {
+                if (onClick) onClick(e);
+                handleLinkClick();
+            }
+        };
+
+        if (external) {
+            return (
+                <a
+                    href={to}
+                    className={className}
+                    onClick={handleClick}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...props}
+                >
+                    {icon && <span className="text-lg mr-2">{icon}</span>}
+                    <div className="flex-1">
+                        <span className="block font-medium">{children}</span>
+                        {description && <span className="text-xs text-gray-400">{description}</span>}
+                    </div>
+                    <svg className="w-3 h-3 ml-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                </a>
+            );
+        }
+
+        return (
+            <Link
+                to={to}
+                className={className}
+                onClick={handleClick}
+                {...props}
+            >
+                {icon && <span className="text-lg mr-2">{icon}</span>}
+                <div className="flex-1">
+                    <span className="block font-medium">{children}</span>
+                    {description && <span className="text-xs text-gray-400">{description}</span>}
+                </div>
+            </Link>
+        );
+    };
+
+    // Enhanced project items with external links for WDFA and Data Workers Inquiry
     const projectItems = [
         {
             name: 'All Projects',
             href: '/projects',
             icon: '📋',
-            description: 'View all our initiatives'
+            description: 'View all our initiatives',
+            external: false
         },
         {
             name: 'WDFA',
-            href: '/wdfa',
+            href: 'https://wdfa.org', // Replace with actual URL
             icon: '👩🏾',
             description: 'Women Digital Futures Africa',
+            external: true,
             subItems: [
-                { name: 'About WDFA', href: '/wdfa', icon: '📖', description: 'Mission and vision' },
-                { name: 'Programs', href: '/wdfa#programs', icon: '🎓', description: 'Digital skills training' },
-                { name: 'AI Literacy Program', href: '/wdfa#ai-program', icon: '🤖', description: '6-week AI course' },
-                { name: 'Get Involved', href: '/wdfa#involved', icon: '🤝', description: 'Join as mentor or partner' }
+                { name: 'About WDFA', href: 'https://wdfa.org/about', icon: '📖', description: 'Mission and vision', external: true },
+                { name: 'Programs', href: 'https://wdfa.org/programs', icon: '🎓', description: 'Digital skills training', external: true },
+                { name: 'AI Literacy Program', href: 'https://wdfa.org/ai-program', icon: '🤖', description: '6-week AI course', external: true },
+                { name: 'Get Involved', href: 'https://wdfa.org/get-involved', icon: '🤝', description: 'Join as mentor or partner', external: true }
             ]
         },
         {
             name: 'Data Workers Inquiry',
-            href: '/data-workers-inquiry',
+            href: 'https://dataworkers.org', // Replace with actual URL
             icon: '🔬',
             description: 'Global research initiative',
+            external: true,
             subItems: [
-                { name: 'About the Inquiry', href: '/data-workers-inquiry', icon: '📚', description: 'Participatory research' },
-                { name: 'Research Methodology', href: '/data-workers-inquiry#methodology', icon: '🔍', description: 'How we work' },
-                { name: 'Regional Inquiries', href: '/data-workers-inquiry#inquiries', icon: '🌍', description: 'Across 9 countries' },
-                { name: 'Events & Webinars', href: '/data-workers-inquiry#events', icon: '📅', description: 'Upcoming panels' },
-                { name: 'Mental Health Intervention', href: '/data-workers-inquiry#mental-health', icon: '🧠', description: 'Worker wellbeing' }
+                { name: 'About the Inquiry', href: 'https://dataworkers.org/about', icon: '📚', description: 'Participatory research', external: true },
+                { name: 'Research Methodology', href: 'https://dataworkers.org/methodology', icon: '🔍', description: 'How we work', external: true },
+                { name: 'Regional Inquiries', href: 'https://dataworkers.org/regions', icon: '🌍', description: 'Across 9 countries', external: true },
+                { name: 'Events & Webinars', href: 'https://dataworkers.org/events', icon: '📅', description: 'Upcoming panels', external: true },
+                { name: 'Mental Health Intervention', href: 'https://dataworkers.org/mental-health', icon: '🧠', description: 'Worker wellbeing', external: true }
             ]
         },
-        ...siteContent.projects
+        ...(siteContent.projects || [])
             .filter(project => project.featured && project.id !== 7 && project.id !== 8)
             .slice(0, 2)
             .map(project => ({
                 name: project.title,
                 href: `/projects/${project.id}`,
                 icon: '🌟',
-                description: project.description?.substring(0, 50) + '...'
+                description: project.description?.substring(0, 50) + '...',
+                external: false
             }))
     ];
 
     // Navigation items with icons
     const navigationItems = [
-        { name: 'Home', href: '/', icon: '🏠' },
-        { name: 'About', href: '/about', icon: '📖' },
-        { name: 'Projects', href: '/projects', icon: '🚀', hasDropdown: true },
-        { name: 'Team', href: '/team', icon: '👥' },
-        { name: 'Partners', href: '/partners', icon: '🤝' },
-        { name: 'Blog', href: '/blog', icon: '✍️' },
-        { name: 'Gallery', href: '/gallery', icon: '🖼️' },
-        { name: 'Contact', href: '/contact', icon: '📧' }
+        { name: 'Home', href: '/', icon: '🏠', external: false },
+        { name: 'About', href: '/about', icon: '📖', external: false },
+        { name: 'Projects', href: '/projects', icon: '🚀', hasDropdown: true, external: false },
+        { name: 'Team', href: '/team', icon: '👥', external: false },
+        { name: 'Partners', href: '/partners', icon: '🤝', external: false },
+        { name: 'Blog', href: '/blog', icon: '✍️', external: false },
+        { name: 'Gallery', href: '/gallery', icon: '🖼️', external: false },
+        { name: 'Contact', href: '/contact', icon: '📧', external: false }
     ];
 
     const toggleDropdown = (dropdown) => {
@@ -105,7 +165,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 <div className="flex items-center justify-between p-6 border-b border-gray-100">
                     <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                            {siteContent.site.name.split(' ').map(word => word[0]).join('').slice(0, 2)}
+                            {siteContent.site?.name?.split(' ').map(word => word[0]).join('').slice(0, 2) || 'D'}
                         </div>
                         <div>
                             <h2 className="font-display font-bold text-gray-900">Menu</h2>
@@ -230,37 +290,33 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                                     >
                                                                         <div className="ml-4 pl-4 border-l-2 border-primary-50 space-y-2 py-2">
                                                                             {subItem.subItems.map((nestedItem) => (
-                                                                                <Link
+                                                                                <MenuLink
                                                                                     key={nestedItem.name}
                                                                                     to={nestedItem.href}
+                                                                                    icon={nestedItem.icon}
+                                                                                    description={nestedItem.description}
+                                                                                    external={nestedItem.external}
                                                                                     className="flex items-center py-2 px-3 text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-200"
                                                                                     onClick={handleLinkClick}
                                                                                 >
-                                                                                    <span className="text-base mr-2">{nestedItem.icon}</span>
-                                                                                    <div>
-                                                                                        <span className="block font-medium">{nestedItem.name}</span>
-                                                                                        <span className="text-xs text-gray-400">{nestedItem.description}</span>
-                                                                                    </div>
-                                                                                </Link>
+                                                                                    {nestedItem.name}
+                                                                                </MenuLink>
                                                                             ))}
                                                                         </div>
                                                                     </div>
                                                                 </>
                                                             ) : (
                                                                 // Regular dropdown item
-                                                                <Link
+                                                                <MenuLink
                                                                     to={subItem.href}
+                                                                    icon={subItem.icon}
+                                                                    description={subItem.description}
+                                                                    external={subItem.external}
                                                                     className="flex items-center py-3 px-3 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-xl transition-all duration-200"
                                                                     onClick={handleLinkClick}
                                                                 >
-                                                                    <span className="text-lg mr-2">{subItem.icon}</span>
-                                                                    <div>
-                                                                        <span className="text-sm font-medium block">{subItem.name}</span>
-                                                                        {subItem.description && (
-                                                                            <span className="text-xs text-gray-400">{subItem.description}</span>
-                                                                        )}
-                                                                    </div>
-                                                                </Link>
+                                                                    {subItem.name}
+                                                                </MenuLink>
                                                             )}
                                                         </div>
                                                     ))}
@@ -272,15 +328,16 @@ const MobileMenu = ({ isOpen, onClose }) => {
 
                                 // Regular navigation items
                                 return (
-                                    <Link
+                                    <MenuLink
                                         key={item.name}
                                         to={item.href}
+                                        icon={item.icon}
+                                        external={item.external}
                                         className="flex items-center py-4 px-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-xl transition-all duration-200 border-b border-gray-100 last:border-0"
                                         onClick={handleLinkClick}
                                     >
-                                        <span className="text-xl mr-3">{item.icon}</span>
-                                        <span className="font-medium">{item.name}</span>
-                                    </Link>
+                                        {item.name}
+                                    </MenuLink>
                                 );
                             })}
                         </div>
@@ -293,20 +350,17 @@ const MobileMenu = ({ isOpen, onClose }) => {
 
                                 <div className="space-y-3">
                                     {projectItems.slice(1, 3).map((program) => (
-                                        <Link
+                                        <MenuLink
                                             key={program.name}
                                             to={program.href}
+                                            icon={program.icon}
+                                            description={program.description}
+                                            external={program.external}
                                             className="flex items-center p-3 bg-white rounded-xl hover:shadow-soft transition-all duration-300"
                                             onClick={handleLinkClick}
                                         >
-                                            <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-600 rounded-xl flex items-center justify-center text-white text-xl">
-                                                {program.icon}
-                                            </div>
-                                            <div className="ml-3">
-                                                <h4 className="font-semibold text-gray-900">{program.name}</h4>
-                                                <p className="text-xs text-gray-500">{program.description}</p>
-                                            </div>
-                                        </Link>
+                                            {program.name}
+                                        </MenuLink>
                                     ))}
                                 </div>
                             </div>
@@ -314,7 +368,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                             <div className="bg-gray-50 rounded-2xl p-4">
                                 <h3 className="font-display font-bold text-gray-900 mb-3">Quick Actions</h3>
                                 <div className="space-y-2">
-                                    <Link
+                                    <MenuLink
                                         to="/donate"
                                         className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-soft transition-all duration-300"
                                         onClick={handleLinkClick}
@@ -329,9 +383,9 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                         <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                         </svg>
-                                    </Link>
+                                    </MenuLink>
 
-                                    <Link
+                                    <MenuLink
                                         to="/volunteer"
                                         className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-soft transition-all duration-300"
                                         onClick={handleLinkClick}
@@ -346,7 +400,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                         <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                         </svg>
-                                    </Link>
+                                    </MenuLink>
                                 </div>
                             </div>
                         </div>
@@ -357,7 +411,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent border-t border-gray-100">
                     <div className="flex items-center justify-between mb-3">
                         <div className="flex space-x-4">
-                            {Object.entries(siteContent.site.social).slice(0, 4).map(([platform, url]) => (
+                            {Object.entries(siteContent.site?.social || {}).slice(0, 4).map(([platform, url]) => (
                                 <a
                                     key={platform}
                                     href={url}
@@ -370,24 +424,24 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                 </a>
                             ))}
                         </div>
-                        <Link
+                        <MenuLink
                             to="/contact"
                             className="text-xs text-primary-600 font-semibold hover:text-primary-700 transition-colors"
                             onClick={handleLinkClick}
                         >
                             Contact Us
-                        </Link>
+                        </MenuLink>
                     </div>
 
                     {/* Donate Button (Mobile) */}
-                    <Link
+                    <MenuLink
                         to="/donate"
                         className="block w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white py-4 rounded-xl font-semibold hover:from-primary-700 hover:to-accent-700 transition-all duration-300 transform hover:scale-[1.02] text-center"
                         onClick={handleLinkClick}
                     >
                         <span className="mr-2">❤️</span>
                         Support Our Mission
-                    </Link>
+                    </MenuLink>
                 </div>
             </div>
         </>

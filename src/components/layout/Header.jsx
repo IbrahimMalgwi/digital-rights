@@ -6,7 +6,6 @@ import MobileMenu from './MobileMenu';
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
-    const [nestedDropdown, setNestedDropdown] = useState(null);
     const [scrolled, setScrolled] = useState(false);
     const dropdownRef = useRef(null);
     const location = useLocation();
@@ -25,7 +24,6 @@ const Header = () => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setActiveDropdown(null);
-                setNestedDropdown(null);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
@@ -35,7 +33,6 @@ const Header = () => {
     // Close dropdowns on route change
     useEffect(() => {
         setActiveDropdown(null);
-        setNestedDropdown(null);
         setIsMobileMenuOpen(false);
     }, [location]);
 
@@ -61,26 +58,45 @@ const Header = () => {
                 // Navigate to the page first, then scroll after navigation
                 window.location.href = href;
             }
-        } else {
-            // Regular link - use React Router
-            // We need to use window.location for external or force refresh if needed
-            if (href.startsWith('http')) {
-                window.location.href = href;
-            } else {
-                // For internal links, use React Router's navigate
-                // But we'll use Link component for this, so we don't need to do anything here
-            }
         }
     };
 
-    // Custom Link component that handles hash links
-    const HashLink = ({ to, children, className, onClick, ...props }) => {
+    // Handle external link clicks
+    const handleExternalLink = (url) => {
+        window.open(url, '_blank', 'noopener noreferrer');
+    };
+
+    // Custom Link component that handles hash links and external links
+    const HashLink = ({ to, children, className, onClick, external, ...props }) => {
         const handleClick = (e) => {
-            if (to.includes('#')) {
+            if (external) {
+                handleExternalLink(to);
+            } else if (to.includes('#')) {
+                e.preventDefault();
                 handleHashLinkClick(e, to);
             }
             if (onClick) onClick(e);
+            closeAllDropdowns();
         };
+
+        // Use regular <a> tag for external links, Link for internal
+        if (external) {
+            return (
+                <a
+                    href={to}
+                    className={className}
+                    onClick={handleClick}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...props}
+                >
+                    {children}
+                    <svg className="w-3 h-3 ml-1 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                </a>
+            );
+        }
 
         return (
             <Link
@@ -94,48 +110,39 @@ const Header = () => {
         );
     };
 
-    // Define dropdown items for Projects
+    // Simplified project items - WDFA and Data Workers Inquiry as direct external links without subItems
     const projectItems = [
         {
             name: 'Overview',
             href: '/projects',
             icon: '📋',
-            description: 'View all our projects and initiatives'
+            description: 'View all our projects and initiatives',
+            external: false
         },
         {
             name: 'WDFA',
-            href: '/wdfa',
+            href: 'https://wdfa.org', // Replace with actual URL
             icon: '👩🏾',
             description: 'Women Digital Futures Africa',
-            subItems: [
-                { name: 'About WDFA', href: '/wdfa', description: 'Mission and vision' },
-                { name: 'Programs', href: '/wdfa#programs', description: 'Digital skills training' },
-                { name: 'AI Literacy Program', href: '/wdfa#ai-program', description: '6-week AI course' },
-                { name: 'Get Involved', href: '/wdfa#involved', description: 'Join as mentor or partner' }
-            ]
+            external: true
         },
         {
             name: 'Data Workers Inquiry',
-            href: '/data-workers-inquiry',
+            href: 'https://dataworkers.org', // Replace with actual URL
             icon: '🔬',
             description: 'Global research initiative',
-            subItems: [
-                { name: 'About the Inquiry', href: '/data-workers-inquiry', description: 'Participatory research' },
-                { name: 'Research Methodology', href: '/data-workers-inquiry#methodology', description: 'How we work' },
-                { name: 'Regional Inquiries', href: '/data-workers-inquiry#inquiries', description: 'Across 9 countries' },
-                { name: 'Events & Webinars', href: '/data-workers-inquiry#events', description: 'Upcoming panels' },
-                { name: 'Mental Health Intervention', href: '/data-workers-inquiry#mental-health', description: 'Worker wellbeing' }
-            ]
+            external: true
         },
-        // Add other featured projects
+        // Add other featured projects (internal)
         ...(siteContent.projects || [])
-            .filter(project => project.featured && project.id !== 7 && project.id !== 8)
-            .slice(0, 2)
+            .filter(project => project.featured)
+            .slice(0, 3)
             .map(project => ({
                 name: project.title,
                 href: `/projects/${project.id}`,
                 icon: '🌟',
-                description: project.description?.substring(0, 60) + '...'
+                description: project.description?.substring(0, 60) + '...',
+                external: false
             }))
     ];
 
@@ -153,12 +160,10 @@ const Header = () => {
 
     const toggleProjectsDropdown = () => {
         setActiveDropdown(activeDropdown === 'projects' ? null : 'projects');
-        setNestedDropdown(null);
     };
 
     const closeAllDropdowns = () => {
         setActiveDropdown(null);
-        setNestedDropdown(null);
     };
 
     return (
@@ -223,92 +228,35 @@ const Header = () => {
                                             </svg>
                                         </button>
 
-                                        {/* Enhanced Dropdown Menu */}
+                                        {/* Simplified Dropdown Menu - No nested items */}
                                         {activeDropdown === 'projects' && (
-                                            <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden animate-slide-down">
+                                            <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden animate-slide-down">
                                                 <div className="py-2">
                                                     {projectItems.map((subItem) => (
-                                                        <div key={subItem.name} className="relative">
-                                                            {subItem.subItems ? (
-                                                                // Item with nested dropdown - Enhanced
-                                                                <div className="border-b border-gray-100 last:border-0">
-                                                                    <div
-                                                                        className="flex items-center justify-between px-4 py-3 hover:bg-primary-50 cursor-pointer transition-colors duration-200"
-                                                                        onClick={() => setNestedDropdown(
-                                                                            nestedDropdown === subItem.name ? null : subItem.name
-                                                                        )}
-                                                                    >
-                                                                        <div className="flex items-center flex-1">
-                                                                            <span className="text-xl mr-3">{subItem.icon}</span>
-                                                                            <div>
-                                                                                <span className="font-semibold text-gray-900 block">
-                                                                                    {subItem.name}
-                                                                                </span>
-                                                                                <span className="text-xs text-gray-500">
-                                                                                    {subItem.description}
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <svg
-                                                                            className={`
-                                                                                w-5 h-5 text-gray-400 transition-transform duration-300
-                                                                                ${nestedDropdown === subItem.name ? 'rotate-90' : ''}
-                                                                            `}
-                                                                            fill="none"
-                                                                            stroke="currentColor"
-                                                                            viewBox="0 0 24 24"
-                                                                        >
-                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                                                                        </svg>
-                                                                    </div>
-
-                                                                    {/* Nested dropdown - Enhanced */}
-                                                                    {nestedDropdown === subItem.name && (
-                                                                        <div className="bg-gray-50 py-2 px-4 animate-fade-in">
-                                                                            {subItem.subItems.map((nestedItem) => (
-                                                                                <HashLink
-                                                                                    key={nestedItem.name}
-                                                                                    to={nestedItem.href}
-                                                                                    className="flex items-center px-4 py-2 rounded-lg text-gray-600 hover:bg-white hover:text-primary-600 transition-all duration-200 group"
-                                                                                    onClick={closeAllDropdowns}
-                                                                                >
-                                                                                    <span className="w-1 h-1 bg-primary-500 rounded-full mr-3"></span>
-                                                                                    <div className="flex-1">
-                                                                                        <span className="text-sm font-medium block">
-                                                                                            {nestedItem.name}
-                                                                                        </span>
-                                                                                        {nestedItem.description && (
-                                                                                            <span className="text-xs text-gray-400">
-                                                                                                {nestedItem.description}
-                                                                                            </span>
-                                                                                        )}
-                                                                                    </div>
-                                                                                </HashLink>
-                                                                            ))}
-                                                                        </div>
-                                                                    )}
-                                                                </div>
-                                                            ) : (
-                                                                // Regular dropdown item - Enhanced
-                                                                <HashLink
-                                                                    to={subItem.href}
-                                                                    className="flex items-center px-4 py-3 hover:bg-primary-50 transition-colors duration-200"
-                                                                    onClick={closeAllDropdowns}
-                                                                >
-                                                                    <span className="text-xl mr-3">{subItem.icon}</span>
-                                                                    <div>
-                                                                        <span className="font-semibold text-gray-900 block">
-                                                                            {subItem.name}
-                                                                        </span>
-                                                                        {subItem.description && (
-                                                                            <span className="text-xs text-gray-500">
-                                                                                {subItem.description}
-                                                                            </span>
-                                                                        )}
-                                                                    </div>
-                                                                </HashLink>
+                                                        <HashLink
+                                                            key={subItem.name}
+                                                            to={subItem.href}
+                                                            external={subItem.external}
+                                                            className="flex items-center px-4 py-3 hover:bg-primary-50 transition-colors duration-200 group"
+                                                            onClick={closeAllDropdowns}
+                                                        >
+                                                            <span className="text-xl mr-3">{subItem.icon}</span>
+                                                            <div className="flex-1">
+                                                                <span className="font-semibold text-gray-900 block">
+                                                                    {subItem.name}
+                                                                </span>
+                                                                {subItem.description && (
+                                                                    <span className="text-xs text-gray-500">
+                                                                        {subItem.description}
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                            {subItem.external && (
+                                                                <svg className="w-3 h-3 ml-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                                </svg>
                                                             )}
-                                                        </div>
+                                                        </HashLink>
                                                     ))}
                                                 </div>
 

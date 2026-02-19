@@ -5,8 +5,6 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
-import WDFA from './pages/WDFA'; // Add this import
-import DataWorkersInquiry from './pages/DataWorkersInquiry';
 import Blog from './pages/Blog';
 import Gallery from './pages/Gallery';
 import Donate from './pages/Donate';
@@ -25,14 +23,16 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/projects" element={<Projects />} />
-                        <Route path="/wdfa" element={<WDFA />} />
-                        <Route path="/data-workers-inquiry" element={<DataWorkersInquiry />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/gallery" element={<Gallery />} />
                         <Route path="/donate" element={<Donate />} />
                         <Route path="/team" element={<Team />} />
                         <Route path="/partners" element={<Partners />} />
                         <Route path="/contact" element={<Contact />} />
+
+                        {/* Redirect old WDFA and Data Workers Inquiry routes to projects page */}
+                        <Route path="/wdfa" element={<Projects />} />
+                        <Route path="/data-workers-inquiry" element={<Projects />} />
                     </Routes>
                 </main>
                 <Footer />
