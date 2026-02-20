@@ -98,6 +98,7 @@ const Header = () => {
         { name: 'About', href: '/about', icon: '📖' },
         { name: 'Projects', href: '/projects', icon: '🚀' }, // Removed hasDropdown
         { name: 'Team', href: '/team', icon: '👥' },
+        { name: 'Awards', href: '/awards', icon: '🏆' },
         { name: 'Partners', href: '/partners', icon: '🤝' },
         { name: 'Blog', href: '/blog', icon: '✍️' },
         { name: 'Gallery', href: '/gallery', icon: '🖼️' },

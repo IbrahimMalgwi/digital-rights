@@ -7,6 +7,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Blog from './pages/Blog';
 import Gallery from './pages/Gallery';
+import Awards from './pages/Awards'; // Add this import
 import Donate from './pages/Donate';
 import Team from './pages/Team';
 import Partners from './pages/Partners';
@@ -25,6 +26,7 @@ function App() {
                         <Route path="/projects" element={<Projects />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/gallery" element={<Gallery />} />
+                        <Route path="/awards" element={<Awards />} /> {/* Add this route */}
                         <Route path="/donate" element={<Donate />} />
                         <Route path="/team" element={<Team />} />
                         <Route path="/partners" element={<Partners />} />
