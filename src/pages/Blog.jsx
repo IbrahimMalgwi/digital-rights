@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import BlogCard from '../components/cards/BlogCard';
 import { siteContent } from '../data/content';
 
@@ -30,18 +30,7 @@ const Blog = () => {
         return matchesCategory && matchesSearch;
     });
 
-    // Popular tags
-    // const popularTags = [
-    //     'Digital Rights', 'Mental Health', 'Policy', 'Youth',
-    //     'Africa', 'Research', 'Community', 'Wellness', 'Technology'
-    // ];
 
-    // Trending topics
-    // const trendingTopics = [
-    //     { title: 'Digital Wellness in 2024', views: '2.5K' },
-    //     { title: 'AI and Mental Health', views: '1.8K' },
-    //     { title: 'Policy Changes in East Africa', views: '1.2K' }
-    // ];
 
     // Load more posts
     const loadMore = () => {
@@ -67,19 +56,6 @@ const Blog = () => {
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     <div className="max-w-4xl mx-auto text-center">
-                        {/* Breadcrumbs - Centered */}
-                        <nav className="flex items-center justify-center space-x-2 text-sm mb-8 text-gray-500">
-                            <Link to="/" className="hover:text-gray-700 transition-colors">Home</Link>
-                            <span className="text-gray-300">/</span>
-                            <span className="text-gray-900 font-medium">Blog</span>
-                        </nav>
-
-                        {/* Badge - Centered */}
-                        <div className="inline-flex items-center justify-center mb-12">
-                            <span className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm border border-amber-100">
-                                ✦ Insights & Stories
-                            </span>
-                        </div>
 
                         {/* Main Title - Centered with gradient */}
                         <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
@@ -94,91 +70,6 @@ const Blog = () => {
                             Latest research, stories, and updates from our work across Africa.
                         </p>
 
-                        {/* Scroll indicator */}
-                        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
-                            <div className="flex flex-col items-center space-y-2 text-gray-400">
-                                <span className="text-xs uppercase tracking-wider">Scroll</span>
-                                <div className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center">
-                                    <div className="w-1 h-2 bg-gradient-to-b from-amber-500 to-emerald-500 rounded-full mt-2 animate-bounce"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Stats Section - Quick overview */}
-            <section className="py-16 bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">{siteContent.blog?.featured?.length || 0}</div>
-                            <div className="text-sm text-gray-500">Total Articles</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">{featuredPosts.length}</div>
-                            <div className="text-sm text-gray-500">Featured</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">{categories.length - 1}</div>
-                            <div className="text-sm text-gray-500">Categories</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">5K+</div>
-                            <div className="text-sm text-gray-500">Monthly Readers</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Filter Bar - Centered */}
-            <section className="py-12 bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {categories.map((category) => (
-                            <button
-                                key={category.name}
-                                onClick={() => setActiveCategory(category.name)}
-                                className={`
-                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeCategory === category.name
-                                    ? 'bg-gray-900 text-white'
-                                    : `${category.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{category.icon}</span>
-                                {category.name}
-                                {category.name !== 'All' && (
-                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                        activeCategory === category.name
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-white/60 text-gray-600'
-                                    }`}>
-                                        {category.count}
-                                    </span>
-                                )}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Search Bar - Centered */}
-            <section className="py-8 bg-white">
-                <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="relative">
-                        <input
-                            type="text"
-                            placeholder="Search articles..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
-                        />
-                        <svg className="absolute left-4 top-4 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
                     </div>
                 </div>
             </section>
@@ -273,6 +164,58 @@ const Blog = () => {
                             </button>
                         </div>
                     )}
+                </div>
+            </section>
+
+            {/* Filter Bar - Centered */}
+            <section className="py-12 bg-white border-b border-gray-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {categories.map((category) => (
+                            <button
+                                key={category.name}
+                                onClick={() => setActiveCategory(category.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeCategory === category.name
+                                    ? 'bg-gray-900 text-white'
+                                    : `${category.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{category.icon}</span>
+                                {category.name}
+                                {category.name !== 'All' && (
+                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                        activeCategory === category.name
+                                            ? 'bg-white/20 text-white'
+                                            : 'bg-white/60 text-gray-600'
+                                    }`}>
+                                        {category.count}
+                                    </span>
+                                )}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Search Bar - Centered */}
+            <section className="py-8 bg-white">
+                <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="relative">
+                        <input
+                            type="text"
+                            placeholder="Search articles..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
+                        />
+                        <svg className="absolute left-4 top-4 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
                 </div>
             </section>
 

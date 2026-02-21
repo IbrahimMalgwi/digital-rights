@@ -66,19 +66,7 @@ const Partners = () => {
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     <div className="max-w-4xl mx-auto text-center">
-                        {/* Breadcrumbs - Centered */}
-                        <nav className="flex items-center justify-center space-x-2 text-sm mb-8 text-gray-500">
-                            <Link to="/" className="hover:text-gray-700 transition-colors">Home</Link>
-                            <span className="text-gray-300">/</span>
-                            <span className="text-gray-900 font-medium">Partners</span>
-                        </nav>
 
-                        {/* Badge - Centered */}
-                        <div className="inline-flex items-center justify-center mb-12">
-                            <span className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm border border-amber-100">
-                                ✦ Collaborating for Impact
-                            </span>
-                        </div>
 
                         {/* Main Title - Centered with gradient */}
                         <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
@@ -95,89 +83,15 @@ const Partners = () => {
 
                         {/* Scroll indicator */}
                         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
-                            <div className="flex flex-col items-center space-y-2 text-gray-400">
-                                <span className="text-xs uppercase tracking-wider">Scroll</span>
-                                <div className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center">
-                                    <div className="w-1 h-2 bg-gradient-to-b from-amber-500 to-emerald-500 rounded-full mt-2 animate-bounce"></div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Stats Section - Quick overview */}
-            <section className="py-16 bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">{partners.length}</div>
-                            <div className="text-sm text-gray-500">Total Partners</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">
-                                {new Set(partners.map(p => p.type)).size}
-                            </div>
-                            <div className="text-sm text-gray-500">Partner Types</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">
-                                {partners.filter(p => p.impact).length}
-                            </div>
-                            <div className="text-sm text-gray-500">Active Impact</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">
-                                {new Date().getFullYear() - Math.min(...partners.map(p => parseInt(p.partnershipYear) || 2024))}+
-                            </div>
-                            <div className="text-sm text-gray-500">Years of Collaboration</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            {/* Filter Bar - Centered */}
-            <section className="py-12 bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider text-center mb-4">Filter by Type</h3>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {partnerTypes.map((type) => (
-                            <button
-                                key={type.name}
-                                onClick={() => setActiveType(type.name)}
-                                className={`
-                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeType === type.name
-                                    ? 'bg-gray-900 text-white'
-                                    : `${type.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{type.icon}</span>
-                                {type.name}
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                    activeType === type.name
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-white/60 text-gray-600'
-                                }`}>
-                                    {type.count}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
-            {/* Results Count */}
-            <section className="pt-8 pb-4 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <p className="text-gray-500">
-                            Showing <span className="font-semibold text-gray-900">{filteredPartners.length}</span> partners
-                        </p>
-                    </div>
-                </div>
-            </section>
+
 
             {/* Partners Grid - 4 Columns */}
             <section className="py-8 pb-20 bg-white">
@@ -313,6 +227,49 @@ const Partners = () => {
                             </button>
                         </div>
                     )}
+                </div>
+            </section>
+
+            {/* Filter Bar - Centered */}
+            <section className="py-12 bg-white border-b border-gray-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider text-center mb-4">Filter by Type</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {partnerTypes.map((type) => (
+                            <button
+                                key={type.name}
+                                onClick={() => setActiveType(type.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeType === type.name
+                                    ? 'bg-gray-900 text-white'
+                                    : `${type.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{type.icon}</span>
+                                {type.name}
+                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                    activeType === type.name
+                                        ? 'bg-white/20 text-white'
+                                        : 'bg-white/60 text-gray-600'
+                                }`}>
+                                    {type.count}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Results Count */}
+            <section className="pt-8 pb-4 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center">
+                        <p className="text-gray-500">
+                            Showing <span className="font-semibold text-gray-900">{filteredPartners.length}</span> partners
+                        </p>
+                    </div>
                 </div>
             </section>
 

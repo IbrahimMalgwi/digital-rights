@@ -47,19 +47,6 @@ const About = () => {
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     <div className="max-w-4xl mx-auto text-center">
-                        {/* Breadcrumbs - Centered */}
-                        <nav className="flex items-center justify-center space-x-2 text-sm mb-8 text-gray-500">
-                            <Link to="/" className="hover:text-gray-700 transition-colors">Home</Link>
-                            <span className="text-gray-300">/</span>
-                            <span className="text-gray-900 font-medium">About</span>
-                        </nav>
-
-                        {/* Badge - Centered */}
-                        <div className="inline-flex items-center justify-center mb-12">
-                            <span className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm border border-amber-100">
-                                ✦ Since 2015
-                            </span>
-                        </div>
 
                         {/* Main Title - Centered with gradient */}
                         <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
@@ -100,15 +87,7 @@ const About = () => {
                             </Link>
                         </div>
 
-                        {/* Scroll indicator - subtle */}
-                        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
-                            <div className="flex flex-col items-center space-y-2 text-gray-400">
-                                <span className="text-xs uppercase tracking-wider">Scroll</span>
-                                <div className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center">
-                                    <div className="w-1 h-2 bg-gradient-to-b from-amber-500 to-emerald-500 rounded-full mt-2 animate-bounce"></div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </section>

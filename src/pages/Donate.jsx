@@ -52,19 +52,7 @@ const Donate = () => {
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     <div className="max-w-4xl mx-auto text-center">
-                        {/* Breadcrumbs - Centered */}
-                        <nav className="flex items-center justify-center space-x-2 text-sm mb-8 text-gray-500">
-                            <Link to="/" className="hover:text-gray-700 transition-colors">Home</Link>
-                            <span className="text-gray-300">/</span>
-                            <span className="text-gray-900 font-medium">Donate</span>
-                        </nav>
 
-                        {/* Badge - Centered */}
-                        <div className="inline-flex items-center justify-center mb-12">
-                            <span className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm border border-amber-100">
-                                ✦ Make a Difference
-                            </span>
-                        </div>
 
                         {/* Main Title - Centered with gradient */}
                         <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
@@ -90,60 +78,12 @@ const Donate = () => {
                             </a>
                         </div>
 
-                        {/* Scroll indicator */}
-                        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
-                            <div className="flex flex-col items-center space-y-2 text-gray-400">
-                                <span className="text-xs uppercase tracking-wider">Scroll</span>
-                                <div className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center">
-                                    <div className="w-1 h-2 bg-gradient-to-b from-amber-500 to-emerald-500 rounded-full mt-2 animate-bounce"></div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </section>
 
-            {/* Fundraising Message Section */}
-            <section className="py-20 bg-white border-b border-gray-100">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <div className="bg-gradient-to-br from-amber-50 to-emerald-50 rounded-3xl p-12 md:p-16">
-                        <span className="inline-block text-6xl mb-6 animate-pulse">💛</span>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                            Call for Fundraising
-                        </h2>
-                        <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-                            We're raising funds to support mental health and digital well-being for young people—creating safe spaces, practical tools, and long-term support where it matters most. Every contribution, big or small, helps us reach more lives.
-                        </p>
-                        <div className="inline-block bg-white px-8 py-3 rounded-full text-amber-600 font-medium text-sm shadow-md">
-                            ✨ Thank you for standing with us ✨
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            {/* Stats Section - Quick overview */}
-            <section className="py-16 bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">15</div>
-                            <div className="text-sm text-gray-500">Countries</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">10K+</div>
-                            <div className="text-sm text-gray-500">Lives Impacted</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">50+</div>
-                            <div className="text-sm text-gray-500">Community Centers</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">85%</div>
-                            <div className="text-sm text-gray-500">Goes to Programs</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* Main Donation Section - Account Details */}
             <section id="donate-form" className="py-20 bg-gray-50">

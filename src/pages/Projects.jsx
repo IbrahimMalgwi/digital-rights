@@ -10,50 +10,29 @@ const Projects = () => {
     const [visibleCount, setVisibleCount] = useState(6);
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Enhanced projects with external links
-    const allProjects = [
-        ...(siteContent.projects || []).filter(p =>
-            !p.title.includes("Data Workers' Inquiry") &&
-            !p.title.includes("WDFA") &&
-            !p.title.includes("Women Digital Futures Africa")
-        ),
-        {
-            id: 'data-workers-inquiry',
-            title: "Data Workers' Inquiry",
-            description: "A global, radically participatory research initiative where data workers become community researchers, documenting their own labor conditions and building transnational solidarity.",
-            category: "Research",
-            status: "Ongoing",
-            location: "Global",
-            impact: "16 researchers, 9 countries",
-            image: null,
-            featured: true,
-            externalUrl: "https://dataworkers.org",
-            external: true
-        },
-        {
-            id: 'wdfa',
-            title: "Women Digital Futures Africa (WDFA)",
-            description: "Empowering African women with digital skills, AI literacy, and safe online practices through practical training, mentorship, and advocacy.",
-            category: "Women",
-            status: "Ongoing",
-            location: "Multiple Countries",
-            impact: "500+ women trained",
-            image: null,
-            featured: true,
-            externalUrl: "https://wdfa.org",
-            external: true
-        }
-    ];
+    // Get all projects from siteContent (including external ones)
+    const allProjects = siteContent.projects || [];
 
-    // Categories with colors
+    // Dynamically generate categories from actual data
     const categories = [
         { name: 'All', icon: '📋', count: allProjects.length, color: 'bg-amber-50 text-amber-700' },
-        { name: 'Education', icon: '📚', count: allProjects.filter(p => p.category === 'Education').length, color: 'bg-emerald-50 text-emerald-700' },
-        { name: 'Mental Health', icon: '🧠', count: allProjects.filter(p => p.category === 'Mental Health').length, color: 'bg-indigo-50 text-indigo-700' },
-        { name: 'Advocacy', icon: '⚖️', count: allProjects.filter(p => p.category === 'Advocacy').length, color: 'bg-rose-50 text-rose-700' },
-        { name: 'Youth', icon: '👥', count: allProjects.filter(p => p.category === 'Youth').length, color: 'bg-amber-50 text-amber-700' },
-        { name: 'Women', icon: '👩', count: allProjects.filter(p => p.category === 'Women').length, color: 'bg-emerald-50 text-emerald-700' },
-        { name: 'Research', icon: '🔬', count: allProjects.filter(p => p.category === 'Research').length, color: 'bg-indigo-50 text-indigo-700' }
+        ...Array.from(new Set(allProjects.map(p => p.category))).map(category => ({
+            name: category,
+            count: allProjects.filter(p => p.category === category).length,
+            icon: category === 'Education' ? '📚' :
+                category === 'Mental Health' ? '🧠' :
+                    category === 'Advocacy' ? '⚖️' :
+                        category === 'Youth' ? '👥' :
+                            category === 'Women' ? '👩' :
+                                category === 'Research' ? '🔬' : '📋',
+            color: category === 'Education' ? 'bg-emerald-50 text-emerald-700' :
+                category === 'Mental Health' ? 'bg-indigo-50 text-indigo-700' :
+                    category === 'Advocacy' ? 'bg-rose-50 text-rose-700' :
+                        category === 'Youth' ? 'bg-amber-50 text-amber-700' :
+                            category === 'Women' ? 'bg-emerald-50 text-emerald-700' :
+                                category === 'Research' ? 'bg-indigo-50 text-indigo-700' :
+                                    'bg-amber-50 text-amber-700'
+        }))
     ];
 
     const statuses = [
@@ -77,9 +56,12 @@ const Projects = () => {
 
     const visibleProjects = filteredProjects.slice(0, visibleCount);
 
+    // Check if there are external projects for the note
+    const hasExternalProjects = allProjects.some(p => p.external);
+
     return (
         <div>
-            {/* Hero Section - Spacious & Centered like Hero/About */}
+            {/* Hero Section - Spacious & Centered */}
             <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 min-h-[90vh] flex items-center py-32 lg:py-40 overflow-hidden">
                 {/* Decorative Elements */}
                 <div className="absolute top-40 right-20 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
@@ -88,19 +70,6 @@ const Projects = () => {
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     <div className="max-w-4xl mx-auto text-center">
-                        {/* Breadcrumbs - Centered */}
-                        <nav className="flex items-center justify-center space-x-2 text-sm mb-8 text-gray-500">
-                            <Link to="/" className="hover:text-gray-700 transition-colors">Home</Link>
-                            <span className="text-gray-300">/</span>
-                            <span className="text-gray-900 font-medium">Projects</span>
-                        </nav>
-
-                        {/* Badge - Centered */}
-                        <div className="inline-flex items-center justify-center mb-12">
-                            <span className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm border border-amber-100">
-                                ✦ Making Impact Across Africa
-                            </span>
-                        </div>
 
                         {/* Main Title - Centered with gradient */}
                         <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
@@ -135,42 +104,10 @@ const Projects = () => {
                             </button>
                         </div>
 
-                        {/* Scroll indicator */}
-                        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
-                            <div className="flex flex-col items-center space-y-2 text-gray-400">
-                                <span className="text-xs uppercase tracking-wider">Scroll</span>
-                                <div className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center">
-                                    <div className="w-1 h-2 bg-gradient-to-b from-amber-500 to-emerald-500 rounded-full mt-2 animate-bounce"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Stats Section - Optional, can be removed if not needed */}
-            <section className="py-16 bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">{allProjects.length}+</div>
-                            <div className="text-sm text-gray-500">Total Projects</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">{allProjects.filter(p => p.status === 'Ongoing').length}</div>
-                            <div className="text-sm text-gray-500">Active Now</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">15</div>
-                            <div className="text-sm text-gray-500">Countries</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-gray-900">{allProjects.filter(p => p.featured).length}</div>
-                            <div className="text-sm text-gray-500">Featured</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* Featured Projects Section */}
             {featuredProjects.length > 0 && (
@@ -284,192 +221,208 @@ const Projects = () => {
             {/* Main Projects Section */}
             <section className="py-16 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Filter Chips - Now centered */}
-                    <div className="text-center mb-12">
-                        <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">Filter by Category</h3>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {categories.map((category) => (
-                                <button
-                                    key={category.name}
-                                    onClick={() => setActiveCategory(category.name)}
-                                    className={`
-                                        group px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
-                                        ${activeCategory === category.name
-                                        ? 'bg-gray-900 text-white'
-                                        : `${category.color} hover:shadow-md`
-                                    }
-                                    `}
-                                >
-                                    <span className="mr-2">{category.icon}</span>
-                                    {category.name}
-                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                        activeCategory === category.name
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-white/60 text-gray-600'
-                                    }`}>
-                                        {category.count}
-                                    </span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
+                    {/* Filter Chips - Centered */}
+                    {allProjects.length > 0 && (
+                        <>
+                            <div className="text-center mb-12">
+                                <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">Filter by Category</h3>
+                                <div className="flex flex-wrap gap-2 justify-center">
+                                    {categories.map((category) => (
+                                        <button
+                                            key={category.name}
+                                            onClick={() => setActiveCategory(category.name)}
+                                            className={`
+                                                group px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
+                                                ${activeCategory === category.name
+                                                ? 'bg-gray-900 text-white'
+                                                : `${category.color} hover:shadow-md`
+                                            }
+                                            `}
+                                        >
+                                            <span className="mr-2">{category.icon}</span>
+                                            {category.name}
+                                            <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                                activeCategory === category.name
+                                                    ? 'bg-white/20 text-white'
+                                                    : 'bg-white/60 text-gray-600'
+                                            }`}>
+                                                {category.count}
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
 
-                    <div className="text-center mb-12">
-                        <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">Filter by Status</h3>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {statuses.map((status) => (
-                                <button
-                                    key={status.name}
-                                    onClick={() => setActiveStatus(status.name)}
-                                    className={`
-                                        px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
-                                        ${activeStatus === status.name
-                                        ? 'bg-gray-900 text-white'
-                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                    }
-                                    `}
-                                >
-                                    <span className="mr-2">{status.icon}</span>
-                                    {status.name}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
+                            <div className="text-center mb-12">
+                                <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">Filter by Status</h3>
+                                <div className="flex flex-wrap gap-2 justify-center">
+                                    {statuses.map((status) => (
+                                        <button
+                                            key={status.name}
+                                            onClick={() => setActiveStatus(status.name)}
+                                            className={`
+                                                px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
+                                                ${activeStatus === status.name
+                                                ? 'bg-gray-900 text-white'
+                                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                            }
+                                            `}
+                                        >
+                                            <span className="mr-2">{status.icon}</span>
+                                            {status.name}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </>
+                    )}
 
-                    {/* External Projects Note */}
-                    <div className="mb-8 max-w-2xl mx-auto">
-                        <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-center">
-                            <p className="text-amber-800 text-sm">
-                                <span className="font-semibold">Note:</span> Data Workers' Inquiry and WDFA are external projects. Click on their cards to visit their dedicated websites.
-                            </p>
+                    {/* External Projects Note - Only show if there are external projects */}
+                    {hasExternalProjects && (
+                        <div className="mb-8 max-w-2xl mx-auto">
+                            <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-center">
+                                <p className="text-amber-800 text-sm">
+                                    <span className="font-semibold">Note:</span> Some projects are external. Click on their cards to visit their dedicated websites.
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                     {/* Results Count */}
-                    <div className="text-center mb-6">
-                        <p className="text-gray-500">
-                            Showing <span className="font-semibold text-gray-900">{visibleProjects.length}</span> of{' '}
-                            <span className="font-semibold text-gray-900">{filteredProjects.length}</span> projects
-                        </p>
-                    </div>
+                    {allProjects.length > 0 && (
+                        <div className="text-center mb-6">
+                            <p className="text-gray-500">
+                                Showing <span className="font-semibold text-gray-900">{visibleProjects.length}</span> of{' '}
+                                <span className="font-semibold text-gray-900">{filteredProjects.length}</span> projects
+                            </p>
+                        </div>
+                    )}
 
                     {/* Projects Grid/List */}
-                    {filteredProjects.length > 0 ? (
-                        <>
-                            {viewMode === 'grid' ? (
-                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {visibleProjects.map((project, index) => {
-                                        const categoryColor =
-                                            project.category === 'Education' ? 'bg-emerald-50 text-emerald-700' :
-                                                project.category === 'Mental Health' ? 'bg-indigo-50 text-indigo-700' :
-                                                    project.category === 'Advocacy' ? 'bg-rose-50 text-rose-700' :
-                                                        project.category === 'Youth' ? 'bg-amber-50 text-amber-700' :
-                                                            project.category === 'Women' ? 'bg-emerald-50 text-emerald-700' :
-                                                                project.category === 'Research' ? 'bg-indigo-50 text-indigo-700' :
-                                                                    'bg-amber-50 text-amber-700';
+                    {allProjects.length > 0 ? (
+                        filteredProjects.length > 0 ? (
+                            <>
+                                {viewMode === 'grid' ? (
+                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {visibleProjects.map((project, index) => {
+                                            const categoryColor =
+                                                project.category === 'Education' ? 'bg-emerald-50 text-emerald-700' :
+                                                    project.category === 'Mental Health' ? 'bg-indigo-50 text-indigo-700' :
+                                                        project.category === 'Advocacy' ? 'bg-rose-50 text-rose-700' :
+                                                            project.category === 'Youth' ? 'bg-amber-50 text-amber-700' :
+                                                                project.category === 'Women' ? 'bg-emerald-50 text-emerald-700' :
+                                                                    project.category === 'Research' ? 'bg-indigo-50 text-indigo-700' :
+                                                                        'bg-amber-50 text-amber-700';
 
-                                        return (
-                                            <div key={project.id} className="group">
-                                                {project.external ? (
-                                                    <a
-                                                        href={project.externalUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="block relative"
-                                                    >
-                                                        <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm text-gray-900 px-2 py-1 rounded-full text-xs font-medium flex items-center shadow-lg">
-                                                            <span className="mr-1">🔗</span> External
-                                                        </div>
-                                                        <ProjectCard
-                                                            project={project}
-                                                            categoryColor={categoryColor}
-                                                        />
-                                                    </a>
-                                                ) : (
-                                                    <Link to={`/projects/${project.id}`} className="block">
-                                                        <ProjectCard
-                                                            project={project}
-                                                            categoryColor={categoryColor}
-                                                        />
-                                                    </Link>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            ) : (
-                                <div className="space-y-4 max-w-3xl mx-auto">
-                                    {visibleProjects.map((project, index) => {
-                                        const categoryColor =
-                                            project.category === 'Education' ? 'bg-emerald-50 text-emerald-700' :
-                                                project.category === 'Mental Health' ? 'bg-indigo-50 text-indigo-700' :
-                                                    project.category === 'Advocacy' ? 'bg-rose-50 text-rose-700' :
-                                                        project.category === 'Youth' ? 'bg-amber-50 text-amber-700' :
-                                                            project.category === 'Women' ? 'bg-emerald-50 text-emerald-700' :
-                                                                project.category === 'Research' ? 'bg-indigo-50 text-indigo-700' :
-                                                                    'bg-amber-50 text-amber-700';
+                                            return (
+                                                <div key={project.id} className="group">
+                                                    {project.external ? (
+                                                        <a
+                                                            href={project.externalUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="block relative"
+                                                        >
+                                                            <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm text-gray-900 px-2 py-1 rounded-full text-xs font-medium flex items-center shadow-lg">
+                                                                <span className="mr-1">🔗</span> External
+                                                            </div>
+                                                            <ProjectCard
+                                                                project={project}
+                                                                categoryColor={categoryColor}
+                                                            />
+                                                        </a>
+                                                    ) : (
+                                                        <Link to={`/projects/${project.id}`} className="block">
+                                                            <ProjectCard
+                                                                project={project}
+                                                                categoryColor={categoryColor}
+                                                            />
+                                                        </Link>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                ) : (
+                                    <div className="space-y-4 max-w-3xl mx-auto">
+                                        {visibleProjects.map((project, index) => {
+                                            const categoryColor =
+                                                project.category === 'Education' ? 'bg-emerald-50 text-emerald-700' :
+                                                    project.category === 'Mental Health' ? 'bg-indigo-50 text-indigo-700' :
+                                                        project.category === 'Advocacy' ? 'bg-rose-50 text-rose-700' :
+                                                            project.category === 'Youth' ? 'bg-amber-50 text-amber-700' :
+                                                                project.category === 'Women' ? 'bg-emerald-50 text-emerald-700' :
+                                                                    project.category === 'Research' ? 'bg-indigo-50 text-indigo-700' :
+                                                                        'bg-amber-50 text-amber-700';
 
-                                        return (
-                                            <div key={project.id} className="group">
-                                                {project.external ? (
-                                                    <a
-                                                        href={project.externalUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="block relative"
-                                                    >
-                                                        <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm text-gray-900 px-2 py-1 rounded-full text-xs font-medium flex items-center shadow-lg">
-                                                            <span className="mr-1">🔗</span> External
-                                                        </div>
-                                                        <ProjectCard
-                                                            project={project}
-                                                            variant="horizontal"
-                                                            categoryColor={categoryColor}
-                                                        />
-                                                    </a>
-                                                ) : (
-                                                    <Link to={`/projects/${project.id}`} className="block">
-                                                        <ProjectCard
-                                                            project={project}
-                                                            variant="horizontal"
-                                                            categoryColor={categoryColor}
-                                                        />
-                                                    </Link>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            )}
+                                            return (
+                                                <div key={project.id} className="group">
+                                                    {project.external ? (
+                                                        <a
+                                                            href={project.externalUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="block relative"
+                                                        >
+                                                            <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm text-gray-900 px-2 py-1 rounded-full text-xs font-medium flex items-center shadow-lg">
+                                                                <span className="mr-1">🔗</span> External
+                                                            </div>
+                                                            <ProjectCard
+                                                                project={project}
+                                                                variant="horizontal"
+                                                                categoryColor={categoryColor}
+                                                            />
+                                                        </a>
+                                                    ) : (
+                                                        <Link to={`/projects/${project.id}`} className="block">
+                                                            <ProjectCard
+                                                                project={project}
+                                                                variant="horizontal"
+                                                                categoryColor={categoryColor}
+                                                            />
+                                                        </Link>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
 
-                            {/* Load More Button */}
-                            {visibleCount < filteredProjects.length && (
-                                <div className="text-center mt-16">
-                                    <button
-                                        onClick={() => setVisibleCount(prev => prev + 6)}
-                                        className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
-                                    >
-                                        Load more projects
-                                        <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
-                                    </button>
-                                </div>
-                            )}
-                        </>
+                                {/* Load More Button */}
+                                {visibleCount < filteredProjects.length && (
+                                    <div className="text-center mt-16">
+                                        <button
+                                            onClick={() => setVisibleCount(prev => prev + 6)}
+                                            className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
+                                        >
+                                            Load more projects
+                                            <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                                        </button>
+                                    </div>
+                                )}
+                            </>
+                        ) : (
+                            <div className="text-center py-20 bg-gray-50 rounded-3xl max-w-2xl mx-auto">
+                                <div className="text-6xl mb-4">🔍</div>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-2">No projects found</h3>
+                                <p className="text-gray-500 mb-6">Try adjusting your filters or search criteria</p>
+                                <button
+                                    onClick={() => {
+                                        setActiveCategory('All');
+                                        setActiveStatus('All');
+                                        setSearchQuery('');
+                                    }}
+                                    className="px-6 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all"
+                                >
+                                    Clear all filters
+                                </button>
+                            </div>
+                        )
                     ) : (
                         <div className="text-center py-20 bg-gray-50 rounded-3xl max-w-2xl mx-auto">
-                            <div className="text-6xl mb-4">🔍</div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-2">No projects found</h3>
-                            <p className="text-gray-500 mb-6">Try adjusting your filters or search criteria</p>
-                            <button
-                                onClick={() => {
-                                    setActiveCategory('All');
-                                    setActiveStatus('All');
-                                    setSearchQuery('');
-                                }}
-                                className="px-6 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all"
-                            >
-                                Clear all filters
-                            </button>
+                            <div className="text-6xl mb-4">📋</div>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-2">No projects yet</h3>
+                            <p className="text-gray-500">Projects will be added soon.</p>
                         </div>
                     )}
                 </div>
