@@ -118,7 +118,7 @@ export const siteContent = {
             location: "Multiple African Countries",
             duration: "2023 - Present",
             impact: "500+ women trained across Africa",
-            image: "/images/wdfa-logo.jpg", // You can add this image to your public/images folder
+            image: "/images/wdfa-logo.jpg",
             website: "https://wdfahub.wixsite.com/wdf-africa",
             objectives: [
                 "AI literacy and digital empowerment",
@@ -145,7 +145,8 @@ export const siteContent = {
             about: "Digital spaces are powerful, but they aren't always safe or inclusive. Many women—especially in underserved communities—face barriers of cost, language, confidence, and online harm. We believe every woman deserves the skills, safeguards, and support to participate fully in the digital space without losing privacy, dignity, or mental health.",
             services: "We design practical training, mentorship, and advocacy that help women navigate everyday digital tasks, evaluate AI responsibly, and shape safer online spaces. Our work blends hands-on learning with community support and policy engagement—always focused on real needs, real safeguards, real outcomes.",
             aiProgram: "This six-week program gives women in Africa, particularly from underserved communities, a practical foundation in AI. It uses adult learning with a peer-supported, cohort-based approach that includes WhatsApp group discussions, short one-on-one clinics, local examples, and shared resources. The course is mobile-friendly and low-data, balancing simple theory with hands-on practice."
-        },{
+        },
+        {
             id: 8,
             title: "Data Workers' Inquiry",
             description: "A global, radically participatory research initiative where data workers themselves become community researchers, identifying urgent issues and creating change across nine countries.",
@@ -154,7 +155,7 @@ export const siteContent = {
             location: "Global (9 countries across 5 continents)",
             duration: "2022 - Present",
             impact: "16+ data worker researchers across 9 countries",
-            image: "/images/data-workers-inquiry.jpg", // You can add this image
+            image: "/images/data-workers-inquiry.jpg",
             website: "https://data-workers.org/",
             objectives: [
                 "Empower data workers as community researchers",
@@ -205,6 +206,39 @@ export const siteContent = {
             tagline: "Data workers worldwide report on their workplaces"
         }
     ],
+
+    // NEW AWARDS SECTION
+    awards: [
+        {
+            id: 1,
+            title: "BBC 100 Women 2024",
+            recipient: "Kauna Malgwi",
+            description: "Recognition as one of the BBC's 100 most inspiring and influential women from around the world for 2024, celebrating her groundbreaking work at the intersection of digital rights, content moderation, and mental health.",
+            organization: "BBC",
+            category: "Recognition",
+            year: "2024",
+            location: "Global",
+            image: null,
+            featured: true,
+            externalUrl: "https://bbc.in/4f0F3i7",
+            tags: ["Leadership", "Women", "Digital Rights", "Mental Health", "Content Moderation"]
+        },
+        {
+            id: 2,
+            title: "TIME100 AI - Most Influential People in Artificial Intelligence",
+            recipient: "Kauna Malgwi",
+            description: "Recognized by TIME as one of the most influential people in artificial intelligence for groundbreaking work at the intersection of AI, content moderation, and mental health, bringing critical attention to the wellbeing of data workers globally.",
+            organization: "TIME Magazine",
+            category: "Recognition",
+            year: "2024",
+            location: "Global",
+            image: null,
+            featured: true,
+            externalUrl: "https://time.com/7012799/kauna-malgwi/",
+            tags: ["AI", "Innovation", "Leadership", "Mental Health", "Data Workers"]
+        }
+    ],
+
     site: {
         name: "DRMHI Africa",
         fullName: "Digital Rights and Mental Health Initiative Africa",
@@ -227,6 +261,7 @@ export const siteContent = {
         // { name: 'WDFA', href: '/wdfa', current: false },
         // { name: 'Data Workers', href: '/data-workers-inquiry', current: false },
         { name: 'Team', href: '/team', current: false },
+        { name: 'Awards', href: '/awards', current: false },
         { name: 'Partners', href: '/partners', current: false },
         { name: 'Blog', href: '/blog', current: false },
         { name: 'Gallery', href: '/gallery', current: false },
@@ -248,7 +283,7 @@ export const siteContent = {
         },
         vision: {
             title: "Our Vision",
-            content: "Our mission is to empower women by providing them with the tools, resources, and opportunities needed to overcome social, economic, and cultural barriers. We strive to create a world where every woman can live with dignity, free from discrimination and inequality. Through education, advocacy, and community-driven programs, we aim to inspire positive change, promote gender equality, and build a more inclusive society where women's rights are respected and upheld."
+            content: "Our vision is a digitally inclusive Africa where every individual can exercise their digital rights freely while maintaining optimal mental health and wellbeing, with particular focus on empowering women and marginalized communities."
         },
         values: [
             {
@@ -274,8 +309,8 @@ export const siteContent = {
         {
             id: 1,
             name: "Kauna Ibrahim Malgwi",
-            role: "Executive Director and founder DRMHI",
-            bio: "Clinical psychologist & Former Facebook content moderator.",
+            role: "Executive Director and Founder, DRMHI",
+            bio: "Clinical psychologist & Former Facebook content moderator. Recognized by BBC as one of the 100 most inspiring women of 2024 and by TIME as one of the most influential people in AI.",
             image: "/images/Kauna.jpeg",
             social: {
                 linkedin: "#",
@@ -285,8 +320,8 @@ export const siteContent = {
         {
             id: 2,
             name: "Rhoda A. Zoaka",
-            role: "Trustee-Secretary DRMHI",
-            bio: "Educationist",
+            role: "Board Member",
+            bio: "Educationist with extensive experience in curriculum development and educational policy across Nigeria.",
             image: "/images/Rhoda.jpeg",
             social: {
                 linkedin: "#",
@@ -296,8 +331,8 @@ export const siteContent = {
         {
             id: 3,
             name: "Dr. Ibrahim A. Mshelia",
-            role: "Psychiatrist Consultant",
-            bio: "Federal Neuropsychiatric Hospital Maiduguri federal neuropsychiatric hospital maiduguri Borno",
+            role: "Board Member & Psychiatrist Consultant",
+            bio: "Psychiatrist at Federal Neuropsychiatric Hospital Maiduguri, bringing expertise in mental health and clinical psychology.",
             image: "/images/Ibrahim.jpeg",
             social: {
                 linkedin: "#",
@@ -307,8 +342,8 @@ export const siteContent = {
         {
             id: 4,
             name: "Ms. Ruth Ishaku Balami",
-            role: "Trustee-Treasurer DRMHI",
-            bio: " Public Health Practitioner",
+            role: "Board Member",
+            bio: "Public Health Practitioner specializing in community health interventions and wellness programs.",
             image: "/images/Ruth.jpeg",
             social: {
                 linkedin: "#",
@@ -318,8 +353,8 @@ export const siteContent = {
         {
             id: 5,
             name: "Saratu Mshelia",
-            role: "Project Lead Women Digital Futures Africa (WDFA)",
-            bio: " Researcher",
+            role: "Board Member",
+            bio: "Researcher focusing on digital rights, AI ethics, and women's empowerment in technology.",
             image: "/images/Saratu.jpeg",
             social: {
                 linkedin: "#",
@@ -328,26 +363,127 @@ export const siteContent = {
         }
     ],
 
+    // UPDATED PARTNERS SECTION
     partners: [
+        // Existing partners
         {
             name: "African Digital Rights Network",
             logo: "/images/DHMH1.jpeg",
-            description: "Collaborating on digital rights advocacy across the continent"
+            description: "Collaborating on digital rights advocacy across the continent",
+            type: "Network",
+            website: "#",
+            partnershipYear: "2023",
+            tier: "Strategic Partner"
         },
         {
             name: "Mental Health Foundation Ghana",
             logo: "/images/DHMH2.jpeg",
-            description: "Joint programs for mental health awareness and support"
+            description: "Joint programs for mental health awareness and support",
+            type: "Foundation",
+            website: "#",
+            partnershipYear: "2022",
+            tier: "Program Partner"
         },
         {
             name: "Tech for Social Good",
             logo: "/images/DHMH3.jpeg",
-            description: "Technology solutions for social impact initiatives"
+            description: "Technology solutions for social impact initiatives",
+            type: "Corporate",
+            website: "#",
+            partnershipYear: "2023",
+            tier: "Technical Partner"
         },
         {
             name: "African Union Digital Initiative",
             logo: "/images/DHMH4.jpeg",
-            description: "Policy development and implementation partnerships"
+            description: "Policy development and implementation partnerships",
+            type: "Government",
+            website: "#",
+            partnershipYear: "2021",
+            tier: "Strategic Partner"
+        },
+
+        // NEW PARTNERS
+        {
+            name: "Gammayyar African Tech Workers Cooperative Society (GTechCoop)",
+            logo: null,
+            description: "Worker-owned cooperative supporting African tech workers through collective bargaining, advocacy, and mutual aid.",
+            longDescription: "Collaborating to strengthen worker rights, improve working conditions, and build solidarity among tech workers across the continent.",
+            type: "Cooperative",
+            website: "https://gamayyarafricantechworkers.coop",
+            partnershipYear: "2024",
+            projects: ["Worker Rights Advocacy", "Tech Worker Solidarity", "Fair Labor Practices"],
+            impact: "Supporting tech workers across Africa",
+            tier: "Strategic Partner",
+            social: {
+                twitter: "#",
+                linkedin: "#"
+            }
+        },
+        {
+            name: "Data Workers' Inquiry",
+            logo: null,
+            description: "Global participatory research initiative where data workers document their own labor conditions and build transnational solidarity.",
+            longDescription: "Collaborating on research, mental health interventions for data workers, and building worker-led knowledge production networks across nine countries.",
+            type: "Research",
+            website: "https://data-workers.org",
+            partnershipYear: "2022",
+            projects: ["Mental Health Intervention", "Worker-led Research", "Global Solidarity", "Content Moderator Wellbeing"],
+            impact: "16+ researchers across 9 countries",
+            tier: "Research Partner",
+            social: {
+                twitter: "#",
+                linkedin: "#"
+            }
+        },
+        {
+            name: "Distributed AI Research Institute (DAIR)",
+            logo: null,
+            description: "Independent research institute studying the societal impacts of artificial intelligence and advocating for community-centered AI development.",
+            longDescription: "Partnering on research into AI labor conditions, algorithmic harms, and developing frameworks for ethical AI that centers worker and community voices.",
+            type: "Research Institute",
+            website: "https://www.dair-institute.org",
+            partnershipYear: "2023",
+            projects: ["AI Labor Research", "Algorithmic Accountability", "Worker-Centered AI"],
+            impact: "Joint research publications and advocacy initiatives",
+            tier: "Research Partner",
+            social: {
+                twitter: "https://twitter.com/dair_institute",
+                linkedin: "https://linkedin.com/company/dair-institute"
+            }
+        },
+        {
+            name: "African Content Moderators Union - Nigerian Chapter",
+            logo: null,
+            description: "Worker-led organization advocating for the rights, fair treatment, and wellbeing of content moderators in Nigeria.",
+            longDescription: "Working together to improve working conditions, provide mental health support, advocate for fair compensation, and build collective power for content moderators across Nigeria.",
+            type: "Worker Union",
+            website: "#",
+            partnershipYear: "2023",
+            projects: ["Worker Rights", "Mental Health Support", "Fair Labor Advocacy", "Safe Working Conditions"],
+            impact: "Supporting content moderators across Nigeria",
+            tier: "Strategic Partner",
+            social: {
+                twitter: "#",
+                linkedin: "#"
+            }
+        },
+        {
+            name: "Girls 4 Change Community",
+            logo: null,
+            description: "Community-based organization empowering girls and young women through education, mentorship, advocacy, and leadership development.",
+            longDescription: "Collaborating on digital literacy programs, online safety training, mental health support, and leadership opportunities for girls and young women in Nigeria.",
+            type: "Community Organization",
+            website: "#",
+            partnershipYear: "2023",
+            projects: ["Digital Literacy for Girls", "Online Safety Training", "Mentorship Programs", "Youth Leadership"],
+            impact: "Reaching hundreds of girls across Nigeria",
+            tier: "Community Partner",
+            social: {
+                twitter: "#",
+                linkedin: "#",
+                instagram: "#"
+            }
         }
     ],
 
@@ -471,6 +607,29 @@ export const siteContent = {
                 description: "Fund research on digital mental health",
                 benefits: ["All previous benefits", "Recognition on website", "Invitation to events"]
             }
-        ]
+        ],
+        accounts: {
+            naira: {
+                currency: "₦",
+                accountName: "Digital and Mental Health Initiative",
+                accountNumber: "1028622735",
+                bankName: "United Bank of Africa (UBA)",
+                type: "Naira Account"
+            },
+            usd: {
+                currency: "$",
+                accountName: "Digital and Mental Health Initiative",
+                accountNumber: "3004920282",
+                bankName: "United Bank of Africa (UBA)",
+                type: "USD Account"
+            },
+            euro: {
+                currency: "€",
+                accountName: "Digital and Mental Health Initiative",
+                accountNumber: "3004921698",
+                bankName: "United Bank of Africa (UBA)",
+                type: "Euro Account"
+            }
+        }
     }
 };
