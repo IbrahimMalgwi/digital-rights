@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { siteContent } from '../data/content';
+// import { siteContent } from '../data/content';
 
 const Awards = () => {
     const [activeFilter, setActiveFilter] = useState('All');
@@ -116,32 +116,29 @@ const Awards = () => {
         }
     ];
 
-    // Categories with counts
+    // Categories with colors (matching About page style)
     const categories = [
-        { name: 'All', count: awardsData.length, icon: '🏆' },
-        { name: 'Innovation', count: awardsData.filter(item => item.category === 'Innovation').length, icon: '💡' },
-        { name: 'Health', count: awardsData.filter(item => item.category === 'Health').length, icon: '🧠' },
-        { name: 'Diversity', count: awardsData.filter(item => item.category === 'Diversity').length, icon: '🌈' },
-        { name: 'Research', count: awardsData.filter(item => item.category === 'Research').length, icon: '🔬' },
-        { name: 'Community', count: awardsData.filter(item => item.category === 'Community').length, icon: '🤝' },
-        { name: 'Policy', count: awardsData.filter(item => item.category === 'Policy').length, icon: '⚖️' },
-        { name: 'Youth', count: awardsData.filter(item => item.category === 'Youth').length, icon: '👥' }
+        { name: 'All', count: awardsData.length, icon: '🏆', color: 'bg-amber-50 text-amber-700' },
+        { name: 'Innovation', count: awardsData.filter(item => item.category === 'Innovation').length, icon: '💡', color: 'bg-amber-50 text-amber-700' },
+        { name: 'Health', count: awardsData.filter(item => item.category === 'Health').length, icon: '🧠', color: 'bg-emerald-50 text-emerald-700' },
+        { name: 'Diversity', count: awardsData.filter(item => item.category === 'Diversity').length, icon: '🌈', color: 'bg-indigo-50 text-indigo-700' },
+        { name: 'Research', count: awardsData.filter(item => item.category === 'Research').length, icon: '🔬', color: 'bg-rose-50 text-rose-700' },
+        { name: 'Community', count: awardsData.filter(item => item.category === 'Community').length, icon: '🤝', color: 'bg-amber-50 text-amber-700' },
+        { name: 'Policy', count: awardsData.filter(item => item.category === 'Policy').length, icon: '⚖️', color: 'bg-emerald-50 text-emerald-700' },
+        { name: 'Youth', count: awardsData.filter(item => item.category === 'Youth').length, icon: '👥', color: 'bg-indigo-50 text-indigo-700' }
     ];
-
-    // Years for filter
-    const years = ['All', ...new Set(awardsData.map(item => item.year))].sort().reverse();
-
-    // Filter awards by category and year
-    const filteredAwards = activeFilter === 'All'
-        ? awardsData
-        : awardsData.filter(item => item.category === activeFilter);
-
-    const visibleAwards = filteredAwards.slice(0, visibleCount);
 
     // Simulate loading
     useEffect(() => {
         setTimeout(() => setIsLoading(false), 1000);
     }, []);
+
+    // Filter awards by category
+    const filteredAwards = activeFilter === 'All'
+        ? awardsData
+        : awardsData.filter(item => item.category === activeFilter);
+
+    const visibleAwards = filteredAwards.slice(0, visibleCount);
 
     // Load more items
     const loadMore = () => {
@@ -155,13 +152,13 @@ const Awards = () => {
             onClick={onClose}
         >
             <div
-                className="relative max-w-4xl w-full bg-white rounded-xl overflow-hidden"
+                className="relative max-w-4xl w-full bg-white rounded-3xl overflow-hidden"
                 onClick={e => e.stopPropagation()}
             >
                 {/* Close button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 hover:bg-gray-100 transition-colors shadow-md"
+                    className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 hover:bg-gray-100 transition-colors shadow-lg"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -169,8 +166,8 @@ const Awards = () => {
                 </button>
 
                 <div className="grid md:grid-cols-2">
-                    {/* Image */}
-                    <div className="relative h-80 md:h-auto bg-gradient-to-br from-primary-500 to-accent-600">
+                    {/* Image side with gradient */}
+                    <div className="relative h-80 md:h-auto bg-gradient-to-br from-amber-500 to-emerald-600 flex items-center justify-center">
                         {award.image ? (
                             <img
                                 src={award.image}
@@ -178,51 +175,57 @@ const Awards = () => {
                                 className="w-full h-full object-cover"
                             />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center">
-                                <span className="text-8xl text-white/30">🏆</span>
+                            <div className="text-center">
+                                <span className="text-9xl text-white/30 block mb-4">🏆</span>
+                                <span className="text-white/50 text-sm font-medium px-4 py-2 bg-white/10 rounded-full">
+                                    {award.year} • {award.category}
+                                </span>
                             </div>
                         )}
+
+                        {/* Decorative elements */}
+                        <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+                        <div className="absolute bottom-0 right-0 w-64 h-64 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
                     </div>
 
                     {/* Details */}
-                    <div className="p-8">
+                    <div className="p-8 md:p-10">
                         <div className="mb-6">
-                            <div className="flex items-center gap-2 mb-3">
-                                <span className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+                            <div className="flex items-center gap-2 mb-4">
+                                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                                    award.category === 'Innovation' ? 'bg-amber-50 text-amber-700' :
+                                        award.category === 'Health' ? 'bg-emerald-50 text-emerald-700' :
+                                            award.category === 'Diversity' ? 'bg-indigo-50 text-indigo-700' :
+                                                award.category === 'Research' ? 'bg-rose-50 text-rose-700' :
+                                                    'bg-amber-50 text-amber-700'
+                                }`}>
                                     {award.category}
                                 </span>
-                                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-                                    {award.year}
-                                </span>
+                                <span className="text-gray-400 text-sm">✦ {award.year}</span>
                             </div>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-2">{award.title}</h2>
-                            <p className="text-lg text-primary-600 font-medium mb-4">{award.organization}</p>
-                            <p className="text-gray-600 mb-6 leading-relaxed">{award.description}</p>
+
+                            <h2 className="text-3xl font-bold text-gray-900 mb-3">{award.title}</h2>
+                            <p className="text-lg text-gray-600 font-medium mb-4">{award.organization}</p>
+                            <p className="text-gray-500 leading-relaxed">{award.description}</p>
                         </div>
 
-                        {/* Details Grid */}
-                        <div className="grid grid-cols-2 gap-4 mb-6">
-                            <div className="bg-gray-50 rounded-lg p-3">
-                                <div className="text-xs text-gray-500 mb-1">Location</div>
-                                <div className="font-medium text-gray-900">{award.location}</div>
-                            </div>
-                            <div className="bg-gray-50 rounded-lg p-3">
-                                <div className="text-xs text-gray-500 mb-1">Year</div>
-                                <div className="font-medium text-gray-900">{award.year}</div>
-                            </div>
+                        {/* Location */}
+                        <div className="flex items-center text-gray-500 mb-6">
+                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            {award.location}
                         </div>
 
                         {/* Tags */}
                         {award.tags && award.tags.length > 0 && (
-                            <div className="mb-8">
-                                <h3 className="text-sm font-medium text-gray-700 mb-2">Tags</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {award.tags.map((tag, idx) => (
-                                        <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
-                                            #{tag}
-                                        </span>
-                                    ))}
-                                </div>
+                            <div className="flex flex-wrap gap-2 mb-8">
+                                {award.tags.map((tag, idx) => (
+                                    <span key={idx} className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">
+                                        #{tag}
+                                    </span>
+                                ))}
                             </div>
                         )}
 
@@ -231,12 +234,10 @@ const Awards = () => {
                             href={award.externalUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors"
+                            className="group inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
                         >
                             View Award Details
-                            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
+                            <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                         </a>
                     </div>
                 </div>
@@ -245,76 +246,112 @@ const Awards = () => {
     );
 
     return (
-        <div className="bg-white">
-            {/* Hero Section */}
-            <section className="bg-gradient-to-b from-primary-50 to-white py-20">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                        Awards & <span className="text-primary-600">Recognition</span>
-                    </h1>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Celebrating the impact and recognition of our work across Africa
-                    </p>
-                </div>
-            </section>
+        <div>
+            {/* Hero Section - Bold & Graphic (matching About page) */}
+            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 pt-20 pb-32 overflow-hidden">
+                {/* Decorative shapes */}
+                <div className="absolute top-20 right-0 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+                <div className="absolute bottom-20 left-0 w-64 h-64 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
 
-            {/* Stats Strip */}
-            <section className="py-12 bg-white border-b border-gray-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div className="text-center">
-                            <div className="text-3xl font-bold text-primary-600">{awardsData.length}+</div>
-                            <div className="text-sm text-gray-600">Total Awards</div>
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-3xl">
+                        <div className="flex items-center space-x-2 text-sm mb-8">
+                            <Link to="/" className="text-gray-500 hover:text-gray-700 transition-colors">Home</Link>
+                            <span className="text-gray-300">→</span>
+                            <span className="text-gray-900 font-medium">Awards</span>
                         </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold text-primary-600">
-                                {awardsData.filter(a => a.year === '2024').length}
-                            </div>
-                            <div className="text-sm text-gray-600">Awards in 2024</div>
+
+                        <div className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm mb-8">
+                            ✦ Recognition & Impact
                         </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold text-primary-600">
-                                {[...new Set(awardsData.map(a => a.location))].length}
-                            </div>
-                            <div className="text-sm text-gray-600">Locations</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold text-primary-600">
-                                {awardsData.filter(a => a.featured).length}
-                            </div>
-                            <div className="text-sm text-gray-600">Featured</div>
+
+                        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+                            Awards &{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
+                                Recognition
+                            </span>
+                        </h1>
+
+                        <p className="text-xl text-gray-600 max-w-2xl mb-12">
+                            Celebrating the impact and recognition of our work protecting digital rights
+                            and promoting mental health across Africa.
+                        </p>
+
+                        <div className="flex flex-wrap gap-4">
+                            <button
+                                onClick={() => setActiveFilter('All')}
+                                className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
+                            >
+                                View all awards
+                                <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Filter Bar */}
-            <section className="py-8 bg-white border-b border-gray-200">
+            {/* Stats - Bold Numbers (matching About page) */}
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-wrap gap-2 justify-center">
-                        {categories.map((category) => (
-                            <button
-                                key={category.name}
-                                onClick={() => setActiveFilter(category.name)}
-                                className={`
-                                    inline-flex items-center px-4 py-2 rounded-full text-sm font-medium transition-colors
-                                    ${activeFilter === category.name
-                                    ? 'bg-primary-600 text-white'
-                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{category.icon}</span>
-                                {category.name}
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                    activeFilter === category.name
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-gray-300 text-gray-700'
-                                }`}>
-                                    {category.count}
-                                </span>
-                            </button>
-                        ))}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                {awardsData.length}+
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Total Awards</div>
+                        </div>
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                {awardsData.filter(a => a.year === '2024').length}
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Awards in 2024</div>
+                        </div>
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                {[...new Set(awardsData.map(a => a.location))].length}
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Locations</div>
+                        </div>
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                {awardsData.filter(a => a.featured).length}
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Featured</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Category Pills - Colorful (matching About page values) */}
+            <section className="pb-12 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {categories.map((category) => {
+                            const categoryColor = categories.find(c => c.name === category.name)?.color || 'bg-gray-50 text-gray-700';
+                            return (
+                                <button
+                                    key={category.name}
+                                    onClick={() => setActiveFilter(category.name)}
+                                    className={`
+                                        group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                        ${activeFilter === category.name
+                                        ? 'bg-gray-900 text-white shadow-lg'
+                                        : `${categoryColor} hover:shadow-md`
+                                    }
+                                    `}
+                                >
+                                    <span className="mr-2">{category.icon}</span>
+                                    {category.name}
+                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                        activeFilter === category.name
+                                            ? 'bg-white/20 text-white'
+                                            : 'bg-white/60 text-gray-600'
+                                    }`}>
+                                        {category.count}
+                                    </span>
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -325,89 +362,94 @@ const Awards = () => {
                     {isLoading ? (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <div key={i} className="animate-pulse">
-                                    <div className="h-48 bg-gray-200 rounded-lg mb-4"></div>
-                                    <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
-                                    <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
-                                    <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-                                </div>
+                                <div key={i} className="animate-pulse bg-gray-100 rounded-3xl h-80"></div>
                             ))}
                         </div>
                     ) : (
                         <>
                             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {visibleAwards.map((award) => (
-                                    <div
-                                        key={award.id}
-                                        className="group bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
-                                        onClick={() => setSelectedAward(award)}
-                                    >
-                                        <div className="relative h-48 bg-gradient-to-br from-primary-500 to-accent-600">
-                                            {award.image ? (
-                                                <img
-                                                    src={award.image}
-                                                    alt={award.title}
-                                                    className="w-full h-full object-cover"
-                                                />
-                                            ) : (
-                                                <div className="w-full h-full flex items-center justify-center">
-                                                    <span className="text-6xl text-white/30">🏆</span>
-                                                </div>
-                                            )}
+                                {visibleAwards.map((award) => {
+                                    // Get category color
+                                    const categoryColor =
+                                        award.category === 'Innovation' ? 'bg-amber-50 text-amber-700' :
+                                            award.category === 'Health' ? 'bg-emerald-50 text-emerald-700' :
+                                                award.category === 'Diversity' ? 'bg-indigo-50 text-indigo-700' :
+                                                    award.category === 'Research' ? 'bg-rose-50 text-rose-700' :
+                                                        award.category === 'Community' ? 'bg-amber-50 text-amber-700' :
+                                                            award.category === 'Policy' ? 'bg-emerald-50 text-emerald-700' :
+                                                                award.category === 'Youth' ? 'bg-indigo-50 text-indigo-700' :
+                                                                    'bg-amber-50 text-amber-700';
 
-                                            {/* Featured Badge */}
-                                            {award.featured && (
-                                                <div className="absolute top-3 right-3">
-                                                    <span className="px-2 py-1 bg-yellow-400 text-yellow-900 rounded text-xs font-medium">
-                                                        Featured
+                                    return (
+                                        <div
+                                            key={award.id}
+                                            className="group bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all hover:scale-[1.02] cursor-pointer"
+                                            onClick={() => setSelectedAward(award)}
+                                        >
+                                            <div className="relative h-48 bg-gradient-to-br from-amber-500 to-emerald-600 flex items-center justify-center">
+                                                {award.image ? (
+                                                    <img
+                                                        src={award.image}
+                                                        alt={award.title}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <span className="text-6xl text-white/30">🏆</span>
+                                                )}
+
+                                                {/* Featured Badge */}
+                                                {award.featured && (
+                                                    <div className="absolute top-3 right-3">
+                                                        <span className="px-3 py-1 bg-white text-gray-900 rounded-full text-xs font-medium shadow-lg">
+                                                            ✦ Featured
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="p-6">
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${categoryColor}`}>
+                                                        {award.category}
+                                                    </span>
+                                                    <span className="text-gray-400 text-xs">{award.year}</span>
+                                                </div>
+
+                                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-amber-600 group-hover:to-emerald-600 transition-all">
+                                                    {award.title}
+                                                </h3>
+
+                                                <p className="text-sm text-gray-600 font-medium mb-3">
+                                                    {award.organization}
+                                                </p>
+
+                                                <p className="text-sm text-gray-500 mb-4 line-clamp-2">
+                                                    {award.description}
+                                                </p>
+
+                                                <div className="flex items-center justify-between">
+                                                    <span className="text-xs text-gray-400">
+                                                        📍 {award.location}
+                                                    </span>
+                                                    <span className="text-gray-900 text-sm font-medium group-hover:translate-x-1 inline-block transition-transform">
+                                                        View details →
                                                     </span>
                                                 </div>
-                                            )}
-                                        </div>
-
-                                        <div className="p-5">
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <span className="px-2 py-1 bg-primary-100 text-primary-700 rounded text-xs font-medium">
-                                                    {award.category}
-                                                </span>
-                                                <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
-                                                    {award.year}
-                                                </span>
-                                            </div>
-
-                                            <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors">
-                                                {award.title}
-                                            </h3>
-
-                                            <p className="text-sm text-primary-600 font-medium mb-2">
-                                                {award.organization}
-                                            </p>
-
-                                            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                                                {award.description}
-                                            </p>
-
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-xs text-gray-500">
-                                                    📍 {award.location}
-                                                </span>
-                                                <span className="text-primary-600 text-sm font-medium group-hover:underline">
-                                                    View Details →
-                                                </span>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
 
                             {/* Load More */}
                             {visibleCount < filteredAwards.length && (
-                                <div className="text-center mt-12">
+                                <div className="text-center mt-16">
                                     <button
                                         onClick={loadMore}
-                                        className="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors"
+                                        className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
                                     >
-                                        Load More Awards
+                                        Load more awards
+                                        <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                                     </button>
                                 </div>
                             )}

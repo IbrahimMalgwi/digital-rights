@@ -1,103 +1,69 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Hero from '../components/Hero';
-import BlogCard from '../components/BlogCard';
-import ProjectCard from '../components/ProjectCard';
-// import TeamCard from '../components/TeamCard';
+import Hero from '../components/cards/Hero'; // Fixed import path
+import BlogCard from '../components/cards/BlogCard';
+import ProjectCard from '../components/cards/ProjectCard';
 import { siteContent } from '../data/content';
 
 const Home = () => {
     return (
-        <div className="overflow-hidden">
+        <div>
             {/* Hero Section */}
             <Hero />
 
-            {/* Trust Badges / Partners Strip */}
+            {/* Partners Strip */}
             <div className="bg-white border-y border-gray-100 py-8">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <p className="text-center text-sm font-semibold text-secondary-500 mb-6 tracking-wider uppercase">
+                    <p className="text-center text-xs text-gray-400 uppercase tracking-wider mb-6">
                         Trusted by leading organizations
                     </p>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70">
+                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-50">
                         {[1, 2, 3, 4, 5].map((i) => (
-                            <div key={i} className="grayscale hover:grayscale-0 transition-all duration-300">
-                                <div className="h-8 w-24 bg-gradient-to-r from-primary-200 to-accent-200 rounded"></div>
-                            </div>
+                            <div key={i} className="h-6 w-20 bg-gray-200 rounded"></div>
                         ))}
                     </div>
                 </div>
             </div>
 
-            {/* Programs Section - Enhanced */}
-            <section className="relative py-24 lg:py-32 bg-gradient-to-b from-white to-primary-50/30 overflow-hidden">
-                {/* Decorative Background */}
-                <div className="absolute inset-0">
-                    <div className="absolute top-0 left-0 w-96 h-96 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-                </div>
+            {/* Programs Section */}
+            <section className="relative py-24 bg-white overflow-hidden">
+                {/* Decorative elements with theme colors */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-amber-50 rounded-full filter blur-3xl opacity-50"></div>
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-50 rounded-full filter blur-3xl opacity-50"></div>
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
-                    <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
-                        <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
-                            Our Programs
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6">
-                            Making a Difference Through{' '}
-                            <span className="gradient-text">Focused Action</span>
+                    <div className="text-center max-w-2xl mx-auto mb-16">
+                        <span className="text-gray-400 font-medium mb-4 block">Programs</span>
+                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                            What we do
                         </h2>
-                        <p className="text-xl text-secondary-600 leading-relaxed">
+                        <p className="text-xl text-gray-500">
                             Comprehensive solutions addressing digital rights and mental health challenges across Africa
                         </p>
-                        <div className="flex justify-center mt-8">
-                            <div className="w-20 h-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full"></div>
-                        </div>
                     </div>
 
                     {/* Programs Grid */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {siteContent.programs?.map((program, index) => (
                             <div
                                 key={index}
-                                className="group relative bg-white rounded-3xl p-8 card-hover border border-gray-100 animate-slide-up"
-                                style={{ animationDelay: `${index * 100}ms` }}
+                                className="group p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition-all hover:border-amber-200 border border-transparent"
                             >
-                                {/* Icon with animated background */}
-                                <div className="relative mb-6">
-                                    <div className="absolute inset-0 bg-primary-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
-                                    <div className="relative w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-600 rounded-2xl flex items-center justify-center text-white text-3xl transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                                        {program.icon}
-                                    </div>
-                                </div>
-
-                                {/* Content */}
-                                <h3 className="text-xl font-display font-bold text-gray-900 mb-3 group-hover:text-primary-700 transition-colors">
+                                <div className="text-4xl mb-4">{program.icon}</div>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-2">
                                     {program.title}
                                 </h3>
-                                <p className="text-secondary-600 mb-4 leading-relaxed">
+                                <p className="text-sm text-gray-500 mb-4">
                                     {program.description}
                                 </p>
-
-                                {/* Features List */}
-                                <ul className="space-y-2 mb-6">
-                                    {program.features?.slice(0, 3).map((feature, idx) => (
-                                        <li key={idx} className="flex items-center text-sm text-secondary-600">
-                                            <svg className="w-4 h-4 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                            </svg>
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                {/* Learn More Link */}
                                 <Link
                                     to={`/programs/${program.slug}`}
-                                    className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors group/link mt-4"
+                                    className="inline-flex items-center text-sm font-medium text-amber-600 hover:text-amber-700"
                                 >
-                                    <span>Learn more</span>
-                                    <svg className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    Learn more
+                                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                     </svg>
                                 </Link>
                             </div>
@@ -105,13 +71,13 @@ const Home = () => {
                     </div>
 
                     {/* CTA Button */}
-                    <div className="text-center mt-16">
+                    <div className="text-center mt-12">
                         <Link
                             to="/programs"
-                            className="inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-300 transform hover:scale-105 shadow-soft hover:shadow-large"
+                            className="inline-flex items-center text-gray-600 hover:text-amber-600 transition-colors"
                         >
-                            Explore All Programs
-                            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            Explore all programs
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
                         </Link>
@@ -119,68 +85,34 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Stats Section - Enhanced */}
-            <section className="relative py-24 bg-gradient-to-br from-primary-900 via-primary-800 to-accent-900 overflow-hidden">
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute inset-0 bg-grid-pattern"></div>
-                </div>
-
-                {/* Animated Background Elements */}
-                <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full filter blur-3xl opacity-10 animate-pulse"></div>
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent-400 rounded-full filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: '2s' }}></div>
-
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
-                        <span className="inline-block px-4 py-2 bg-white/10 text-white rounded-full text-sm font-semibold backdrop-blur-sm mb-4">
-                            Our Impact
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-                            Making a Difference{' '}
-                            <span className="text-primary-300">Together</span>
-                        </h2>
-                        <p className="text-xl text-primary-100 max-w-2xl mx-auto">
-                            Real results from our work across the continent
-                        </p>
-                    </div>
-
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-                        {[
-                            { number: '50+', label: 'Projects Completed', icon: '🚀' },
-                            { number: '15', label: 'African Countries', icon: '🌍' },
-                            { number: '10K+', label: 'People Reached', icon: '👥' },
-                            { number: '25+', label: 'Partner Organizations', icon: '🤝' }
-                        ].map((stat, index) => (
-                            <div
-                                key={index}
-                                className="group text-center transform hover:scale-105 transition-all duration-300"
-                            >
-                                <div className="text-4xl mb-4 filter drop-shadow-lg">{stat.icon}</div>
-                                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 font-display">
-                                    {stat.number}
-                                </div>
-                                <div className="text-primary-200 text-sm lg:text-base">
-                                    {stat.label}
-                                </div>
-
-                                {/* Decorative line */}
-                                <div className="w-12 h-0.5 bg-primary-400 mx-auto mt-4 opacity-50 group-hover:opacity-100 group-hover:w-16 transition-all duration-300"></div>
+            {/* Stats Section */}
+            <section className="py-20 bg-gray-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                50+
                             </div>
-                        ))}
-                    </div>
-
-                    {/* Call to Action */}
-                    <div className="text-center mt-16">
-                        <Link
-                            to="/impact"
-                            className="inline-flex items-center px-8 py-4 bg-white text-primary-700 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 shadow-soft"
-                        >
-                            View Full Impact Report
-                            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </Link>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Projects Completed</div>
+                        </div>
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                15
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">African Countries</div>
+                        </div>
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                10K+
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">People Reached</div>
+                        </div>
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                25+
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Partners</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -189,96 +121,118 @@ const Home = () => {
             <section className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
-                    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16">
-                        <div className="max-w-2xl">
-                            <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
-                                Our Work
-                            </span>
-                            <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6">
-                                Featured{' '}
-                                <span className="gradient-text">Projects</span>
+                    <div className="flex justify-between items-end mb-16">
+                        <div>
+                            <span className="text-gray-400 font-medium mb-4 block">Our work</span>
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                                Featured projects
                             </h2>
-                            <p className="text-xl text-secondary-600">
-                                Discover how we're creating lasting change in communities across Africa
-                            </p>
                         </div>
-
                         <Link
                             to="/projects"
-                            className="mt-4 lg:mt-0 inline-flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors group"
+                            className="hidden md:flex items-center text-gray-600 hover:text-amber-600 transition-colors"
                         >
-                            <span>View All Projects</span>
-                            <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            View all
+                            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
                         </Link>
                     </div>
 
                     {/* Projects Grid */}
-                    <div className="grid lg:grid-cols-2 gap-8 mb-8">
-                        {siteContent.projects?.featured?.slice(0, 2).map((project, index) => (
-                            <ProjectCard key={index} project={project} featured={index === 0} />
-                        ))}
+                    <div className="grid lg:grid-cols-2 gap-6 mb-6">
+                        {siteContent.projects?.featured?.slice(0, 2).map((project, index) => {
+                            // Get category color
+                            const categoryColor =
+                                project.category === 'Education' ? 'bg-emerald-50 text-emerald-700' :
+                                    project.category === 'Mental Health' ? 'bg-indigo-50 text-indigo-700' :
+                                        project.category === 'Advocacy' ? 'bg-rose-50 text-rose-700' :
+                                            project.category === 'Research' ? 'bg-amber-50 text-amber-700' :
+                                                'bg-gray-50 text-gray-700';
+
+                            return (
+                                <ProjectCard
+                                    key={index}
+                                    project={project}
+                                    variant="featured"
+                                    categoryColor={categoryColor}
+                                />
+                            );
+                        })}
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {siteContent.projects?.featured?.slice(2, 5).map((project, index) => (
-                            <ProjectCard key={index} project={project} variant="compact" />
-                        ))}
+                        {siteContent.projects?.featured?.slice(2, 5).map((project, index) => {
+                            const categoryColor =
+                                project.category === 'Education' ? 'bg-emerald-50 text-emerald-700' :
+                                    project.category === 'Mental Health' ? 'bg-indigo-50 text-indigo-700' :
+                                        project.category === 'Advocacy' ? 'bg-rose-50 text-rose-700' :
+                                            project.category === 'Research' ? 'bg-amber-50 text-amber-700' :
+                                                'bg-gray-50 text-gray-700';
+
+                            return (
+                                <ProjectCard
+                                    key={index}
+                                    project={project}
+                                    variant="compact"
+                                    categoryColor={categoryColor}
+                                />
+                            );
+                        })}
+                    </div>
+
+                    {/* Mobile View All Link */}
+                    <div className="text-center mt-12 md:hidden">
+                        <Link
+                            to="/projects"
+                            className="inline-flex items-center text-gray-600 hover:text-amber-600 transition-colors"
+                        >
+                            View all projects
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </Link>
                     </div>
                 </div>
             </section>
 
-            {/* Latest Insights Section - Enhanced */}
-            <section className="relative py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-                {/* Decorative Elements */}
-                <div className="absolute inset-0">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-                </div>
-
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Latest Insights Section */}
+            <section className="py-24 bg-gray-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
-                            Blog & Insights
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6">
-                            Latest{' '}
-                            <span className="gradient-text">News & Updates</span>
-                        </h2>
-                        <p className="text-xl text-secondary-600 leading-relaxed">
-                            Recent research, stories, and insights from our work across Africa
-                        </p>
-                    </div>
-
-                    {/* Featured Blog Post */}
-                    <div className="mb-12">
-                        <BlogCard
-                            post={siteContent.blog?.featured[0]}
-                            featured={true}
-                        />
+                    <div className="flex justify-between items-end mb-16">
+                        <div>
+                            <span className="text-gray-400 font-medium mb-4 block">Blog & insights</span>
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                                Latest updates
+                            </h2>
+                        </div>
+                        <Link
+                            to="/blog"
+                            className="hidden md:flex items-center text-gray-600 hover:text-amber-600 transition-colors"
+                        >
+                            View all
+                            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </Link>
                     </div>
 
                     {/* Blog Posts Grid */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {siteContent.blog?.featured?.slice(1, 4).map((post, index) => (
-                            <BlogCard
-                                key={index}
-                                post={post}
-                                variant={index === 0 ? 'horizontal' : 'default'}
-                            />
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {siteContent.blog?.featured?.slice(0, 3).map((post, index) => (
+                            <BlogCard key={index} post={post} />
                         ))}
                     </div>
 
-                    {/* View All Button */}
-                    <div className="text-center mt-16">
+                    {/* Mobile View All Link */}
+                    <div className="text-center mt-12 md:hidden">
                         <Link
                             to="/blog"
-                            className="inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-300 transform hover:scale-105 shadow-soft hover:shadow-large group"
+                            className="inline-flex items-center text-gray-600 hover:text-amber-600 transition-colors"
                         >
-                            <span>View All Articles</span>
-                            <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            View all articles
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
                         </Link>
@@ -287,34 +241,33 @@ const Home = () => {
             </section>
 
             {/* Newsletter Section */}
-            <section className="relative py-24 bg-gradient-to-br from-primary-600 to-accent-600 overflow-hidden">
-                {/* Decorative Circles */}
-                <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full filter blur-3xl opacity-10"></div>
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-white rounded-full filter blur-3xl opacity-10"></div>
+            <section className="relative bg-gradient-to-br from-amber-600 to-emerald-600 py-24 overflow-hidden">
+                <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
                 <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
-                        Stay Updated with Our Work
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                        Stay updated
                     </h2>
-                    <p className="text-xl text-primary-100 mb-8">
-                        Get the latest news, stories, and impact reports delivered to your inbox
+                    <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                        Get the latest news, stories, and impact reports delivered to your inbox.
                     </p>
 
-                    <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+                    <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
                         <input
                             type="email"
                             placeholder="Enter your email"
-                            className="flex-1 px-6 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-primary-200 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
+                            className="flex-1 px-5 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/30"
                         />
                         <button
                             type="submit"
-                            className="px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 shadow-soft"
+                            className="px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-all hover:scale-105"
                         >
                             Subscribe
                         </button>
                     </form>
 
-                    <p className="text-sm text-primary-200 mt-4">
+                    <p className="text-sm text-white/60 mt-4">
                         We respect your privacy. Unsubscribe at any time.
                     </p>
                 </div>

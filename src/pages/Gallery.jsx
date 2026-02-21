@@ -84,12 +84,12 @@ const Gallery = () => {
         }
     ];
 
-    // Categories with counts
+    // Categories with colors
     const categories = [
-        { name: 'All', count: galleryItems.length, icon: '🖼️' },
-        { name: 'Events', count: galleryItems.filter(item => item.category === 'Events').length, icon: '📅' },
-        { name: 'Campaigns', count: galleryItems.filter(item => item.category === 'Campaigns').length, icon: '📢' },
-        { name: 'Workshops', count: galleryItems.filter(item => item.category === 'Workshops').length, icon: '🔧' }
+        { name: 'All', count: galleryItems.length, icon: '🖼️', color: 'bg-amber-50 text-amber-700' },
+        { name: 'Events', count: galleryItems.filter(item => item.category === 'Events').length, icon: '📅', color: 'bg-emerald-50 text-emerald-700' },
+        { name: 'Campaigns', count: galleryItems.filter(item => item.category === 'Campaigns').length, icon: '📢', color: 'bg-indigo-50 text-indigo-700' },
+        { name: 'Workshops', count: galleryItems.filter(item => item.category === 'Workshops').length, icon: '🔧', color: 'bg-rose-50 text-rose-700' }
     ];
 
     // Filter gallery items
@@ -116,13 +116,13 @@ const Gallery = () => {
             onClick={onClose}
         >
             <div
-                className="relative max-w-5xl w-full bg-white rounded-3xl overflow-hidden animate-scale-up"
+                className="relative max-w-5xl w-full bg-white rounded-2xl overflow-hidden"
                 onClick={e => e.stopPropagation()}
             >
                 {/* Close button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-900 hover:bg-white transition-colors shadow-soft"
+                    className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 hover:bg-gray-100 transition-colors shadow-lg"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -131,7 +131,7 @@ const Gallery = () => {
 
                 <div className="grid md:grid-cols-2">
                     {/* Image */}
-                    <div className="relative h-96 md:h-[600px] bg-gradient-to-br from-primary-500 to-accent-600">
+                    <div className="relative h-80 md:h-[500px] bg-gradient-to-br from-amber-500 to-emerald-600 flex items-center justify-center">
                         {item.image ? (
                             <img
                                 src={item.image}
@@ -139,71 +139,69 @@ const Gallery = () => {
                                 className="w-full h-full object-cover"
                             />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center">
-                                <span className="text-9xl text-white/30">📸</span>
-                            </div>
+                            <span className="text-8xl text-white/30">📸</span>
                         )}
                     </div>
 
                     {/* Details */}
-                    <div className="p-8 overflow-y-auto max-h-[600px]">
+                    <div className="p-8">
                         <div className="mb-6">
-                            <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
+                            <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-4 ${
+                                item.category === 'Events' ? 'bg-emerald-50 text-emerald-700' :
+                                    item.category === 'Campaigns' ? 'bg-indigo-50 text-indigo-700' :
+                                        item.category === 'Workshops' ? 'bg-rose-50 text-rose-700' :
+                                            'bg-amber-50 text-amber-700'
+                            }`}>
                                 {item.category}
                             </span>
-                            <h2 className="text-3xl font-display font-bold text-gray-900 mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-2">
                                 {item.title}
                             </h2>
-                            <p className="text-xl text-secondary-600 mb-6">
+                            <p className="text-gray-600 mb-4">
                                 {item.description}
                             </p>
                         </div>
 
                         {/* Details Grid */}
-                        <div className="grid grid-cols-2 gap-4 mb-6">
-                            <div className="bg-gray-50 rounded-xl p-4">
-                                <div className="text-sm text-secondary-500 mb-1">Location</div>
-                                <div className="font-semibold text-gray-900">{item.location}</div>
+                        <div className="grid grid-cols-2 gap-3 mb-6">
+                            <div className="bg-gray-50 rounded-lg p-3">
+                                <div className="text-xs text-gray-500 mb-1">Location</div>
+                                <div className="font-medium text-gray-900 text-sm">{item.location}</div>
                             </div>
-                            <div className="bg-gray-50 rounded-xl p-4">
-                                <div className="text-sm text-secondary-500 mb-1">Date</div>
-                                <div className="font-semibold text-gray-900">{item.date}</div>
+                            <div className="bg-gray-50 rounded-lg p-3">
+                                <div className="text-xs text-gray-500 mb-1">Date</div>
+                                <div className="font-medium text-gray-900 text-sm">{item.date}</div>
                             </div>
-                            <div className="bg-gray-50 rounded-xl p-4">
-                                <div className="text-sm text-secondary-500 mb-1">Participants</div>
-                                <div className="font-semibold text-gray-900">{item.participants}+</div>
+                            <div className="bg-gray-50 rounded-lg p-3">
+                                <div className="text-xs text-gray-500 mb-1">Participants</div>
+                                <div className="font-medium text-gray-900 text-sm">{item.participants}+</div>
                             </div>
-                            <div className="bg-gray-50 rounded-xl p-4">
-                                <div className="text-sm text-secondary-500 mb-1">Status</div>
-                                <div className="font-semibold text-green-600">Completed</div>
+                            <div className="bg-gray-50 rounded-lg p-3">
+                                <div className="text-xs text-gray-500 mb-1">Status</div>
+                                <div className="font-medium text-emerald-600 text-sm">Completed</div>
                             </div>
                         </div>
 
                         {/* Tags */}
-                        <div className="mb-8">
-                            <h3 className="font-semibold text-gray-900 mb-3">Tags</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {item.tags?.map((tag, idx) => (
-                                    <span key={idx} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                                        #{tag}
-                                    </span>
-                                ))}
+                        {item.tags && (
+                            <div className="mb-6">
+                                <div className="flex flex-wrap gap-2">
+                                    {item.tags.map((tag, idx) => (
+                                        <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">
+                                            #{tag}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
-                        {/* Related actions */}
-                        <div className="flex space-x-4">
-                            <button className="flex-1 btn-primary">
+                        {/* Actions */}
+                        <div className="flex space-x-3">
+                            <button className="flex-1 px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors">
                                 Share
-                                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                                </svg>
                             </button>
-                            <button className="flex-1 btn-secondary">
+                            <button className="flex-1 px-4 py-2 bg-gray-100 text-gray-900 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors">
                                 Download
-                                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                </svg>
                             </button>
                         </div>
                     </div>
@@ -213,202 +211,187 @@ const Gallery = () => {
     );
 
     return (
-        <div className="overflow-hidden">
-            {/* Custom Hero Header - Replaces PageHeader */}
-            <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 py-24 lg:py-32 overflow-hidden">
-                {/* Decorative Elements */}
-                <div className="absolute inset-0">
-                    <div className="absolute top-0 left-0 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-                </div>
+        <div>
+            {/* Hero Section - Bold & Graphic (matching other pages) */}
+            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 pt-20 pb-32 overflow-hidden">
+                {/* Decorative shapes */}
+                <div className="absolute top-20 right-0 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+                <div className="absolute bottom-20 left-0 w-64 h-64 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
 
-                {/* Animated Shapes */}
-                <div className="absolute top-10 right-10 w-20 h-20 border-4 border-primary-200 rounded-full opacity-20 animate-pulse"></div>
-                <div className="absolute bottom-10 left-10 w-32 h-32 border-4 border-accent-200 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute top-1/2 right-20 w-16 h-16 bg-primary-300 rounded-lg opacity-10 transform rotate-45 animate-pulse"></div>
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-3xl">
+                        <div className="flex items-center space-x-2 text-sm mb-8">
+                            <Link to="/" className="text-gray-500 hover:text-gray-700 transition-colors">Home</Link>
+                            <span className="text-gray-300">→</span>
+                            <span className="text-gray-900 font-medium">Gallery</span>
+                        </div>
 
-                <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    {/* Breadcrumbs */}
-                    <nav className="flex items-center justify-center space-x-2 text-sm mb-6 text-secondary-500">
-                        <Link to="/" className="hover:text-primary-600 transition-colors">Home</Link>
-                        <span>/</span>
-                        <span className="text-primary-600 font-medium">Gallery</span>
-                    </nav>
+                        <div className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm mb-8">
+                            ✦ Visual Stories
+                        </div>
 
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6">
-                        Our <span className="gradient-text">Gallery</span>
-                    </h1>
+                        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+                            Our{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
+                                Gallery
+                            </span>
+                        </h1>
 
-                    <p className="text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto leading-relaxed">
-                        Visual stories from our projects and events across Africa
-                    </p>
+                        <p className="text-xl text-gray-600 max-w-2xl mb-12">
+                            Visual stories from our projects and events across Africa.
+                        </p>
 
-                    {/* Decorative line */}
-                    <div className="flex items-center justify-center space-x-4 mt-8">
-                        <div className="w-12 h-0.5 bg-primary-500 rounded-full"></div>
-                        <div className="w-4 h-4 bg-primary-500 rounded-full"></div>
-                        <div className="w-12 h-0.5 bg-primary-500 rounded-full"></div>
+                        <div className="flex flex-wrap gap-4">
+                            <button
+                                onClick={() => setActiveFilter('All')}
+                                className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
+                            >
+                                View all photos
+                                <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-
-                {/* Wave Divider at Bottom */}
-                <div className="absolute bottom-0 left-0 right-0">
-                    <svg className="w-full h-auto text-white" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 60L60 52.5C120 45 240 30 360 22.5C480 15 600 15 720 18.75C840 22.5 960 30 1080 33.75C1200 37.5 1320 37.5 1380 37.5L1440 37.5V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="currentColor" fillOpacity="0.1"/>
-                    </svg>
                 </div>
             </section>
 
-            {/* Featured Strip */}
-            <section className="relative -mt-16 z-20">
+            {/* Gallery Stats - Bold Numbers (matching other pages) */}
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white rounded-3xl shadow-large p-6 border border-gray-100">
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-4">
-                                <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-600 rounded-2xl flex items-center justify-center text-white text-2xl">
-                                    📸
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-gray-900">Featured Collection</h3>
-                                    <p className="text-sm text-secondary-600">Our most impactful moments</p>
-                                </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                100+
                             </div>
-                            <button className="text-primary-600 font-semibold hover:text-primary-700">
-                                View Slideshow →
-                            </button>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Photos</div>
+                        </div>
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                15
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Countries</div>
+                        </div>
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                20+
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Events</div>
+                        </div>
+                        <div className="text-center group">
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
+                                5K+
+                            </div>
+                            <div className="text-sm text-gray-500 uppercase tracking-wider">Views</div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="py-24 bg-white">
+            {/* Main Gallery Section */}
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Enhanced Filter Bar */}
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">
-                        <div className="flex flex-wrap gap-3 mb-4 md:mb-0">
-                            {categories.map((category) => (
-                                <button
-                                    key={category.name}
-                                    onClick={() => setActiveFilter(category.name)}
-                                    className={`
-                                        inline-flex items-center px-6 py-3 rounded-xl font-semibold transition-all duration-300
-                                        ${activeFilter === category.name
-                                        ? 'bg-primary-600 text-white shadow-soft scale-105'
-                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                    }
-                                    `}
-                                >
-                                    <span className="mr-2">{category.icon}</span>
-                                    {category.name}
-                                    <span className={`
-                                        ml-2 px-2 py-0.5 rounded-full text-xs
-                                        ${activeFilter === category.name
+                    {/* Filter Bar */}
+                    <div className="flex flex-wrap gap-3 justify-center mb-12">
+                        {categories.map((category) => (
+                            <button
+                                key={category.name}
+                                onClick={() => setActiveFilter(category.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeFilter === category.name
+                                    ? 'bg-gray-900 text-white'
+                                    : `${category.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{category.icon}</span>
+                                {category.name}
+                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                    activeFilter === category.name
                                         ? 'bg-white/20 text-white'
-                                        : 'bg-gray-300 text-gray-700'
-                                    }
-                                    `}>
-                                        {category.count}
-                                    </span>
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* View Toggle */}
-                        <div className="flex items-center space-x-2">
-                            <button className="p-3 bg-primary-100 text-primary-600 rounded-xl">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                </svg>
+                                        : 'bg-white/60 text-gray-600'
+                                }`}>
+                                    {category.count}
+                                </span>
                             </button>
-                            <button className="p-3 bg-gray-100 text-gray-600 rounded-xl hover:bg-gray-200 transition-colors">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            </button>
-                        </div>
+                        ))}
                     </div>
 
                     {/* Loading State */}
                     {isLoading ? (
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <div key={i} className="animate-pulse">
                                     <div className="h-64 bg-gray-200 rounded-2xl mb-4"></div>
-                                    <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
-                                    <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
-                                    <div className="h-8 bg-gray-200 rounded w-1/3"></div>
+                                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                                    <div className="h-3 bg-gray-200 rounded w-1/2"></div>
                                 </div>
                             ))}
                         </div>
                     ) : (
                         <>
                             {/* Gallery Grid */}
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {visibleItems.map((item, index) => (
-                                    <div
-                                        key={item.id}
-                                        className="group cursor-pointer animate-slide-up"
-                                        style={{ animationDelay: `${index * 100}ms` }}
-                                        onClick={() => setSelectedImage(item)}
-                                    >
-                                        <div className="relative h-64 rounded-2xl mb-4 overflow-hidden bg-gradient-to-br from-primary-500 to-accent-600">
-                                            {item.image ? (
-                                                <img
-                                                    src={item.image}
-                                                    alt={item.title}
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                                />
-                                            ) : (
-                                                <div className="w-full h-full flex items-center justify-center">
-                                                    <span className="text-6xl text-white/30 group-hover:scale-110 transition-transform duration-700">
-                                                        📸
-                                                    </span>
-                                                </div>
-                                            )}
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {visibleItems.map((item, index) => {
+                                    // Get category color
+                                    const categoryColor =
+                                        item.category === 'Events' ? 'bg-emerald-50 text-emerald-700' :
+                                            item.category === 'Campaigns' ? 'bg-indigo-50 text-indigo-700' :
+                                                item.category === 'Workshops' ? 'bg-rose-50 text-rose-700' :
+                                                    'bg-amber-50 text-amber-700';
 
-                                            {/* Overlay with zoom icon */}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <div className="absolute bottom-4 left-4">
-                                                    <div className="flex items-center space-x-2 text-white">
-                                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                                                        </svg>
-                                                        <span className="text-sm">Click to enlarge</span>
+                                    return (
+                                        <div
+                                            key={item.id}
+                                            className="group cursor-pointer"
+                                            onClick={() => setSelectedImage(item)}
+                                        >
+                                            <div className="relative h-64 rounded-2xl mb-3 overflow-hidden bg-gradient-to-br from-amber-500 to-emerald-600">
+                                                {item.image ? (
+                                                    <img
+                                                        src={item.image}
+                                                        alt={item.title}
+                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center">
+                                                        <span className="text-6xl text-white/30">📸</span>
                                                     </div>
+                                                )}
+
+                                                {/* Overlay */}
+                                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                    <span className="text-white text-sm font-medium">Click to enlarge</span>
                                                 </div>
+
+                                                {/* Featured badge */}
+                                                {item.featured && (
+                                                    <div className="absolute top-3 right-3">
+                                                        <span className="px-2 py-1 bg-white text-gray-900 rounded-full text-xs font-medium shadow-lg">
+                                                            ✦ Featured
+                                                        </span>
+                                                    </div>
+                                                )}
                                             </div>
 
-                                            {/* Featured badge */}
-                                            {item.featured && (
-                                                <div className="absolute top-4 right-4">
-                                                    <span className="px-3 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-semibold">
-                                                        Featured
-                                                    </span>
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        <div className="flex items-start justify-between">
                                             <div>
-                                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">
-                                                    {item.title}
-                                                </h3>
-                                                <p className="text-secondary-600 text-sm mb-3 line-clamp-2">
-                                                    {item.description}
-                                                </p>
-                                                <div className="flex items-center space-x-3">
-                                                    <span className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-medium">
+                                                <div className="flex items-start justify-between mb-1">
+                                                    <h3 className="font-semibold text-gray-900 group-hover:text-gray-700 transition-colors">
+                                                        {item.title}
+                                                    </h3>
+                                                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${categoryColor}`}>
                                                         {item.category}
                                                     </span>
-                                                    <span className="text-xs text-secondary-500">
-                                                        📍 {item.location}
-                                                    </span>
                                                 </div>
+                                                <p className="text-sm text-gray-500 mb-2 line-clamp-2">
+                                                    {item.description}
+                                                </p>
+                                                <p className="text-xs text-gray-400">
+                                                    📍 {item.location} • {item.date}
+                                                </p>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
 
                             {/* Load More Button */}
@@ -416,12 +399,10 @@ const Gallery = () => {
                                 <div className="text-center mt-16">
                                     <button
                                         onClick={loadMore}
-                                        className="inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-300 transform hover:scale-105 shadow-soft"
+                                        className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
                                     >
-                                        <span>Load More Photos</span>
-                                        <svg className="w-5 h-5 ml-2 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                        </svg>
+                                        Load more photos
+                                        <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                                     </button>
                                 </div>
                             )}
@@ -430,51 +411,10 @@ const Gallery = () => {
                 </div>
             </section>
 
-            {/* Statistics Section */}
-            <section className="py-16 bg-gradient-to-br from-primary-50 to-accent-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div className="text-center">
-                            <div className="text-3xl font-bold gradient-text mb-2">100+</div>
-                            <div className="text-secondary-600">Photos</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold gradient-text mb-2">15</div>
-                            <div className="text-secondary-600">Countries</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold gradient-text mb-2">20+</div>
-                            <div className="text-secondary-600">Events</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold gradient-text mb-2">5K+</div>
-                            <div className="text-secondary-600">Views</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             {/* Lightbox */}
             {selectedImage && (
                 <Lightbox item={selectedImage} onClose={() => setSelectedImage(null)} />
             )}
-
-            {/* Add custom animation to index.css */}
-            <style jsx>{`
-                @keyframes scaleUp {
-                    from {
-                        opacity: 0;
-                        transform: scale(0.95);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: scale(1);
-                    }
-                }
-                .animate-scale-up {
-                    animation: scaleUp 0.3s ease-out;
-                }
-            `}</style>
         </div>
     );
 };

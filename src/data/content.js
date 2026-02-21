@@ -1,3 +1,4 @@
+//src/data/content.js
 export const siteContent = {
     projects: [
         {
