@@ -96,55 +96,55 @@ const Blog = () => {
                 </div>
             </section>
 
-            {/* Search and Filter Bar */}
-            <section className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-                        {/* Search Bar */}
-                        <div className="relative w-full md:w-96">
-                            <input
-                                type="text"
-                                placeholder="Search articles..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
-                            />
-                            <svg className="absolute left-4 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </div>
+            {/*/!* Search and Filter Bar *!/*/}
+            {/*<section className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200">*/}
+            {/*    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">*/}
+            {/*        <div className="flex flex-col md:flex-row gap-4 items-center justify-between">*/}
+            {/*            /!* Search Bar *!/*/}
+            {/*            <div className="relative w-full md:w-96">*/}
+            {/*                <input*/}
+            {/*                    type="text"*/}
+            {/*                    placeholder="Search articles..."*/}
+            {/*                    value={searchQuery}*/}
+            {/*                    onChange={(e) => setSearchQuery(e.target.value)}*/}
+            {/*                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"*/}
+            {/*                />*/}
+            {/*                <svg className="absolute left-4 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
+            {/*                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />*/}
+            {/*                </svg>*/}
+            {/*            </div>*/}
 
-                        {/* Category Filter */}
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {categories.map((category) => (
-                                <button
-                                    key={category.name}
-                                    onClick={() => setActiveCategory(category.name)}
-                                    className={`
-                                        group px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
-                                        ${activeCategory === category.name
-                                        ? 'bg-gray-900 text-white'
-                                        : `${category.color} hover:shadow-md`
-                                    }
-                                    `}
-                                >
-                                    <span className="mr-2">{category.icon}</span>
-                                    {category.name}
-                                    {category.name !== 'All' && (
-                                        <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                            activeCategory === category.name
-                                                ? 'bg-white/20 text-white'
-                                                : 'bg-white/60 text-gray-600'
-                                        }`}>
-                                            {category.count}
-                                        </span>
-                                    )}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/*            /!* Category Filter *!/*/}
+            {/*            <div className="flex flex-wrap gap-2 justify-center">*/}
+            {/*                {categories.map((category) => (*/}
+            {/*                    <button*/}
+            {/*                        key={category.name}*/}
+            {/*                        onClick={() => setActiveCategory(category.name)}*/}
+            {/*                        className={`*/}
+            {/*                            group px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105*/}
+            {/*                            ${activeCategory === category.name*/}
+            {/*                            ? 'bg-gray-900 text-white'*/}
+            {/*                            : `${category.color} hover:shadow-md`*/}
+            {/*                        }*/}
+            {/*                        `}*/}
+            {/*                    >*/}
+            {/*                        <span className="mr-2">{category.icon}</span>*/}
+            {/*                        {category.name}*/}
+            {/*                        {category.name !== 'All' && (*/}
+            {/*                            <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${*/}
+            {/*                                activeCategory === category.name*/}
+            {/*                                    ? 'bg-white/20 text-white'*/}
+            {/*                                    : 'bg-white/60 text-gray-600'*/}
+            {/*                            }`}>*/}
+            {/*                                {category.count}*/}
+            {/*                            </span>*/}
+            {/*                        )}*/}
+            {/*                    </button>*/}
+            {/*                ))}*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</section>*/}
 
             {/* Featured Posts Section */}
             {featuredPosts.length > 0 && (

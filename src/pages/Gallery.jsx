@@ -257,32 +257,7 @@ const Gallery = () => {
             {/* Main Gallery Section */}
             <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Filter Bar */}
-                    <div className="flex flex-wrap gap-3 justify-center mb-12">
-                        {categories.map((category) => (
-                            <button
-                                key={category.name}
-                                onClick={() => setActiveFilter(category.name)}
-                                className={`
-                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeFilter === category.name
-                                    ? 'bg-gray-900 text-white'
-                                    : `${category.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{category.icon}</span>
-                                {category.name}
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                    activeFilter === category.name
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-white/60 text-gray-600'
-                                }`}>
-                                    {category.count}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
+
 
                     {/* Loading State */}
                     {isLoading ? (
@@ -376,6 +351,33 @@ const Gallery = () => {
                             )}
                         </>
                     )}
+
+                    {/* Filter Bar */}
+                    <div className="flex flex-wrap gap-3 justify-center mb-12">
+                        {categories.map((category) => (
+                            <button
+                                key={category.name}
+                                onClick={() => setActiveFilter(category.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeFilter === category.name
+                                    ? 'bg-gray-900 text-white'
+                                    : `${category.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{category.icon}</span>
+                                {category.name}
+                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                    activeFilter === category.name
+                                        ? 'bg-white/20 text-white'
+                                        : 'bg-white/60 text-gray-600'
+                                }`}>
+                                    {category.count}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </section>
 
