@@ -53,48 +53,141 @@ const Partners = () => {
 
     return (
         <div>
-            {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 pt-20 pb-32 overflow-hidden">
-                <div className="absolute top-20 right-0 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-                <div className="absolute bottom-20 left-0 w-64 h-64 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+            {/* Hero Section - Spacious & Centered */}
+            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 min-h-[90vh] flex items-center py-32 lg:py-40 overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute top-40 right-20 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+                <div className="absolute bottom-40 left-20 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-amber-100/20 to-emerald-100/20 rounded-full filter blur-3xl opacity-20"></div>
 
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-3xl">
-                        <div className="flex items-center space-x-2 text-sm mb-8">
-                            <Link to="/" className="text-gray-500 hover:text-gray-700 transition-colors">Home</Link>
-                            <span className="text-gray-300">→</span>
+                {/* Additional subtle decorative elements */}
+                <div className="absolute top-60 left-10 w-32 h-32 border-4 border-amber-200/30 rounded-full"></div>
+                <div className="absolute bottom-60 right-10 w-40 h-40 border-4 border-emerald-200/30 rounded-full"></div>
+
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                    <div className="max-w-4xl mx-auto text-center">
+                        {/* Breadcrumbs - Centered */}
+                        <nav className="flex items-center justify-center space-x-2 text-sm mb-8 text-gray-500">
+                            <Link to="/" className="hover:text-gray-700 transition-colors">Home</Link>
+                            <span className="text-gray-300">/</span>
                             <span className="text-gray-900 font-medium">Partners</span>
+                        </nav>
+
+                        {/* Badge - Centered */}
+                        <div className="inline-flex items-center justify-center mb-12">
+                            <span className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm border border-amber-100">
+                                ✦ Collaborating for Impact
+                            </span>
                         </div>
 
-                        <div className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm mb-8">
-                            ✦ Collaborating for Impact
-                        </div>
-
-                        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-                            Our{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
+                        {/* Main Title - Centered with gradient */}
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
+                            <span className="block mb-4">Our</span>
+                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
                                 Partners
                             </span>
                         </h1>
 
-                        <p className="text-xl text-gray-600 max-w-2xl mb-12">
+                        {/* Subtitle - Centered */}
+                        <p className="text-xl md:text-2xl text-gray-600 mb-14 max-w-3xl mx-auto leading-relaxed">
                             Collaborating with organizations across Africa to amplify our impact in digital rights and mental health.
+                        </p>
+
+                        {/* Scroll indicator */}
+                        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
+                            <div className="flex flex-col items-center space-y-2 text-gray-400">
+                                <span className="text-xs uppercase tracking-wider">Scroll</span>
+                                <div className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center">
+                                    <div className="w-1 h-2 bg-gradient-to-b from-amber-500 to-emerald-500 rounded-full mt-2 animate-bounce"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Stats Section - Quick overview */}
+            <section className="py-16 bg-white border-b border-gray-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div className="text-4xl font-bold text-gray-900">{partners.length}</div>
+                            <div className="text-sm text-gray-500">Total Partners</div>
+                        </div>
+                        <div>
+                            <div className="text-4xl font-bold text-gray-900">
+                                {new Set(partners.map(p => p.type)).size}
+                            </div>
+                            <div className="text-sm text-gray-500">Partner Types</div>
+                        </div>
+                        <div>
+                            <div className="text-4xl font-bold text-gray-900">
+                                {partners.filter(p => p.impact).length}
+                            </div>
+                            <div className="text-sm text-gray-500">Active Impact</div>
+                        </div>
+                        <div>
+                            <div className="text-4xl font-bold text-gray-900">
+                                {new Date().getFullYear() - Math.min(...partners.map(p => parseInt(p.partnershipYear) || 2024))}+
+                            </div>
+                            <div className="text-sm text-gray-500">Years of Collaboration</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Filter Bar - Centered */}
+            <section className="py-12 bg-white border-b border-gray-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider text-center mb-4">Filter by Type</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {partnerTypes.map((type) => (
+                            <button
+                                key={type.name}
+                                onClick={() => setActiveType(type.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeType === type.name
+                                    ? 'bg-gray-900 text-white'
+                                    : `${type.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{type.icon}</span>
+                                {type.name}
+                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                    activeType === type.name
+                                        ? 'bg-white/20 text-white'
+                                        : 'bg-white/60 text-gray-600'
+                                }`}>
+                                    {type.count}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Results Count */}
+            <section className="pt-8 pb-4 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center">
+                        <p className="text-gray-500">
+                            Showing <span className="font-semibold text-gray-900">{filteredPartners.length}</span> partners
                         </p>
                     </div>
                 </div>
             </section>
 
-
-
             {/* Partners Grid - 4 Columns */}
-            <section className="py-16 bg-white">
+            <section className="py-8 pb-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {filteredPartners.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                             {filteredPartners.map((partner, index) => (
                                 <div
                                     key={index}
-                                    className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-all p-5"
+                                    className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all p-5 hover:border-amber-200"
                                 >
                                     <div className="flex items-start justify-between mb-3">
                                         {/* Logo/Initials */}
@@ -110,7 +203,7 @@ const Partners = () => {
 
                                     {/* Partner Info */}
                                     <div className="mb-3">
-                                        <h3 className="text-base font-bold text-gray-900 mb-1 line-clamp-1">
+                                        <h3 className="text-base font-bold text-gray-900 mb-1 line-clamp-1 group-hover:text-amber-600 transition-colors">
                                             {partner.name}
                                         </h3>
                                         <p className="text-xs text-gray-500 mb-2 line-clamp-2">
@@ -208,69 +301,47 @@ const Partners = () => {
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-16 bg-gray-50 rounded-2xl">
-                            <div className="text-5xl mb-3">🤝</div>
-                            <h3 className="text-xl font-semibold text-gray-900 mb-2">No partners found</h3>
-                            <p className="text-sm text-gray-500">Try selecting a different category</p>
+                        <div className="text-center py-20 bg-gray-50 rounded-3xl max-w-2xl mx-auto">
+                            <div className="text-6xl mb-4">🤝</div>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-2">No partners found</h3>
+                            <p className="text-gray-500 mb-6">Try selecting a different category</p>
+                            <button
+                                onClick={() => setActiveType('All')}
+                                className="px-6 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all"
+                            >
+                                View all partners
+                            </button>
                         </div>
                     )}
                 </div>
             </section>
 
-            {/* Filter Bar - Moved above partners grid */}
-            <section className="py-12 bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {partnerTypes.map((type) => (
-                            <button
-                                key={type.name}
-                                onClick={() => setActiveType(type.name)}
-                                className={`
-                                    group px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeType === type.name
-                                    ? 'bg-gray-900 text-white'
-                                    : `${type.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{type.icon}</span>
-                                {type.name}
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                    activeType === type.name
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-white/60 text-gray-600'
-                                }`}>
-                                    {type.count}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-
-            {/* Become a Partner CTA - Simplified */}
-            <section className="relative bg-gray-900 py-20 overflow-hidden">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full filter blur-3xl"></div>
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full filter blur-3xl"></div>
+            {/* Become a Partner CTA - Gradient */}
+            <section className="relative bg-gradient-to-br from-amber-600 to-emerald-600 py-24 overflow-hidden">
+                <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
                 <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                         Become a partner
                     </h2>
-                    <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-                        Join us in creating meaningful change across Africa.
+                    <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                        Join us in creating meaningful change across Africa. Let's collaborate to protect digital rights and promote mental wellbeing.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/contact"
-                            className="group px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-all hover:scale-105 text-sm"
+                            className="group px-8 py-4 bg-white text-gray-900 rounded-full font-bold hover:bg-gray-100 transition-all hover:scale-105 shadow-xl"
                         >
                             Partner with us
                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                         </Link>
                     </div>
+
+                    <p className="text-white/60 text-sm mt-8">
+                        ✦ Join our growing network of partners across Africa
+                    </p>
                 </div>
             </section>
         </div>

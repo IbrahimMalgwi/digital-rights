@@ -45,7 +45,7 @@ const Projects = () => {
         }
     ];
 
-    // Categories with colors (matching About/Awards pages)
+    // Categories with colors
     const categories = [
         { name: 'All', icon: '📋', count: allProjects.length, color: 'bg-amber-50 text-amber-700' },
         { name: 'Education', icon: '📚', count: allProjects.filter(p => p.category === 'Education').length, color: 'bg-emerald-50 text-emerald-700' },
@@ -57,10 +57,10 @@ const Projects = () => {
     ];
 
     const statuses = [
-        { name: 'All', icon: '🔄', color: 'gray' },
-        { name: 'Ongoing', icon: '⚡', color: 'blue' },
-        { name: 'Completed', icon: '✅', color: 'green' },
-        { name: 'Upcoming', icon: '📅', color: 'purple' }
+        { name: 'All', icon: '🔄' },
+        { name: 'Ongoing', icon: '⚡' },
+        { name: 'Completed', icon: '✅' },
+        { name: 'Upcoming', icon: '📅' }
     ];
 
     const featuredProjects = allProjects.filter(project => project.featured) || [];
@@ -77,68 +77,110 @@ const Projects = () => {
 
     const visibleProjects = filteredProjects.slice(0, visibleCount);
 
-
     return (
         <div>
-            {/* Hero Section - Bold & Graphic (matching About/Awards) */}
-            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 pt-20 pb-32 overflow-hidden">
-                {/* Decorative shapes */}
-                <div className="absolute top-20 right-0 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-                <div className="absolute bottom-20 left-0 w-64 h-64 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+            {/* Hero Section - Spacious & Centered like Hero/About */}
+            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 min-h-[90vh] flex items-center py-32 lg:py-40 overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute top-40 right-20 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+                <div className="absolute bottom-40 left-20 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-amber-100/20 to-emerald-100/20 rounded-full filter blur-3xl opacity-20"></div>
 
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-3xl">
-                        <div className="flex items-center space-x-2 text-sm mb-8">
-                            <Link to="/" className="text-gray-500 hover:text-gray-700 transition-colors">Home</Link>
-                            <span className="text-gray-300">→</span>
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                    <div className="max-w-4xl mx-auto text-center">
+                        {/* Breadcrumbs - Centered */}
+                        <nav className="flex items-center justify-center space-x-2 text-sm mb-8 text-gray-500">
+                            <Link to="/" className="hover:text-gray-700 transition-colors">Home</Link>
+                            <span className="text-gray-300">/</span>
                             <span className="text-gray-900 font-medium">Projects</span>
+                        </nav>
+
+                        {/* Badge - Centered */}
+                        <div className="inline-flex items-center justify-center mb-12">
+                            <span className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm border border-amber-100">
+                                ✦ Making Impact Across Africa
+                            </span>
                         </div>
 
-                        <div className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm mb-8">
-                            ✦ Making Impact Across Africa
-                        </div>
-
-                        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-                            Our{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
+                        {/* Main Title - Centered with gradient */}
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
+                            <span className="block mb-4">Our</span>
+                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
                                 Projects
                             </span>
                         </h1>
 
-                        <p className="text-xl text-gray-600 max-w-2xl mb-12">
+                        {/* Subtitle - Centered */}
+                        <p className="text-xl md:text-2xl text-gray-600 mb-14 max-w-3xl mx-auto leading-relaxed">
                             Discover our initiatives making an impact across Africa in digital rights and mental health.
                         </p>
 
-                        <div className="flex flex-wrap gap-4">
+                        {/* CTA Buttons - Centered */}
+                        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
                             <button
                                 onClick={() => {
                                     setActiveCategory('All');
                                     setActiveStatus('All');
                                     setSearchQuery('');
                                 }}
-                                className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
+                                className="group relative px-10 py-5 bg-gradient-to-r from-amber-600 to-emerald-600 text-white rounded-full font-semibold text-lg hover:from-amber-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
                             >
-                                Explore all projects
-                                <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                                <span className="relative z-10 flex items-center">
+                                    Explore all projects
+                                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </span>
+                                <div className="absolute inset-0 bg-white rounded-full opacity-0 group-hover:opacity-20 transition-opacity"></div>
                             </button>
+                        </div>
+
+                        {/* Scroll indicator */}
+                        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
+                            <div className="flex flex-col items-center space-y-2 text-gray-400">
+                                <span className="text-xs uppercase tracking-wider">Scroll</span>
+                                <div className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center">
+                                    <div className="w-1 h-2 bg-gradient-to-b from-amber-500 to-emerald-500 rounded-full mt-2 animate-bounce"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-
+            {/* Stats Section - Optional, can be removed if not needed */}
+            <section className="py-16 bg-white border-b border-gray-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div className="text-4xl font-bold text-gray-900">{allProjects.length}+</div>
+                            <div className="text-sm text-gray-500">Total Projects</div>
+                        </div>
+                        <div>
+                            <div className="text-4xl font-bold text-gray-900">{allProjects.filter(p => p.status === 'Ongoing').length}</div>
+                            <div className="text-sm text-gray-500">Active Now</div>
+                        </div>
+                        <div>
+                            <div className="text-4xl font-bold text-gray-900">15</div>
+                            <div className="text-sm text-gray-500">Countries</div>
+                        </div>
+                        <div>
+                            <div className="text-4xl font-bold text-gray-900">{allProjects.filter(p => p.featured).length}</div>
+                            <div className="text-sm text-gray-500">Featured</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* Featured Projects Section */}
             {featuredProjects.length > 0 && (
                 <section className="py-20 bg-gray-50">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="flex justify-between items-end mb-16">
-                            <div>
-                                <span className="text-gray-400 font-medium mb-4 block">Featured</span>
-                                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                                    Spotlight projects
-                                </h2>
-                            </div>
+                        <div className="text-center max-w-2xl mx-auto mb-16">
+                            <span className="text-gray-400 font-medium mb-4 block">Featured</span>
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                                Spotlight projects
+                            </h2>
                         </div>
 
                         <div className="grid lg:grid-cols-2 gap-6">
@@ -242,69 +284,61 @@ const Projects = () => {
             {/* Main Projects Section */}
             <section className="py-16 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Filter Chips */}
-                    <div className="flex flex-wrap gap-6 mb-12">
-                        {/* Categories */}
-                        <div className="flex-1">
-                            <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">Categories</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {categories.map((category) => {
-                                    const categoryColor = categories.find(c => c.name === category.name)?.color || 'bg-gray-50 text-gray-700';
-                                    return (
-                                        <button
-                                            key={category.name}
-                                            onClick={() => setActiveCategory(category.name)}
-                                            className={`
-                                                group px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
-                                                ${activeCategory === category.name
-                                                ? 'bg-gray-900 text-white'
-                                                : `${categoryColor} hover:shadow-md`
-                                            }
-                                            `}
-                                        >
-                                            <span className="mr-2">{category.icon}</span>
-                                            {category.name}
-                                            <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                                activeCategory === category.name
-                                                    ? 'bg-white/20 text-white'
-                                                    : 'bg-white/60 text-gray-600'
-                                            }`}>
-                                                {category.count}
-                                            </span>
-                                        </button>
-                                    );
-                                })}
-                            </div>
+                    {/* Filter Chips - Now centered */}
+                    <div className="text-center mb-12">
+                        <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">Filter by Category</h3>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.name}
+                                    onClick={() => setActiveCategory(category.name)}
+                                    className={`
+                                        group px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
+                                        ${activeCategory === category.name
+                                        ? 'bg-gray-900 text-white'
+                                        : `${category.color} hover:shadow-md`
+                                    }
+                                    `}
+                                >
+                                    <span className="mr-2">{category.icon}</span>
+                                    {category.name}
+                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                        activeCategory === category.name
+                                            ? 'bg-white/20 text-white'
+                                            : 'bg-white/60 text-gray-600'
+                                    }`}>
+                                        {category.count}
+                                    </span>
+                                </button>
+                            ))}
                         </div>
+                    </div>
 
-                        {/* Status */}
-                        <div>
-                            <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">Status</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {statuses.map((status) => (
-                                    <button
-                                        key={status.name}
-                                        onClick={() => setActiveStatus(status.name)}
-                                        className={`
-                                            px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
-                                            ${activeStatus === status.name
-                                            ? 'bg-gray-900 text-white'
-                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                        }
-                                        `}
-                                    >
-                                        <span className="mr-2">{status.icon}</span>
-                                        {status.name}
-                                    </button>
-                                ))}
-                            </div>
+                    <div className="text-center mb-12">
+                        <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">Filter by Status</h3>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {statuses.map((status) => (
+                                <button
+                                    key={status.name}
+                                    onClick={() => setActiveStatus(status.name)}
+                                    className={`
+                                        px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
+                                        ${activeStatus === status.name
+                                        ? 'bg-gray-900 text-white'
+                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                    }
+                                    `}
+                                >
+                                    <span className="mr-2">{status.icon}</span>
+                                    {status.name}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
                     {/* External Projects Note */}
-                    <div className="mb-8 p-4 bg-amber-50 rounded-2xl border border-amber-200">
-                        <div className="flex items-center">
-                            <span className="text-2xl mr-3">🔗</span>
+                    <div className="mb-8 max-w-2xl mx-auto">
+                        <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-center">
                             <p className="text-amber-800 text-sm">
                                 <span className="font-semibold">Note:</span> Data Workers' Inquiry and WDFA are external projects. Click on their cards to visit their dedicated websites.
                             </p>
@@ -312,7 +346,7 @@ const Projects = () => {
                     </div>
 
                     {/* Results Count */}
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="text-center mb-6">
                         <p className="text-gray-500">
                             Showing <span className="font-semibold text-gray-900">{visibleProjects.length}</span> of{' '}
                             <span className="font-semibold text-gray-900">{filteredProjects.length}</span> projects
@@ -325,7 +359,6 @@ const Projects = () => {
                             {viewMode === 'grid' ? (
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {visibleProjects.map((project, index) => {
-                                        // Get category color
                                         const categoryColor =
                                             project.category === 'Education' ? 'bg-emerald-50 text-emerald-700' :
                                                 project.category === 'Mental Health' ? 'bg-indigo-50 text-indigo-700' :
@@ -365,7 +398,7 @@ const Projects = () => {
                                     })}
                                 </div>
                             ) : (
-                                <div className="space-y-4">
+                                <div className="space-y-4 max-w-3xl mx-auto">
                                     {visibleProjects.map((project, index) => {
                                         const categoryColor =
                                             project.category === 'Education' ? 'bg-emerald-50 text-emerald-700' :
@@ -423,7 +456,7 @@ const Projects = () => {
                             )}
                         </>
                     ) : (
-                        <div className="text-center py-20 bg-gray-50 rounded-3xl">
+                        <div className="text-center py-20 bg-gray-50 rounded-3xl max-w-2xl mx-auto">
                             <div className="text-6xl mb-4">🔍</div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-2">No projects found</h3>
                             <p className="text-gray-500 mb-6">Try adjusting your filters or search criteria</p>
@@ -442,9 +475,8 @@ const Projects = () => {
                 </div>
             </section>
 
-            {/* CTA Section - Bold & Graphic (matching About page) */}
+            {/* CTA Section */}
             <section className="relative bg-gradient-to-br from-amber-600 to-emerald-600 py-24 overflow-hidden">
-                {/* Decorative elements */}
                 <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 

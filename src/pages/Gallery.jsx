@@ -8,88 +8,23 @@ const Gallery = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [visibleCount, setVisibleCount] = useState(9);
 
-    // Enhanced gallery data with more details
-    const galleryItems = siteContent.gallery?.length ? siteContent.gallery : [
-        {
-            id: 1,
-            title: "Digital Literacy Workshop",
-            description: "Community members learning basic computer skills",
-            category: "Workshops",
-            location: "Nairobi, Kenya",
-            date: "March 2024",
-            participants: 45,
-            image: null,
-            featured: true,
-            tags: ["Education", "Digital Rights", "Youth"]
-        },
-        {
-            id: 2,
-            title: "Mental Health Awareness Campaign",
-            description: "Launch event for our digital mental health initiative",
-            category: "Campaigns",
-            location: "Lagos, Nigeria",
-            date: "February 2024",
-            participants: 120,
-            image: null,
-            featured: true,
-            tags: ["Mental Health", "Awareness", "Community"]
-        },
-        {
-            id: 3,
-            title: "Policy Roundtable",
-            description: "Stakeholders discussing digital rights legislation",
-            category: "Events",
-            location: "Accra, Ghana",
-            date: "January 2024",
-            participants: 35,
-            image: null,
-            featured: false,
-            tags: ["Policy", "Advocacy", "Government"]
-        },
-        {
-            id: 4,
-            title: "Youth Tech Summit",
-            description: "Young innovators showcase their projects",
-            category: "Events",
-            location: "Kigali, Rwanda",
-            date: "December 2023",
-            participants: 200,
-            image: null,
-            featured: true,
-            tags: ["Youth", "Technology", "Innovation"]
-        },
-        {
-            id: 5,
-            title: "Community Outreach",
-            description: "Taking digital literacy to rural communities",
-            category: "Campaigns",
-            location: "Mombasa, Kenya",
-            date: "November 2023",
-            participants: 80,
-            image: null,
-            featured: false,
-            tags: ["Outreach", "Rural", "Education"]
-        },
-        {
-            id: 6,
-            title: "Research Workshop",
-            description: "Training community researchers",
-            category: "Workshops",
-            location: "Cape Town, South Africa",
-            date: "October 2023",
-            participants: 25,
-            image: null,
-            featured: false,
-            tags: ["Research", "Training", "Data Workers"]
-        }
-    ];
+    // Get gallery items from siteContent
+    const galleryItems = siteContent.gallery || [];
 
-    // Categories with colors
+    // Categories with colors - dynamically generated
     const categories = [
         { name: 'All', count: galleryItems.length, icon: '🖼️', color: 'bg-amber-50 text-amber-700' },
-        { name: 'Events', count: galleryItems.filter(item => item.category === 'Events').length, icon: '📅', color: 'bg-emerald-50 text-emerald-700' },
-        { name: 'Campaigns', count: galleryItems.filter(item => item.category === 'Campaigns').length, icon: '📢', color: 'bg-indigo-50 text-indigo-700' },
-        { name: 'Workshops', count: galleryItems.filter(item => item.category === 'Workshops').length, icon: '🔧', color: 'bg-rose-50 text-rose-700' }
+        ...Array.from(new Set(galleryItems.map(item => item.category))).map(category => ({
+            name: category,
+            count: galleryItems.filter(item => item.category === category).length,
+            icon: category === 'Events' ? '📅' :
+                category === 'Campaigns' ? '📢' :
+                    category === 'Workshops' ? '🔧' : '🖼️',
+            color: category === 'Events' ? 'bg-emerald-50 text-emerald-700' :
+                category === 'Campaigns' ? 'bg-indigo-50 text-indigo-700' :
+                    category === 'Workshops' ? 'bg-rose-50 text-rose-700' :
+                        'bg-amber-50 text-amber-700'
+        }))
     ];
 
     // Filter gallery items
@@ -107,6 +42,13 @@ const Gallery = () => {
     // Load more items
     const loadMore = () => {
         setVisibleCount(prev => prev + 6);
+    };
+
+    // Safe function to get country from location
+    const getCountry = (location) => {
+        if (!location) return 'Unknown';
+        const parts = location.split(', ');
+        return parts[1] || parts[0] || 'Unknown';
     };
 
     // Lightbox component
@@ -166,15 +108,15 @@ const Gallery = () => {
                         <div className="grid grid-cols-2 gap-3 mb-6">
                             <div className="bg-gray-50 rounded-lg p-3">
                                 <div className="text-xs text-gray-500 mb-1">Location</div>
-                                <div className="font-medium text-gray-900 text-sm">{item.location}</div>
+                                <div className="font-medium text-gray-900 text-sm">{item.location || 'N/A'}</div>
                             </div>
                             <div className="bg-gray-50 rounded-lg p-3">
                                 <div className="text-xs text-gray-500 mb-1">Date</div>
-                                <div className="font-medium text-gray-900 text-sm">{item.date}</div>
+                                <div className="font-medium text-gray-900 text-sm">{item.date || 'N/A'}</div>
                             </div>
                             <div className="bg-gray-50 rounded-lg p-3">
                                 <div className="text-xs text-gray-500 mb-1">Participants</div>
-                                <div className="font-medium text-gray-900 text-sm">{item.participants}+</div>
+                                <div className="font-medium text-gray-900 text-sm">{item.participants || 0}+</div>
                             </div>
                             <div className="bg-gray-50 rounded-lg p-3">
                                 <div className="text-xs text-gray-500 mb-1">Status</div>
@@ -183,7 +125,7 @@ const Gallery = () => {
                         </div>
 
                         {/* Tags */}
-                        {item.tags && (
+                        {item.tags && item.tags.length > 0 && (
                             <div className="mb-6">
                                 <div className="flex flex-wrap gap-2">
                                     {item.tags.map((tag, idx) => (
@@ -212,36 +154,48 @@ const Gallery = () => {
 
     return (
         <div>
-            {/* Hero Section - Bold & Graphic (matching other pages) */}
-            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 pt-20 pb-32 overflow-hidden">
-                {/* Decorative shapes */}
-                <div className="absolute top-20 right-0 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-                <div className="absolute bottom-20 left-0 w-64 h-64 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+            {/* Hero Section - Spacious & Centered */}
+            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 min-h-[90vh] flex items-center py-32 lg:py-40 overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute top-40 right-20 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+                <div className="absolute bottom-40 left-20 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-amber-100/20 to-emerald-100/20 rounded-full filter blur-3xl opacity-20"></div>
 
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-3xl">
-                        <div className="flex items-center space-x-2 text-sm mb-8">
-                            <Link to="/" className="text-gray-500 hover:text-gray-700 transition-colors">Home</Link>
-                            <span className="text-gray-300">→</span>
+                {/* Additional subtle decorative elements */}
+                <div className="absolute top-60 left-10 w-32 h-32 border-4 border-amber-200/30 rounded-full"></div>
+                <div className="absolute bottom-60 right-10 w-40 h-40 border-4 border-emerald-200/30 rounded-full"></div>
+
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                    <div className="max-w-4xl mx-auto text-center">
+                        {/* Breadcrumbs - Centered */}
+                        <nav className="flex items-center justify-center space-x-2 text-sm mb-8 text-gray-500">
+                            <Link to="/" className="hover:text-gray-700 transition-colors">Home</Link>
+                            <span className="text-gray-300">/</span>
                             <span className="text-gray-900 font-medium">Gallery</span>
+                        </nav>
+
+                        {/* Badge - Centered */}
+                        <div className="inline-flex items-center justify-center mb-12">
+                            <span className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm border border-amber-100">
+                                ✦ Visual Stories
+                            </span>
                         </div>
 
-                        <div className="inline-block px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm mb-8">
-                            ✦ Visual Stories
-                        </div>
-
-                        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-                            Our{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
+                        {/* Main Title - Centered with gradient */}
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
+                            <span className="block mb-4">Our</span>
+                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
                                 Gallery
                             </span>
                         </h1>
 
-                        <p className="text-xl text-gray-600 max-w-2xl mb-12">
+                        {/* Subtitle - Centered */}
+                        <p className="text-xl md:text-2xl text-gray-600 mb-14 max-w-3xl mx-auto leading-relaxed">
                             Visual stories from our projects and events across Africa.
                         </p>
 
-                        <div className="flex flex-wrap gap-4">
+                        {/* CTA Button - Centered */}
+                        <div className="flex flex-wrap gap-4 justify-center">
                             <button
                                 onClick={() => setActiveFilter('All')}
                                 className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
@@ -250,15 +204,101 @@ const Gallery = () => {
                                 <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                             </button>
                         </div>
+
+                        {/* Scroll indicator */}
+                        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
+                            <div className="flex flex-col items-center space-y-2 text-gray-400">
+                                <span className="text-xs uppercase tracking-wider">Scroll</span>
+                                <div className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center">
+                                    <div className="w-1 h-2 bg-gradient-to-b from-amber-500 to-emerald-500 rounded-full mt-2 animate-bounce"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            {/* Stats Section - Quick overview */}
+            {galleryItems.length > 0 && (
+                <section className="py-16 bg-white border-b border-gray-100">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                            <div>
+                                <div className="text-4xl font-bold text-gray-900">{galleryItems.length}</div>
+                                <div className="text-sm text-gray-500">Total Photos</div>
+                            </div>
+                            <div>
+                                <div className="text-4xl font-bold text-gray-900">{categories.length - 1}</div>
+                                <div className="text-sm text-gray-500">Categories</div>
+                            </div>
+                            <div>
+                                <div className="text-4xl font-bold text-gray-900">
+                                    {galleryItems.filter(item => item.featured).length}
+                                </div>
+                                <div className="text-sm text-gray-500">Featured</div>
+                            </div>
+                            <div>
+                                <div className="text-4xl font-bold text-gray-900">
+                                    {new Set(galleryItems.map(item => getCountry(item.location))).size}
+                                </div>
+                                <div className="text-sm text-gray-500">Countries</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Filter Bar - Centered (only show if there are items) */}
+            {galleryItems.length > 0 && (
+                <section className="pt-16 pb-8 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
+                        <div className="flex flex-wrap gap-3 justify-center">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.name}
+                                    onClick={() => setActiveFilter(category.name)}
+                                    className={`
+                                        group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                        ${activeFilter === category.name
+                                        ? 'bg-gray-900 text-white'
+                                        : `${category.color} hover:shadow-md`
+                                    }
+                                    `}
+                                >
+                                    <span className="mr-2">{category.icon}</span>
+                                    {category.name}
+                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                        activeFilter === category.name
+                                            ? 'bg-white/20 text-white'
+                                            : 'bg-white/60 text-gray-600'
+                                    }`}>
+                                        {category.count}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Results Count */}
+            {galleryItems.length > 0 && (
+                <section className="py-4 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center">
+                            <p className="text-gray-500">
+                                Showing <span className="font-semibold text-gray-900">{visibleItems.length}</span> of{' '}
+                                <span className="font-semibold text-gray-900">{filteredItems.length}</span> photos
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* Main Gallery Section */}
-            <section className="py-20 bg-white">
+            <section className="py-8 pb-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
                     {/* Loading State */}
                     {isLoading ? (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -272,112 +312,95 @@ const Gallery = () => {
                         </div>
                     ) : (
                         <>
-                            {/* Gallery Grid */}
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {visibleItems.map((item, index) => {
-                                    // Get category color
-                                    const categoryColor =
-                                        item.category === 'Events' ? 'bg-emerald-50 text-emerald-700' :
-                                            item.category === 'Campaigns' ? 'bg-indigo-50 text-indigo-700' :
-                                                item.category === 'Workshops' ? 'bg-rose-50 text-rose-700' :
-                                                    'bg-amber-50 text-amber-700';
+                            {galleryItems.length > 0 ? (
+                                <>
+                                    {/* Gallery Grid */}
+                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {visibleItems.map((item, index) => {
+                                            // Get category color
+                                            const categoryColor =
+                                                item.category === 'Events' ? 'bg-emerald-50 text-emerald-700' :
+                                                    item.category === 'Campaigns' ? 'bg-indigo-50 text-indigo-700' :
+                                                        item.category === 'Workshops' ? 'bg-rose-50 text-rose-700' :
+                                                            'bg-amber-50 text-amber-700';
 
-                                    return (
-                                        <div
-                                            key={item.id}
-                                            className="group cursor-pointer"
-                                            onClick={() => setSelectedImage(item)}
-                                        >
-                                            <div className="relative h-64 rounded-2xl mb-3 overflow-hidden bg-gradient-to-br from-amber-500 to-emerald-600">
-                                                {item.image ? (
-                                                    <img
-                                                        src={item.image}
-                                                        alt={item.title}
-                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                                    />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center">
-                                                        <span className="text-6xl text-white/30">📸</span>
+                                            return (
+                                                <div
+                                                    key={item.id}
+                                                    className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all hover:scale-[1.02]"
+                                                    onClick={() => setSelectedImage(item)}
+                                                >
+                                                    <div className="relative h-64 overflow-hidden bg-gradient-to-br from-amber-500 to-emerald-600">
+                                                        {item.image ? (
+                                                            <img
+                                                                src={item.image}
+                                                                alt={item.title}
+                                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                            />
+                                                        ) : (
+                                                            <div className="w-full h-full flex items-center justify-center">
+                                                                <span className="text-6xl text-white/30">📸</span>
+                                                            </div>
+                                                        )}
+
+                                                        {/* Overlay */}
+                                                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                            <span className="text-white text-sm font-medium">Click to enlarge</span>
+                                                        </div>
+
+                                                        {/* Featured badge */}
+                                                        {item.featured && (
+                                                            <div className="absolute top-3 right-3">
+                                                                <span className="px-2 py-1 bg-white text-gray-900 rounded-full text-xs font-medium shadow-lg">
+                                                                    ✦ Featured
+                                                                </span>
+                                                            </div>
+                                                        )}
                                                     </div>
-                                                )}
 
-                                                {/* Overlay */}
-                                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                                    <span className="text-white text-sm font-medium">Click to enlarge</span>
-                                                </div>
-
-                                                {/* Featured badge */}
-                                                {item.featured && (
-                                                    <div className="absolute top-3 right-3">
-                                                        <span className="px-2 py-1 bg-white text-gray-900 rounded-full text-xs font-medium shadow-lg">
-                                                            ✦ Featured
-                                                        </span>
+                                                    <div className="p-5">
+                                                        <div className="flex items-start justify-between mb-2">
+                                                            <h3 className="font-semibold text-gray-900 group-hover:text-amber-600 transition-colors">
+                                                                {item.title}
+                                                            </h3>
+                                                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${categoryColor}`}>
+                                                                {item.category}
+                                                            </span>
+                                                        </div>
+                                                        <p className="text-sm text-gray-500 mb-3 line-clamp-2">
+                                                            {item.description}
+                                                        </p>
+                                                        <p className="text-xs text-gray-400">
+                                                            📍 {item.location || 'N/A'} • {item.date || 'N/A'}
+                                                        </p>
                                                     </div>
-                                                )}
-                                            </div>
-
-                                            <div>
-                                                <div className="flex items-start justify-between mb-1">
-                                                    <h3 className="font-semibold text-gray-900 group-hover:text-gray-700 transition-colors">
-                                                        {item.title}
-                                                    </h3>
-                                                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${categoryColor}`}>
-                                                        {item.category}
-                                                    </span>
                                                 </div>
-                                                <p className="text-sm text-gray-500 mb-2 line-clamp-2">
-                                                    {item.description}
-                                                </p>
-                                                <p className="text-xs text-gray-400">
-                                                    📍 {item.location} • {item.date}
-                                                </p>
-                                            </div>
+                                            );
+                                        })}
+                                    </div>
+
+                                    {/* Load More Button */}
+                                    {visibleCount < filteredItems.length && (
+                                        <div className="text-center mt-16">
+                                            <button
+                                                onClick={loadMore}
+                                                className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
+                                            >
+                                                Load more photos
+                                                <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                                            </button>
                                         </div>
-                                    );
-                                })}
-                            </div>
-
-                            {/* Load More Button */}
-                            {visibleCount < filteredItems.length && (
-                                <div className="text-center mt-16">
-                                    <button
-                                        onClick={loadMore}
-                                        className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
-                                    >
-                                        Load more photos
-                                        <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
-                                    </button>
+                                    )}
+                                </>
+                            ) : (
+                                <div className="text-center py-20 bg-gray-50 rounded-3xl max-w-2xl mx-auto">
+                                    <div className="text-6xl mb-4">🖼️</div>
+                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">No photos found</h3>
+                                    <p className="text-gray-500">Gallery will be updated soon.</p>
                                 </div>
                             )}
                         </>
                     )}
-
-                    {/* Filter Bar */}
-                    <div className="flex flex-wrap gap-3 justify-center mb-12">
-                        {categories.map((category) => (
-                            <button
-                                key={category.name}
-                                onClick={() => setActiveFilter(category.name)}
-                                className={`
-                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeFilter === category.name
-                                    ? 'bg-gray-900 text-white'
-                                    : `${category.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{category.icon}</span>
-                                {category.name}
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                    activeFilter === category.name
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-white/60 text-gray-600'
-                                }`}>
-                                    {category.count}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
                 </div>
             </section>
 
