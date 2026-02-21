@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColor }) => {
-    // Removed unused imageError state
+    const [imageError, setImageError] = useState(false);
 
     const getInitials = (name) => {
         return name
@@ -12,13 +12,30 @@ const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColo
             .slice(0, 2);
     };
 
-    // Horizontal layout (for list view)
+    const handleImageError = () => {
+        console.log('Image failed to load:', member.image); // Debug log
+        setImageError(true);
+    };
+
+    // Horizontal layout
     if (layout === 'horizontal') {
         return (
             <div className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all">
                 <div className="flex items-start p-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-emerald-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold mr-6">
-                        {getInitials(member.name)}
+                    {/* Image with fallback */}
+                    <div className="w-20 h-20 rounded-xl mr-6 overflow-hidden bg-gradient-to-br from-amber-500 to-emerald-600 flex-shrink-0">
+                        {member.image && !imageError ? (
+                            <img
+                                src={member.image}
+                                alt={member.name}
+                                className="w-full h-full object-cover"
+                                onError={handleImageError}
+                            />
+                        ) : (
+                            <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold">
+                                {getInitials(member.name)}
+                            </div>
+                        )}
                     </div>
                     <div className="flex-1">
                         <div className="flex items-start justify-between mb-2">
@@ -53,8 +70,20 @@ const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColo
     return (
         <div className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all">
             <div className="p-6 text-center">
-                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-amber-500 to-emerald-600 rounded-xl flex items-center justify-center text-white text-3xl font-bold mb-4">
-                    {getInitials(member.name)}
+                {/* Image with fallback */}
+                <div className="w-24 h-24 mx-auto rounded-xl mb-4 overflow-hidden bg-gradient-to-br from-amber-500 to-emerald-600">
+                    {member.image && !imageError ? (
+                        <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-full object-cover"
+                            onError={handleImageError}
+                        />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center text-white text-3xl font-bold">
+                            {getInitials(member.name)}
+                        </div>
+                    )}
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-1">{member.name}</h3>
                 <p className="text-sm text-gray-600 mb-2">{member.role}</p>
