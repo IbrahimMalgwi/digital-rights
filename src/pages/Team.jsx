@@ -127,13 +127,7 @@ const Team = () => {
         ? teamMembers
         : teamMembers.filter(m => m.department === activeDepartment);
 
-    // Team stats
-    const stats = {
-        total: teamMembers.length,
-        countries: [...new Set(teamMembers.map(m => m.location?.split(', ')[1] || 'Unknown'))].length,
-        departments: departments.length - 1,
-        yearsCombined: teamMembers.reduce((acc, m) => acc + (2024 - parseInt(m.joined)), 0)
-    };
+
 
     return (
         <div>
@@ -179,37 +173,7 @@ const Team = () => {
                 </div>
             </section>
 
-            {/* Team Stats - Bold Numbers (matching other pages) */}
-            <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {stats.total}
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Team Members</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {stats.countries}
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Countries</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {stats.departments}
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Departments</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {stats.yearsCombined}+
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Years Combined</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
 
             {/* Team Values Section - Simple & Clean */}
             <section className="py-16 bg-gray-50">

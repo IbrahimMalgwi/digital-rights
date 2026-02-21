@@ -77,14 +77,6 @@ const Projects = () => {
 
     const visibleProjects = filteredProjects.slice(0, visibleCount);
 
-    // Calculate stats
-    const stats = {
-        total: allProjects.length,
-        ongoing: allProjects.filter(p => p.status === 'Ongoing').length,
-        completed: allProjects.filter(p => p.status === 'Completed').length,
-        countries: 15,
-        impact: '100K+'
-    };
 
     return (
         <div>
@@ -134,37 +126,7 @@ const Projects = () => {
                 </div>
             </section>
 
-            {/* Stats - Bold Numbers (matching About/Awards) */}
-            <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {stats.total}+
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Total Projects</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {stats.ongoing}
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Active Now</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {stats.completed}
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Completed</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {stats.countries}
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Countries</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
 
             {/* Featured Projects Section */}
             {featuredProjects.length > 0 && (

@@ -155,38 +155,6 @@ const Awards = () => {
                 </div>
             </section>
 
-            {/* Stats - Bold Numbers */}
-            <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {awardsData.length}+
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Total Awards</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {awardsData.filter(a => a.year === '2024').length}
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Awards in 2024</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {[...new Set(awardsData.map(a => a.location))].length}
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Locations</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                {awardsData.filter(a => a.featured).length}
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Featured</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             {/* Category Pills */}
             <section className="pb-12 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

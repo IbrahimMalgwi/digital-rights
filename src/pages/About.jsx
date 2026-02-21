@@ -4,13 +4,7 @@ import TeamCard from '../components/cards/TeamCard';
 import { siteContent } from '../data/content';
 
 const About = () => {
-    // Key statistics
-    const stats = [
-        { value: "15+", label: "African Countries" },
-        { value: "50+", label: "Active Projects" },
-        { value: "10K+", label: "Lives Impacted" },
-        { value: "25+", label: "Partner Organizations" }
-    ];
+
 
     // Core values with colors
     const values = [
@@ -90,23 +84,6 @@ const About = () => {
                 </div>
             </section>
 
-            {/* Stats - Bold Numbers */}
-            <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                        {stats.map((stat, index) => (
-                            <div key={index} className="text-center group">
-                                <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                    {stat.value}
-                                </div>
-                                <div className="text-sm text-gray-500 uppercase tracking-wider">
-                                    {stat.label}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* Mission & Vision - Split Screen */}
             <section className="grid md:grid-cols-2 min-h-[600px]">
