@@ -11,19 +11,7 @@ const Home = () => {
             {/* Hero Section */}
             <Hero />
 
-            {/* Partners Strip */}
-            <div className="bg-white border-y border-gray-100 py-8">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <p className="text-center text-xs text-gray-400 uppercase tracking-wider mb-6">
-                        Trusted by leading organizations
-                    </p>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-50">
-                        {[1, 2, 3, 4, 5].map((i) => (
-                            <div key={i} className="h-6 w-20 bg-gray-200 rounded"></div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+
 
             {/* Programs Section */}
             <section className="relative py-24 bg-white overflow-hidden">
