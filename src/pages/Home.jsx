@@ -85,37 +85,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Stats Section */}
-            <section className="py-20 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                50+
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Projects Completed</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                15
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">African Countries</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                10K+
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">People Reached</div>
-                        </div>
-                        <div className="text-center group">
-                            <div className="text-5xl md:text-6xl font-black text-gray-900 mb-2 group-hover:scale-110 transition-transform">
-                                25+
-                            </div>
-                            <div className="text-sm text-gray-500 uppercase tracking-wider">Partners</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* Featured Projects Section */}
             <section className="py-24 bg-white">
