@@ -353,7 +353,7 @@ export const siteContent = {
         {
             id: 5,
             name: "Saratu Mshelia",
-            role: "Board Member",
+            role: "Co-founder/project Lead",
             bio: "Researcher focusing on digital rights, AI ethics, and women's empowerment in technology.",
             image: "/images/Saratu.jpeg",
             social: {

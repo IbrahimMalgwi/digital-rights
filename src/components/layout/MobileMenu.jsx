@@ -44,9 +44,9 @@ const MobileMenu = ({ isOpen, onClose }) => {
                     {icon && <span className="text-lg mr-2">{icon}</span>}
                     <div className="flex-1">
                         <span className="block font-medium">{children}</span>
-                        {description && <span className="text-xs text-gray-400">{description}</span>}
+                        {description && <span className="text-xs text-secondary-400">{description}</span>}
                     </div>
-                    <svg className="w-3 h-3 ml-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 ml-2 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                 </a>
@@ -63,7 +63,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 {icon && <span className="text-lg mr-2">{icon}</span>}
                 <div className="flex-1">
                     <span className="block font-medium">{children}</span>
-                    {description && <span className="text-xs text-gray-400">{description}</span>}
+                    {description && <span className="text-xs text-secondary-400">{description}</span>}
                 </div>
             </Link>
         );
@@ -74,19 +74,19 @@ const MobileMenu = ({ isOpen, onClose }) => {
         {
             name: 'All Projects',
             href: '/projects',
-            icon: '📋',
+            icon: '📁',
             description: 'View all our initiatives',
             external: false
         },
         {
             name: 'WDFA',
             href: 'https://wdfa.org',
-            icon: '👩🏾',
+            icon: '🌍',
             description: 'Women Digital Futures Africa',
             external: true,
             subItems: [
-                { name: 'About WDFA', href: 'https://wdfa.org/about', icon: '📖', description: 'Mission and vision', external: true },
-                { name: 'Programs', href: 'https://wdfa.org/programs', icon: '🎓', description: 'Digital skills training', external: true },
+                { name: 'About WDFA', href: 'https://wdfa.org/about', icon: 'ℹ️', description: 'Mission and vision', external: true },
+                { name: 'Programs', href: 'https://wdfa.org/programs', icon: '📚', description: 'Digital skills training', external: true },
                 { name: 'AI Literacy Program', href: 'https://wdfa.org/ai-program', icon: '🤖', description: '6-week AI course', external: true },
                 { name: 'Get Involved', href: 'https://wdfa.org/get-involved', icon: '🤝', description: 'Join as mentor or partner', external: true }
             ]
@@ -94,12 +94,12 @@ const MobileMenu = ({ isOpen, onClose }) => {
         {
             name: 'Data Workers Inquiry',
             href: 'https://dataworkers.org',
-            icon: '🔬',
+            icon: '📊',
             description: 'Global research initiative',
             external: true,
             subItems: [
-                { name: 'About the Inquiry', href: 'https://dataworkers.org/about', icon: '📚', description: 'Participatory research', external: true },
-                { name: 'Research Methodology', href: 'https://dataworkers.org/methodology', icon: '🔍', description: 'How we work', external: true },
+                { name: 'About the Inquiry', href: 'https://dataworkers.org/about', icon: 'ℹ️', description: 'Participatory research', external: true },
+                { name: 'Research Methodology', href: 'https://dataworkers.org/methodology', icon: '🔬', description: 'How we work', external: true },
                 { name: 'Regional Inquiries', href: 'https://dataworkers.org/regions', icon: '🌍', description: 'Across 9 countries', external: true },
                 { name: 'Events & Webinars', href: 'https://dataworkers.org/events', icon: '📅', description: 'Upcoming panels', external: true },
                 { name: 'Mental Health Intervention', href: 'https://dataworkers.org/mental-health', icon: '🧠', description: 'Worker wellbeing', external: true }
@@ -120,8 +120,8 @@ const MobileMenu = ({ isOpen, onClose }) => {
     // Navigation items with icons
     const navigationItems = [
         { name: 'Home', href: '/', icon: '🏠', external: false },
-        { name: 'About', href: '/about', icon: '📖', external: false },
-        { name: 'Projects', href: '/projects', icon: '🚀', hasDropdown: true, external: false },
+        { name: 'About', href: '/about', icon: 'ℹ️', external: false },
+        { name: 'Projects', href: '/projects', icon: '📁', hasDropdown: true, external: false },
         { name: 'Team', href: '/team', icon: '👥', external: false },
         { name: 'Awards', href: '/awards', icon: '🏆', external: false },
         { name: 'Partners', href: '/partners', icon: '🤝', external: false },
@@ -163,19 +163,19 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 `}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-100">
+                <div className="flex items-center justify-between p-6 border-b border-secondary-100">
                     <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-emerald-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-medium">
                             {siteContent.site?.name?.split(' ').map(word => word[0]).join('').slice(0, 2) || 'D'}
                         </div>
                         <div>
-                            <h2 className="font-display font-bold text-gray-900">Menu</h2>
-                            <p className="text-xs text-gray-500">Navigate & Explore</p>
+                            <h2 className="font-display font-bold text-secondary-900">Menu</h2>
+                            <p className="text-xs text-secondary-500">Navigate & Explore</p>
                         </div>
                     </div>
                     <button
                         onClick={onClose}
-                        className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-amber-50 hover:text-amber-600 transition-colors"
+                        className="w-10 h-10 rounded-full bg-secondary-100 flex items-center justify-center text-secondary-600 hover:bg-primary-50 hover:text-primary-600 transition-colors"
                         aria-label="Close menu"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,31 +185,31 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Tab Navigation */}
-                <div className="flex border-b border-gray-100">
+                <div className="flex border-b border-secondary-100">
                     <button
                         onClick={() => setActiveTab('menu')}
                         className={`flex-1 py-4 text-sm font-medium transition-colors relative ${
                             activeTab === 'menu'
-                                ? 'text-amber-600'
-                                : 'text-gray-500 hover:text-gray-700'
+                                ? 'text-primary-600'
+                                : 'text-secondary-500 hover:text-secondary-700'
                         }`}
                     >
                         Main Menu
                         {activeTab === 'menu' && (
-                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-emerald-600"></div>
+                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500"></div>
                         )}
                     </button>
                     <button
                         onClick={() => setActiveTab('programs')}
                         className={`flex-1 py-4 text-sm font-medium transition-colors relative ${
                             activeTab === 'programs'
-                                ? 'text-amber-600'
-                                : 'text-gray-500 hover:text-gray-700'
+                                ? 'text-primary-600'
+                                : 'text-secondary-500 hover:text-secondary-700'
                         }`}
                     >
                         Programs
                         {activeTab === 'programs' && (
-                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-emerald-600"></div>
+                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500"></div>
                         )}
                     </button>
                 </div>
@@ -221,10 +221,10 @@ const MobileMenu = ({ isOpen, onClose }) => {
                             {navigationItems.map((item) => {
                                 if (item.hasDropdown) {
                                     return (
-                                        <div key={item.name} className="border-b border-gray-100 last:border-0">
+                                        <div key={item.name} className="border-b border-secondary-100 last:border-0">
                                             <button
                                                 onClick={() => toggleDropdown('projects')}
-                                                className="w-full flex items-center justify-between py-4 px-3 text-gray-700 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all duration-200"
+                                                className="w-full flex items-center justify-between py-4 px-3 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all duration-200"
                                             >
                                                 <div className="flex items-center">
                                                     <span className="text-xl mr-3">{item.icon}</span>
@@ -249,14 +249,14 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                     ${activeDropdown === 'projects' ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}
                                                 `}
                                             >
-                                                <div className="ml-4 pl-4 border-l-2 border-amber-100 space-y-2 py-2">
+                                                <div className="ml-4 pl-4 border-l-2 border-primary-100 space-y-2 py-2">
                                                     {projectItems.map((subItem) => (
                                                         <div key={subItem.name}>
                                                             {subItem.subItems ? (
                                                                 <>
                                                                     <button
                                                                         onClick={() => toggleNestedDropdown(subItem.name)}
-                                                                        className="w-full flex items-center justify-between py-3 px-3 text-gray-600 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all duration-200"
+                                                                        className="w-full flex items-center justify-between py-3 px-3 text-secondary-600 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all duration-200"
                                                                     >
                                                                         <div className="flex items-center">
                                                                             <span className="text-lg mr-2">{subItem.icon}</span>
@@ -264,7 +264,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                                                 <span className="text-sm font-medium block">
                                                                                     {subItem.name}
                                                                                 </span>
-                                                                                <span className="text-xs text-gray-400">
+                                                                                <span className="text-xs text-secondary-400">
                                                                                     {subItem.description}
                                                                                 </span>
                                                                             </div>
@@ -288,7 +288,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                                             ${nestedDropdown === subItem.name ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
                                                                         `}
                                                                     >
-                                                                        <div className="ml-4 pl-4 border-l-2 border-amber-50 space-y-2 py-2">
+                                                                        <div className="ml-4 pl-4 border-l-2 border-primary-50 space-y-2 py-2">
                                                                             {subItem.subItems.map((nestedItem) => (
                                                                                 <MenuLink
                                                                                     key={nestedItem.name}
@@ -296,7 +296,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                                                     icon={nestedItem.icon}
                                                                                     description={nestedItem.description}
                                                                                     external={nestedItem.external}
-                                                                                    className="flex items-center py-2 px-3 text-sm text-gray-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-all duration-200"
+                                                                                    className="flex items-center py-2 px-3 text-sm text-secondary-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all duration-200"
                                                                                     onClick={handleLinkClick}
                                                                                 >
                                                                                     {nestedItem.name}
@@ -311,7 +311,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                                                     icon={subItem.icon}
                                                                     description={subItem.description}
                                                                     external={subItem.external}
-                                                                    className="flex items-center py-3 px-3 text-gray-600 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all duration-200"
+                                                                    className="flex items-center py-3 px-3 text-secondary-600 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all duration-200"
                                                                     onClick={handleLinkClick}
                                                                 >
                                                                     {subItem.name}
@@ -331,7 +331,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                         to={item.href}
                                         icon={item.icon}
                                         external={item.external}
-                                        className="flex items-center py-4 px-3 text-gray-700 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all duration-200 border-b border-gray-100 last:border-0"
+                                        className="flex items-center py-4 px-3 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all duration-200 border-b border-secondary-100 last:border-0"
                                         onClick={handleLinkClick}
                                     >
                                         {item.name}
@@ -342,9 +342,9 @@ const MobileMenu = ({ isOpen, onClose }) => {
                     ) : (
                         // Programs Tab Content
                         <div className="space-y-4">
-                            <div className="bg-gradient-to-br from-amber-50 to-emerald-50 rounded-2xl p-4">
-                                <h3 className="font-display font-bold text-gray-900 mb-2">Featured Programs</h3>
-                                <p className="text-xs text-gray-500 mb-4">Discover our key initiatives</p>
+                            <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl p-4">
+                                <h3 className="font-display font-bold text-secondary-900 mb-2">Featured Programs</h3>
+                                <p className="text-xs text-secondary-600 mb-4">Discover our key initiatives</p>
 
                                 <div className="space-y-3">
                                     {projectItems.slice(1, 3).map((program) => (
@@ -354,7 +354,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                             icon={program.icon}
                                             description={program.description}
                                             external={program.external}
-                                            className="flex items-center p-3 bg-white rounded-xl hover:shadow-md transition-all duration-300 hover:border-amber-200 border border-transparent"
+                                            className="flex items-center p-3 bg-white rounded-xl hover:shadow-medium transition-all duration-300 hover:border-primary-200 border border-transparent"
                                             onClick={handleLinkClick}
                                         >
                                             {program.name}
@@ -363,39 +363,39 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                 </div>
                             </div>
 
-                            <div className="bg-gray-50 rounded-2xl p-4">
-                                <h3 className="font-display font-bold text-gray-900 mb-3">Quick Actions</h3>
+                            <div className="bg-secondary-50 rounded-2xl p-4">
+                                <h3 className="font-display font-bold text-secondary-900 mb-3">Quick Actions</h3>
                                 <div className="space-y-2">
                                     <MenuLink
                                         to="/donate"
-                                        className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-md transition-all duration-300 hover:border-amber-200 border border-transparent"
+                                        className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-medium transition-all duration-300 hover:border-primary-200 border border-transparent"
                                         onClick={handleLinkClick}
                                     >
                                         <div className="flex items-center">
                                             <span className="text-2xl mr-3">❤️</span>
                                             <div>
-                                                <span className="font-semibold text-gray-900">Donate Now</span>
-                                                <p className="text-xs text-gray-500">Support our work</p>
+                                                <span className="font-semibold text-secondary-900">Donate Now</span>
+                                                <p className="text-xs text-secondary-500">Support our work</p>
                                             </div>
                                         </div>
-                                        <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                         </svg>
                                     </MenuLink>
 
                                     <MenuLink
                                         to="/volunteer"
-                                        className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-md transition-all duration-300 hover:border-amber-200 border border-transparent"
+                                        className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-medium transition-all duration-300 hover:border-primary-200 border border-transparent"
                                         onClick={handleLinkClick}
                                     >
                                         <div className="flex items-center">
-                                            <span className="text-2xl mr-3">🤝</span>
+                                            <span className="text-2xl mr-3">🙋</span>
                                             <div>
-                                                <span className="font-semibold text-gray-900">Volunteer</span>
-                                                <p className="text-xs text-gray-500">Join our team</p>
+                                                <span className="font-semibold text-secondary-900">Volunteer</span>
+                                                <p className="text-xs text-secondary-500">Join our team</p>
                                             </div>
                                         </div>
-                                        <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                         </svg>
                                     </MenuLink>
@@ -406,7 +406,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Footer */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent border-t border-gray-100">
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent border-t border-secondary-100">
                     <div className="flex items-center justify-between mb-3">
                         <div className="flex space-x-4">
                             {Object.entries(siteContent.site?.social || {}).slice(0, 4).map(([platform, url]) => (
@@ -415,7 +415,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                     href={url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-gradient-to-br hover:from-amber-500 hover:to-emerald-600 hover:text-white transition-all duration-300"
+                                    className="w-8 h-8 bg-secondary-100 rounded-full flex items-center justify-center text-secondary-600 hover:bg-gradient-to-br hover:from-primary-500 hover:to-accent-500 hover:text-white transition-all duration-300"
                                     aria-label={`Follow us on ${platform}`}
                                 >
                                     <span className="text-xs font-bold uppercase">{platform[0]}</span>
@@ -424,7 +424,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                         </div>
                         <MenuLink
                             to="/contact"
-                            className="text-xs text-amber-600 font-semibold hover:text-amber-700 transition-colors"
+                            className="text-xs text-primary-600 font-semibold hover:text-primary-700 transition-colors"
                             onClick={handleLinkClick}
                         >
                             Contact Us
@@ -434,7 +434,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                     {/* Donate Button (Mobile) */}
                     <MenuLink
                         to="/donate"
-                        className="block w-full bg-gradient-to-r from-amber-500 to-emerald-600 text-white py-4 rounded-xl font-semibold hover:from-amber-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-[1.02] text-center"
+                        className="block w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white py-4 rounded-xl font-semibold hover:from-primary-600 hover:to-accent-600 transition-all duration-300 transform hover:scale-[1.02] text-center shadow-medium"
                         onClick={handleLinkClick}
                     >
                         <span className="mr-2">❤️</span>

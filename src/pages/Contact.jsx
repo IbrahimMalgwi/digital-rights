@@ -54,7 +54,7 @@ const Contact = () => {
         }, 1500);
     };
 
-    // Contact methods with icons and details
+    // Contact methods – updated colors and icons
     const contactMethods = [
         {
             icon: (
@@ -67,7 +67,7 @@ const Contact = () => {
             description: 'We\'ll respond within 24 hours',
             action: `mailto:${siteContent.site.email}`,
             buttonText: 'Send Email',
-            color: 'from-amber-500 to-amber-600'
+            color: 'from-primary-500 to-primary-600'
         },
         {
             icon: (
@@ -80,7 +80,7 @@ const Contact = () => {
             description: 'Mon-Fri, 9AM-5PM GMT',
             action: `tel:${siteContent.site.phone}`,
             buttonText: 'Call Now',
-            color: 'from-emerald-500 to-emerald-600'
+            color: 'from-accent-500 to-accent-600'
         },
         {
             icon: (
@@ -94,7 +94,7 @@ const Contact = () => {
             description: 'Headquarters location',
             action: 'https://maps.google.com',
             buttonText: 'Get Directions',
-            color: 'from-indigo-500 to-indigo-600'
+            color: 'from-secondary-600 to-secondary-700'
         }
     ];
 
@@ -125,59 +125,13 @@ const Contact = () => {
     ];
 
     return (
-        <div>
-            {/* Hero Section - Spacious & Centered */}
-            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 min-h-[90vh] flex items-center py-32 lg:py-40 overflow-hidden">
-                {/* Decorative Elements */}
-                <div className="absolute top-40 right-20 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-                <div className="absolute bottom-40 left-20 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-amber-100/20 to-emerald-100/20 rounded-full filter blur-3xl opacity-20"></div>
-
-                {/* Additional subtle decorative elements */}
-                <div className="absolute top-60 left-10 w-32 h-32 border-4 border-amber-200/30 rounded-full"></div>
-                <div className="absolute bottom-60 right-10 w-40 h-40 border-4 border-emerald-200/30 rounded-full"></div>
-
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div className="max-w-4xl mx-auto text-center">
-
-
-                        {/* Main Title - Centered with gradient */}
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
-                            <span className="block mb-4">Contact</span>
-                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
-                                Us
-                            </span>
-                        </h1>
-
-                        {/* Subtitle - Centered */}
-                        <p className="text-xl md:text-2xl text-gray-600 mb-14 max-w-3xl mx-auto leading-relaxed">
-                            Get in touch with our team. We'd love to hear from you.
-                        </p>
-
-                        {/* CTA Button - Centered */}
-                        <div className="flex flex-wrap gap-4 justify-center">
-                            <a
-                                href="#contact-form"
-                                className="group px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105"
-                            >
-                                Send a message
-                                <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
-                            </a>
-                        </div>
-
-
-                    </div>
-                </div>
-            </section>
-
-
-
+        <div className="overflow-hidden">
             {/* Contact Methods Section */}
             <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="text-gray-400 font-medium mb-4 block">How to reach us</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
+                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">How to reach us</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
                             Get in touch
                         </h2>
                     </div>
@@ -185,20 +139,21 @@ const Contact = () => {
                         {contactMethods.map((method, index) => (
                             <div
                                 key={index}
-                                className="group p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition-all text-center"
+                                className="group p-6 bg-secondary-50 rounded-2xl hover:bg-white hover:shadow-medium transition-all text-center animate-fade-in"
+                                style={{ animationDelay: `${index * 0.1}s` }}
                             >
-                                <div className={`w-14 h-14 mx-auto bg-gradient-to-r ${method.color} rounded-xl flex items-center justify-center text-white mb-4`}>
+                                <div className={`w-14 h-14 mx-auto bg-gradient-to-r ${method.color} rounded-xl flex items-center justify-center text-white mb-4 shadow-soft`}>
                                     {method.icon}
                                 </div>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-1">{method.title}</h3>
-                                <p className="text-sm text-gray-600 mb-2 break-all">{method.info}</p>
-                                <p className="text-xs text-gray-400 mb-4">{method.description}</p>
+                                <h3 className="text-lg font-semibold text-secondary-900 mb-1">{method.title}</h3>
+                                <p className="text-sm text-secondary-600 mb-2 break-all">{method.info}</p>
+                                <p className="text-xs text-secondary-400 mb-4">{method.description}</p>
                                 <a
                                     href={method.action}
-                                    className="text-sm text-amber-600 font-medium hover:text-amber-700 flex items-center justify-center"
+                                    className="text-sm text-primary-600 font-medium hover:text-primary-700 flex items-center justify-center group/link"
                                 >
                                     {method.buttonText}
-                                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                     </svg>
                                 </a>
@@ -208,35 +163,34 @@ const Contact = () => {
                 </div>
             </section>
 
-            {/* Main Contact Section */}
-            <section id="contact-form" className="py-20 bg-gray-50">
+            {/* Main Contact Section (Form) */}
+            <section id="contact-form" className="py-20 bg-secondary-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="text-gray-400 font-medium mb-4 block">Send a message</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
+                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Send a message</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
                             Let's talk
                         </h2>
                     </div>
 
                     <div className="max-w-4xl mx-auto">
-                        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm">
+                        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-soft">
                             {/* Success Message */}
                             {formStatus.submitted && formStatus.success && (
-                                <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
+                                <div className="mb-6 p-4 bg-primary-50 border border-primary-200 rounded-xl animate-fade-in">
                                     <div className="flex items-center">
-                                        <svg className="w-5 h-5 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg className="w-5 h-5 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                         </svg>
-                                        <p className="text-emerald-700 text-sm">{formStatus.message}</p>
+                                        <p className="text-primary-700 text-sm">{formStatus.message}</p>
                                     </div>
                                 </div>
                             )}
 
                             <form onSubmit={handleSubmit} className="space-y-6">
-                                {/* Name and Email Row */}
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
-                                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                                        <label htmlFor="name" className="block text-sm font-medium text-secondary-700 mb-2">
                                             Full Name <span className="text-red-500">*</span>
                                         </label>
                                         <input
@@ -246,12 +200,12 @@ const Contact = () => {
                                             required
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                                            className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
                                             placeholder="John Doe"
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                                        <label htmlFor="email" className="block text-sm font-medium text-secondary-700 mb-2">
                                             Email <span className="text-red-500">*</span>
                                         </label>
                                         <input
@@ -261,15 +215,14 @@ const Contact = () => {
                                             required
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                                            className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
                                             placeholder="john@example.com"
                                         />
                                     </div>
                                 </div>
 
-                                {/* Department Selection */}
                                 <div>
-                                    <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="department" className="block text-sm font-medium text-secondary-700 mb-2">
                                         Department
                                     </label>
                                     <select
@@ -277,7 +230,7 @@ const Contact = () => {
                                         name="department"
                                         value={formData.department}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-white"
+                                        className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white transition-all"
                                     >
                                         {departments.map((dept) => (
                                             <option key={dept.value} value={dept.value}>
@@ -287,9 +240,8 @@ const Contact = () => {
                                     </select>
                                 </div>
 
-                                {/* Subject */}
                                 <div>
-                                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="subject" className="block text-sm font-medium text-secondary-700 mb-2">
                                         Subject <span className="text-red-500">*</span>
                                     </label>
                                     <input
@@ -299,14 +251,13 @@ const Contact = () => {
                                         required
                                         value={formData.subject}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                                        className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
                                         placeholder="What is this regarding?"
                                     />
                                 </div>
 
-                                {/* Message */}
                                 <div>
-                                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="message" className="block text-sm font-medium text-secondary-700 mb-2">
                                         Message <span className="text-red-500">*</span>
                                     </label>
                                     <textarea
@@ -316,18 +267,17 @@ const Contact = () => {
                                         rows="6"
                                         value={formData.message}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none"
+                                        className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none transition-all"
                                         placeholder="Tell us about your inquiry..."
                                     ></textarea>
                                 </div>
 
-                                {/* Submit Button */}
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
                                     className={`
-                                        w-full bg-gradient-to-r from-amber-600 to-emerald-600 text-white py-4 px-6 rounded-lg font-medium
-                                        transition-all hover:from-amber-700 hover:to-emerald-700 hover:scale-105
+                                        w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white py-4 px-6 rounded-lg font-medium
+                                        transition-all hover:from-primary-600 hover:to-accent-600 hover:scale-105 shadow-medium
                                         ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}
                                     `}
                                 >
@@ -352,21 +302,21 @@ const Contact = () => {
             {/* FAQ Section */}
             <section className="py-20 bg-white">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="text-gray-400 font-medium mb-4 block">FAQ</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
+                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">FAQ</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
                             Frequently asked questions
                         </h2>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
                         {faqs.map((faq, index) => (
-                            <div key={index} className="bg-gray-50 rounded-2xl p-6 hover:shadow-md transition-all">
-                                <h3 className="font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                                <p className="text-gray-500 text-sm">{faq.answer}</p>
+                            <div key={index} className="bg-secondary-50 rounded-2xl p-6 hover:shadow-medium transition-all animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                                <h3 className="font-semibold text-secondary-900 mb-2">{faq.question}</h3>
+                                <p className="text-secondary-500 text-sm">{faq.answer}</p>
                             </div>
                         ))}
-                        <div className="bg-gradient-to-br from-amber-500 to-emerald-600 rounded-2xl p-6 text-white md:col-span-2">
+                        <div className="bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl p-6 text-white md:col-span-2 shadow-medium">
                             <div className="flex items-center justify-between flex-wrap gap-4">
                                 <div>
                                     <h3 className="font-semibold text-white mb-1">Still have questions?</h3>
@@ -374,7 +324,7 @@ const Contact = () => {
                                 </div>
                                 <a
                                     href="#contact-form"
-                                    className="px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-all hover:scale-105"
+                                    className="px-6 py-3 bg-white text-secondary-900 rounded-full font-medium hover:bg-secondary-100 transition-all hover:scale-105 shadow-soft"
                                 >
                                     Contact support
                                 </a>
@@ -385,29 +335,29 @@ const Contact = () => {
             </section>
 
             {/* Map Section */}
-            <section className="py-20 bg-gray-50">
+            <section className="py-20 bg-secondary-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-12">
-                        <span className="text-gray-400 font-medium mb-4 block">Location</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    <div className="text-center max-w-2xl mx-auto mb-12 animate-slide-up">
+                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Location</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900 mb-4">
                             Find us here
                         </h2>
-                        <p className="text-gray-500">
+                        <p className="text-secondary-500">
                             Visit our headquarters or reach out to our regional offices
                         </p>
                     </div>
 
-                    <div className="relative h-96 rounded-2xl overflow-hidden bg-gradient-to-br from-amber-100 to-emerald-100 max-w-5xl mx-auto">
+                    <div className="relative h-96 rounded-2xl overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100 max-w-5xl mx-auto shadow-medium">
                         <div className="w-full h-full flex items-center justify-center">
                             <div className="text-center bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
                                 <div className="text-5xl mb-3">📍</div>
-                                <p className="text-gray-900 font-medium text-lg">{siteContent.site.address}</p>
-                                <p className="text-gray-500 text-sm mt-2">{siteContent.site.fullName}</p>
+                                <p className="text-secondary-900 font-medium text-lg">{siteContent.site.address}</p>
+                                <p className="text-secondary-500 text-sm mt-2">{siteContent.site.fullName}</p>
                                 <a
                                     href="https://maps.google.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center mt-4 px-6 py-3 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-all hover:scale-105"
+                                    className="inline-flex items-center mt-4 px-6 py-3 bg-secondary-900 text-white rounded-full text-sm font-medium hover:bg-primary-600 transition-all hover:scale-105 shadow-soft"
                                 >
                                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -424,27 +374,27 @@ const Contact = () => {
             {/* Office Hours */}
             <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="text-gray-400 font-medium mb-4 block">Hours</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
+                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Hours</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
                             When to reach us
                         </h2>
                     </div>
                     <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                        <div className="text-center p-6 bg-gray-50 rounded-2xl">
-                            <div className="text-4xl mb-3">⏰</div>
-                            <h3 className="font-semibold text-gray-900 mb-2">Monday - Friday</h3>
-                            <p className="text-gray-500">9:00 AM - 5:00 PM GMT</p>
+                        <div className="text-center p-6 bg-secondary-50 rounded-2xl hover:shadow-medium transition-all animate-fade-in">
+                            <div className="text-4xl mb-3">🕒</div>
+                            <h3 className="font-semibold text-secondary-900 mb-2">Monday - Friday</h3>
+                            <p className="text-secondary-500">9:00 AM - 5:00 PM GMT</p>
                         </div>
-                        <div className="text-center p-6 bg-gray-50 rounded-2xl">
+                        <div className="text-center p-6 bg-secondary-50 rounded-2xl hover:shadow-medium transition-all animate-fade-in" style={{ animationDelay: '0.1s' }}>
                             <div className="text-4xl mb-3">📞</div>
-                            <h3 className="font-semibold text-gray-900 mb-2">Phone Support</h3>
-                            <p className="text-gray-500">Same day response</p>
+                            <h3 className="font-semibold text-secondary-900 mb-2">Phone Support</h3>
+                            <p className="text-secondary-500">Same day response</p>
                         </div>
-                        <div className="text-center p-6 bg-gray-50 rounded-2xl">
+                        <div className="text-center p-6 bg-secondary-50 rounded-2xl hover:shadow-medium transition-all animate-fade-in" style={{ animationDelay: '0.2s' }}>
                             <div className="text-4xl mb-3">✉️</div>
-                            <h3 className="font-semibold text-gray-900 mb-2">Email Response</h3>
-                            <p className="text-gray-500">Within 24 hours</p>
+                            <h3 className="font-semibold text-secondary-900 mb-2">Email Response</h3>
+                            <p className="text-secondary-500">Within 24 hours</p>
                         </div>
                     </div>
                 </div>

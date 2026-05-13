@@ -8,42 +8,42 @@ const Partners = () => {
     // Get partners from siteContent
     const partners = siteContent.partners || [];
 
-    // Dynamically generate partner types from actual data
+    // Dynamically generate partner types from actual data with updated colors
     const partnerTypes = [
-        { name: 'All', count: partners.length, icon: '🤝', color: 'bg-amber-50 text-amber-700' },
+        { name: 'All', count: partners.length, icon: '🤝', color: 'bg-secondary-100 text-secondary-800' },
         ...Array.from(new Set(partners.map(p => p.type))).map(type => ({
             name: type,
             count: partners.filter(p => p.type === type).length,
             icon: type === 'Government' ? '🏛️' :
-                type === 'Foundation' ? '🎯' :
-                    type === 'Corporate' ? '💼' :
+                type === 'Foundation' ? '🏗️' :
+                    type === 'Corporate' ? '🏢' :
                         type === 'Research' ? '🔬' :
                             type === 'Research Institute' ? '🔬' :
                                 type === 'Cooperative' ? '🤝' :
-                                    type === 'Worker Union' ? '⚖️' :
-                                        type === 'Community Organization' ? '👥' :
-                                            type === 'Network' ? '🌐' : '🌍',
-            color: type === 'Government' ? 'bg-emerald-50 text-emerald-700' :
-                type === 'Foundation' ? 'bg-amber-50 text-amber-700' :
-                    type === 'Corporate' ? 'bg-rose-50 text-rose-700' :
-                        type === 'Research' ? 'bg-indigo-50 text-indigo-700' :
-                            type === 'Research Institute' ? 'bg-indigo-50 text-indigo-700' :
-                                type === 'Cooperative' ? 'bg-amber-50 text-amber-700' :
-                                    type === 'Worker Union' ? 'bg-rose-50 text-rose-700' :
-                                        type === 'Community Organization' ? 'bg-emerald-50 text-emerald-700' :
-                                            type === 'Network' ? 'bg-indigo-50 text-indigo-700' :
-                                                'bg-gray-50 text-gray-700'
+                                    type === 'Worker Union' ? '👥' :
+                                        type === 'Community Organization' ? '🌍' :
+                                            type === 'Network' ? '🔗' : '🤝',
+            color: type === 'Government' ? 'bg-primary-50 text-primary-700' :
+                type === 'Foundation' ? 'bg-accent-50 text-accent-700' :
+                    type === 'Corporate' ? 'bg-secondary-100 text-secondary-800' :
+                        type === 'Research' ? 'bg-primary-50 text-primary-700' :
+                            type === 'Research Institute' ? 'bg-primary-50 text-primary-700' :
+                                type === 'Cooperative' ? 'bg-accent-50 text-accent-700' :
+                                    type === 'Worker Union' ? 'bg-secondary-100 text-secondary-800' :
+                                        type === 'Community Organization' ? 'bg-primary-50 text-primary-700' :
+                                            type === 'Network' ? 'bg-accent-50 text-accent-700' :
+                                                'bg-secondary-50 text-secondary-700'
         }))
     ];
 
-    // Tier colors
+    // Tier colors – updated to match new theme
     const tierColors = {
-        'Strategic Partner': 'bg-emerald-50 text-emerald-700',
-        'Funding Partner': 'bg-indigo-50 text-indigo-700',
-        'Technical Partner': 'bg-amber-50 text-amber-700',
-        'Program Partner': 'bg-rose-50 text-rose-700',
-        'Research Partner': 'bg-purple-50 text-purple-700',
-        'Community Partner': 'bg-amber-50 text-amber-700'
+        'Strategic Partner': 'bg-primary-50 text-primary-700',
+        'Funding Partner': 'bg-accent-50 text-accent-700',
+        'Technical Partner': 'bg-secondary-100 text-secondary-800',
+        'Program Partner': 'bg-primary-100 text-primary-800',
+        'Research Partner': 'bg-accent-100 text-accent-800',
+        'Community Partner': 'bg-secondary-100 text-secondary-800'
     };
 
     // Filter partners by type
@@ -52,48 +52,51 @@ const Partners = () => {
         : partners.filter(p => p.type === activeType);
 
     return (
-        <div>
-            {/* Hero Section - Spacious & Centered */}
-            <section className="relative bg-gradient-to-br from-amber-50 via-white to-emerald-50 min-h-[90vh] flex items-center py-32 lg:py-40 overflow-hidden">
-                {/* Decorative Elements */}
-                <div className="absolute top-40 right-20 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-                <div className="absolute bottom-40 left-20 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-amber-100/20 to-emerald-100/20 rounded-full filter blur-3xl opacity-20"></div>
-
-                {/* Additional subtle decorative elements */}
-                <div className="absolute top-60 left-10 w-32 h-32 border-4 border-amber-200/30 rounded-full"></div>
-                <div className="absolute bottom-60 right-10 w-40 h-40 border-4 border-emerald-200/30 rounded-full"></div>
-
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div className="max-w-4xl mx-auto text-center">
-
-
-                        {/* Main Title - Centered with gradient */}
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
-                            <span className="block mb-4">Our</span>
-                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-emerald-600">
-                                Partners
-                            </span>
-                        </h1>
-
-                        {/* Subtitle - Centered */}
-                        <p className="text-xl md:text-2xl text-gray-600 mb-14 max-w-3xl mx-auto leading-relaxed">
-                            Collaborating with organizations across Africa to amplify our impact in digital rights and mental health.
-                        </p>
-
-                        {/* Scroll indicator */}
-                        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
-
-                        </div>
+        <div className="overflow-hidden">
+            {/* Filter Bar – centered */}
+            <section className="py-12 bg-white border-b border-secondary-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Type</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {partnerTypes.map((type) => (
+                            <button
+                                key={type.name}
+                                onClick={() => setActiveType(type.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeType === type.name
+                                    ? 'bg-secondary-900 text-white'
+                                    : `${type.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{type.icon}</span>
+                                {type.name}
+                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                    activeType === type.name
+                                        ? 'bg-white/20 text-white'
+                                        : 'bg-white/60 text-secondary-600'
+                                }`}>
+                                    {type.count}
+                                </span>
+                            </button>
+                        ))}
                     </div>
                 </div>
             </section>
 
+            {/* Results Count */}
+            <section className="pt-8 pb-4 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center">
+                        <p className="text-secondary-500">
+                            Showing <span className="font-semibold text-secondary-900">{filteredPartners.length}</span> partners
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-
-
-
-            {/* Partners Grid - 4 Columns */}
+            {/* Partners Grid – 4 Columns, updated styles */}
             <section className="py-8 pb-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {filteredPartners.length > 0 ? (
@@ -101,66 +104,60 @@ const Partners = () => {
                             {filteredPartners.map((partner, index) => (
                                 <div
                                     key={index}
-                                    className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all p-5 hover:border-amber-200"
+                                    className="group bg-white rounded-xl border border-secondary-200 overflow-hidden hover:shadow-large transition-all p-5 hover:border-primary-200 animate-fade-in"
+                                    style={{ animationDelay: `${index * 0.05}s` }}
                                 >
                                     <div className="flex items-start justify-between mb-3">
-                                        {/* Logo/Initials */}
-                                        <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-emerald-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center text-white text-lg font-bold shadow-soft">
                                             {partner.name.split(' ').map(word => word[0]).join('').slice(0, 2)}
                                         </div>
-
-                                        {/* Partnership Tier Badge */}
-                                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${tierColors[partner.tier] || 'bg-gray-100 text-gray-700'}`}>
+                                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${tierColors[partner.tier] || 'bg-secondary-100 text-secondary-700'}`}>
                                             {partner.tier}
                                         </span>
                                     </div>
 
-                                    {/* Partner Info */}
                                     <div className="mb-3">
-                                        <h3 className="text-base font-bold text-gray-900 mb-1 line-clamp-1 group-hover:text-amber-600 transition-colors">
+                                        <h3 className="text-base font-bold text-secondary-900 mb-1 line-clamp-1 group-hover:text-primary-600 transition-colors">
                                             {partner.name}
                                         </h3>
-                                        <p className="text-xs text-gray-500 mb-2 line-clamp-2">
+                                        <p className="text-xs text-secondary-500 mb-2 line-clamp-2">
                                             {partner.description}
                                         </p>
-                                        <span className="text-[10px] text-gray-400">
+                                        <span className="text-[10px] text-secondary-400">
                                             Since {partner.partnershipYear}
                                         </span>
                                     </div>
 
-                                    {/* Projects */}
                                     {partner.projects && partner.projects.length > 0 && (
                                         <div className="flex flex-wrap gap-1 mb-3">
                                             {partner.projects.slice(0, 2).map((project, idx) => (
-                                                <span key={idx} className="px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded text-[9px]">
+                                                <span key={idx} className="px-1.5 py-0.5 bg-secondary-100 text-secondary-600 rounded text-[9px]">
                                                     {project.length > 15 ? project.substring(0, 15) + '...' : project}
                                                 </span>
                                             ))}
                                             {partner.projects.length > 2 && (
-                                                <span className="px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded text-[9px]">
+                                                <span className="px-1.5 py-0.5 bg-secondary-100 text-secondary-600 rounded text-[9px]">
                                                     +{partner.projects.length - 2}
                                                 </span>
                                             )}
                                         </div>
                                     )}
 
-                                    {/* Impact */}
                                     {partner.impact && (
-                                        <div className="flex items-center text-[10px] text-gray-500 mb-3">
-                                            <svg className="w-3 h-3 text-emerald-600 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div className="flex items-center text-[10px] text-secondary-500 mb-3">
+                                            <svg className="w-3 h-3 text-primary-600 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                             </svg>
                                             <span className="truncate">{partner.impact}</span>
                                         </div>
                                     )}
 
-                                    {/* Contact & Website */}
-                                    <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                                    <div className="flex items-center justify-between pt-3 border-t border-secondary-100">
                                         <div className="flex items-center space-x-2">
                                             {partner.contact && (
                                                 <a
                                                     href={`mailto:${partner.contact}`}
-                                                    className="text-gray-400 hover:text-amber-600 transition-colors"
+                                                    className="text-secondary-400 hover:text-primary-600 transition-colors"
                                                     title="Email"
                                                 >
                                                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -173,7 +170,7 @@ const Partners = () => {
                                                     href={partner.social.twitter}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="text-gray-400 hover:text-amber-600 transition-colors"
+                                                    className="text-secondary-400 hover:text-primary-600 transition-colors"
                                                     title="Twitter"
                                                 >
                                                     <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -186,7 +183,7 @@ const Partners = () => {
                                                     href={partner.social.linkedin}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="text-gray-400 hover:text-amber-600 transition-colors"
+                                                    className="text-secondary-400 hover:text-primary-600 transition-colors"
                                                     title="LinkedIn"
                                                 >
                                                     <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -201,7 +198,7 @@ const Partners = () => {
                                                 href={partner.website}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-[10px] text-gray-600 hover:text-amber-600 transition-colors flex items-center"
+                                                className="text-[10px] text-secondary-600 hover:text-primary-600 transition-colors flex items-center"
                                                 title="Visit website"
                                             >
                                                 <span>Visit</span>
@@ -215,13 +212,13 @@ const Partners = () => {
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-20 bg-gray-50 rounded-3xl max-w-2xl mx-auto">
+                        <div className="text-center py-20 bg-secondary-50 rounded-3xl max-w-2xl mx-auto animate-fade-in">
                             <div className="text-6xl mb-4">🤝</div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-2">No partners found</h3>
-                            <p className="text-gray-500 mb-6">Try selecting a different category</p>
+                            <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No partners found</h3>
+                            <p className="text-secondary-500 mb-6">Try selecting a different category</p>
                             <button
                                 onClick={() => setActiveType('All')}
-                                className="px-6 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all"
+                                className="px-6 py-3 bg-secondary-900 text-white rounded-full font-medium hover:bg-primary-600 transition-all shadow-soft hover:scale-105"
                             >
                                 View all partners
                             </button>
@@ -230,66 +227,23 @@ const Partners = () => {
                 </div>
             </section>
 
-            {/* Filter Bar - Centered */}
-            <section className="py-12 bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider text-center mb-4">Filter by Type</h3>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {partnerTypes.map((type) => (
-                            <button
-                                key={type.name}
-                                onClick={() => setActiveType(type.name)}
-                                className={`
-                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeType === type.name
-                                    ? 'bg-gray-900 text-white'
-                                    : `${type.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{type.icon}</span>
-                                {type.name}
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                    activeType === type.name
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-white/60 text-gray-600'
-                                }`}>
-                                    {type.count}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Results Count */}
-            <section className="pt-8 pb-4 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <p className="text-gray-500">
-                            Showing <span className="font-semibold text-gray-900">{filteredPartners.length}</span> partners
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Become a Partner CTA - Gradient */}
-            <section className="relative bg-gradient-to-br from-amber-600 to-emerald-600 py-24 overflow-hidden">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+            {/* Become a Partner CTA – updated gradient */}
+            <section className="relative bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+                <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
                 <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 animate-slide-up">
                         Become a partner
                     </h2>
-                    <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                    <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in">
                         Join us in creating meaningful change across Africa. Let's collaborate to protect digital rights and promote mental wellbeing.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/contact"
-                            className="group px-8 py-4 bg-white text-gray-900 rounded-full font-bold hover:bg-gray-100 transition-all hover:scale-105 shadow-xl"
+                            className="group px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large"
                         >
                             Partner with us
                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
@@ -297,7 +251,7 @@ const Partners = () => {
                     </div>
 
                     <p className="text-white/60 text-sm mt-8">
-                        ✦ Join our growing network of partners across Africa
+                        🤝 Join our growing network of partners across Africa
                     </p>
                 </div>
             </section>

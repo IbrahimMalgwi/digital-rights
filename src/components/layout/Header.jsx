@@ -6,12 +6,19 @@ import MobileMenu from './MobileMenu';
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [scrollProgress, setScrollProgress] = useState(0);
     const location = useLocation();
 
-    // Handle scroll effect
+    // Handle scroll effect & progress bar
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            const scrolledPx = window.scrollY;
+            setScrolled(scrolledPx > 20);
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const totalScroll = docHeight - winHeight;
+            const progress = totalScroll > 0 ? (scrolledPx / totalScroll) * 100 : 0;
+            setScrollProgress(progress);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -37,21 +44,23 @@ const Header = () => {
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-3' : 'bg-white/95 backdrop-blur-sm py-5'
+                scrolled
+                    ? 'bg-white/90 backdrop-blur-md shadow-soft py-3'
+                    : 'bg-white/95 backdrop-blur-sm py-5'
             }`}
         >
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-3 group">
-                        <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-emerald-600 rounded-lg flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-600 rounded-lg flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform shadow-medium">
                             {siteContent.site?.name?.[0] || 'D'}
                         </div>
                         <div className="flex flex-col">
-                            <span className="font-semibold text-gray-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-amber-600 group-hover:to-emerald-600 transition-all">
+                            <span className="font-display font-semibold text-secondary-800 group-hover:text-primary-600 transition-colors">
                                 {siteContent.site?.name || 'DRMHI Africa'}
                             </span>
-                            <span className="text-xs text-gray-500 hidden sm:block">
+                            <span className="text-xs text-secondary-500 hidden sm:block">
                                 Digital Rights & Mental Health
                             </span>
                         </div>
@@ -65,8 +74,8 @@ const Header = () => {
                                 to={item.href}
                                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                                     location.pathname === item.href
-                                        ? 'text-amber-600 bg-amber-50'
-                                        : 'text-gray-700 hover:text-amber-600 hover:bg-gray-50'
+                                        ? 'text-primary-700 bg-primary-50'
+                                        : 'text-secondary-700 hover:text-primary-600 hover:bg-secondary-50'
                                 }`}
                             >
                                 {item.name}
@@ -78,8 +87,8 @@ const Header = () => {
                             to="/donate"
                             className="ml-2 relative group"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-emerald-600 rounded-lg blur-md opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                            <div className="relative px-4 py-2 bg-gradient-to-r from-amber-500 to-emerald-600 text-white rounded-lg text-sm font-medium hover:from-amber-600 hover:to-emerald-700 transition-all transform hover:scale-105">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg blur-md opacity-0 group-hover:opacity-50 transition-opacity"></div>
+                            <div className="relative px-5 py-2.5 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg text-sm font-medium hover:from-primary-600 hover:to-accent-600 transition-all transform hover:scale-105 shadow-medium">
                                 Donate
                             </div>
                         </Link>
@@ -87,14 +96,14 @@ const Header = () => {
 
                     {/* Mobile menu button */}
                     <button
-                        className="lg:hidden relative w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+                        className="lg:hidden relative w-10 h-10 rounded-lg bg-secondary-100 hover:bg-secondary-200 transition-colors"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
                         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5">
-                            <span className={`absolute left-0 w-5 h-0.5 bg-gray-600 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 top-0' : '-top-1.5'}`}></span>
-                            <span className={`absolute left-0 w-5 h-0.5 bg-gray-600 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'top-0'}`}></span>
-                            <span className={`absolute left-0 w-5 h-0.5 bg-gray-600 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 top-0' : 'top-1.5'}`}></span>
+                            <span className={`absolute left-0 w-5 h-0.5 bg-secondary-700 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 top-0' : '-top-1.5'}`}></span>
+                            <span className={`absolute left-0 w-5 h-0.5 bg-secondary-700 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'top-0'}`}></span>
+                            <span className={`absolute left-0 w-5 h-0.5 bg-secondary-700 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 top-0' : 'top-1.5'}`}></span>
                         </div>
                     </button>
                 </div>
@@ -106,12 +115,12 @@ const Header = () => {
                 />
             </nav>
 
-            {/* Progress Bar - Optional */}
+            {/* Progress Bar - using your config colors */}
             {scrolled && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-100">
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary-100">
                     <div
-                        className="h-full bg-gradient-to-r from-amber-500 to-emerald-600 transition-all duration-300"
-                        style={{ width: `${(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100}%` }}
+                        className="h-full bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-300"
+                        style={{ width: `${scrollProgress}%` }}
                     ></div>
                 </div>
             )}
