@@ -11,7 +11,24 @@ const MobileMenu = ({ isOpen, onClose }) => {
     // Close menu when route changes
     useEffect(() => {
         onClose();
-    }, [location, onClose]);
+    }, [location.pathname, onClose]);
+
+    useEffect(() => {
+        if (!isOpen) return undefined;
+
+        const previousOverflow = document.body.style.overflow;
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') onClose();
+        };
+
+        document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isOpen, onClose]);
 
     // Handle external link click
     const handleExternalLink = (e, url) => {
@@ -157,6 +174,10 @@ const MobileMenu = ({ isOpen, onClose }) => {
 
             {/* Mobile Menu Panel */}
             <div
+                id="mobile-menu"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Navigation menu"
                 className={`
                     fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out lg:hidden
                     ${isOpen ? 'translate-x-0' : 'translate-x-full'}
@@ -384,7 +405,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                     </MenuLink>
 
                                     <MenuLink
-                                        to="/volunteer"
+                                        to="/contact"
                                         className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-medium transition-all duration-300 hover:border-primary-200 border border-transparent"
                                         onClick={handleLinkClick}
                                     >

@@ -21,7 +21,8 @@ const Awards = () => {
 
     // Simulate loading
     useEffect(() => {
-        setTimeout(() => setIsLoading(false), 1000);
+        const timeoutId = setTimeout(() => setIsLoading(false), 1000);
+        return () => clearTimeout(timeoutId);
     }, []);
 
     // Filter awards by category
@@ -49,6 +50,7 @@ const Awards = () => {
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center text-secondary-900 hover:bg-secondary-100 transition-colors shadow-lg"
+                    aria-label="Close award details"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -62,6 +64,7 @@ const Awards = () => {
                                 src={award.image}
                                 alt={award.title}
                                 className="w-full h-full object-cover"
+                                decoding="async"
                             />
                         ) : (
                             <div className="text-center">

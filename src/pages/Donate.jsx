@@ -202,7 +202,7 @@ const Donate = () => {
                             <p className="text-secondary-500 mb-6">
                                 Share your skills and time to support our programs
                             </p>
-                            <Link to="/volunteer" className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group">
+                            <Link to="/contact" className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group">
                                 Learn more
                                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />

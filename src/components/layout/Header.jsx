@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { siteContent } from '../../data/content';
 import MobileMenu from './MobileMenu';
@@ -8,26 +8,36 @@ const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const [scrollProgress, setScrollProgress] = useState(0);
     const location = useLocation();
+    const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
-    // Handle scroll effect & progress bar
     useEffect(() => {
+        let frameId;
+
         const handleScroll = () => {
-            const scrolledPx = window.scrollY;
-            setScrolled(scrolledPx > 20);
-            const winHeight = window.innerHeight;
-            const docHeight = document.documentElement.scrollHeight;
-            const totalScroll = docHeight - winHeight;
-            const progress = totalScroll > 0 ? (scrolledPx / totalScroll) * 100 : 0;
-            setScrollProgress(progress);
+            if (frameId) return;
+
+            frameId = window.requestAnimationFrame(() => {
+                const scrolledPx = window.scrollY;
+                const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+                setScrolled(scrolledPx > 20);
+                setScrollProgress(totalScroll > 0 ? Math.min((scrolledPx / totalScroll) * 100, 100) : 0);
+                frameId = null;
+            });
         };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            if (frameId) window.cancelAnimationFrame(frameId);
+        };
     }, []);
 
-    // Close mobile menu on route change
     useEffect(() => {
-        setIsMobileMenuOpen(false);
-    }, [location]);
+        closeMobileMenu();
+    }, [closeMobileMenu, location.pathname]);
 
     const navigationItems = [
         { name: 'Home', href: '/' },
@@ -99,6 +109,8 @@ const Header = () => {
                         className="lg:hidden relative w-10 h-10 rounded-lg bg-secondary-100 hover:bg-secondary-200 transition-colors"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle menu"
+                        aria-expanded={isMobileMenuOpen}
+                        aria-controls="mobile-menu"
                     >
                         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5">
                             <span className={`absolute left-0 w-5 h-0.5 bg-secondary-700 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 top-0' : '-top-1.5'}`}></span>
@@ -111,7 +123,7 @@ const Header = () => {
                 {/* Mobile Menu */}
                 <MobileMenu
                     isOpen={isMobileMenuOpen}
-                    onClose={() => setIsMobileMenuOpen(false)}
+                    onClose={closeMobileMenu}
                 />
             </nav>
 

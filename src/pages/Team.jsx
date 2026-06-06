@@ -210,7 +210,7 @@ const Team = () => {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
-                            to="/careers"
+                            to="/contact"
                             className="group px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large"
                         >
                             View open positions

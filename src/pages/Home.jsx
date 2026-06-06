@@ -8,6 +8,72 @@ const Home = () => {
     return (
         <div className="overflow-hidden">
 
+            {/* Hero Section - Women Empowerment */}
+            <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+                <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-pulse"></div>
+
+                <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="animate-fade-in">
+                        <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-8 leading-tight">
+                            {siteContent.hero.title}
+                        </h1>
+                        <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+                            {siteContent.hero.subtitle}
+                        </p>
+                        <p className="text-lg text-white/80 mb-12">
+                            Every woman deserves a life free from inequality
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
+                        <Link
+                            to={siteContent.hero.primaryButton.link}
+                            className="group px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large"
+                        >
+                            {siteContent.hero.primaryButton.text}
+                            <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                        </Link>
+                        <Link
+                            to={siteContent.hero.secondaryButton.link}
+                            className="px-8 py-4 bg-transparent text-white border-2 border-white/30 rounded-full font-bold hover:bg-white/10 transition-all"
+                        >
+                            {siteContent.hero.secondaryButton.text}
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* Our Impact Section */}
+            <section className="py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
+                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">How We Serve</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900 mb-6">
+                            Our Approach
+                        </h2>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                        <div className="group text-center p-8 rounded-2xl hover:bg-primary-50 transition-all duration-300 animate-fade-in">
+                            <span className="text-5xl mb-4 block">❤️</span>
+                            <h3 className="text-2xl font-semibold text-secondary-900 mb-3">We Care</h3>
+                            <p className="text-secondary-600">Today's youth need a helpful hand and right guidance at every stage. Here's where we take care of them like our own.</p>
+                        </div>
+                        <div className="group text-center p-8 rounded-2xl hover:bg-accent-50 transition-all duration-300 animate-fade-in">
+                            <span className="text-5xl mb-4 block">📚</span>
+                            <h3 className="text-2xl font-semibold text-secondary-900 mb-3">We Educate</h3>
+                            <p className="text-secondary-600">We run small-scale schools for the underprivileged children and youth of daily wage workers for a better future.</p>
+                        </div>
+                        <div className="group text-center p-8 rounded-2xl hover:bg-secondary-100 transition-all duration-300 animate-fade-in">
+                            <span className="text-5xl mb-4 block">💪</span>
+                            <h3 className="text-2xl font-semibold text-secondary-900 mb-3">We Empower</h3>
+                            <p className="text-secondary-600">We equip women with the skills, resources, and confidence they need to achieve financial independence and leadership in their communities.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Programs Section */}
             <section className="relative py-24 bg-white">
                 {/* Decorative elements with new theme colors */}
@@ -57,7 +123,7 @@ const Home = () => {
                     {/* CTA Button */}
                     <div className="text-center mt-12">
                         <Link
-                            to="/programs"
+                            to="/projects"
                             className="inline-flex items-center text-secondary-600 hover:text-primary-600 transition-colors font-medium"
                         >
                             Explore all programs
@@ -200,29 +266,23 @@ const Home = () => {
                 <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="animate-slide-up">
                         <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-                            Stay updated
+                            Empowering Change, One Step at a Time
                         </h2>
                         <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-                            Get the latest news, stories, and impact reports delivered to your inbox.
+                            Your support helps us continue our mission to empower women and protect digital rights across Africa.
                         </p>
                     </div>
 
-                    <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3 animate-fade-in">
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            className="flex-1 px-5 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
-                        />
-                        <button
-                            type="submit"
-                            className="px-6 py-3 bg-white text-secondary-900 rounded-full font-medium hover:bg-secondary-100 transition-all hover:scale-105 shadow-medium"
-                        >
-                            Subscribe
-                        </button>
-                    </form>
+                    <Link
+                        to="/donate"
+                        className="inline-flex items-center px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large animate-fade-in"
+                    >
+                        DONATE
+                        <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">❤️</span>
+                    </Link>
 
-                    <p className="text-sm text-white/60 mt-6">
-                        We respect your privacy. Unsubscribe at any time.
+                    <p className="text-sm text-white/60 mt-8">
+                        Every contribution makes a difference in breaking barriers and creating opportunities
                     </p>
                 </div>
             </section>

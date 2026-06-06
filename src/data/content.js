@@ -270,16 +270,16 @@ export const siteContent = {
     ],
 
     hero: {
-        title: "Digital Rights & Mental Health Initiative Africa",
-        subtitle: "Building a future where digital spaces promote mental wellbeing and protect fundamental rights across Africa",
-        primaryButton: { text: "Get Involved", link: "/donate" },
+        title: "Empowering Women, Changing Lives",
+        subtitle: "We are dedicated to breaking barriers and creating opportunities for women to thrive. Through education, advocacy, and community support, we help women rise above challenges and take control of their futures.",
+        primaryButton: { text: "JOIN WITH US", link: "/donate" },
         secondaryButton: { text: "Learn More", link: "/about" }
     },
 
     about: {
         mission: {
-            title: "Our Mission",
-            content: "The Digital Rights and Mental Health Initiative Africa(DRMHIA) is a Non-Profit Organization focused on the intersection of digital rights and mental health. Its mission is to address the impact of digital technology on mental well-being, advocating for policies that protect individuals' digital rights while promoting mental health. The initiative works on raising awareness about issues like online privacy, cyberbullying, and digital addiction, and provides support through research, advocacy, and educational programs. By highlighting the need for a balanced approach to digital technology and mental health, DRMHI aims to foster a safer and more supportive online environment.."
+            title: "OUR MISSION",
+            content: "Our mission is to empower women by providing them with the tools, resources, and opportunities needed to overcome social, economic, and cultural barriers. We strive to create a world where every woman can live with dignity, free from discrimination and inequality. Through education, advocacy, and community-driven programs, we aim to inspire positive change, promote gender equality, and build a more inclusive society where women's rights are respected and upheld."
         },
         vision: {
             title: "Our Vision",
@@ -489,28 +489,28 @@ export const siteContent = {
 
     programs: [
         {
+            title: "We Care",
+            description: "Today's youth need a helpful hand and right guidance at every stage. Here's where we take care of them like our own.",
+            icon: "❤️",
+            features: ["Support Systems", "Guidance", "Community Care"]
+        },
+        {
+            title: "We Educate",
+            description: "We run small-scale schools for the underprivileged children and youth of daily wage workers for a better future.",
+            icon: "📚",
+            features: ["Quality Education", "Underprivileged Focus", "Future-Building"]
+        },
+        {
+            title: "We Empower",
+            description: "We equip women with the skills, resources, and confidence they need to achieve financial independence and leadership in their communities.",
+            icon: "💪",
+            features: ["Skills Training", "Leadership Development", "Financial Independence"]
+        },
+        {
             title: "Digital Rights Advocacy",
-            description: "Protecting online freedoms and privacy rights across African nations",
+            description: "Protecting online freedoms and privacy rights across African nations with a focus on women's digital safety",
             icon: "🔒",
             features: ["Policy Research", "Legal Advocacy", "Awareness Campaigns"]
-        },
-        {
-            title: "Mental Health Support",
-            description: "Accessible mental health resources for digital communities",
-            icon: "🧠",
-            features: ["Online Counseling", "Support Groups", "Wellness Resources"]
-        },
-        {
-            title: "Digital Literacy",
-            description: "Empowering communities with digital skills and safety knowledge",
-            icon: "🎓",
-            features: ["Workshops", "Training Materials", "Community Outreach"]
-        },
-        {
-            title: "Research & Innovation",
-            description: "Cutting-edge research on digital technology and mental wellbeing",
-            icon: "🔬",
-            features: ["Academic Studies", "Data Analysis", "Innovation Labs"]
         }
     ],
 
@@ -518,46 +518,72 @@ export const siteContent = {
         featured: [
             {
                 id: 1,
+                title: "Panel Speaker at European Parliament Brussels: Transnational Forum on Alternatives to Uberisation",
+                excerpt: "Delighted to be a panel speaker in the European Parliament Brussels Belgium, discussing African content moderation and their mental health struggles.",
+                date: "2024-02-21",
+                author: "Kauna Malgwi",
+                category: "Events",
+                readTime: "5 min read",
+                image: "/images/DHMH1.jpeg",
+                featured: true,
+                fullContent: "I'm delighted to be a panel speaker in the European Parliament Brussels Belgium, \"Transnational Forum on Alternatives to Uberisation, 21-22 Feb 2024\" about African content moderation and their Mental Health struggles."
+            },
+            {
+                id: 2,
+                title: "FIFAfrica24 Dakar: Digitalisation and Feminist Future of Work",
+                excerpt: "An enlightening and fulfilling experience attending #FIFAfrica24 in Dakar, Senegal as a speaker on digitalisation and feminist future of work.",
+                date: "2024-02-15",
+                author: "Kauna Malgwi",
+                category: "Events",
+                readTime: "6 min read",
+                image: "/images/DHMH2.jpeg",
+                featured: true,
+                fullContent: "I had an enlightening and fulfilling experience attending #FIFAfrica24 in Dakar, Senegal. It was a privilege to participate as a speaker on the digitalisation and feminist future of work(ers), where I shared insights from my work in content moderation, particularly on how digitalization can adversely affect human workers. The conference was a vibrant space filled with innovative thinkers and changemakers."
+            },
+            {
+                id: 3,
+                title: "Digital Africa Rising: Co-Moderating Pan-African Cooperation Summit",
+                excerpt: "A gathering of 80 co-op leaders, scholars, tech innovators, and policymakers from 31 countries to reimagine Africa's digital future.",
+                date: "2024-02-10",
+                author: "Kauna Malgwi",
+                category: "Advocacy",
+                readTime: "6 min read",
+                image: "/images/DHMH3.jpeg",
+                featured: false,
+                fullContent: "Digital Africa Rising 🌍. It was a gathering of 80 co-op leaders, scholars, tech innovators, and policymakers from 31 countries to reimagine Africa's digital future with cooperation at its core. It was thrilling to co-moderate with Prof. Mark Graham from Fairwork, Caroline Njuki from International Labour Organization and Prof. Trebor Scholz during this conference and contribute to the reimagining of Africa's digital landscape."
+            },
+            {
+                id: 4,
+                title: "Nawi Collective Kampala: Women in the Gig Economy & Digital Rights",
+                excerpt: "Discussion in Kampala, Uganda addressing challenges women face in the gig economy, particularly in content moderation, and mental health struggles.",
+                date: "2024-02-05",
+                author: "Kauna Malgwi",
+                category: "Advocacy",
+                readTime: "5 min read",
+                image: "/images/DHMH4.jpeg",
+                featured: false,
+                fullContent: "My participation in the discussion organized by Nawi Collective in Kampala, Uganda 🇺🇬 provided a valuable platform to address the challenges women face in the gig economy, particularly in content moderation, and the associated mental health struggles. From protection against addictive algorithms to safeguarding against sexual harassment and abuse, ensuring digital rights for women is paramount."
+            },
+            {
+                id: 5,
                 title: "The Intersection of Digital Rights and Mental Health in Africa",
                 excerpt: "Exploring how digital technologies impact mental wellbeing and what we can do to protect both.",
                 date: "2024-01-15",
                 author: "Dr. Amina Bello",
                 category: "Research",
                 readTime: "5 min read",
-                image: "/images/DHMH1.jpeg",
-                featured: true
+                image: "/images/DHMH5.jpeg",
+                featured: false
             },
             {
-                id: 2,
+                id: 6,
                 title: "Digital Wellness: Strategies for Healthier Online Engagement",
                 excerpt: "Practical tips for maintaining mental health in an increasingly digital world.",
                 date: "2024-01-10",
                 author: "Fatima Nkosi",
                 category: "Wellness",
                 readTime: "4 min read",
-                image: "/images/DHMH2.jpeg",
-                featured: true
-            },
-            {
-                id: 3,
-                title: "Policy Framework for Digital Safety in West Africa",
-                excerpt: "Analyzing current policies and proposing new frameworks for digital safety.",
-                date: "2024-01-05",
-                author: "David Okafor",
-                category: "Policy",
-                readTime: "6 min read",
-                image: "/images/DHMH3.jpeg",
-                featured: false
-            },
-            {
-                id: 4,
-                title: "Community Mental Health Support in the Digital Age",
-                excerpt: "How local communities are adapting mental health support for digital platforms.",
-                date: "2024-01-01",
-                author: "Kwame Mensah",
-                category: "Community",
-                readTime: "4 min read",
-                image: "/images/DHMH4.jpeg",
+                image: "/images/DHMH6.jpeg",
                 featured: false
             }
         ]

@@ -118,24 +118,10 @@ const Footer = () => {
             {/* Bottom Bar */}
             <div className="border-t border-secondary-800">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <div className="flex flex-col md:flex-row justify-between items-center text-sm">
+                    <div className="text-center text-sm">
                         <p className="text-secondary-400">
                             © {currentYear} {siteContent.site?.fullName || 'DRMHI Africa'}. All rights reserved.
                         </p>
-                        <div className="flex space-x-6 mt-4 md:mt-0">
-                            <Link
-                                to="/privacy"
-                                className="text-secondary-400 hover:text-primary-400 transition-colors"
-                            >
-                                Privacy
-                            </Link>
-                            <Link
-                                to="/terms"
-                                className="text-secondary-400 hover:text-primary-400 transition-colors"
-                            >
-                                Terms
-                            </Link>
-                        </div>
                     </div>
                 </div>
             </div>

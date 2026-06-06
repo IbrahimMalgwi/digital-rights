@@ -10,7 +10,7 @@ const ProjectCard = ({ project, variant = 'default', categoryColor }) => {
             <div className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all">
                 <div className="relative h-64 bg-gradient-to-br from-amber-500 to-emerald-600">
                     {project.image ? (
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                     ) : (
                         <div className="w-full h-full flex items-center justify-center">
                             <span className="text-6xl text-white/30">🚀</span>

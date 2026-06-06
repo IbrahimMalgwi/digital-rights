@@ -35,7 +35,8 @@ const Gallery = () => {
 
     // Simulate loading
     useEffect(() => {
-        setTimeout(() => setIsLoading(false), 1000);
+        const timeoutId = setTimeout(() => setIsLoading(false), 1000);
+        return () => clearTimeout(timeoutId);
     }, []);
 
     // Load more items
@@ -56,6 +57,7 @@ const Gallery = () => {
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center text-secondary-900 hover:bg-secondary-100 transition-colors shadow-lg"
+                    aria-label="Close image preview"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -69,6 +71,7 @@ const Gallery = () => {
                                 src={item.image}
                                 alt={item.title}
                                 className="w-full h-full object-cover"
+                                decoding="async"
                             />
                         ) : (
                             <span className="text-8xl text-white/30">🖼️</span>
@@ -226,6 +229,8 @@ const Gallery = () => {
                                                                 src={item.image}
                                                                 alt={item.title}
                                                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                                loading="lazy"
+                                                                decoding="async"
                                                             />
                                                         ) : (
                                                             <div className="w-full h-full flex items-center justify-center">

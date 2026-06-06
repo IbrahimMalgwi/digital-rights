@@ -13,7 +13,7 @@ const BlogCard = ({ post, featured = false }) => {
             <article className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all">
                 <div className="relative h-64 bg-gradient-to-br from-amber-500 to-emerald-600">
                     {post.image ? (
-                        <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                        <img src={post.image} alt={post.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                     ) : (
                         <div className="w-full h-full flex items-center justify-center">
                             <span className="text-6xl text-white/30">📝</span>
@@ -45,7 +45,7 @@ const BlogCard = ({ post, featured = false }) => {
         <article className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all">
             <div className="relative h-48 bg-gradient-to-br from-amber-500 to-emerald-600">
                 {post.image ? (
-                    <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                    <img src={post.image} alt={post.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center">
                         <span className="text-4xl text-white/30">📄</span>
