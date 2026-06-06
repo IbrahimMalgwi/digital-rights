@@ -363,7 +363,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                     ) : (
                         // Programs Tab Content
                         <div className="space-y-4">
-                            <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl p-4">
+                            <div className="visual-panel bg-gradient-to-br from-primary-50 to-accent-50 p-4">
                                 <h3 className="font-display font-bold text-secondary-900 mb-2">Featured Programs</h3>
                                 <p className="text-xs text-secondary-600 mb-4">Discover our key initiatives</p>
 
@@ -375,7 +375,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                             icon={program.icon}
                                             description={program.description}
                                             external={program.external}
-                                            className="flex items-center p-3 bg-white rounded-xl hover:shadow-medium transition-all duration-300 hover:border-primary-200 border border-transparent"
+                                            className="card-hover flex items-center p-3"
                                             onClick={handleLinkClick}
                                         >
                                             {program.name}
@@ -384,12 +384,12 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                 </div>
                             </div>
 
-                            <div className="bg-secondary-50 rounded-2xl p-4">
+                            <div className="card p-4">
                                 <h3 className="font-display font-bold text-secondary-900 mb-3">Quick Actions</h3>
                                 <div className="space-y-2">
                                     <MenuLink
                                         to="/donate"
-                                        className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-medium transition-all duration-300 hover:border-primary-200 border border-transparent"
+                                        className="card-hover flex items-center justify-between p-3"
                                         onClick={handleLinkClick}
                                     >
                                         <div className="flex items-center">
@@ -406,7 +406,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
 
                                     <MenuLink
                                         to="/contact"
-                                        className="flex items-center justify-between p-3 bg-white rounded-xl hover:shadow-medium transition-all duration-300 hover:border-primary-200 border border-transparent"
+                                        className="card-hover flex items-center justify-between p-3"
                                         onClick={handleLinkClick}
                                     >
                                         <div className="flex items-center">
@@ -455,7 +455,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                     {/* Donate Button (Mobile) */}
                     <MenuLink
                         to="/donate"
-                        className="block w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white py-4 rounded-xl font-semibold hover:from-primary-600 hover:to-accent-600 transition-all duration-300 transform hover:scale-[1.02] text-center shadow-medium"
+                        className="btn-primary block w-full py-4 text-center"
                         onClick={handleLinkClick}
                     >
                         <span className="mr-2">❤️</span>

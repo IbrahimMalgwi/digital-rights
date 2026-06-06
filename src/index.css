@@ -170,6 +170,10 @@
         @apply relative py-20 lg:py-24 overflow-hidden;
     }
 
+    .page-top {
+        @apply pt-32 md:pt-36;
+    }
+
     .page-section-soft {
         @apply relative py-20 lg:py-24 overflow-hidden bg-secondary-50;
         background:
@@ -200,6 +204,18 @@
 
     .visual-panel {
         @apply relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/80 shadow-large backdrop-blur-xl;
+    }
+
+    .icon-card {
+        @apply card-hover p-6 text-center;
+    }
+
+    .form-surface {
+        @apply card p-8 md:p-12;
+    }
+
+    .filter-section {
+        @apply py-12 bg-white border-t border-secondary-100;
     }
 
     .modern-cta {

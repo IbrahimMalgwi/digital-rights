@@ -52,7 +52,7 @@ const Gallery = () => {
             onClick={onClose}
         >
             <div
-                className="relative max-w-5xl w-full bg-white rounded-2xl overflow-hidden animate-fade-in"
+                className="visual-panel max-w-5xl w-full animate-fade-in"
                 onClick={e => e.stopPropagation()}
             >
                 <button
@@ -100,19 +100,19 @@ const Gallery = () => {
                         </div>
 
                         <div className="grid grid-cols-2 gap-3 mb-6">
-                            <div className="bg-secondary-50 rounded-lg p-3">
+                            <div className="card p-3 rounded-2xl">
                                 <div className="text-xs text-secondary-500 mb-1">Location</div>
                                 <div className="font-medium text-secondary-900 text-sm">{item.location || 'N/A'}</div>
                             </div>
-                            <div className="bg-secondary-50 rounded-lg p-3">
+                            <div className="card p-3 rounded-2xl">
                                 <div className="text-xs text-secondary-500 mb-1">Date</div>
                                 <div className="font-medium text-secondary-900 text-sm">{item.date || 'N/A'}</div>
                             </div>
-                            <div className="bg-secondary-50 rounded-lg p-3">
+                            <div className="card p-3 rounded-2xl">
                                 <div className="text-xs text-secondary-500 mb-1">Participants</div>
                                 <div className="font-medium text-secondary-900 text-sm">{item.participants || 0}+</div>
                             </div>
-                            <div className="bg-secondary-50 rounded-lg p-3">
+                            <div className="card p-3 rounded-2xl">
                                 <div className="text-xs text-secondary-500 mb-1">Status</div>
                                 <div className="font-medium text-primary-600 text-sm">Completed</div>
                             </div>
@@ -131,10 +131,10 @@ const Gallery = () => {
                         )}
 
                         <div className="flex space-x-3">
-                            <button className="flex-1 px-4 py-2 bg-secondary-900 text-white rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors">
+                            <button className="btn-primary flex-1 px-4 py-2 text-sm">
                                 Share
                             </button>
-                            <button className="flex-1 px-4 py-2 bg-secondary-100 text-secondary-900 rounded-lg text-sm font-medium hover:bg-secondary-200 transition-colors">
+                            <button className="btn-outline flex-1 px-4 py-2 text-sm">
                                 Download
                             </button>
                         </div>
@@ -147,7 +147,7 @@ const Gallery = () => {
     return (
         <div className="overflow-hidden">
             {/* Main Gallery Section */}
-            <section className="pt-32 md:pt-36 pb-20 bg-white">
+            <section className="page-section-white page-top">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {isLoading ? (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -174,7 +174,7 @@ const Gallery = () => {
                                             return (
                                                 <div
                                                     key={item.id}
-                                                    className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-secondary-200 hover:shadow-large transition-all hover:scale-[1.02] animate-fade-in"
+                                                    className="group card-hover cursor-pointer overflow-hidden animate-fade-in"
                                                     style={{ animationDelay: `${index * 0.05}s` }}
                                                     onClick={() => setSelectedImage(item)}
                                                 >
@@ -233,7 +233,7 @@ const Gallery = () => {
                                         <div className="text-center mt-16">
                                             <button
                                                 onClick={loadMore}
-                                                className="group px-8 py-4 bg-secondary-900 text-white rounded-full font-medium hover:bg-primary-600 transition-all hover:scale-105 shadow-medium"
+                                                className="btn-primary group px-8 py-4"
                                             >
                                                 Load more photos
                                                 <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">↓</span>
@@ -242,7 +242,7 @@ const Gallery = () => {
                                     )}
                                 </>
                             ) : (
-                                <div className="text-center py-20 bg-secondary-50 rounded-3xl max-w-2xl mx-auto">
+                                <div className="card text-center py-20 px-6 max-w-2xl mx-auto">
                                     <div className="text-6xl mb-4">📷</div>
                                     <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No photos found</h3>
                                     <p className="text-secondary-500">Gallery will be updated soon.</p>
@@ -255,7 +255,7 @@ const Gallery = () => {
 
             {/* Filter Bar – centered, updated colors */}
             {galleryItems.length > 0 && (
-                <section className="py-12 bg-white border-t border-secondary-100">
+                <section className="filter-section">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
                         <div className="flex flex-wrap gap-3 justify-center">

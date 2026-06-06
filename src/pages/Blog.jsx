@@ -50,7 +50,7 @@ const Blog = () => {
         <div className="overflow-hidden">
             {/* Featured Posts Section */}
             {featuredPosts.length > 0 && (
-                <section className="page-section-soft">
+                <section className="page-section-soft page-top">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center max-w-2xl mx-auto mb-12 animate-slide-up">
                             <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Featured</span>
@@ -88,7 +88,7 @@ const Blog = () => {
                                         onClick={loadMore}
                                         disabled={isLoading}
                                         className={`
-                                            group px-8 py-4 bg-secondary-900 text-white rounded-full font-medium hover:bg-primary-600 transition-all hover:scale-105 shadow-medium
+                                            btn-primary group px-8 py-4
                                             ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}
                                         `}
                                     >
@@ -112,7 +112,7 @@ const Blog = () => {
                         </>
                     ) : (
                         // No results state
-                        <div className="text-center py-20 bg-secondary-50 rounded-3xl max-w-2xl mx-auto">
+                        <div className="card text-center py-20 px-6 max-w-2xl mx-auto">
                             <div className="text-6xl mb-4">📭</div>
                             <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No articles found</h3>
                             <p className="text-secondary-500 mb-6">
@@ -123,7 +123,7 @@ const Blog = () => {
                                     setSearchQuery('');
                                     setActiveCategory('All');
                                 }}
-                                className="px-6 py-3 bg-secondary-900 text-white rounded-full font-medium hover:bg-primary-600 transition-all shadow-soft"
+                                className="btn-primary px-6 py-3 text-sm"
                             >
                                 Clear filters
                             </button>
@@ -133,7 +133,7 @@ const Blog = () => {
             </section>
 
             {/* Filter Bar – centered, updated colors */}
-            <section className="py-12 bg-white border-t border-secondary-100">
+            <section className="filter-section">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
                     <div className="flex flex-wrap gap-3 justify-center">
@@ -175,7 +175,7 @@ const Blog = () => {
                             placeholder="Search articles..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-secondary-50 border border-secondary-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-secondary-900 placeholder:text-secondary-400"
+                            className="input rounded-full pl-12 pr-4 py-4"
                         />
                         <svg className="absolute left-4 top-4 w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -216,7 +216,7 @@ const Blog = () => {
                                 placeholder="Enter your email"
                                 className="flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
                             />
-                            <button className="px-6 py-3 bg-white text-secondary-900 rounded-full font-medium hover:bg-secondary-100 transition-all hover:scale-105 shadow-medium">
+                            <button className="btn-secondary px-6 py-3 text-sm">
                                 Subscribe
                             </button>
                         </div>

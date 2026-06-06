@@ -45,7 +45,7 @@ const Awards = () => {
             onClick={onClose}
         >
             <div
-                className="relative max-w-4xl w-full bg-white rounded-3xl overflow-hidden animate-fade-in"
+                className="visual-panel max-w-4xl w-full animate-fade-in"
                 onClick={e => e.stopPropagation()}
             >
                 <button
@@ -114,7 +114,7 @@ const Awards = () => {
                             href={award.externalUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center px-6 py-3 bg-secondary-900 text-white rounded-full font-medium hover:bg-primary-600 transition-all hover:scale-105 shadow-medium"
+                            className="btn-primary group px-6 py-3 text-sm"
                         >
                             View Award Details
                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
@@ -128,7 +128,7 @@ const Awards = () => {
     return (
         <div className="overflow-hidden">
             {/* Awards Grid */}
-            <section className="pt-32 md:pt-36 pb-20 bg-white">
+            <section className="page-section-white page-top">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {isLoading ? (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -144,7 +144,7 @@ const Awards = () => {
                                         {visibleAwards.map((award) => (
                                             <div
                                                 key={award.id}
-                                                className="group bg-white rounded-3xl border border-secondary-200 overflow-hidden hover:shadow-xl transition-all hover:scale-[1.02] cursor-pointer animate-fade-in"
+                                                className="group card-hover overflow-hidden cursor-pointer animate-fade-in"
                                                 onClick={() => setSelectedAward(award)}
                                             >
                                                 <div className="relative h-48 bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
@@ -196,7 +196,7 @@ const Awards = () => {
                                         <div className="text-center mt-16">
                                             <button
                                                 onClick={loadMore}
-                                                className="group px-8 py-4 bg-secondary-900 text-white rounded-full font-medium hover:bg-primary-600 transition-all hover:scale-105 shadow-medium"
+                                                className="btn-primary group px-8 py-4"
                                             >
                                                 Load more awards
                                                 <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">↓</span>
@@ -205,7 +205,7 @@ const Awards = () => {
                                     )}
                                 </>
                             ) : (
-                                <div className="text-center py-20 bg-secondary-50 rounded-3xl max-w-2xl mx-auto">
+                                <div className="card text-center py-20 px-6 max-w-2xl mx-auto">
                                     <div className="text-6xl mb-4">🏆</div>
                                     <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No awards found</h3>
                                     <p className="text-secondary-500">Awards will be added soon.</p>
@@ -217,7 +217,7 @@ const Awards = () => {
             </section>
 
             {/* Category Pills – centered, updated colors */}
-            <section className="py-12 bg-white border-t border-secondary-100">
+            <section className="filter-section">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
                     <div className="flex flex-wrap gap-3 justify-center">
@@ -276,14 +276,14 @@ const Awards = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/donate"
-                            className="group px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large"
+                            className="btn-secondary group px-8 py-4"
                         >
                             Support our work
                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">❤️</span>
                         </Link>
                         <Link
                             to="/contact"
-                            className="px-8 py-4 bg-transparent text-white border-2 border-white/30 rounded-full font-bold hover:bg-white/10 transition-all"
+                            className="btn-outline px-8 py-4 border-white/30 text-white hover:bg-white/10"
                         >
                             Get in touch
                         </Link>

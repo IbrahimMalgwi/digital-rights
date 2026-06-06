@@ -90,7 +90,7 @@ const About = () => {
                         {values.map((value, index) => (
                             <div
                                 key={index}
-                                className={`${value.color} p-8 rounded-2xl hover:scale-105 transition-all duration-300 cursor-default text-center shadow-soft hover:shadow-medium`}
+                                className={`card-hover ${value.color} p-8 cursor-default text-center`}
                                 style={{ animationDelay: `${index * 0.1}s` }}
                             >
                                 <span className="text-5xl mb-4 block">{value.icon}</span>
@@ -148,14 +148,14 @@ const About = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/donate"
-                            className="group px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large"
+                            className="btn-secondary group px-8 py-4"
                         >
                             Support our work
                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">❤️</span>
                         </Link>
                         <Link
                             to="/contact"
-                            className="px-8 py-4 bg-transparent text-white border-2 border-white/30 rounded-full font-bold hover:bg-white/10 transition-all"
+                            className="btn-outline px-8 py-4 border-white/30 text-white hover:bg-white/10"
                         >
                             Partner with us
                         </Link>

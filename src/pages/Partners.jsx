@@ -54,14 +54,14 @@ const Partners = () => {
     return (
         <div className="overflow-hidden">
             {/* Partners Grid – 4 Columns, updated styles */}
-            <section className="pt-32 md:pt-36 pb-20 bg-white">
+            <section className="page-section-white page-top">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {filteredPartners.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                             {filteredPartners.map((partner, index) => (
                                 <div
                                     key={index}
-                                    className="group bg-white rounded-xl border border-secondary-200 overflow-hidden hover:shadow-large transition-all p-5 hover:border-primary-200 animate-fade-in"
+                                    className="group card-hover p-5 animate-fade-in"
                                     style={{ animationDelay: `${index * 0.05}s` }}
                                 >
                                     <div className="flex items-start justify-between mb-3">
@@ -169,13 +169,13 @@ const Partners = () => {
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-20 bg-secondary-50 rounded-3xl max-w-2xl mx-auto animate-fade-in">
+                        <div className="card text-center py-20 px-6 max-w-2xl mx-auto animate-fade-in">
                             <div className="text-6xl mb-4">🤝</div>
                             <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No partners found</h3>
                             <p className="text-secondary-500 mb-6">Try selecting a different category</p>
                             <button
                                 onClick={() => setActiveType('All')}
-                                className="px-6 py-3 bg-secondary-900 text-white rounded-full font-medium hover:bg-primary-600 transition-all shadow-soft hover:scale-105"
+                                className="btn-primary px-6 py-3 text-sm"
                             >
                                 View all partners
                             </button>
@@ -185,7 +185,7 @@ const Partners = () => {
             </section>
 
             {/* Filter Bar – centered */}
-            <section className="py-12 bg-white border-t border-secondary-100">
+            <section className="filter-section">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Type</h3>
                     <div className="flex flex-wrap gap-3 justify-center">
@@ -243,7 +243,7 @@ const Partners = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/contact"
-                            className="group px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large"
+                            className="btn-secondary group px-8 py-4"
                         >
                             Partner with us
                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>

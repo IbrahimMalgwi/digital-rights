@@ -59,17 +59,17 @@ const Home = () => {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                        <div className="group text-center p-8 rounded-2xl hover:bg-primary-50 transition-all duration-300 animate-fade-in">
+                        <div className="icon-card p-8 animate-fade-in">
                             <span className="text-5xl mb-4 block">❤️</span>
                             <h3 className="text-2xl font-semibold text-secondary-900 mb-3">We Care</h3>
                             <p className="text-secondary-600">Today's youth need a helpful hand and right guidance at every stage. Here's where we take care of them like our own.</p>
                         </div>
-                        <div className="group text-center p-8 rounded-2xl hover:bg-accent-50 transition-all duration-300 animate-fade-in">
+                        <div className="icon-card p-8 animate-fade-in">
                             <span className="text-5xl mb-4 block">📚</span>
                             <h3 className="text-2xl font-semibold text-secondary-900 mb-3">We Educate</h3>
                             <p className="text-secondary-600">We run small-scale schools for the underprivileged children and youth of daily wage workers for a better future.</p>
                         </div>
-                        <div className="group text-center p-8 rounded-2xl hover:bg-secondary-100 transition-all duration-300 animate-fade-in">
+                        <div className="icon-card p-8 animate-fade-in">
                             <span className="text-5xl mb-4 block">💪</span>
                             <h3 className="text-2xl font-semibold text-secondary-900 mb-3">We Empower</h3>
                             <p className="text-secondary-600">We equip women with the skills, resources, and confidence they need to achieve financial independence and leadership in their communities.</p>
@@ -279,7 +279,7 @@ const Home = () => {
 
                     <Link
                         to="/donate"
-                        className="inline-flex items-center px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large animate-fade-in"
+                        className="btn-secondary group inline-flex items-center px-8 py-4 animate-fade-in"
                     >
                         DONATE
                         <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">❤️</span>

@@ -60,7 +60,7 @@ const Projects = () => {
         <div className="overflow-hidden">
             {/* Featured Projects Section */}
             {featuredProjects.length > 0 && (
-                <section className="page-section-soft">
+                <section className="page-section-soft page-top">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="grid lg:grid-cols-2 gap-6">
                             {featuredProjects.slice(0, 2).map((project, index) => (
@@ -113,7 +113,7 @@ const Projects = () => {
             )}
 
             {/* Sticky Search and Filter Bar – updated colors */}
-            <section className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-secondary-200">
+            <section className="sticky top-0 z-30 bg-white/90 backdrop-blur-xl border-b border-white/70 shadow-soft">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
                         <div className="relative w-full lg:w-96">
@@ -122,7 +122,7 @@ const Projects = () => {
                                 placeholder="Search projects..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-4 py-3 bg-secondary-50 border border-secondary-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-secondary-900 placeholder:text-secondary-400"
+                                className="input rounded-full pl-12 pr-4 py-3"
                             />
                             <svg className="absolute left-4 top-3.5 w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -215,7 +215,7 @@ const Projects = () => {
 
                     {hasExternalProjects && (
                         <div className="mb-8 max-w-2xl mx-auto animate-fade-in">
-                            <div className="p-4 bg-primary-50 rounded-2xl border border-primary-200 text-center">
+                            <div className="card p-4 text-center">
                                 <p className="text-primary-800 text-sm">
                                     <span className="font-semibold">Note:</span> Some projects are external. Click on their cards to visit their dedicated websites.
                                 </p>
@@ -301,7 +301,7 @@ const Projects = () => {
                                     <div className="text-center mt-16">
                                         <button
                                             onClick={() => setVisibleCount(prev => prev + 6)}
-                                            className="group px-8 py-4 bg-secondary-900 text-white rounded-full font-medium hover:bg-primary-600 transition-all hover:scale-105 shadow-medium"
+                                            className="btn-primary group px-8 py-4"
                                         >
                                             Load more projects
                                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">↓</span>
@@ -310,7 +310,7 @@ const Projects = () => {
                                 )}
                             </>
                         ) : (
-                            <div className="text-center py-20 bg-secondary-50 rounded-3xl max-w-2xl mx-auto animate-fade-in">
+                            <div className="card text-center py-20 px-6 max-w-2xl mx-auto animate-fade-in">
                                 <div className="text-6xl mb-4">📭</div>
                                 <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No projects found</h3>
                                 <p className="text-secondary-500 mb-6">Try adjusting your filters or search criteria</p>
@@ -320,14 +320,14 @@ const Projects = () => {
                                         setActiveStatus('All');
                                         setSearchQuery('');
                                     }}
-                                    className="px-6 py-3 bg-secondary-900 text-white rounded-full font-medium hover:bg-primary-600 transition-all shadow-soft hover:scale-105"
+                                    className="btn-primary px-6 py-3 text-sm"
                                 >
                                     Clear all filters
                                 </button>
                             </div>
                         )
                     ) : (
-                        <div className="text-center py-20 bg-secondary-50 rounded-3xl max-w-2xl mx-auto animate-fade-in">
+                        <div className="card text-center py-20 px-6 max-w-2xl mx-auto animate-fade-in">
                             <div className="text-6xl mb-4">📁</div>
                             <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No projects yet</h3>
                             <p className="text-secondary-500">Projects will be added soon.</p>
@@ -352,14 +352,14 @@ const Projects = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/donate"
-                            className="group px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large"
+                            className="btn-secondary group px-8 py-4"
                         >
                             Donate now
                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">❤️</span>
                         </Link>
                         <Link
                             to="/contact"
-                            className="px-8 py-4 bg-transparent text-white border-2 border-white/30 rounded-full font-bold hover:bg-white/10 transition-all"
+                            className="btn-outline px-8 py-4 border-white/30 text-white hover:bg-white/10"
                         >
                             Partner with us
                         </Link>

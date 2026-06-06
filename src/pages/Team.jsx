@@ -35,7 +35,7 @@ const Team = () => {
     return (
         <div className="overflow-hidden">
             {/* Main Team Section */}
-            <section className="page-section-white">
+            <section className="page-section-white page-top">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h3 className="text-center text-3xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-500 mb-12 animate-slide-up">
                         Team Members
@@ -87,7 +87,7 @@ const Team = () => {
                             </div>
                         )
                     ) : (
-                        <div className="text-center py-20 bg-secondary-50 rounded-3xl max-w-2xl mx-auto animate-fade-in">
+                        <div className="card text-center py-20 px-6 max-w-2xl mx-auto animate-fade-in">
                             <div className="text-6xl mb-4">👥</div>
                             <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No team members found</h3>
                             <p className="text-secondary-500 mb-6">Check back soon for updates.</p>
@@ -97,7 +97,7 @@ const Team = () => {
             </section>
 
             {/* Department Filter Buttons – updated colors */}
-            <section className="py-8 bg-white border-t border-b border-secondary-100">
+            <section className="filter-section">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Department</h3>
                     <div className="flex flex-wrap gap-3 justify-center">
@@ -138,17 +138,17 @@ const Team = () => {
                         </h2>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="text-center p-6 bg-white rounded-2xl shadow-soft hover:shadow-medium transition-all animate-fade-in">
+                        <div className="icon-card animate-fade-in">
                             <div className="text-5xl mb-4">🌍</div>
                             <h3 className="text-xl font-semibold text-secondary-900 mb-2">Diverse Expertise</h3>
                             <p className="text-secondary-500">Bringing together professionals from various fields</p>
                         </div>
-                        <div className="text-center p-6 bg-white rounded-2xl shadow-soft hover:shadow-medium transition-all animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                        <div className="icon-card animate-fade-in" style={{ animationDelay: '0.1s' }}>
                             <div className="text-5xl mb-4">🗺️</div>
                             <h3 className="text-xl font-semibold text-secondary-900 mb-2">Pan-African</h3>
                             <p className="text-secondary-500">Team members across the continent</p>
                         </div>
-                        <div className="text-center p-6 bg-white rounded-2xl shadow-soft hover:shadow-medium transition-all animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                        <div className="icon-card animate-fade-in" style={{ animationDelay: '0.2s' }}>
                             <div className="text-5xl mb-4">🎯</div>
                             <h3 className="text-xl font-semibold text-secondary-900 mb-2">Mission-Driven</h3>
                             <p className="text-secondary-500">Passionate about creating lasting change</p>
@@ -175,7 +175,7 @@ const Team = () => {
 
                         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                             {teamMembers.filter(m => m.department === 'Leadership').map((leader, index) => (
-                                <div key={leader.id} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                                <div key={leader.id} className="rounded-3xl p-6 border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/20 transition-all animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                                     <div className="flex items-center space-x-4">
                                         <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
                                             {leader.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
@@ -211,14 +211,14 @@ const Team = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/contact"
-                            className="group px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large"
+                            className="btn-secondary group px-8 py-4"
                         >
                             View open positions
                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                         </Link>
                         <Link
                             to="/contact"
-                            className="px-8 py-4 bg-transparent text-white border-2 border-white/30 rounded-full font-bold hover:bg-white/10 transition-all"
+                            className="btn-outline px-8 py-4 border-white/30 text-white hover:bg-white/10"
                         >
                             Send application
                         </Link>

@@ -133,7 +133,7 @@ const Contact = () => {
                         {contactMethods.map((method, index) => (
                             <div
                                 key={index}
-                                className="group p-6 bg-secondary-50 rounded-2xl hover:bg-white hover:shadow-medium transition-all text-center animate-fade-in"
+                                className="icon-card animate-fade-in"
                                 style={{ animationDelay: `${index * 0.1}s` }}
                             >
                                 <div className={`w-14 h-14 mx-auto bg-gradient-to-r ${method.color} rounded-xl flex items-center justify-center text-white mb-4 shadow-soft`}>
@@ -175,7 +175,7 @@ const Contact = () => {
                     </div>
 
                     <div className="max-w-4xl mx-auto">
-                        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-soft">
+                        <div className="form-surface">
                             {/* Success Message */}
                             {formStatus.submitted && formStatus.success && (
                                 <div className="mb-6 p-4 bg-primary-50 border border-primary-200 rounded-xl animate-fade-in">
@@ -201,7 +201,7 @@ const Contact = () => {
                                             required
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                            className="input"
                                             placeholder="John Doe"
                                         />
                                     </div>
@@ -216,7 +216,7 @@ const Contact = () => {
                                             required
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                            className="input"
                                             placeholder="john@example.com"
                                         />
                                     </div>
@@ -231,7 +231,7 @@ const Contact = () => {
                                         name="department"
                                         value={formData.department}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white transition-all"
+                                        className="input bg-white"
                                     >
                                         {departments.map((dept) => (
                                             <option key={dept.value} value={dept.value}>
@@ -252,7 +252,7 @@ const Contact = () => {
                                         required
                                         value={formData.subject}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                        className="input"
                                         placeholder="What is this regarding?"
                                     />
                                 </div>
@@ -268,7 +268,7 @@ const Contact = () => {
                                         rows="6"
                                         value={formData.message}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none transition-all"
+                                        className="input resize-none"
                                         placeholder="Tell us about your inquiry..."
                                     ></textarea>
                                 </div>
@@ -277,8 +277,7 @@ const Contact = () => {
                                     type="submit"
                                     disabled={isSubmitting}
                                     className={`
-                                        w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white py-4 px-6 rounded-lg font-medium
-                                        transition-all hover:from-primary-600 hover:to-accent-600 hover:scale-105 shadow-medium
+                                        btn-primary w-full py-4 px-6
                                         ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}
                                     `}
                                 >
@@ -312,12 +311,12 @@ const Contact = () => {
 
                     <div className="grid md:grid-cols-2 gap-6">
                         {faqs.map((faq, index) => (
-                            <div key={index} className="bg-secondary-50 rounded-2xl p-6 hover:shadow-medium transition-all animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                            <div key={index} className="card-hover p-6 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                                 <h3 className="font-semibold text-secondary-900 mb-2">{faq.question}</h3>
                                 <p className="text-secondary-500 text-sm">{faq.answer}</p>
                             </div>
                         ))}
-                        <div className="bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl p-6 text-white md:col-span-2 shadow-medium">
+                        <div className="visual-panel bg-gradient-to-br from-primary-500 to-accent-500 p-6 text-white md:col-span-2">
                             <div className="flex items-center justify-between flex-wrap gap-4">
                                 <div>
                                     <h3 className="font-semibold text-white mb-1">Still have questions?</h3>
@@ -325,7 +324,7 @@ const Contact = () => {
                                 </div>
                                 <a
                                     href="#contact-form"
-                                    className="px-6 py-3 bg-white text-secondary-900 rounded-full font-medium hover:bg-secondary-100 transition-all hover:scale-105 shadow-soft"
+                                    className="btn-secondary px-6 py-3 text-sm"
                                 >
                                     Contact support
                                 </a>
@@ -348,9 +347,9 @@ const Contact = () => {
                         </p>
                     </div>
 
-                    <div className="relative h-96 rounded-2xl overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100 max-w-5xl mx-auto shadow-medium">
+                    <div className="visual-panel relative h-96 overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100 max-w-5xl mx-auto">
                         <div className="w-full h-full flex items-center justify-center">
-                            <div className="text-center bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+                            <div className="card p-8 text-center">
                                 <div className="text-5xl mb-3">📍</div>
                                 <p className="text-secondary-900 font-medium text-lg">{siteContent.site.address}</p>
                                 <p className="text-secondary-500 text-sm mt-2">{siteContent.site.fullName}</p>
@@ -358,7 +357,7 @@ const Contact = () => {
                                     href="https://maps.google.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center mt-4 px-6 py-3 bg-secondary-900 text-white rounded-full text-sm font-medium hover:bg-primary-600 transition-all hover:scale-105 shadow-soft"
+                                    className="btn-primary inline-flex items-center mt-4 px-6 py-3 text-sm"
                                 >
                                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -382,17 +381,17 @@ const Contact = () => {
                         </h2>
                     </div>
                     <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                        <div className="text-center p-6 bg-secondary-50 rounded-2xl hover:shadow-medium transition-all animate-fade-in">
+                        <div className="icon-card animate-fade-in">
                             <div className="text-4xl mb-3">🕒</div>
                             <h3 className="font-semibold text-secondary-900 mb-2">Monday - Friday</h3>
                             <p className="text-secondary-500">9:00 AM - 5:00 PM GMT</p>
                         </div>
-                        <div className="text-center p-6 bg-secondary-50 rounded-2xl hover:shadow-medium transition-all animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                        <div className="icon-card animate-fade-in" style={{ animationDelay: '0.1s' }}>
                             <div className="text-4xl mb-3">📞</div>
                             <h3 className="font-semibold text-secondary-900 mb-2">Phone Support</h3>
                             <p className="text-secondary-500">Same day response</p>
                         </div>
-                        <div className="text-center p-6 bg-secondary-50 rounded-2xl hover:shadow-medium transition-all animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                        <div className="icon-card animate-fade-in" style={{ animationDelay: '0.2s' }}>
                             <div className="text-4xl mb-3">✉️</div>
                             <h3 className="font-semibold text-secondary-900 mb-2">Email Response</h3>
                             <p className="text-secondary-500">Within 24 hours</p>

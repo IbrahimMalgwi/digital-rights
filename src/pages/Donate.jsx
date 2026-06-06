@@ -41,13 +41,13 @@ const Donate = () => {
         <div className="overflow-hidden">
 
             {/* Main Donation Section - Account Details */}
-            <section id="donate-form" className="page-section-soft">
+            <section id="donate-form" className="page-section-soft page-top">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="max-w-6xl mx-auto">
                         {/* Account Cards Grid - updated colors */}
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                             {/* Naira Account */}
-                            <div className="bg-white rounded-2xl p-6 border border-secondary-200 hover:shadow-large transition-all hover:scale-[1.02] animate-fade-in">
+                            <div className="card-hover p-6 animate-fade-in">
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white text-2xl shadow-soft">
                                         ₦
@@ -85,7 +85,7 @@ const Donate = () => {
                             </div>
 
                             {/* USD Account */}
-                            <div className="bg-white rounded-2xl p-6 border border-secondary-200 hover:shadow-large transition-all hover:scale-[1.02] animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                            <div className="card-hover p-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="w-12 h-12 bg-gradient-to-br from-accent-500 to-accent-600 rounded-xl flex items-center justify-center text-white text-2xl shadow-soft">
                                         $
@@ -123,7 +123,7 @@ const Donate = () => {
                             </div>
 
                             {/* Euro Account */}
-                            <div className="bg-white rounded-2xl p-6 border border-secondary-200 hover:shadow-large transition-all hover:scale-[1.02] md:col-span-2 lg:col-span-1 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                            <div className="card-hover p-6 md:col-span-2 lg:col-span-1 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="w-12 h-12 bg-gradient-to-br from-secondary-600 to-secondary-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-soft">
                                         €
@@ -137,7 +137,7 @@ const Donate = () => {
                                 <p className="font-semibold text-secondary-900 text-base mb-3">{accounts.euro.accountName}</p>
 
                                 <p className="text-xs text-secondary-500 mb-1">Account Number</p>
-                                <div className="flex items-center justify-between bg-secondary-100 rounded-xl p-3 mb-3 border border-secondary-200">
+                                <div className="card p-3 mb-3 rounded-2xl flex items-center justify-between">
                                     <span className="font-mono font-bold text-secondary-900 text-lg">{accounts.euro.accountNumber}</span>
                                     <button
                                         onClick={() => copyToClipboard(accounts.euro.accountNumber, 'euro')}
@@ -176,7 +176,7 @@ const Donate = () => {
                         </div>
 
                         {/* Thank You Message - updated gradient */}
-                        <div className="bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl p-12 text-center shadow-large animate-fade-in">
+                        <div className="visual-panel bg-gradient-to-br from-primary-600 to-accent-600 p-12 text-center animate-fade-in">
                             <p className="text-white text-xl md:text-2xl leading-relaxed font-medium max-w-3xl mx-auto">
                                 Thank you for standing with us and investing in healthier minds and safer digital futures. ❤️
                             </p>
@@ -196,39 +196,39 @@ const Donate = () => {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                        <div className="p-8 bg-secondary-50 rounded-2xl text-center hover:shadow-medium transition-all hover:scale-105 animate-fade-in">
+                        <div className="icon-card p-8 animate-fade-in">
                             <div className="text-5xl mb-4">🙋</div>
                             <h3 className="text-xl font-semibold text-secondary-900 mb-3">Volunteer</h3>
                             <p className="text-secondary-500 mb-6">
                                 Share your skills and time to support our programs
                             </p>
-                            <Link to="/contact" className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group">
+                            <Link to="/contact" className="inline-flex items-center text-primary-700 font-bold hover:text-accent-700 transition-colors group">
                                 Learn more
                                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                 </svg>
                             </Link>
                         </div>
-                        <div className="p-8 bg-secondary-50 rounded-2xl text-center hover:shadow-medium transition-all hover:scale-105 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                        <div className="icon-card p-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
                             <div className="text-5xl mb-4">🤝</div>
                             <h3 className="text-xl font-semibold text-secondary-900 mb-3">Partner With Us</h3>
                             <p className="text-secondary-500 mb-6">
                                 Corporate partnerships for larger impact
                             </p>
-                            <Link to="/partners" className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group">
+                            <Link to="/partners" className="inline-flex items-center text-primary-700 font-bold hover:text-accent-700 transition-colors group">
                                 Become a partner
                                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                 </svg>
                             </Link>
                         </div>
-                        <div className="p-8 bg-secondary-50 rounded-2xl text-center hover:shadow-medium transition-all hover:scale-105 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                        <div className="icon-card p-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                             <div className="text-5xl mb-4">📢</div>
                             <h3 className="text-xl font-semibold text-secondary-900 mb-3">Spread the Word</h3>
                             <p className="text-secondary-500 mb-6">
                                 Share our mission with your network
                             </p>
-                            <button className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group">
+                            <button className="inline-flex items-center text-primary-700 font-bold hover:text-accent-700 transition-colors group">
                                 Share
                                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -268,12 +268,12 @@ const Donate = () => {
                                 a: "Yes! We have USD and Euro accounts for international donations."
                             }
                         ].map((faq, index) => (
-                            <div key={index} className="bg-white rounded-xl p-6 hover:shadow-medium transition-all animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                            <div key={index} className="card p-6 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                                 <h3 className="font-semibold text-secondary-900 mb-2">{faq.q}</h3>
                                 <p className="text-secondary-500 text-sm">{faq.a}</p>
                             </div>
                         ))}
-                        <div className="bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl p-6 text-white md:col-span-2 shadow-medium">
+                        <div className="visual-panel bg-gradient-to-br from-primary-600 to-accent-600 p-6 text-white md:col-span-2">
                             <div className="flex items-center justify-between flex-wrap gap-4">
                                 <div>
                                     <h3 className="font-semibold text-white mb-1">Still have questions?</h3>
@@ -281,7 +281,7 @@ const Donate = () => {
                                 </div>
                                 <Link
                                     to="/contact"
-                                    className="px-6 py-3 bg-white text-secondary-900 rounded-full font-medium hover:bg-secondary-100 transition-all hover:scale-105 shadow-soft"
+                                    className="btn-secondary px-6 py-3 text-sm"
                                 >
                                     Contact us
                                 </Link>
