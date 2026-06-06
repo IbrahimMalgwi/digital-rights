@@ -30,6 +30,7 @@ module.exports = {
                     700: '#334155',
                     800: '#1e293b',
                     900: '#0f172a',
+                    950: '#020617',
                 },
                 accent: {
                     50: '#fdf4ff',
@@ -45,13 +46,14 @@ module.exports = {
                 }
             },
             fontFamily: {
-                sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
-                display: ['Poppins', 'ui-sans-serif', 'system-ui'],
+                sans: ['Manrope', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+                display: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
             },
             animation: {
                 'fade-in': 'fadeIn 0.5s ease-in-out',
                 'slide-up': 'slideUp 0.5s ease-out',
                 'slide-down': 'slideDown 0.5s ease-out',
+                'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
                 fadeIn: {
@@ -68,9 +70,11 @@ module.exports = {
                 },
             },
             boxShadow: {
+                'xs': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
                 'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
                 'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04)',
-                'large': '0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 10px 30px -5px rgba(0, 0, 0, 0.04)',
+                'large': '0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 10px 30px -5px rgba(0, 0, 0, 0.08)',
+                'xl': '0 20px 50px -15px rgba(0, 0, 0, 0.15)',
             },
         },
     },

@@ -5,23 +5,27 @@ import ProjectCard from '../components/cards/ProjectCard';
 import { siteContent } from '../data/content';
 
 const Home = () => {
+    const featuredProjects = siteContent.projects?.filter(project => project.featured) || [];
+
     return (
-        <div className="overflow-hidden">
+        <div className="overflow-hidden aurora-bg">
 
             {/* Hero Section - Women Empowerment */}
-            <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-pulse"></div>
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-24">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(147,51,234,0.24),transparent_24rem),radial-gradient(circle_at_80%_35%,rgba(217,70,239,0.22),transparent_26rem),linear-gradient(135deg,#ffffff_0%,#faf5ff_48%,#f8fafc_100%)]"></div>
+                <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-primary-300/20 blur-3xl animate-pulse"></div>
+                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
 
-                <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="animate-fade-in">
-                        <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-8 leading-tight">
+                        <span className="section-eyebrow mb-8">Digital rights. Mental health. Women first.</span>
+                        <h1 className="text-6xl md:text-8xl font-display font-bold text-secondary-950 mb-8 leading-[0.95] tracking-tight">
                             {siteContent.hero.title}
                         </h1>
-                        <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-xl md:text-2xl text-secondary-700 mb-8 max-w-3xl mx-auto leading-relaxed">
                             {siteContent.hero.subtitle}
                         </p>
-                        <p className="text-lg text-white/80 mb-12">
+                        <p className="text-lg text-primary-700 font-bold mb-12">
                             Every woman deserves a life free from inequality
                         </p>
                     </div>
@@ -29,14 +33,14 @@ const Home = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
                         <Link
                             to={siteContent.hero.primaryButton.link}
-                            className="group px-8 py-4 bg-white text-secondary-900 rounded-full font-bold hover:bg-secondary-100 transition-all hover:scale-105 shadow-large"
+                            className="btn-primary group px-8 py-4"
                         >
                             {siteContent.hero.primaryButton.text}
                             <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                         </Link>
                         <Link
                             to={siteContent.hero.secondaryButton.link}
-                            className="px-8 py-4 bg-transparent text-white border-2 border-white/30 rounded-full font-bold hover:bg-white/10 transition-all"
+                            className="btn-secondary px-8 py-4"
                         >
                             {siteContent.hero.secondaryButton.text}
                         </Link>
@@ -45,7 +49,7 @@ const Home = () => {
             </section>
 
             {/* Our Impact Section */}
-            <section className="py-24 bg-white">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">How We Serve</span>
@@ -75,7 +79,7 @@ const Home = () => {
             </section>
 
             {/* Programs Section */}
-            <section className="relative py-24 bg-white">
+            <section className="page-section-white">
                 {/* Decorative elements with new theme colors */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-primary-50 rounded-full filter blur-3xl opacity-40 animate-pulse"></div>
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-50 rounded-full filter blur-3xl opacity-40 animate-pulse"></div>
@@ -97,7 +101,7 @@ const Home = () => {
                         {siteContent.programs?.map((program, index) => (
                             <div
                                 key={index}
-                                className="group p-6 bg-secondary-50 rounded-2xl hover:bg-white hover:shadow-medium transition-all duration-300 hover:border-primary-200 border border-transparent animate-fade-in"
+                                className="group card-hover p-6 animate-fade-in"
                                 style={{ animationDelay: `${index * 0.1}s` }}
                             >
                                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-200">{program.icon}</div>
@@ -108,8 +112,8 @@ const Home = () => {
                                     {program.description}
                                 </p>
                                 <Link
-                                    to={`/programs/${program.slug}`}
-                                    className="inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors"
+                                    to="/projects"
+                                    className="inline-flex items-center text-sm font-bold text-primary-700 hover:text-accent-700 transition-colors"
                                 >
                                     Learn more
                                     <svg className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,7 +140,7 @@ const Home = () => {
             </section>
 
             {/* Featured Projects Section */}
-            <section className="py-24 bg-white">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
                     <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4 animate-slide-up">
@@ -159,7 +163,7 @@ const Home = () => {
 
                     {/* Projects Grid - Featured (large) */}
                     <div className="grid lg:grid-cols-2 gap-6 mb-6">
-                        {siteContent.projects?.featured?.slice(0, 2).map((project, index) => {
+                        {featuredProjects.slice(0, 2).map((project, index) => {
                             // Updated category colors to match new theme
                             const categoryColor = {
                                 Education: 'bg-primary-50 text-primary-700',
@@ -180,7 +184,7 @@ const Home = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {siteContent.projects?.featured?.slice(2, 5).map((project, index) => {
+                        {featuredProjects.slice(2, 5).map((project, index) => {
                             const categoryColor = {
                                 Education: 'bg-primary-50 text-primary-700',
                                 'Mental Health': 'bg-accent-50 text-accent-700',
@@ -215,7 +219,7 @@ const Home = () => {
             </section>
 
             {/* Latest Insights Section */}
-            <section className="py-24 bg-secondary-50">
+            <section className="page-section-soft">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
                     <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4 animate-slide-up">
@@ -259,7 +263,7 @@ const Home = () => {
             </section>
 
             {/* Newsletter Section - Modern redesign */}
-            <section className="relative bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+            <section className="modern-cta">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
@@ -291,3 +295,4 @@ const Home = () => {
 };
 
 export default Home;
+

@@ -60,15 +60,8 @@ const Projects = () => {
         <div className="overflow-hidden">
             {/* Featured Projects Section */}
             {featuredProjects.length > 0 && (
-                <section className="py-20 bg-secondary-50">
+                <section className="page-section-soft">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
-                            <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Featured</span>
-                            <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
-                                Spotlight projects
-                            </h2>
-                        </div>
-
                         <div className="grid lg:grid-cols-2 gap-6">
                             {featuredProjects.slice(0, 2).map((project, index) => (
                                 <div key={project.id} className="group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
@@ -108,6 +101,13 @@ const Projects = () => {
                                 ))}
                             </div>
                         )}
+
+                        <div className="text-center max-w-2xl mx-auto mt-16 animate-slide-up">
+                            <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Featured</span>
+                            <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
+                                Spotlight projects
+                            </h2>
+                        </div>
                     </div>
                 </section>
             )}
@@ -156,7 +156,7 @@ const Projects = () => {
             </section>
 
             {/* Main Projects Section */}
-            <section className="py-16 bg-white">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {allProjects.length > 0 && (
                         <>
@@ -337,7 +337,7 @@ const Projects = () => {
             </section>
 
             {/* CTA Section – updated gradient */}
-            <section className="relative bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+            <section className="modern-cta">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
@@ -375,3 +375,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

@@ -41,22 +41,8 @@ const Donate = () => {
         <div className="overflow-hidden">
 
             {/* Main Donation Section - Account Details */}
-            <section id="donate-form" className="py-20 bg-secondary-50">
+            <section id="donate-form" className="page-section-soft">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
-                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Bank Transfer</span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900 mb-4">
-                            Donation Details
-                        </h2>
-                        <p className="text-secondary-500">
-                            Please transfer your donation to any of the accounts below.
-                            After transfer, kindly send a confirmation email to{' '}
-                            <a href={`mailto:${siteContent.site?.email}`} className="text-primary-600 hover:text-primary-700 font-medium">
-                                {siteContent.site?.email || 'info@drmhiafrica.org'}
-                            </a>
-                        </p>
-                    </div>
-
                     <div className="max-w-6xl mx-auto">
                         {/* Account Cards Grid - updated colors */}
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -175,6 +161,20 @@ const Donate = () => {
                             </div>
                         </div>
 
+                        <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
+                            <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Bank Transfer</span>
+                            <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900 mb-4">
+                                Donation Details
+                            </h2>
+                            <p className="text-secondary-500">
+                                Please transfer your donation to any of the accounts below.
+                                After transfer, kindly send a confirmation email to{' '}
+                                <a href={`mailto:${siteContent.site?.email}`} className="text-primary-600 hover:text-primary-700 font-medium">
+                                    {siteContent.site?.email || 'info@drmhiafrica.org'}
+                                </a>
+                            </p>
+                        </div>
+
                         {/* Thank You Message - updated gradient */}
                         <div className="bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl p-12 text-center shadow-large animate-fade-in">
                             <p className="text-white text-xl md:text-2xl leading-relaxed font-medium max-w-3xl mx-auto">
@@ -186,7 +186,7 @@ const Donate = () => {
             </section>
 
             {/* Other Ways to Support - Simple Cards */}
-            <section className="py-20 bg-white">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Beyond Donations</span>
@@ -240,7 +240,7 @@ const Donate = () => {
             </section>
 
             {/* FAQ Section - Enhanced */}
-            <section className="py-20 bg-secondary-50">
+            <section className="page-section-soft">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">FAQ</span>
@@ -295,3 +295,4 @@ const Donate = () => {
 };
 
 export default Donate;
+

@@ -34,40 +34,8 @@ const Team = () => {
 
     return (
         <div className="overflow-hidden">
-            {/* Department Filter Buttons – updated colors */}
-            <section className="py-8 bg-white border-b border-secondary-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Department</h3>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {departments.map((dept) => (
-                            <button
-                                key={dept.name}
-                                onClick={() => setActiveDepartment(dept.name)}
-                                className={`
-                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeDepartment === dept.name
-                                    ? 'bg-secondary-900 text-white'
-                                    : `${dept.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{dept.icon}</span>
-                                {dept.name}
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                    activeDepartment === dept.name
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-white/60 text-secondary-600'
-                                }`}>
-                                    {dept.count}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* Main Team Section */}
-            <section className="py-20 bg-white">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h3 className="text-center text-3xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-500 mb-12 animate-slide-up">
                         Team Members
@@ -128,8 +96,40 @@ const Team = () => {
                 </div>
             </section>
 
+            {/* Department Filter Buttons – updated colors */}
+            <section className="py-8 bg-white border-t border-b border-secondary-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Department</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {departments.map((dept) => (
+                            <button
+                                key={dept.name}
+                                onClick={() => setActiveDepartment(dept.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeDepartment === dept.name
+                                    ? 'bg-secondary-900 text-white'
+                                    : `${dept.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{dept.icon}</span>
+                                {dept.name}
+                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                    activeDepartment === dept.name
+                                        ? 'bg-white/20 text-white'
+                                        : 'bg-white/60 text-secondary-600'
+                                }`}>
+                                    {dept.count}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Team Values Section – updated colors */}
-            <section className="py-20 bg-secondary-50">
+            <section className="page-section-soft">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Our Culture</span>
@@ -159,7 +159,7 @@ const Team = () => {
 
             {/* Leadership Spotlight – updated gradient and styles */}
             {teamMembers.filter(m => m.department === 'Leadership').length > 0 && (
-                <section className="relative bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+                <section className="modern-cta">
                     <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
                     <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
@@ -196,7 +196,7 @@ const Team = () => {
             )}
 
             {/* Join the Team CTA – updated gradient */}
-            <section className="relative bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+            <section className="modern-cta">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
@@ -248,3 +248,4 @@ const Team = () => {
 };
 
 export default Team;
+

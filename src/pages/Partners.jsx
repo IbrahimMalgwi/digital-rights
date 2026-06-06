@@ -53,49 +53,6 @@ const Partners = () => {
 
     return (
         <div className="overflow-hidden">
-            {/* Filter Bar – centered */}
-            <section className="py-12 bg-white border-b border-secondary-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Type</h3>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {partnerTypes.map((type) => (
-                            <button
-                                key={type.name}
-                                onClick={() => setActiveType(type.name)}
-                                className={`
-                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeType === type.name
-                                    ? 'bg-secondary-900 text-white'
-                                    : `${type.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{type.icon}</span>
-                                {type.name}
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                    activeType === type.name
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-white/60 text-secondary-600'
-                                }`}>
-                                    {type.count}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Results Count */}
-            <section className="pt-8 pb-4 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <p className="text-secondary-500">
-                            Showing <span className="font-semibold text-secondary-900">{filteredPartners.length}</span> partners
-                        </p>
-                    </div>
-                </div>
-            </section>
-
             {/* Partners Grid – 4 Columns, updated styles */}
             <section className="py-8 pb-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -227,8 +184,51 @@ const Partners = () => {
                 </div>
             </section>
 
+            {/* Filter Bar – centered */}
+            <section className="py-12 bg-white border-t border-secondary-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Type</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {partnerTypes.map((type) => (
+                            <button
+                                key={type.name}
+                                onClick={() => setActiveType(type.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeType === type.name
+                                    ? 'bg-secondary-900 text-white'
+                                    : `${type.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{type.icon}</span>
+                                {type.name}
+                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                    activeType === type.name
+                                        ? 'bg-white/20 text-white'
+                                        : 'bg-white/60 text-secondary-600'
+                                }`}>
+                                    {type.count}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Results Count */}
+            <section className="pb-12 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center">
+                        <p className="text-secondary-500">
+                            Showing <span className="font-semibold text-secondary-900">{filteredPartners.length}</span> partners
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             {/* Become a Partner CTA – updated gradient */}
-            <section className="relative bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+            <section className="modern-cta">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
@@ -260,3 +260,4 @@ const Partners = () => {
 };
 
 export default Partners;
+

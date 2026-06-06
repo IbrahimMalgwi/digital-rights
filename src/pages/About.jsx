@@ -77,7 +77,7 @@ const About = () => {
             </section>
 
             {/* Values – Colorful Cards (updated to new palette) */}
-            <section className="py-24 bg-white">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 animate-fade-in">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">What we believe</span>
@@ -103,7 +103,7 @@ const About = () => {
             </section>
 
             {/* Team Section – Modern Grid */}
-            <section className="py-24 bg-secondary-50">
+            <section className="page-section-soft">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 animate-fade-in">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">The people</span>
@@ -133,7 +133,7 @@ const About = () => {
             </section>
 
             {/* CTA – Bold & Graphic with new gradient */}
-            <section className="relative bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+            <section className="modern-cta">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 

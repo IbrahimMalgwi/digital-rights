@@ -143,54 +143,6 @@ const Gallery = () => {
 
     return (
         <div className="overflow-hidden">
-            {/* Filter Bar – centered, updated colors */}
-            {galleryItems.length > 0 && (
-                <section className="pt-16 pb-8 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
-                        <div className="flex flex-wrap gap-3 justify-center">
-                            {categories.map((category) => (
-                                <button
-                                    key={category.name}
-                                    onClick={() => setActiveFilter(category.name)}
-                                    className={`
-                                        group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                        ${activeFilter === category.name
-                                        ? 'bg-secondary-900 text-white'
-                                        : `${category.color} hover:shadow-md`
-                                    }
-                                    `}
-                                >
-                                    <span className="mr-2">{category.icon}</span>
-                                    {category.name}
-                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                        activeFilter === category.name
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-white/60 text-secondary-600'
-                                    }`}>
-                                        {category.count}
-                                    </span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {/* Results Count */}
-            {galleryItems.length > 0 && (
-                <section className="py-4 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center">
-                            <p className="text-secondary-500">
-                                Showing <span className="font-semibold text-secondary-900">{visibleItems.length}</span> of{' '}
-                                <span className="font-semibold text-secondary-900">{filteredItems.length}</span> photos
-                            </p>
-                        </div>
-                    </div>
-                </section>
-            )}
-
             {/* Main Gallery Section */}
             <section className="py-8 pb-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -296,6 +248,54 @@ const Gallery = () => {
                 </div>
             </section>
 
+            {/* Filter Bar – centered, updated colors */}
+            {galleryItems.length > 0 && (
+                <section className="py-12 bg-white border-t border-secondary-100">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
+                        <div className="flex flex-wrap gap-3 justify-center">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.name}
+                                    onClick={() => setActiveFilter(category.name)}
+                                    className={`
+                                        group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                        ${activeFilter === category.name
+                                        ? 'bg-secondary-900 text-white'
+                                        : `${category.color} hover:shadow-md`
+                                    }
+                                    `}
+                                >
+                                    <span className="mr-2">{category.icon}</span>
+                                    {category.name}
+                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                        activeFilter === category.name
+                                            ? 'bg-white/20 text-white'
+                                            : 'bg-white/60 text-secondary-600'
+                                    }`}>
+                                        {category.count}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Results Count */}
+            {galleryItems.length > 0 && (
+                <section className="pb-12 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center">
+                            <p className="text-secondary-500">
+                                Showing <span className="font-semibold text-secondary-900">{visibleItems.length}</span> of{' '}
+                                <span className="font-semibold text-secondary-900">{filteredItems.length}</span> photos
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* Lightbox */}
             {selectedImage && (
                 <Lightbox item={selectedImage} onClose={() => setSelectedImage(null)} />
@@ -305,3 +305,4 @@ const Gallery = () => {
 };
 
 export default Gallery;
+

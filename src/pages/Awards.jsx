@@ -126,50 +126,6 @@ const Awards = () => {
 
     return (
         <div className="overflow-hidden">
-            {/* Category Pills – centered, updated colors */}
-            <section className="py-12 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {categories.map((category) => (
-                            <button
-                                key={category.name}
-                                onClick={() => setActiveFilter(category.name)}
-                                className={`
-                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeFilter === category.name
-                                    ? 'bg-secondary-900 text-white'
-                                    : `${category.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{category.icon}</span>
-                                {category.name}
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                    activeFilter === category.name
-                                        ? 'bg-white/20 text-white'
-                                        : 'bg-white/60 text-secondary-600'
-                                }`}>
-                                    {category.count}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Results Count */}
-            <section className="pb-4 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <p className="text-secondary-500">
-                            Showing <span className="font-semibold text-secondary-900">{visibleAwards.length}</span> of{' '}
-                            <span className="font-semibold text-secondary-900">{filteredAwards.length}</span> awards
-                        </p>
-                    </div>
-                </div>
-            </section>
-
             {/* Awards Grid */}
             <section className="py-8 pb-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -259,8 +215,52 @@ const Awards = () => {
                 </div>
             </section>
 
+            {/* Category Pills – centered, updated colors */}
+            <section className="py-12 bg-white border-t border-secondary-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {categories.map((category) => (
+                            <button
+                                key={category.name}
+                                onClick={() => setActiveFilter(category.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeFilter === category.name
+                                    ? 'bg-secondary-900 text-white'
+                                    : `${category.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{category.icon}</span>
+                                {category.name}
+                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                    activeFilter === category.name
+                                        ? 'bg-white/20 text-white'
+                                        : 'bg-white/60 text-secondary-600'
+                                }`}>
+                                    {category.count}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Results Count */}
+            <section className="pb-12 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center">
+                        <p className="text-secondary-500">
+                            Showing <span className="font-semibold text-secondary-900">{visibleAwards.length}</span> of{' '}
+                            <span className="font-semibold text-secondary-900">{filteredAwards.length}</span> awards
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Section – new gradient */}
-            <section className="relative bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+            <section className="modern-cta">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
@@ -303,3 +303,4 @@ const Awards = () => {
 };
 
 export default Awards;
+

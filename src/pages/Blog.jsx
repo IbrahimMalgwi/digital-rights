@@ -50,7 +50,7 @@ const Blog = () => {
         <div className="overflow-hidden">
             {/* Featured Posts Section */}
             {featuredPosts.length > 0 && (
-                <section className="py-16 bg-secondary-50">
+                <section className="page-section-soft">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center max-w-2xl mx-auto mb-12 animate-slide-up">
                             <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Featured</span>
@@ -67,69 +67,9 @@ const Blog = () => {
                 </section>
             )}
 
-            {/* Filter Bar – centered, updated colors */}
-            <section className="py-12 bg-white border-b border-secondary-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {categories.map((category) => (
-                            <button
-                                key={category.name}
-                                onClick={() => setActiveCategory(category.name)}
-                                className={`
-                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                    ${activeCategory === category.name
-                                    ? 'bg-secondary-900 text-white'
-                                    : `${category.color} hover:shadow-md`
-                                }
-                                `}
-                            >
-                                <span className="mr-2">{category.icon}</span>
-                                {category.name}
-                                {category.name !== 'All' && (
-                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                        activeCategory === category.name
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-white/60 text-secondary-600'
-                                    }`}>
-                                        {category.count}
-                                    </span>
-                                )}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Search Bar – centered */}
-            <section className="py-8 bg-white">
-                <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="relative">
-                        <input
-                            type="text"
-                            placeholder="Search articles..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-secondary-50 border border-secondary-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-secondary-900 placeholder:text-secondary-400"
-                        />
-                        <svg className="absolute left-4 top-4 w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                </div>
-            </section>
-
             {/* Main Content Area */}
-            <section id="blog-posts" className="py-16 bg-white">
+            <section id="blog-posts" className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Results count */}
-                    <div className="text-center mb-8">
-                        <p className="text-secondary-500">
-                            Showing <span className="font-semibold text-secondary-900">{Math.min(visiblePosts, filteredPosts.length)}</span> of{' '}
-                            <span className="font-semibold text-secondary-900">{filteredPosts.length}</span> articles
-                        </p>
-                    </div>
-
                     {/* Blog Posts Grid */}
                     {filteredPosts.length > 0 ? (
                         <>
@@ -192,8 +132,72 @@ const Blog = () => {
                 </div>
             </section>
 
+            {/* Filter Bar – centered, updated colors */}
+            <section className="py-12 bg-white border-t border-secondary-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {categories.map((category) => (
+                            <button
+                                key={category.name}
+                                onClick={() => setActiveCategory(category.name)}
+                                className={`
+                                    group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                    ${activeCategory === category.name
+                                    ? 'bg-secondary-900 text-white'
+                                    : `${category.color} hover:shadow-md`
+                                }
+                                `}
+                            >
+                                <span className="mr-2">{category.icon}</span>
+                                {category.name}
+                                {category.name !== 'All' && (
+                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                        activeCategory === category.name
+                                            ? 'bg-white/20 text-white'
+                                            : 'bg-white/60 text-secondary-600'
+                                    }`}>
+                                        {category.count}
+                                    </span>
+                                )}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Search Bar – centered */}
+            <section className="py-8 bg-white">
+                <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="relative">
+                        <input
+                            type="text"
+                            placeholder="Search articles..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full pl-12 pr-4 py-4 bg-secondary-50 border border-secondary-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-secondary-900 placeholder:text-secondary-400"
+                        />
+                        <svg className="absolute left-4 top-4 w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </section>
+
+            {/* Results count */}
+            <section className="pb-12 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center">
+                        <p className="text-secondary-500">
+                            Showing <span className="font-semibold text-secondary-900">{Math.min(visiblePosts, filteredPosts.length)}</span> of{' '}
+                            <span className="font-semibold text-secondary-900">{filteredPosts.length}</span> articles
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             {/* Newsletter Section – new gradient */}
-            <section className="relative bg-gradient-to-br from-primary-600 to-accent-600 py-24 overflow-hidden">
+            <section className="modern-cta">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
 
@@ -231,3 +235,4 @@ const Blog = () => {
 };
 
 export default Blog;
+

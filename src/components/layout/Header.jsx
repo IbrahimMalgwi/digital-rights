@@ -55,7 +55,7 @@ const Header = () => {
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
                 scrolled
-                    ? 'bg-white/90 backdrop-blur-md shadow-soft py-3'
+                    ? 'bg-white/95 backdrop-blur-md shadow-md py-3'
                     : 'bg-white/95 backdrop-blur-sm py-5'
             }`}
         >
@@ -63,14 +63,14 @@ const Header = () => {
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-3 group">
-                        <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-600 rounded-lg flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform shadow-medium">
+                        <div className="w-11 h-11 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform shadow-medium">
                             {siteContent.site?.name?.[0] || 'D'}
                         </div>
                         <div className="flex flex-col">
-                            <span className="font-display font-semibold text-secondary-800 group-hover:text-primary-600 transition-colors">
+                            <span className="font-display font-bold text-secondary-900 group-hover:text-primary-600 transition-colors text-sm">
                                 {siteContent.site?.name || 'DRMHI Africa'}
                             </span>
-                            <span className="text-xs text-secondary-500 hidden sm:block">
+                            <span className="text-xs text-secondary-500 hidden sm:block font-medium">
                                 Digital Rights & Mental Health
                             </span>
                         </div>
@@ -82,9 +82,9 @@ const Header = () => {
                             <Link
                                 key={item.name}
                                 to={item.href}
-                                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                                     location.pathname === item.href
-                                        ? 'text-primary-700 bg-primary-50'
+                                        ? 'text-primary-700 bg-primary-50 font-semibold'
                                         : 'text-secondary-700 hover:text-primary-600 hover:bg-secondary-50'
                                 }`}
                             >
@@ -95,10 +95,10 @@ const Header = () => {
                         {/* Donate Button */}
                         <Link
                             to="/donate"
-                            className="ml-2 relative group"
+                            className="ml-3 relative group"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg blur-md opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                            <div className="relative px-5 py-2.5 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg text-sm font-medium hover:from-primary-600 hover:to-accent-600 transition-all transform hover:scale-105 shadow-medium">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity"></div>
+                            <div className="relative px-6 py-2.5 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-xl text-sm font-semibold hover:from-primary-700 hover:to-accent-700 transition-all transform hover:scale-105 shadow-md hover:shadow-lg">
                                 Donate
                             </div>
                         </Link>
@@ -113,9 +113,9 @@ const Header = () => {
                         aria-controls="mobile-menu"
                     >
                         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5">
-                            <span className={`absolute left-0 w-5 h-0.5 bg-secondary-700 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 top-0' : '-top-1.5'}`}></span>
-                            <span className={`absolute left-0 w-5 h-0.5 bg-secondary-700 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'top-0'}`}></span>
-                            <span className={`absolute left-0 w-5 h-0.5 bg-secondary-700 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 top-0' : 'top-1.5'}`}></span>
+                            <span className={`absolute left-0 w-5 h-0.5 bg-secondary-800 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 top-0' : '-top-1.5'}`}></span>
+                            <span className={`absolute left-0 w-5 h-0.5 bg-secondary-800 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'top-0'}`}></span>
+                            <span className={`absolute left-0 w-5 h-0.5 bg-secondary-800 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 top-0' : 'top-1.5'}`}></span>
                         </div>
                     </button>
                 </div>
@@ -129,9 +129,9 @@ const Header = () => {
 
             {/* Progress Bar - using your config colors */}
             {scrolled && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary-100">
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-secondary-100">
                     <div
-                        className="h-full bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-300"
+                        className="h-full bg-gradient-to-r from-primary-600 to-accent-600 transition-all duration-300"
                         style={{ width: `${scrollProgress}%` }}
                     ></div>
                 </div>

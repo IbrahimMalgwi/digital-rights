@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,11 +11,15 @@
     }
 
     body {
-        @apply font-sans antialiased text-gray-900 bg-white;
+        @apply font-sans antialiased text-secondary-900;
+        background:
+            radial-gradient(circle at top left, rgba(147, 51, 234, 0.12), transparent 32rem),
+            radial-gradient(circle at top right, rgba(217, 70, 239, 0.10), transparent 30rem),
+            linear-gradient(180deg, #fff 0%, #f8fafc 48%, #fff 100%);
     }
 
     h1, h2, h3, h4, h5, h6 {
-        @apply font-display font-semibold text-gray-900;
+        @apply font-display font-bold text-secondary-950;
     }
 
     /* Custom scrollbar */
@@ -24,71 +28,241 @@
     }
 
     ::-webkit-scrollbar-track {
-        @apply bg-gray-100;
+        @apply bg-secondary-100;
     }
 
     ::-webkit-scrollbar-thumb {
-        @apply bg-primary-300 rounded-full;
+        @apply bg-primary-400 rounded-full transition-colors;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        @apply bg-primary-400;
+        @apply bg-primary-600;
     }
 }
 
 /* Custom component styles */
 @layer components {
+    /* Modern Button Styles */
     .btn {
-        @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+        @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-soft hover:shadow-medium;
     }
 
     .btn-primary {
-        @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 transform hover:scale-105 active:scale-95;
+        @apply btn bg-gradient-to-r from-secondary-950 via-primary-700 to-accent-600 text-white hover:from-secondary-900 hover:via-primary-600 hover:to-accent-500 focus:ring-primary-500 transform hover:-translate-y-0.5 active:scale-95 shadow-large;
     }
 
     .btn-secondary {
-        @apply btn bg-white text-primary-600 border-primary-600 hover:bg-primary-50 focus:ring-primary-500;
+        @apply btn bg-white/85 text-secondary-900 border border-white/70 hover:bg-white focus:ring-primary-500 hover:border-primary-200 backdrop-blur-xl;
     }
 
+    .btn-outline {
+        @apply btn bg-transparent text-primary-700 border-2 border-primary-200 hover:bg-primary-50 focus:ring-primary-500;
+    }
+
+    /* Modern Card Styles */
     .card {
-        @apply bg-white rounded-2xl border border-gray-200 shadow-soft hover:shadow-medium transition-all duration-300;
+        @apply bg-white/90 rounded-3xl border border-white shadow-soft backdrop-blur-xl transition-all duration-300;
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.9) inset,
+            0 18px 55px -28px rgba(15, 23, 42, 0.38);
     }
 
     .card-hover {
-        @apply card hover:shadow-large hover:-translate-y-1;
+        @apply card hover:-translate-y-2 hover:border-primary-100;
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.92) inset,
+            0 24px 70px -32px rgba(15, 23, 42, 0.42);
     }
 
+    .card-elevated {
+        @apply bg-white/95 rounded-3xl shadow-large hover:shadow-xl transition-all duration-300 border border-white;
+    }
+
+    /* Input Styles */
     .input {
-        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 placeholder-gray-400;
+        @apply w-full px-4 py-3 border border-secondary-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 placeholder-secondary-400 bg-white;
     }
 
+    .input:focus {
+        @apply border-primary-500 shadow-md;
+    }
+
+    /* Form Styles */
+    .form-group {
+        @apply mb-6;
+    }
+
+    .form-label {
+        @apply block text-sm font-medium text-secondary-900 mb-2;
+    }
+
+    /* Section padding */
     .section-padding {
         @apply py-20 lg:py-24;
     }
 
+    .section-padding-sm {
+        @apply py-12 lg:py-16;
+    }
+
+    /* Gradient text */
     .gradient-text {
-        @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+        @apply bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent;
+    }
+
+    .gradient-text-secondary {
+        @apply bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 bg-clip-text text-transparent;
     }
 
     /* Navigation styles */
     .nav-link {
-        @apply relative text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200;
+        @apply relative text-secondary-600 hover:text-primary-600 font-medium transition-colors duration-200;
     }
 
     .nav-link::after {
-        @apply content-[''] absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200;
+        @apply content-[''] absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-300;
     }
 
     .nav-link:hover::after {
         @apply w-full;
     }
+
+    .nav-link.active {
+        @apply text-primary-600;
+    }
+
+    .nav-link.active::after {
+        @apply w-full;
+    }
+
+    /* Badge Styles */
+    .badge {
+        @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full;
+    }
+
+    .badge-primary {
+        @apply badge bg-primary-100 text-primary-700;
+    }
+
+    .badge-accent {
+        @apply badge bg-accent-100 text-accent-700;
+    }
+
+    .badge-secondary {
+        @apply badge bg-secondary-100 text-secondary-700;
+    }
+
+    /* Text utilities */
+    .text-muted {
+        @apply text-secondary-500;
+    }
+
+    .text-subtitle {
+        @apply text-secondary-600;
+    }
+
+    /* Divider */
+    .divider {
+        @apply h-px bg-gradient-to-r from-transparent via-secondary-200 to-transparent;
+    }
+
+    .page-section {
+        @apply relative py-20 lg:py-24 overflow-hidden;
+    }
+
+    .page-section-soft {
+        @apply relative py-20 lg:py-24 overflow-hidden bg-secondary-50;
+        background:
+            radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.14), transparent 22rem),
+            radial-gradient(circle at 85% 35%, rgba(217, 70, 239, 0.12), transparent 24rem),
+            linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    }
+
+    .page-section-white {
+        @apply relative py-20 lg:py-24 overflow-hidden bg-white;
+        background:
+            radial-gradient(circle at 12% 0%, rgba(250, 245, 255, 0.95), transparent 24rem),
+            radial-gradient(circle at 88% 20%, rgba(253, 244, 255, 0.9), transparent 24rem),
+            #ffffff;
+    }
+
+    .section-heading {
+        @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight text-secondary-950;
+    }
+
+    .section-eyebrow {
+        @apply inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.24em] text-primary-700 shadow-soft border border-primary-100 backdrop-blur-xl;
+    }
+
+    .section-copy {
+        @apply text-base md:text-lg text-secondary-600 leading-relaxed;
+    }
+
+    .visual-panel {
+        @apply relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/80 shadow-large backdrop-blur-xl;
+    }
+
+    .modern-cta {
+        @apply relative py-24 overflow-hidden text-white;
+        background:
+            radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.24), transparent 18rem),
+            radial-gradient(circle at 85% 40%, rgba(15, 23, 42, 0.32), transparent 22rem),
+            linear-gradient(135deg, #0f172a 0%, #7c3aed 48%, #c026d3 100%);
+    }
+
+    .modern-cta::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, black, transparent);
+        opacity: 0.35;
+    }
 }
 
 /* Custom utilities */
 @layer utilities {
+    /* Glass morphism effect */
     .backdrop-blur-glass {
         backdrop-filter: blur(16px) saturate(180%);
         background-color: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Smooth transitions */
+    .transition-smooth {
+        @apply transition-all duration-300 ease-in-out;
+    }
+
+    /* Utility for hiding scrollbar while keeping functionality */
+    .scrollbar-hide {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Gradient overlay for images */
+    .gradient-overlay {
+        @apply absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent;
+    }
+
+    .aurora-bg {
+        background:
+            radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.22), transparent 26rem),
+            radial-gradient(circle at 90% 18%, rgba(217, 70, 239, 0.18), transparent 28rem),
+            radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.08), transparent 30rem),
+            linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    /* Better focus styles */
+    .focus-visible:focus {
+        @apply outline-none ring-2 ring-primary-500 ring-offset-2;
     }
 }
 
@@ -104,6 +278,7 @@
     }
 }
 
+/* Keyframe animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -117,4 +292,15 @@
 
 .animate-fadeIn {
     animation: fadeIn 0.2s ease-out;
+}
+
+/* Dark mode scrollbar */
+@media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-thumb {
+        @apply bg-secondary-700;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-secondary-600;
+    }
 }

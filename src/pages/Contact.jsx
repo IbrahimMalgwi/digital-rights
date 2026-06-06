@@ -127,14 +127,8 @@ const Contact = () => {
     return (
         <div className="overflow-hidden">
             {/* Contact Methods Section */}
-            <section className="py-20 bg-white">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
-                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">How to reach us</span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
-                            Get in touch
-                        </h2>
-                    </div>
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                         {contactMethods.map((method, index) => (
                             <div
@@ -160,11 +154,18 @@ const Contact = () => {
                             </div>
                         ))}
                     </div>
+
+                    <div className="text-center max-w-2xl mx-auto mt-16 animate-slide-up">
+                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">How to reach us</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
+                            Get in touch
+                        </h2>
+                    </div>
                 </div>
             </section>
 
             {/* Main Contact Section (Form) */}
-            <section id="contact-form" className="py-20 bg-secondary-50">
+            <section id="contact-form" className="page-section-soft">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Send a message</span>
@@ -300,7 +301,7 @@ const Contact = () => {
             </section>
 
             {/* FAQ Section */}
-            <section className="py-20 bg-white">
+            <section className="page-section-white">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">FAQ</span>
@@ -335,7 +336,7 @@ const Contact = () => {
             </section>
 
             {/* Map Section */}
-            <section className="py-20 bg-secondary-50">
+            <section className="page-section-soft">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-12 animate-slide-up">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Location</span>
@@ -372,7 +373,7 @@ const Contact = () => {
             </section>
 
             {/* Office Hours */}
-            <section className="py-20 bg-white">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
                         <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Hours</span>
@@ -404,3 +405,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

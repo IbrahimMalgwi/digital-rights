@@ -1,35 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ProjectCard = ({ project, variant = 'default', categoryColor }) => {
-    // Removed unused imageError state
-
+const ProjectCard = ({ project, variant = 'default', categoryColor = 'bg-primary-50 text-primary-700', featured = false }) => {
     // Featured variant
-    if (variant === 'featured') {
+    if (featured || variant === 'featured') {
         return (
-            <div className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all">
-                <div className="relative h-64 bg-gradient-to-br from-amber-500 to-emerald-600">
+            <div className="group card-hover overflow-hidden h-full flex flex-col">
+                <div className="relative h-72 bg-gradient-to-br from-secondary-950 via-primary-700 to-accent-600 overflow-hidden">
                     {project.image ? (
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                        <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async" />
                     ) : (
                         <div className="w-full h-full flex items-center justify-center">
                             <span className="text-6xl text-white/30">🚀</span>
                         </div>
                     )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/80 via-secondary-950/15 to-transparent" />
+                    <span className="absolute left-5 top-5 px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-secondary-900 shadow-soft backdrop-blur">
+                        {project.status}
+                    </span>
                 </div>
-                <div className="p-6">
+                <div className="p-7 flex flex-col flex-1">
                     <div className="flex items-center gap-2 mb-3">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${categoryColor}`}>
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${categoryColor}`}>
                             {project.category}
                         </span>
-                        <span className="text-xs text-gray-400">{project.status}</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
-                    <p className="text-sm text-gray-500 mb-4">{project.description}</p>
-                    <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-400">📍 {project.location}</span>
-                        <Link to={`/projects/${project.id}`} className="text-sm text-gray-900 font-medium hover:text-amber-600">
-                            View details →
+                    <h3 className="text-2xl font-display font-bold text-secondary-950 mb-3 group-hover:text-primary-700 transition-colors">{project.title}</h3>
+                    <p className="text-sm text-secondary-600 mb-5 flex-1 leading-relaxed">{project.description}</p>
+                    <div className="flex items-center justify-between pt-4 border-t border-secondary-100">
+                        <span className="text-xs text-secondary-500 font-medium">📍 {project.location}</span>
+                        <Link to={`/projects/${project.id}`} className="text-sm text-primary-700 font-bold hover:text-accent-700 transition-colors flex items-center">
+                            Details
+                            <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                            </svg>
                         </Link>
                     </div>
                 </div>
@@ -39,22 +43,25 @@ const ProjectCard = ({ project, variant = 'default', categoryColor }) => {
 
     // Compact variant (for grid)
     return (
-        <div className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all">
-            <div className="p-5">
+        <div className="group card-hover overflow-hidden h-full flex flex-col">
+            <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center justify-between mb-3">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${categoryColor}`}>
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${categoryColor}`}>
                         {project.category}
                     </span>
-                    <span className="text-xs text-gray-400">{project.status}</span>
+                    <span className="text-xs font-bold text-secondary-600 bg-secondary-100 px-2 py-1 rounded-full">{project.status}</span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-amber-600">
+                <h3 className="text-xl font-display font-bold text-secondary-950 mb-3 group-hover:text-primary-700 transition-colors">
                     {project.title}
                 </h3>
-                <p className="text-sm text-gray-500 mb-4 line-clamp-2">{project.description}</p>
-                <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-400">📍 {project.location}</span>
-                    <Link to={`/projects/${project.id}`} className="text-sm text-gray-900 font-medium hover:text-amber-600">
-                        View →
+                <p className="text-sm text-secondary-600 mb-5 flex-1 line-clamp-3 leading-relaxed">{project.description}</p>
+                <div className="flex items-center justify-between pt-3 border-t border-secondary-100">
+                    <span className="text-xs text-secondary-500 font-medium">📍 {project.location}</span>
+                    <Link to={`/projects/${project.id}`} className="text-sm text-primary-700 font-bold hover:text-accent-700 transition-colors flex items-center">
+                        View
+                        <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                        </svg>
                     </Link>
                 </div>
             </div>
