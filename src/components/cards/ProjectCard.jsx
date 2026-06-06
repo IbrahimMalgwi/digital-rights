@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getAssetUrl } from '../../utils/assets';
 
 const ProjectCard = ({ project, variant = 'default', categoryColor = 'bg-primary-50 text-primary-700', featured = false }) => {
     // Featured variant
@@ -7,12 +8,20 @@ const ProjectCard = ({ project, variant = 'default', categoryColor = 'bg-primary
         return (
             <div className="group card-hover overflow-hidden h-full flex flex-col">
                 <div className="relative h-72 bg-gradient-to-br from-secondary-950 via-primary-700 to-accent-600 overflow-hidden">
-                    {project.image ? (
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async" />
-                    ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                            <span className="text-6xl text-white/30">🚀</span>
-                        </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-6xl text-white/30">🚀</span>
+                    </div>
+                    {project.image && (
+                        <img
+                            src={getAssetUrl(project.image)}
+                            alt={project.title}
+                            className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
+                            decoding="async"
+                            onError={(event) => {
+                                event.currentTarget.style.display = 'none';
+                            }}
+                        />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/80 via-secondary-950/15 to-transparent" />
                     <span className="absolute left-5 top-5 px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-secondary-900 shadow-soft backdrop-blur">
@@ -44,6 +53,24 @@ const ProjectCard = ({ project, variant = 'default', categoryColor = 'bg-primary
     // Compact variant (for grid)
     return (
         <div className="group card-hover overflow-hidden h-full flex flex-col">
+            <div className="relative h-44 bg-gradient-to-br from-secondary-950 via-primary-700 to-accent-600 overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-5xl text-white/30">🚀</span>
+                </div>
+                {project.image && (
+                    <img
+                        src={getAssetUrl(project.image)}
+                        alt={project.title}
+                        className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        loading="lazy"
+                        decoding="async"
+                        onError={(event) => {
+                            event.currentTarget.style.display = 'none';
+                        }}
+                    />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/70 to-transparent" />
+            </div>
             <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center justify-between mb-3">
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${categoryColor}`}>

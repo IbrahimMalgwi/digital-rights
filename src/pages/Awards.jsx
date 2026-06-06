@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { siteContent } from '../data/content';
+import { getAssetUrl } from '../utils/assets';
 
 const Awards = () => {
     const [activeFilter, setActiveFilter] = useState('All');
@@ -61,7 +62,7 @@ const Awards = () => {
                     <div className="relative h-80 md:h-auto bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
                         {award.image ? (
                             <img
-                                src={award.image}
+                                src={getAssetUrl(award.image)}
                                 alt={award.title}
                                 className="w-full h-full object-cover"
                                 decoding="async"
@@ -127,7 +128,7 @@ const Awards = () => {
     return (
         <div className="overflow-hidden">
             {/* Awards Grid */}
-            <section className="py-8 pb-20 bg-white">
+            <section className="pt-32 md:pt-36 pb-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {isLoading ? (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

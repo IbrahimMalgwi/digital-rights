@@ -127,7 +127,7 @@ const Contact = () => {
     return (
         <div className="overflow-hidden">
             {/* Contact Methods Section */}
-            <section className="page-section-white">
+            <section className="page-section-white pt-32 md:pt-36">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                         {contactMethods.map((method, index) => (

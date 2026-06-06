@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getAssetUrl } from '../../utils/assets';
 
 const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColor }) => {
     const [imageError, setImageError] = useState(false);
@@ -25,7 +26,7 @@ const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColo
                     <div className="w-24 h-24 rounded-3xl mr-6 overflow-hidden bg-gradient-to-br from-secondary-950 via-primary-700 to-accent-600 flex-shrink-0 shadow-large ring-4 ring-white">
                         {member.image && !imageError ? (
                             <img
-                                src={member.image}
+                                src={getAssetUrl(member.image)}
                                 alt={member.name}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                 onError={handleImageError}
@@ -83,7 +84,7 @@ const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColo
                 <div className="w-28 h-28 mx-auto rounded-3xl mb-5 overflow-hidden bg-gradient-to-br from-secondary-950 via-primary-700 to-accent-600 shadow-large ring-4 ring-white flex-shrink-0">
                     {member.image && !imageError ? (
                         <img
-                            src={member.image}
+                            src={getAssetUrl(member.image)}
                             alt={member.name}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                             onError={handleImageError}

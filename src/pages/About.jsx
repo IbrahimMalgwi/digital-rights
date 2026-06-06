@@ -36,7 +36,7 @@ const About = () => {
         <div className="overflow-hidden">
 
             {/* Mission & Vision – Split Screen with new colors */}
-            <section className="grid md:grid-cols-2 min-h-[600px]">
+            <section className="grid md:grid-cols-2 min-h-[600px] pt-28 md:pt-32 bg-white">
                 {/* Mission */}
                 <div className="bg-primary-50 p-12 md:p-20 flex items-center justify-center">
                     <div className="max-w-lg text-center md:text-left animate-slide-up">

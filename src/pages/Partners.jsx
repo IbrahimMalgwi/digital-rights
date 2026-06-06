@@ -54,7 +54,7 @@ const Partners = () => {
     return (
         <div className="overflow-hidden">
             {/* Partners Grid – 4 Columns, updated styles */}
-            <section className="py-8 pb-20 bg-white">
+            <section className="pt-32 md:pt-36 pb-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {filteredPartners.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

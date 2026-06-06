@@ -118,7 +118,7 @@ export const siteContent = {
             location: "Multiple African Countries",
             duration: "2023 - Present",
             impact: "500+ women trained across Africa",
-            image: "/images/wdfa-logo.jpg",
+            image: "/images/DHMH5.jpeg",
             website: "https://wdfahub.wixsite.com/wdf-africa",
             objectives: [
                 "AI literacy and digital empowerment",
@@ -155,7 +155,7 @@ export const siteContent = {
             location: "Global (9 countries across 5 continents)",
             duration: "2022 - Present",
             impact: "16+ data worker researchers across 9 countries",
-            image: "/images/data-workers-inquiry.jpg",
+            image: "/images/DHMH6.jpeg",
             website: "https://data-workers.org/",
             objectives: [
                 "Empower data workers as community researchers",

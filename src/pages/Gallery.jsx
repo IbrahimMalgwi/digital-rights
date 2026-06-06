@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { siteContent } from '../data/content';
+import { getAssetUrl } from '../utils/assets';
 
 const Gallery = () => {
     const [activeFilter, setActiveFilter] = useState('All');
@@ -66,16 +67,18 @@ const Gallery = () => {
 
                 <div className="grid md:grid-cols-2">
                     <div className="relative h-80 md:h-[500px] bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+                        <span className="text-8xl text-white/30">🖼️</span>
                         {item.image ? (
                             <img
-                                src={item.image}
+                                src={getAssetUrl(item.image)}
                                 alt={item.title}
-                                className="w-full h-full object-cover"
+                                className="absolute inset-0 w-full h-full object-cover"
                                 decoding="async"
+                                onError={(event) => {
+                                    event.currentTarget.style.display = 'none';
+                                }}
                             />
-                        ) : (
-                            <span className="text-8xl text-white/30">🖼️</span>
-                        )}
+                        ) : null}
                     </div>
 
                     <div className="p-8">
@@ -144,7 +147,7 @@ const Gallery = () => {
     return (
         <div className="overflow-hidden">
             {/* Main Gallery Section */}
-            <section className="py-8 pb-20 bg-white">
+            <section className="pt-32 md:pt-36 pb-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {isLoading ? (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -176,19 +179,21 @@ const Gallery = () => {
                                                     onClick={() => setSelectedImage(item)}
                                                 >
                                                     <div className="relative h-64 overflow-hidden bg-gradient-to-br from-primary-500 to-accent-500">
+                                                        <div className="absolute inset-0 flex items-center justify-center">
+                                                            <span className="text-6xl text-white/30">🖼️</span>
+                                                        </div>
                                                         {item.image ? (
                                                             <img
-                                                                src={item.image}
+                                                                src={getAssetUrl(item.image)}
                                                                 alt={item.title}
-                                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                                className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                                                 loading="lazy"
                                                                 decoding="async"
+                                                                onError={(event) => {
+                                                                    event.currentTarget.style.display = 'none';
+                                                                }}
                                                             />
-                                                        ) : (
-                                                            <div className="w-full h-full flex items-center justify-center">
-                                                                <span className="text-6xl text-white/30">🖼️</span>
-                                                            </div>
-                                                        )}
+                                                        ) : null}
 
                                                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                                             <span className="text-white text-sm font-medium">Click to enlarge</span>
