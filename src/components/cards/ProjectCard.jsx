@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getAssetUrl } from '../../utils/assets';
+import { getAssetUrl } from '../../utils/assets.js';
 
 const ProjectCard = ({ project, variant = 'default', categoryColor = 'bg-primary-50 text-primary-700', featured = false }) => {
     // Featured variant

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { siteContent } from '../data/content';
-import { getAssetUrl } from '../utils/assets';
+import { getAssetUrl } from '../utils/assets.js';
 
 const Awards = () => {
     const [activeFilter, setActiveFilter] = useState('All');

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAssetUrl } from '../../utils/assets';
+import { getAssetUrl } from '../../utils/assets.js';
 
 const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColor }) => {
     const [imageError, setImageError] = useState(false);

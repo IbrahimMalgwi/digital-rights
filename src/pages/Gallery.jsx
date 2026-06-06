@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { siteContent } from '../data/content';
-import { getAssetUrl } from '../utils/assets';
+import { getAssetUrl } from '../utils/assets.js';
 
 const Gallery = () => {
     const [activeFilter, setActiveFilter] = useState('All');

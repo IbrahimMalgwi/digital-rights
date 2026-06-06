@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getAssetUrl } from '../../utils/assets';
+import { getAssetUrl } from '../../utils/assets.js';
 
 const BlogCard = ({ post, featured = false }) => {
     const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
