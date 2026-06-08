@@ -47,4 +47,4 @@ jobs:
           server-dir: /public_html/kanunamalgwi/
           port: 21
           protocol: ftp
-          dangerous-clean-slate: false # Set true ONLY on first deploy to wipe old files
+          dangerous-clean-slate: true # Set true ONLY on first deploy to wipe old files
