@@ -147,16 +147,32 @@ const Awards = () => {
                                                 className="group card-hover overflow-hidden cursor-pointer animate-fade-in"
                                                 onClick={() => setSelectedAward(award)}
                                             >
-                                                <div className="relative h-48 bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
-                                                    <span className="text-6xl text-white/30">🏆</span>
-                                                    {award.featured && (
-                                                        <div className="absolute top-3 right-3">
-                                                            <span className="px-3 py-1 bg-white text-secondary-900 rounded-full text-xs font-medium shadow-lg">
-                                                                ⭐ Featured
-                                                            </span>
+                                                <div className="relative h-48 bg-secondary-100 overflow-hidden">
+                                                    {award.image ? (
+                                                        <img
+                                                            src={getAssetUrl(award.image)}
+                                                            alt={award.title}
+                                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                            loading="lazy"
+                                                            decoding="async"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-full h-full flex items-center justify-center bg-secondary-100">
+                                                        <span className="text-secondary-400 text-sm font-medium">
+                                                            No image available
+                                                        </span>
+                                                                                                    </div>
+                                                                                                )}
+
+                                                                                                {award.featured && (
+                                                                                                    <div className="absolute top-3 right-3">
+                                                        <span className="px-3 py-1 bg-white text-secondary-900 rounded-full text-xs font-medium shadow-lg">
+                                                            ⭐ Featured
+                                                        </span>
                                                         </div>
                                                     )}
                                                 </div>
+
 
                                                 <div className="p-6">
                                                     <div className="flex items-center gap-2 mb-3">

@@ -218,7 +218,7 @@ export const siteContent = {
             category: "Recognition",
             year: "2024",
             location: "Global",
-            image: null,
+            image: "/images/bbc100.jpg",
             featured: true,
             externalUrl: "https://bbc.in/4f0F3i7",
             tags: ["Leadership", "Women", "Digital Rights", "Mental Health", "Content Moderation"]
@@ -232,7 +232,7 @@ export const siteContent = {
             category: "Recognition",
             year: "2024",
             location: "Global",
-            image: null,
+            image: "/images/times100.jpg",
             featured: true,
             externalUrl: "https://time.com/7012799/kauna-malgwi/",
             tags: ["AI", "Innovation", "Leadership", "Mental Health", "Data Workers"]
