@@ -62,20 +62,27 @@ const Header = () => {
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
+                    {/* Logo */}
                     <Link to="/" className="flex items-center space-x-3 group">
-                        <div className="w-11 h-11 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform shadow-medium">
-                            {siteContent.site?.name?.[0] || 'D'}
+                        <div className="w-11 h-11 rounded-xl overflow-hidden shadow-medium group-hover:scale-110 transition-transform">
+                            <img
+                                src="/images/logo.png"
+                                alt="DRMHI Africa Logo"
+                                className="w-full h-full object-contain"
+                            />
                         </div>
+
                         <div className="flex flex-col">
-                            <span className="font-display font-bold text-secondary-900 group-hover:text-primary-600 transition-colors text-sm">
-                                {siteContent.site?.name || 'DRMHI Africa'}
-                            </span>
+        <span className="font-display font-bold text-secondary-900 group-hover:text-primary-600 transition-colors text-sm">
+            {siteContent.site?.name || 'DRMHI Africa'}
+        </span>
+
                             <span className="text-xs text-secondary-500 hidden sm:block font-medium">
-                                Digital Rights & Mental Health
-                            </span>
+            Digital Rights & Mental Health
+        </span>
                         </div>
                     </Link>
-
+                    
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center space-x-1">
                         {navigationItems.map((item) => (

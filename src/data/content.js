@@ -353,8 +353,8 @@ export const siteContent = {
         {
             id: 5,
             name: "Saratu Mshelia",
-            role: "Co-founder/project Lead",
-            bio: "Researcher focusing on digital rights, AI ethics, and women's empowerment in technology.",
+            role: "Co-founder/Project Lead",
+            bio: "Women's  Digital Futures Africa(WDFA).",
             image: "/images/Saratu.jpeg",
             social: {
                 linkedin: "#",
@@ -610,6 +610,89 @@ export const siteContent = {
             image: "/images/DHMH3.jpeg",
             category: "Campaigns",
             description: "Public awareness event in Lagos, Nigeria"
+        },
+        {
+            id: 4,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 5,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com1.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 6,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com2.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },{
+            id: 7,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com3.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 8,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com4.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 9,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com5.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 10,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com6.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 11,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com7.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 12,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com8.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 13,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com9.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 14,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com10.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
+        },
+        {
+            id: 15,
+            title: "Mental Health Awareness Campaign",
+            image: "/images/com11.jpeg",
+            category: "Awareness",
+            description: "Community awareness"
         }
     ],
 
