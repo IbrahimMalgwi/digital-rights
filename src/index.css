@@ -13,9 +13,9 @@
     body {
         @apply font-sans antialiased text-secondary-900;
         background:
-            radial-gradient(circle at top left, rgba(147, 51, 234, 0.12), transparent 32rem),
-            radial-gradient(circle at top right, rgba(217, 70, 239, 0.10), transparent 30rem),
-            linear-gradient(180deg, #fff 0%, #f8fafc 48%, #fff 100%);
+                radial-gradient(circle at top left, rgba(147, 51, 234, 0.12), transparent 32rem),
+                radial-gradient(circle at top right, rgba(217, 70, 239, 0.10), transparent 30rem),
+                linear-gradient(180deg, #fff 0%, #f8fafc 48%, #fff 100%);
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -63,15 +63,15 @@
     .card {
         @apply bg-white/90 rounded-3xl border border-white shadow-soft backdrop-blur-xl transition-all duration-300;
         box-shadow:
-            0 1px 0 rgba(255, 255, 255, 0.9) inset,
-            0 18px 55px -28px rgba(15, 23, 42, 0.38);
+                0 1px 0 rgba(255, 255, 255, 0.9) inset,
+                0 18px 55px -28px rgba(15, 23, 42, 0.38);
     }
 
     .card-hover {
         @apply card hover:-translate-y-2 hover:border-primary-100;
         box-shadow:
-            0 1px 0 rgba(255, 255, 255, 0.92) inset,
-            0 24px 70px -32px rgba(15, 23, 42, 0.42);
+                0 1px 0 rgba(255, 255, 255, 0.92) inset,
+                0 24px 70px -32px rgba(15, 23, 42, 0.42);
     }
 
     .card-elevated {
@@ -177,17 +177,17 @@
     .page-section-soft {
         @apply relative py-20 lg:py-24 overflow-hidden bg-secondary-50;
         background:
-            radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.14), transparent 22rem),
-            radial-gradient(circle at 85% 35%, rgba(217, 70, 239, 0.12), transparent 24rem),
-            linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+                radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.14), transparent 22rem),
+                radial-gradient(circle at 85% 35%, rgba(217, 70, 239, 0.12), transparent 24rem),
+                linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
     }
 
     .page-section-white {
         @apply relative py-20 lg:py-24 overflow-hidden bg-white;
         background:
-            radial-gradient(circle at 12% 0%, rgba(250, 245, 255, 0.95), transparent 24rem),
-            radial-gradient(circle at 88% 20%, rgba(253, 244, 255, 0.9), transparent 24rem),
-            #ffffff;
+                radial-gradient(circle at 12% 0%, rgba(250, 245, 255, 0.95), transparent 24rem),
+                radial-gradient(circle at 88% 20%, rgba(253, 244, 255, 0.9), transparent 24rem),
+                #ffffff;
     }
 
     .section-heading {
@@ -221,9 +221,9 @@
     .modern-cta {
         @apply relative py-24 overflow-hidden text-white;
         background:
-            radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.24), transparent 18rem),
-            radial-gradient(circle at 85% 40%, rgba(15, 23, 42, 0.32), transparent 22rem),
-            linear-gradient(135deg, #0f172a 0%, #7c3aed 48%, #c026d3 100%);
+                radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.24), transparent 18rem),
+                radial-gradient(circle at 85% 40%, rgba(15, 23, 42, 0.32), transparent 22rem),
+                linear-gradient(135deg, #0f172a 0%, #7c3aed 48%, #c026d3 100%);
     }
 
     .modern-cta::before {
@@ -231,8 +231,8 @@
         position: absolute;
         inset: 0;
         background-image:
-            linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
         background-size: 44px 44px;
         mask-image: linear-gradient(to bottom, black, transparent);
         opacity: 0.35;
@@ -270,10 +270,10 @@
 
     .aurora-bg {
         background:
-            radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.22), transparent 26rem),
-            radial-gradient(circle at 90% 18%, rgba(217, 70, 239, 0.18), transparent 28rem),
-            radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.08), transparent 30rem),
-            linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+                radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.22), transparent 26rem),
+                radial-gradient(circle at 90% 18%, rgba(217, 70, 239, 0.18), transparent 28rem),
+                radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.08), transparent 30rem),
+                linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     }
 
     /* Better focus styles */
