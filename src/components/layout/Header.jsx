@@ -55,8 +55,8 @@ const Header = () => {
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
                 scrolled
-                    ? 'bg-white/95 backdrop-blur-md shadow-md py-3'
-                    : 'bg-white/95 backdrop-blur-sm py-5'
+                    ? 'bg-white/80 backdrop-blur-glass shadow-lg py-3 border-b border-white/60'
+                    : 'bg-white/80 backdrop-blur-glass py-5 border-b border-transparent'
             }`}
         >
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +64,7 @@ const Header = () => {
                     {/* Logo */}
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-3 group">
-                        <div className="w-11 h-11 rounded-xl overflow-hidden shadow-medium group-hover:scale-110 transition-transform">
+                        <div className="w-11 h-11 rounded-2xl overflow-hidden shadow-soft border border-white/80 bg-white/80 p-1.5 group-hover:scale-110 transition-transform">
                             <img
                                 src="/images/logo.png"
                                 alt="DRMHI Africa Logo"
@@ -73,13 +73,12 @@ const Header = () => {
                         </div>
 
                         <div className="flex flex-col">
-        <span className="font-display font-bold text-secondary-900 group-hover:text-primary-600 transition-colors text-sm">
-            {siteContent.site?.name || 'DRMHI Africa'}
-        </span>
-
+                            <span className="font-display font-bold text-secondary-900 group-hover:text-primary-600 transition-colors text-sm">
+                                {siteContent.site?.name || 'DRMHI Africa'}
+                            </span>
                             <span className="text-xs text-secondary-500 hidden sm:block font-medium">
-            Digital Rights & Mental Health
-        </span>
+                                Digital Rights & Mental Health
+                            </span>
                         </div>
                     </Link>
                     
@@ -104,8 +103,8 @@ const Header = () => {
                             to="/donate"
                             className="ml-3 relative group"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity"></div>
-                            <div className="relative px-6 py-2.5 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-xl text-sm font-semibold hover:from-primary-700 hover:to-accent-700 transition-all transform hover:scale-105 shadow-md hover:shadow-lg">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity"></div>
+                            <div className="relative px-6 py-2.5 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-2xl text-sm font-semibold hover:from-primary-700 hover:to-accent-700 transition-all transform hover:scale-105 shadow-md hover:shadow-lg">
                                 Donate
                             </div>
                         </Link>

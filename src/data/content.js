@@ -270,10 +270,12 @@ export const siteContent = {
     ],
 
     hero: {
-        title: "Empowering Women, Changing Lives",
-        subtitle: "We are dedicated to breaking barriers and creating opportunities for women to thrive. Through education, advocacy, and community support, we help women rise above challenges and take control of their futures.",
-        primaryButton: { text: "JOIN WITH US", link: "/donate" },
-        secondaryButton: { text: "Learn More", link: "/about" }
+        title: "Protecting digital rights and strengthening mental wellbeing",
+        subtitle: "We work with women, youth, and communities across Africa to create safer digital spaces, build practical digital skills, and connect people to compassionate mental health support.",
+        eyebrow: "Digital rights • Mental health • Safer communities",
+        summary: "From community outreach to policy advocacy, we help people navigate online harm, build digital confidence, and access support when they need it.",
+        primaryButton: { text: "Support our work", link: "/donate" },
+        secondaryButton: { text: "Explore our programs", link: "/projects" }
     },
 
     about: {
@@ -489,27 +491,27 @@ export const siteContent = {
 
     programs: [
         {
-            title: "We Care",
-            description: "Today's youth need a helpful hand and right guidance at every stage. Here's where we take care of them like our own.",
-            icon: "❤️",
-            features: ["Support Systems", "Guidance", "Community Care"]
+            title: "Community Support",
+            description: "We create compassionate spaces where people can access guidance, peer support, and practical help when online harm or stress becomes overwhelming.",
+            icon: "🤝",
+            features: ["Support Systems", "Peer Guidance", "Community Care"]
         },
         {
-            title: "We Educate",
-            description: "We run small-scale schools for the underprivileged children and youth of daily wage workers for a better future.",
-            icon: "📚",
-            features: ["Quality Education", "Underprivileged Focus", "Future-Building"]
+            title: "Digital Literacy",
+            description: "We deliver workshops that build confidence, safer online habits, and practical digital skills for women, youth, and everyday users.",
+            icon: "💡",
+            features: ["Online Safety", "Skills Training", "Digital Confidence"]
         },
         {
-            title: "We Empower",
-            description: "We equip women with the skills, resources, and confidence they need to achieve financial independence and leadership in their communities.",
-            icon: "💪",
-            features: ["Skills Training", "Leadership Development", "Financial Independence"]
+            title: "Mental Health Support",
+            description: "We connect people to mental health resources, wellbeing tools, and referral pathways that support resilience and recovery.",
+            icon: "🧠",
+            features: ["Counseling Access", "Wellbeing Resources", "Referral Pathways"]
         },
         {
-            title: "Digital Rights Advocacy",
-            description: "Protecting online freedoms and privacy rights across African nations with a focus on women's digital safety",
-            icon: "🔒",
+            title: "Policy Advocacy",
+            description: "We engage communities and decision-makers to strengthen protections for digital rights, safe workplaces, and healthier online spaces.",
+            icon: "⚖️",
             features: ["Policy Research", "Legal Advocacy", "Awareness Campaigns"]
         }
     ],
@@ -592,107 +594,114 @@ export const siteContent = {
     gallery: [
         {
             id: 1,
-            title: "Community Workshop in Accra",
-            image: "/images/DHMH1.jpeg",
-            category: "Events",
-            description: "Digital literacy training session with local community members"
+            title: "Community outreach at Royal Rainbow Academy",
+            image: "/images/bts.jpeg",
+            category: "Community Outreach",
+            description: "A school-based outreach day linking learners with digital safety and wellbeing resources.",
+            location: "Abuja, Nigeria",
+            date: "29/01/2026",
+            featured: true
         },
         {
             id: 2,
-            title: "Policy Roundtable Discussion",
-            image: "/images/DHMH2.jpeg",
-            category: "Events",
-            description: "Stakeholder meeting on digital rights policy framework"
+            title: "School-based wellbeing conversation",
+            image: "/images/bts1.jpeg",
+            category: "Community Outreach",
+            description: "Young people shared experiences around online wellbeing and healthy digital habits.",
+            location: "Lugbe, Abuja",
+            date: "29/01/2026"
         },
         {
             id: 3,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/DHMH3.jpeg",
-            category: "Campaigns",
-            description: "Public awareness event in Lagos, Nigeria"
+            title: "Youth webinar on digital safety and mental wellbeing",
+            image: "/images/com1.jpeg",
+            category: "Webinars",
+            description: "An interactive webinar focused on safer online practices and support for young people.",
+            location: "Virtual",
+            date: "2024-06-12",
+            featured: true
         },
         {
             id: 4,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
+            title: "Train-the-trainer workshop for peer educators",
+            image: "/images/com2.jpeg",
+            category: "Trainings",
+            description: "We equipped peer educators with practical tools to guide others on digital safety and wellbeing.",
+            location: "Kaduna, Nigeria",
+            date: "2024-05-08",
+            featured: true
         },
         {
             id: 5,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com1.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
+            title: "Panel on digital rights and platform labour",
+            image: "/images/com3.jpeg",
+            category: "Conferences",
+            description: "A high-level discussion on the intersection of digital rights, labour, and mental wellbeing.",
+            location: "Dakar, Senegal",
+            date: "2024-02-15"
         },
         {
             id: 6,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com2.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
-        },{
+            title: "Advocacy walk for safer online spaces",
+            image: "/images/com4.jpeg",
+            category: "Advocacy Campaigns",
+            description: "Community members joined the campaign to push for safer and more respectful digital spaces.",
+            location: "Lagos, Nigeria",
+            date: "2024-03-08"
+        },
+        {
             id: 7,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com3.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
+            title: "Team strategy retreat",
+            image: "/images/com5.jpeg",
+            category: "Team Activities",
+            description: "The team came together to plan youth-centered projects and strengthen our support model.",
+            location: "Abuja, Nigeria",
+            date: "2024-01-20"
         },
         {
             id: 8,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com4.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
+            title: "Partner roundtable on youth wellbeing",
+            image: "/images/com6.jpeg",
+            category: "Partner Engagements",
+            description: "A collaborative session with partners to align support for young people and communities.",
+            location: "Abuja, Nigeria",
+            date: "2024-04-17"
         },
         {
             id: 9,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com5.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
+            title: "Media appearance on digital rights",
+            image: "/images/DHMH3.jpeg",
+            category: "Media Appearances",
+            description: "A public conversation highlighting the importance of digital rights and mental health support.",
+            location: "Nigerian Television",
+            date: "2024-06-01"
         },
         {
             id: 10,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com6.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
+            title: "International Women's Day engagement",
+            image: "/images/IWD BORNO 1.jpeg",
+            category: "Advocacy Campaigns",
+            description: "Our team engaged directly with women and young people on digital rights and wellbeing.",
+            location: "Borno State",
+            date: "08/03/2026"
         },
         {
             id: 11,
-            title: "Mental Health Awareness Campaign",
+            title: "Peer educator training session",
             image: "/images/com7.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
+            category: "Trainings",
+            description: "A practical session helping facilitators lead conversations on safety, wellbeing, and resilience.",
+            location: "Maiduguri, Nigeria",
+            date: "2024-07-22"
         },
         {
             id: 12,
-            title: "Mental Health Awareness Campaign",
+            title: "Community conversation with partners",
             image: "/images/com8.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
-        },
-        {
-            id: 13,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com9.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
-        },
-        {
-            id: 14,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com10.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
-        },
-        {
-            id: 15,
-            title: "Mental Health Awareness Campaign",
-            image: "/images/com11.jpeg",
-            category: "Awareness",
-            description: "Community awareness"
+            category: "Partner Engagements",
+            description: "A collaborative discussion with partners focused on community-led support systems.",
+            location: "Virtual",
+            date: "2024-08-10"
         }
     ],
 

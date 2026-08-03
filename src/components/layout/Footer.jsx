@@ -63,7 +63,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="relative overflow-hidden bg-secondary-50 border-t border-secondary-100">
+        <footer className="relative overflow-hidden bg-secondary-50/70 border-t border-secondary-100">
             <div className="absolute -top-24 right-0 w-96 h-96 bg-gradient-to-bl from-primary-100 via-accent-100 to-transparent rounded-full blur-3xl opacity-80" aria-hidden="true" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-accent-100 to-transparent rounded-full blur-3xl opacity-70" aria-hidden="true" />
 

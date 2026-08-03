@@ -108,27 +108,20 @@ const Contact = () => {
         { value: 'volunteer', label: 'Volunteer Opportunities' }
     ];
 
-    // FAQ data
-    const faqs = [
-        {
-            question: "How quickly do you respond?",
-            answer: "We aim to respond to all inquiries within 24-48 business hours."
-        },
-        {
-            question: "Do you accept partnerships?",
-            answer: "Yes! Please select 'Partnerships' in the department dropdown."
-        },
-        {
-            question: "Can I volunteer?",
-            answer: "Absolutely! Select 'Volunteer Opportunities' in the department dropdown."
-        }
-    ];
-
     return (
         <div className="overflow-hidden">
-            {/* Contact Methods Section */}
             <section className="page-section-white pt-32 md:pt-36">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="section-intro mb-12 animate-slide-up">
+                        <span className="section-eyebrow">Contact</span>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
+                            We’re here to help
+                        </h2>
+                        <p className="text-lg text-secondary-600">
+                            Reach out for partnerships, donations, media inquiries, or general support.
+                        </p>
+                    </div>
+
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                         {contactMethods.map((method, index) => (
                             <div
@@ -154,29 +147,13 @@ const Contact = () => {
                             </div>
                         ))}
                     </div>
-
-                    <div className="text-center max-w-2xl mx-auto mt-16 animate-slide-up">
-                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">How to reach us</span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
-                            Get in touch
-                        </h2>
-                    </div>
                 </div>
             </section>
 
-            {/* Main Contact Section (Form) */}
             <section id="contact-form" className="page-section-soft">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
-                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Send a message</span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
-                            Let's talk
-                        </h2>
-                    </div>
-
                     <div className="max-w-4xl mx-auto">
                         <div className="form-surface">
-                            {/* Success Message */}
                             {formStatus.submitted && formStatus.success && (
                                 <div className="mb-6 p-4 bg-primary-50 border border-primary-200 rounded-xl animate-fade-in">
                                     <div className="flex items-center">
@@ -276,10 +253,7 @@ const Contact = () => {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className={`
-                                        btn-primary w-full py-4 px-6
-                                        ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}
-                                    `}
+                                    className={`btn-primary w-full py-4 px-6 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
                                 >
                                     {isSubmitting ? (
                                         <div className="flex items-center justify-center">
@@ -294,107 +268,6 @@ const Contact = () => {
                                     )}
                                 </button>
                             </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* FAQ Section */}
-            <section className="page-section-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
-                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">FAQ</span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
-                            Frequently asked questions
-                        </h2>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {faqs.map((faq, index) => (
-                            <div key={index} className="card-hover p-6 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                                <h3 className="font-semibold text-secondary-900 mb-2">{faq.question}</h3>
-                                <p className="text-secondary-500 text-sm">{faq.answer}</p>
-                            </div>
-                        ))}
-                        <div className="visual-panel bg-gradient-to-br from-primary-500 to-accent-500 p-6 text-white md:col-span-2">
-                            <div className="flex items-center justify-between flex-wrap gap-4">
-                                <div>
-                                    <h3 className="font-semibold text-white mb-1">Still have questions?</h3>
-                                    <p className="text-white/80 text-sm">We're here to help you.</p>
-                                </div>
-                                <a
-                                    href="#contact-form"
-                                    className="btn-secondary px-6 py-3 text-sm"
-                                >
-                                    Contact support
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Map Section */}
-            <section className="page-section-soft">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-12 animate-slide-up">
-                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Location</span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900 mb-4">
-                            Find us here
-                        </h2>
-                        <p className="text-secondary-500">
-                            Visit our headquarters or reach out to our regional offices
-                        </p>
-                    </div>
-
-                    <div className="visual-panel relative h-96 overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100 max-w-5xl mx-auto">
-                        <div className="w-full h-full flex items-center justify-center">
-                            <div className="card p-8 text-center">
-                                <div className="text-5xl mb-3">📍</div>
-                                <p className="text-secondary-900 font-medium text-lg">{siteContent.site.address}</p>
-                                <p className="text-secondary-500 text-sm mt-2">{siteContent.site.fullName}</p>
-                                <a
-                                    href="https://maps.google.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="btn-primary inline-flex items-center mt-4 px-6 py-3 text-sm"
-                                >
-                                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                    Get Directions
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Office Hours */}
-            <section className="page-section-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16 animate-slide-up">
-                        <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Hours</span>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
-                            When to reach us
-                        </h2>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                        <div className="icon-card animate-fade-in">
-                            <div className="text-4xl mb-3">🕒</div>
-                            <h3 className="font-semibold text-secondary-900 mb-2">Monday - Friday</h3>
-                            <p className="text-secondary-500">9:00 AM - 5:00 PM GMT</p>
-                        </div>
-                        <div className="icon-card animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                            <div className="text-4xl mb-3">📞</div>
-                            <h3 className="font-semibold text-secondary-900 mb-2">Phone Support</h3>
-                            <p className="text-secondary-500">Same day response</p>
-                        </div>
-                        <div className="icon-card animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                            <div className="text-4xl mb-3">✉️</div>
-                            <h3 className="font-semibold text-secondary-900 mb-2">Email Response</h3>
-                            <p className="text-secondary-500">Within 24 hours</p>
                         </div>
                     </div>
                 </div>

@@ -11,19 +11,26 @@ const Gallery = () => {
     // Get gallery items from siteContent
     const galleryItems = siteContent.gallery || [];
 
-    // Categories with updated colors to match new theme
+    const categoryStyles = {
+        'Community Outreach': { icon: '🤝', color: 'bg-primary-50 text-primary-700' },
+        'Webinars': { icon: '💻', color: 'bg-accent-50 text-accent-700' },
+        'Trainings': { icon: '🛠️', color: 'bg-secondary-100 text-secondary-800' },
+        'Conferences': { icon: '🎤', color: 'bg-primary-100 text-primary-800' },
+        'Advocacy Campaigns': { icon: '📢', color: 'bg-accent-100 text-accent-800' },
+        'Team Activities': { icon: '👥', color: 'bg-secondary-100 text-secondary-800' },
+        'Partner Engagements': { icon: '🤝', color: 'bg-primary-50 text-primary-700' },
+        'Media Appearances': { icon: '📺', color: 'bg-accent-50 text-accent-700' }
+    };
+
+    const getCategoryStyle = (category) => categoryStyles[category] || { icon: '📸', color: 'bg-primary-50 text-primary-700' };
+
     const categories = [
         { name: 'All', count: galleryItems.length, icon: '🖼️', color: 'bg-secondary-100 text-secondary-800' },
         ...Array.from(new Set(galleryItems.map(item => item.category))).map(category => ({
             name: category,
             count: galleryItems.filter(item => item.category === category).length,
-            icon: category === 'Events' ? '🎉' :
-                category === 'Campaigns' ? '📢' :
-                    category === 'Workshops' ? '🔧' : '📸',
-            color: category === 'Events' ? 'bg-primary-50 text-primary-700' :
-                category === 'Campaigns' ? 'bg-accent-50 text-accent-700' :
-                    category === 'Workshops' ? 'bg-secondary-100 text-secondary-800' :
-                        'bg-primary-50 text-primary-700'
+            icon: getCategoryStyle(category).icon,
+            color: getCategoryStyle(category).color
         }))
     ];
 
@@ -39,6 +46,10 @@ const Gallery = () => {
         const timeoutId = setTimeout(() => setIsLoading(false), 1000);
         return () => clearTimeout(timeoutId);
     }, []);
+
+    useEffect(() => {
+        setVisibleCount(9);
+    }, [activeFilter]);
 
     // Load more items
     const loadMore = () => {
@@ -84,10 +95,7 @@ const Gallery = () => {
                     <div className="p-8">
                         <div className="mb-6">
                             <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-4 ${
-                                item.category === 'Events' ? 'bg-primary-50 text-primary-700' :
-                                    item.category === 'Campaigns' ? 'bg-accent-50 text-accent-700' :
-                                        item.category === 'Workshops' ? 'bg-secondary-100 text-secondary-800' :
-                                            'bg-primary-50 text-primary-700'
+                                getCategoryStyle(item.category).color
                             }`}>
                                 {item.category}
                             </span>
@@ -146,6 +154,40 @@ const Gallery = () => {
 
     return (
         <div className="overflow-hidden">
+            {/* Filter Bar */}
+            {galleryItems.length > 0 && (
+                <section className="filter-section pt-12 md:pt-16">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
+                        <div className="flex flex-wrap gap-3 justify-center">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.name}
+                                    onClick={() => setActiveFilter(category.name)}
+                                    className={`
+                                        group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
+                                        ${activeFilter === category.name
+                                        ? 'bg-secondary-900 text-white'
+                                        : `${category.color} hover:shadow-md`
+                                    }
+                                    `}
+                                >
+                                    <span className="mr-2">{category.icon}</span>
+                                    {category.name}
+                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                                        activeFilter === category.name
+                                            ? 'bg-white/20 text-white'
+                                            : 'bg-white/60 text-secondary-600'
+                                    }`}>
+                                        {category.count}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* Main Gallery Section */}
             <section className="page-section-white page-top">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -165,12 +207,6 @@ const Gallery = () => {
                                 <>
                                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {visibleItems.map((item, index) => {
-                                            const categoryColor =
-                                                item.category === 'Events' ? 'bg-primary-50 text-primary-700' :
-                                                    item.category === 'Campaigns' ? 'bg-accent-50 text-accent-700' :
-                                                        item.category === 'Workshops' ? 'bg-secondary-100 text-secondary-800' :
-                                                            'bg-primary-50 text-primary-700';
-
                                             return (
                                                 <div
                                                     key={item.id}
@@ -213,7 +249,7 @@ const Gallery = () => {
                                                             <h3 className="font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors">
                                                                 {item.title}
                                                             </h3>
-                                                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${categoryColor}`}>
+                                                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getCategoryStyle(item.category).color}`}>
                                                                 {item.category}
                                                             </span>
                                                         </div>
@@ -252,40 +288,6 @@ const Gallery = () => {
                     )}
                 </div>
             </section>
-
-            {/* Filter Bar – centered, updated colors */}
-            {galleryItems.length > 0 && (
-                <section className="filter-section">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
-                        <div className="flex flex-wrap gap-3 justify-center">
-                            {categories.map((category) => (
-                                <button
-                                    key={category.name}
-                                    onClick={() => setActiveFilter(category.name)}
-                                    className={`
-                                        group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                        ${activeFilter === category.name
-                                        ? 'bg-secondary-900 text-white'
-                                        : `${category.color} hover:shadow-md`
-                                    }
-                                    `}
-                                >
-                                    <span className="mr-2">{category.icon}</span>
-                                    {category.name}
-                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                        activeFilter === category.name
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-white/60 text-secondary-600'
-                                    }`}>
-                                        {category.count}
-                                    </span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
 
             {/* Results Count */}
             {galleryItems.length > 0 && (
