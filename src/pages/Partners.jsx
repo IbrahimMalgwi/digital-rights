@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { siteContent } from '../data/content';
+import Hero from '../components/cards/Hero';
 
 const Partners = () => {
     const [activeType, setActiveType] = useState('All');
@@ -53,8 +54,9 @@ const Partners = () => {
 
     return (
         <div className="overflow-hidden">
+            <Hero compact eyebrow="Stronger together" title="Our partners" subtitle="Working across sectors to build safer technologies, healthier workplaces, and more inclusive digital communities." />
             {/* Partners Grid – 4 Columns, updated styles */}
-            <section className="page-section-white page-top">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {filteredPartners.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

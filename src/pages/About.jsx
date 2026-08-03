@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TeamCard from '../components/cards/TeamCard';
+import Hero from '../components/cards/Hero';
 import { siteContent } from '../data/content';
 
 const About = () => {
@@ -34,9 +35,10 @@ const About = () => {
 
     return (
         <div className="overflow-hidden">
+            <Hero compact eyebrow="Who we are" title="About DRMHI Africa" subtitle="Building a future where digital participation strengthens rights, dignity, and mental wellbeing." />
 
             {/* Mission & Vision – Split Screen with new colors */}
-            <section className="grid md:grid-cols-2 min-h-[600px] pt-28 md:pt-32 bg-white">
+            <section className="grid md:grid-cols-2 min-h-[600px] bg-white">
                 {/* Mission */}
                 <div className="bg-primary-50 p-12 md:p-20 flex items-center justify-center">
                     <div className="max-w-lg text-center md:text-left animate-slide-up">

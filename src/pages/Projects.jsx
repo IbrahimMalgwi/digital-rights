@@ -1,373 +1,141 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProjectCard from '../components/cards/ProjectCard';
 import { siteContent } from '../data/content';
+import { getAssetUrl } from '../utils/assets.js';
+
+const PAGE_SIZE = 6;
+const ALL_PROJECTS = siteContent.projects || [];
+const statusFilters = ['All', 'Ongoing', 'Completed', 'Upcoming'];
 
 const Projects = () => {
     const [activeCategory, setActiveCategory] = useState('All');
     const [activeStatus, setActiveStatus] = useState('All');
     const [viewMode, setViewMode] = useState('grid');
-    const [visibleCount, setVisibleCount] = useState(6);
+    const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
     const [searchQuery, setSearchQuery] = useState('');
 
-    const allProjects = siteContent.projects || [];
+    const featuredProjects = ALL_PROJECTS.filter(project => project.featured).slice(0, 3);
+    const availableCategories = [...new Set(ALL_PROJECTS.map(project => project.category))];
+    const preferredOrder = ['Advocacy', 'Mental Health', 'Education', 'Research'];
+    const categoryFilters = ['All', ...preferredOrder.filter(category => availableCategories.includes(category)), ...availableCategories.filter(category => !preferredOrder.includes(category))];
 
-    // Dynamic categories with updated colors
-    const categories = [
-        { name: 'All', icon: '📁', count: allProjects.length, color: 'bg-secondary-100 text-secondary-800' },
-        ...Array.from(new Set(allProjects.map(p => p.category))).map(category => ({
-            name: category,
-            count: allProjects.filter(p => p.category === category).length,
-            icon: category === 'Education' ? '📚' :
-                category === 'Mental Health' ? '🧠' :
-                    category === 'Advocacy' ? '📢' :
-                        category === 'Youth' ? '👥' :
-                            category === 'Women' ? '🚺' :
-                                category === 'Research' ? '🔬' : '📌',
-            color: category === 'Education' ? 'bg-primary-50 text-primary-700' :
-                category === 'Mental Health' ? 'bg-accent-50 text-accent-700' :
-                    category === 'Advocacy' ? 'bg-secondary-100 text-secondary-800' :
-                        category === 'Youth' ? 'bg-primary-50 text-primary-700' :
-                            category === 'Women' ? 'bg-accent-50 text-accent-700' :
-                                category === 'Research' ? 'bg-secondary-100 text-secondary-800' :
-                                    'bg-primary-50 text-primary-700'
-        }))
-    ];
+    const filteredProjects = useMemo(() => {
+        const query = searchQuery.trim().toLowerCase();
+        return ALL_PROJECTS.filter(project => {
+            const matchesCategory = activeCategory === 'All' || project.category === activeCategory;
+            const matchesStatus = activeStatus === 'All' || project.status === activeStatus;
+            const searchText = [project.title, project.description, project.location].filter(Boolean).join(' ').toLowerCase();
+            return matchesCategory && matchesStatus && (!query || searchText.includes(query));
+        });
+    }, [activeCategory, activeStatus, searchQuery]);
 
-    const statuses = [
-        { name: 'All', icon: '🔄' },
-        { name: 'Ongoing', icon: '⚡' },
-        { name: 'Completed', icon: '✅' },
-        { name: 'Upcoming', icon: '🔜' }
-    ];
+    const counts = {
+        total: ALL_PROJECTS.length,
+        ongoing: ALL_PROJECTS.filter(project => project.status === 'Ongoing').length,
+        completed: ALL_PROJECTS.filter(project => project.status === 'Completed').length,
+        countries: 9,
+    };
 
-    const featuredProjects = allProjects.filter(project => project.featured) || [];
-
-    // Filtering logic
-    const filteredProjects = allProjects.filter(project => {
-        const categoryMatch = activeCategory === 'All' || project.category === activeCategory;
-        const statusMatch = activeStatus === 'All' || project.status === activeStatus;
-        const searchMatch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (project.location && project.location.toLowerCase().includes(searchQuery.toLowerCase()));
-        return categoryMatch && statusMatch && searchMatch;
-    });
-
-    const visibleProjects = filteredProjects.slice(0, visibleCount);
-    const hasExternalProjects = allProjects.some(p => p.external);
+    const updateFilter = (setter, value) => {
+        setter(value);
+        setVisibleCount(PAGE_SIZE);
+    };
 
     return (
-        <div className="overflow-hidden">
-            {/* Featured Projects Section */}
-            {featuredProjects.length > 0 && (
-                <section className="page-section-soft page-top">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="grid lg:grid-cols-2 gap-6">
-                            {featuredProjects.slice(0, 2).map((project, index) => (
-                                <div key={project.id} className="group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                                    {project.external ? (
-                                        <a href={project.externalUrl} target="_blank" rel="noopener noreferrer" className="block relative">
-                                            <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm text-secondary-900 px-3 py-1 rounded-full text-xs font-medium flex items-center shadow-lg">
-                                                <span className="mr-1">🔗</span> External
-                                            </div>
-                                            <ProjectCard project={project} featured={true} />
-                                        </a>
-                                    ) : (
-                                        <Link to={`/projects/${project.id}`} className="block relative">
-                                            <ProjectCard project={project} featured={true} />
-                                        </Link>
-                                    )}
-                                </div>
-                            ))}
+        <div className="bg-[#f5f5f5] font-['Open_Sans'] text-[#666666]">
+            <section className="relative isolate flex min-h-[500px] items-center overflow-hidden pt-24 text-white">
+                <img src={getAssetUrl(featuredProjects[0]?.image)} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+                <div className="absolute inset-0 -z-10 bg-black/70" />
+                <div className="mx-auto w-full max-w-[1200px] px-5 py-20 sm:px-8">
+                    <p className="font-['Raleway'] text-xs font-bold uppercase tracking-[0.15em] text-[#e84a3c]">What we do</p>
+                    <h1 className="mt-4 max-w-4xl font-['Raleway'] text-4xl font-extrabold uppercase leading-tight tracking-[0.06em] text-white sm:text-5xl lg:text-6xl">Projects creating lasting change</h1>
+                    <div className="mt-6 h-[3px] w-20 bg-[#e84a3c]" aria-hidden="true" />
+                    <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80">We advance digital rights and mental wellbeing through community-led programs, research, advocacy, and practical support across Africa.</p>
+                </div>
+            </section>
+
+            <section className="bg-[#e84a3c] text-white" aria-label="Project impact statistics">
+                <div className="mx-auto grid max-w-[1200px] grid-cols-2 px-5 sm:px-8 lg:grid-cols-4">
+                    {[['Total Projects', counts.total], ['Ongoing', counts.ongoing], ['Completed', counts.completed], ['Countries', counts.countries]].map(([label, value], index) => (
+                        <div key={label} className={`px-4 py-8 text-center md:py-10 ${index % 2 ? 'border-l border-white/20' : ''} lg:border-l lg:first:border-l-0`}>
+                            <strong className="block font-['Raleway'] text-3xl font-extrabold tracking-wide text-white md:text-4xl">{value}</strong>
+                            <span className="mt-2 block font-['Raleway'] text-[11px] font-bold uppercase tracking-[0.15em] text-white/80">{label}</span>
                         </div>
+                    ))}
+                </div>
+            </section>
 
-                        {featuredProjects.length > 2 && (
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                                {featuredProjects.slice(2, 5).map((project, index) => (
-                                    <div key={project.id} className="group">
-                                        {project.external ? (
-                                            <a href={project.externalUrl} target="_blank" rel="noopener noreferrer" className="block relative">
-                                                <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm text-secondary-900 px-2 py-1 rounded-full text-xs font-medium flex items-center shadow-lg">
-                                                    <span className="mr-1">🔗</span> External
-                                                </div>
-                                                <ProjectCard project={project} variant="compact" />
-                                            </a>
-                                        ) : (
-                                            <Link to={`/projects/${project.id}`} className="block">
-                                                <ProjectCard project={project} variant="compact" />
-                                            </Link>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-
-                        <div className="text-center max-w-2xl mx-auto mt-16 animate-slide-up">
-                            <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Featured</span>
-                            <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-900">
-                                Spotlight projects
-                            </h2>
+            {featuredProjects.length > 0 && (
+                <section className="bg-white py-20">
+                    <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+                        <div className="text-center">
+                            <p className="font-['Raleway'] text-xs font-bold uppercase tracking-[0.15em] text-[#e84a3c]">Featured projects</p>
+                            <h2 className="mt-3 font-['Raleway'] text-3xl font-extrabold uppercase tracking-[0.05em] text-[#333333] md:text-4xl">In the spotlight</h2>
+                            <div className="mx-auto mt-5 h-[3px] w-16 bg-[#e84a3c]" aria-hidden="true" />
+                        </div>
+                        <div className="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+                            {featuredProjects.map(project => <ProjectCard key={project.id} project={project} variant="grid" />)}
                         </div>
                     </div>
                 </section>
             )}
 
-            {/* Sticky Search and Filter Bar – updated colors */}
-            <section className="sticky top-0 z-30 bg-white/90 backdrop-blur-xl border-b border-white/70 shadow-soft">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-                        <div className="relative w-full lg:w-96">
-                            <input
-                                type="text"
-                                placeholder="Search projects..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="input rounded-full pl-12 pr-4 py-3"
-                            />
-                            <svg className="absolute left-4 top-3.5 w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
+            <section className="py-20" id="all-projects">
+                <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+                    <div className="text-center">
+                        <p className="font-['Raleway'] text-xs font-bold uppercase tracking-[0.15em] text-[#e84a3c]">Browse our work</p>
+                        <h2 className="mt-3 font-['Raleway'] text-3xl font-extrabold uppercase tracking-[0.05em] text-[#333333] md:text-4xl">All projects</h2>
+                        <div className="mx-auto mt-5 h-[3px] w-16 bg-[#e84a3c]" aria-hidden="true" />
+                    </div>
+
+                    <div className="mt-12 border border-[#e5e5e5] bg-white p-5 md:p-6">
+                        <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
+                            <div className="relative">
+                                <label htmlFor="project-search" className="sr-only">Search projects</label>
+                                <svg aria-hidden="true" className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#999999]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg>
+                                <input id="project-search" type="search" value={searchQuery} onChange={event => updateFilter(setSearchQuery, event.target.value)} placeholder="Search projects..." className="w-full border border-[#e5e5e5] bg-[#f5f5f5] py-3.5 pl-12 pr-4 text-sm text-[#333333] outline-none focus:border-[#e84a3c] focus:ring-1 focus:ring-[#e84a3c]" />
+                            </div>
+                            <div className="flex justify-end" aria-label="Choose project view">
+                                <button type="button" onClick={() => setViewMode('grid')} aria-label="Grid view" aria-pressed={viewMode === 'grid'} className={`h-12 w-12 border border-[#e5e5e5] text-lg ${viewMode === 'grid' ? 'bg-[#e84a3c] text-white' : 'bg-white text-[#666666]'}`}>▦</button>
+                                <button type="button" onClick={() => setViewMode('list')} aria-label="List view" aria-pressed={viewMode === 'list'} className={`h-12 w-12 border-y border-r border-[#e5e5e5] text-lg ${viewMode === 'list' ? 'bg-[#e84a3c] text-white' : 'bg-white text-[#666666]'}`}>☰</button>
+                            </div>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                            <button
-                                onClick={() => setViewMode('grid')}
-                                className={`p-3 rounded-full transition-all ${
-                                    viewMode === 'grid' ? 'bg-secondary-900 text-white' : 'bg-secondary-100 text-secondary-600 hover:bg-secondary-200'
-                                }`}
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                </svg>
-                            </button>
-                            <button
-                                onClick={() => setViewMode('list')}
-                                className={`p-3 rounded-full transition-all ${
-                                    viewMode === 'list' ? 'bg-secondary-900 text-white' : 'bg-secondary-100 text-secondary-600 hover:bg-secondary-200'
-                                }`}
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            </button>
+                        <div className="mt-6 flex flex-wrap gap-2" aria-label="Filter projects by category">
+                            {categoryFilters.map(category => <button key={category} type="button" aria-pressed={activeCategory === category} onClick={() => updateFilter(setActiveCategory, category)} className={`px-4 py-3 font-['Raleway'] text-[11px] font-bold uppercase tracking-[0.15em] transition ${activeCategory === category ? 'bg-[#e84a3c] text-white' : 'border border-[#e5e5e5] bg-white text-[#666666] hover:border-[#e84a3c] hover:text-[#e84a3c]'}`}>{category}</button>)}
+                        </div>
+                        <div className="mt-3 flex flex-wrap gap-2" aria-label="Filter projects by status">
+                            {statusFilters.map(status => <button key={status} type="button" aria-pressed={activeStatus === status} onClick={() => updateFilter(setActiveStatus, status)} className={`px-4 py-3 font-['Raleway'] text-[11px] font-bold uppercase tracking-[0.15em] transition ${activeStatus === status ? 'bg-[#e84a3c] text-white' : 'border border-[#e5e5e5] bg-white text-[#666666] hover:border-[#e84a3c] hover:text-[#e84a3c]'}`}>{status}</button>)}
                         </div>
                     </div>
-                </div>
-            </section>
 
-            {/* Main Projects Section */}
-            <section className="page-section-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {allProjects.length > 0 && (
+                    <p className="my-7 text-sm" aria-live="polite">Showing <strong className="text-[#333333]">{Math.min(visibleCount, filteredProjects.length)}</strong> of <strong className="text-[#333333]">{filteredProjects.length}</strong> projects</p>
+
+                    {filteredProjects.length ? (
                         <>
-                            <div className="text-center mb-12 animate-fade-in">
-                                <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider mb-4">Filter by Category</h3>
-                                <div className="flex flex-wrap gap-2 justify-center">
-                                    {categories.map((category) => (
-                                        <button
-                                            key={category.name}
-                                            onClick={() => setActiveCategory(category.name)}
-                                            className={`
-                                                group px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
-                                                ${activeCategory === category.name
-                                                ? 'bg-secondary-900 text-white'
-                                                : `${category.color} hover:shadow-md`
-                                            }
-                                            `}
-                                        >
-                                            <span className="mr-2">{category.icon}</span>
-                                            {category.name}
-                                            <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                                activeCategory === category.name
-                                                    ? 'bg-white/20 text-white'
-                                                    : 'bg-white/60 text-secondary-600'
-                                            }`}>
-                                                {category.count}
-                                            </span>
-                                        </button>
-                                    ))}
-                                </div>
+                            <div className={viewMode === 'grid' ? 'grid gap-7 md:grid-cols-2 lg:grid-cols-3' : 'mx-auto max-w-5xl space-y-6'}>
+                                {filteredProjects.slice(0, visibleCount).map(project => <ProjectCard key={project.id} project={project} variant={viewMode} />)}
                             </div>
-
-                            <div className="text-center mb-12 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                                <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider mb-4">Filter by Status</h3>
-                                <div className="flex flex-wrap gap-2 justify-center">
-                                    {statuses.map((status) => (
-                                        <button
-                                            key={status.name}
-                                            onClick={() => setActiveStatus(status.name)}
-                                            className={`
-                                                px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105
-                                                ${activeStatus === status.name
-                                                ? 'bg-secondary-900 text-white'
-                                                : 'bg-secondary-100 text-secondary-600 hover:bg-secondary-200'
-                                            }
-                                            `}
-                                        >
-                                            <span className="mr-2">{status.icon}</span>
-                                            {status.name}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
+                            {visibleCount < filteredProjects.length && <div className="mt-12 text-center"><button type="button" onClick={() => setVisibleCount(count => count + PAGE_SIZE)} className="border-2 border-[#222222] px-8 py-4 font-['Raleway'] text-xs font-bold uppercase tracking-[0.15em] text-[#222222] transition hover:bg-[#222222] hover:text-white">Load more</button></div>}
                         </>
-                    )}
-
-                    {hasExternalProjects && (
-                        <div className="mb-8 max-w-2xl mx-auto animate-fade-in">
-                            <div className="card p-4 text-center">
-                                <p className="text-primary-800 text-sm">
-                                    <span className="font-semibold">Note:</span> Some projects are external. Click on their cards to visit their dedicated websites.
-                                </p>
-                            </div>
-                        </div>
-                    )}
-
-                    {allProjects.length > 0 && (
-                        <div className="text-center mb-6">
-                            <p className="text-secondary-500">
-                                Showing <span className="font-semibold text-secondary-900">{visibleProjects.length}</span> of{' '}
-                                <span className="font-semibold text-secondary-900">{filteredProjects.length}</span> projects
-                            </p>
-                        </div>
-                    )}
-
-                    {allProjects.length > 0 ? (
-                        filteredProjects.length > 0 ? (
-                            <>
-                                {viewMode === 'grid' ? (
-                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {visibleProjects.map((project, index) => {
-                                            const categoryColor = {
-                                                Education: 'bg-primary-50 text-primary-700',
-                                                'Mental Health': 'bg-accent-50 text-accent-700',
-                                                Advocacy: 'bg-secondary-100 text-secondary-800',
-                                                Youth: 'bg-primary-50 text-primary-700',
-                                                Women: 'bg-accent-50 text-accent-700',
-                                                Research: 'bg-secondary-100 text-secondary-800',
-                                            }[project.category] || 'bg-primary-50 text-primary-700';
-
-                                            return (
-                                                <div key={project.id} className="group animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
-                                                    {project.external ? (
-                                                        <a href={project.externalUrl} target="_blank" rel="noopener noreferrer" className="block relative">
-                                                            <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm text-secondary-900 px-2 py-1 rounded-full text-xs font-medium flex items-center shadow-lg">
-                                                                <span className="mr-1">🔗</span> External
-                                                            </div>
-                                                            <ProjectCard project={project} categoryColor={categoryColor} />
-                                                        </a>
-                                                    ) : (
-                                                        <Link to={`/projects/${project.id}`} className="block">
-                                                            <ProjectCard project={project} categoryColor={categoryColor} />
-                                                        </Link>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                ) : (
-                                    <div className="space-y-4 max-w-3xl mx-auto">
-                                        {visibleProjects.map((project, index) => {
-                                            const categoryColor = {
-                                                Education: 'bg-primary-50 text-primary-700',
-                                                'Mental Health': 'bg-accent-50 text-accent-700',
-                                                Advocacy: 'bg-secondary-100 text-secondary-800',
-                                                Youth: 'bg-primary-50 text-primary-700',
-                                                Women: 'bg-accent-50 text-accent-700',
-                                                Research: 'bg-secondary-100 text-secondary-800',
-                                            }[project.category] || 'bg-primary-50 text-primary-700';
-
-                                            return (
-                                                <div key={project.id} className="group animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
-                                                    {project.external ? (
-                                                        <a href={project.externalUrl} target="_blank" rel="noopener noreferrer" className="block relative">
-                                                            <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm text-secondary-900 px-2 py-1 rounded-full text-xs font-medium flex items-center shadow-lg">
-                                                                <span className="mr-1">🔗</span> External
-                                                            </div>
-                                                            <ProjectCard project={project} variant="horizontal" categoryColor={categoryColor} />
-                                                        </a>
-                                                    ) : (
-                                                        <Link to={`/projects/${project.id}`} className="block">
-                                                            <ProjectCard project={project} variant="horizontal" categoryColor={categoryColor} />
-                                                        </Link>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                )}
-
-                                {visibleCount < filteredProjects.length && (
-                                    <div className="text-center mt-16">
-                                        <button
-                                            onClick={() => setVisibleCount(prev => prev + 6)}
-                                            className="btn-primary group px-8 py-4"
-                                        >
-                                            Load more projects
-                                            <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">↓</span>
-                                        </button>
-                                    </div>
-                                )}
-                            </>
-                        ) : (
-                            <div className="card text-center py-20 px-6 max-w-2xl mx-auto animate-fade-in">
-                                <div className="text-6xl mb-4">📭</div>
-                                <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No projects found</h3>
-                                <p className="text-secondary-500 mb-6">Try adjusting your filters or search criteria</p>
-                                <button
-                                    onClick={() => {
-                                        setActiveCategory('All');
-                                        setActiveStatus('All');
-                                        setSearchQuery('');
-                                    }}
-                                    className="btn-primary px-6 py-3 text-sm"
-                                >
-                                    Clear all filters
-                                </button>
-                            </div>
-                        )
                     ) : (
-                        <div className="card text-center py-20 px-6 max-w-2xl mx-auto animate-fade-in">
-                            <div className="text-6xl mb-4">📁</div>
-                            <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No projects yet</h3>
-                            <p className="text-secondary-500">Projects will be added soon.</p>
+                        <div className="border border-[#e5e5e5] bg-white px-6 py-16 text-center">
+                            <h3 className="font-['Raleway'] text-2xl font-extrabold uppercase tracking-wide text-[#333333]">No projects found</h3>
+                            <p className="mt-3">Try changing your search or filters.</p>
+                            <button type="button" onClick={() => { setActiveCategory('All'); setActiveStatus('All'); setSearchQuery(''); setVisibleCount(PAGE_SIZE); }} className="mt-6 bg-[#e84a3c] px-6 py-3 font-['Raleway'] text-xs font-bold uppercase tracking-[0.15em] text-white hover:bg-[#c73428]">Reset filters</button>
                         </div>
                     )}
                 </div>
             </section>
 
-            {/* CTA Section – updated gradient */}
-            <section className="modern-cta">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-black rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
-
-                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 animate-slide-up">
-                        Support our projects
-                    </h2>
-                    <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in">
-                        Your support helps us expand our reach and create more impact in communities across Africa.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link
-                            to="/donate"
-                            className="btn-secondary group px-8 py-4"
-                        >
-                            Donate now
-                            <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">❤️</span>
-                        </Link>
-                        <Link
-                            to="/contact"
-                            className="btn-outline px-8 py-4 border-white/30 text-white hover:bg-white/10"
-                        >
-                            Partner with us
-                        </Link>
-                    </div>
-
-                    <p className="text-white/60 text-sm mt-8">
-                        🤝 Join 50+ organizations already making a difference
-                    </p>
+            <section className="bg-[#222222] py-20 text-center text-white">
+                <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+                    <p className="font-['Raleway'] text-xs font-bold uppercase tracking-[0.15em] text-[#e84a3c]">Make a difference</p>
+                    <h2 className="mx-auto mt-4 max-w-3xl font-['Raleway'] text-3xl font-extrabold uppercase leading-tight tracking-[0.05em] text-white md:text-5xl">Help us create safer digital communities</h2>
+                    <div className="mx-auto mt-5 h-[3px] w-16 bg-[#e84a3c]" aria-hidden="true" />
+                    <p className="mx-auto mt-6 max-w-2xl text-white/70">Your contribution supports practical training, research, advocacy, and mental health services across Africa.</p>
+                    <div className="mt-9 flex flex-wrap justify-center gap-4"><Link to="/donate" className="bg-[#e84a3c] px-8 py-4 font-['Raleway'] text-xs font-bold uppercase tracking-[0.15em] text-white hover:bg-[#c73428]">Donate now</Link><Link to="/contact" className="border-2 border-white px-8 py-4 font-['Raleway'] text-xs font-bold uppercase tracking-[0.15em] text-white hover:bg-white hover:text-[#222222]">Partner with us</Link></div>
                 </div>
             </section>
         </div>
@@ -375,4 +143,3 @@ const Projects = () => {
 };
 
 export default Projects;
-

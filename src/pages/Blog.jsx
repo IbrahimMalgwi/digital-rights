@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BlogCard from '../components/cards/BlogCard';
 import { siteContent } from '../data/content';
+import Hero from '../components/cards/Hero';
 
 const Blog = () => {
     const [activeCategory, setActiveCategory] = useState('All');
@@ -48,9 +49,10 @@ const Blog = () => {
 
     return (
         <div className="overflow-hidden">
+            <Hero compact eyebrow="Ideas and updates" title="Stories from our work" subtitle="Research, field notes, and practical perspectives on digital rights and mental wellbeing." />
             {/* Featured Posts Section */}
             {featuredPosts.length > 0 && (
-                <section className="page-section-soft page-top">
+                <section className="page-section-soft">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center max-w-2xl mx-auto mb-12 animate-slide-up">
                             <span className="text-secondary-400 font-medium mb-4 block tracking-wide">Featured</span>

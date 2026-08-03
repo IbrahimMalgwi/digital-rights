@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { siteContent } from '../data/content';
+import Hero from '../components/cards/Hero';
 
 const Donate = () => {
     const [copiedAccount, setCopiedAccount] = useState(null);
@@ -39,9 +40,10 @@ const Donate = () => {
 
     return (
         <div className="overflow-hidden">
+            <Hero compact eyebrow="Give with purpose" title="Support our mission" subtitle="Your contribution expands access to digital safety education, advocacy, research, and mental health support." />
 
             {/* Main Donation Section - Account Details */}
-            <section id="donate-form" className="page-section-soft page-top">
+            <section id="donate-form" className="page-section-soft">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="max-w-6xl mx-auto">
                         {/* Account Cards Grid - updated colors */}

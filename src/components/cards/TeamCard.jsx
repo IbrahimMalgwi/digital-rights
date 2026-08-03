@@ -23,7 +23,7 @@ const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColo
             <div className="group card-hover overflow-hidden">
                 <div className="flex items-start p-7">
                     {/* Image with fallback */}
-                    <div className="w-24 h-24 rounded-3xl mr-6 overflow-hidden bg-gradient-to-br from-secondary-950 via-primary-700 to-accent-600 flex-shrink-0 shadow-large ring-4 ring-white">
+                    <div className="mr-6 h-24 w-24 flex-shrink-0 overflow-hidden rounded-full bg-secondary-900 shadow-lg ring-4 ring-white">
                         {member.image && !imageError ? (
                             <img
                                 src={getAssetUrl(member.image)}
@@ -42,7 +42,7 @@ const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColo
                     <div className="flex-1">
                         <div className="flex items-start justify-between mb-2">
                             <div>
-                                <h3 className="text-xl font-display font-bold text-secondary-950 mb-1">{member.name}</h3>
+                                <h3 className="mb-1 font-display text-xl font-extrabold uppercase tracking-[0.04em] text-secondary-800">{member.name}</h3>
                                 <p className="text-sm text-secondary-600 mb-2 font-semibold">{member.role}</p>
                             </div>
                             {departmentColor && (
@@ -81,7 +81,7 @@ const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColo
         <div className="group card-hover overflow-hidden h-full flex flex-col text-center">
             <div className="p-7 flex flex-col flex-1">
                 {/* Image with fallback */}
-                <div className="w-28 h-28 mx-auto rounded-3xl mb-5 overflow-hidden bg-gradient-to-br from-secondary-950 via-primary-700 to-accent-600 shadow-large ring-4 ring-white flex-shrink-0">
+                <div className="mx-auto mb-5 h-28 w-28 flex-shrink-0 overflow-hidden rounded-full bg-secondary-900 shadow-lg ring-4 ring-white">
                     {member.image && !imageError ? (
                         <img
                             src={getAssetUrl(member.image)}
@@ -97,7 +97,7 @@ const TeamCard = ({ member, variant = 'default', layout = 'grid', departmentColo
                         </div>
                     )}
                 </div>
-                <h3 className="text-xl font-display font-bold text-secondary-950 mb-1">{member.name}</h3>
+                <h3 className="mb-1 font-display text-xl font-extrabold uppercase tracking-[0.04em] text-secondary-800">{member.name}</h3>
                 <p className="text-sm text-secondary-600 mb-3 font-semibold">{member.role}</p>
                 {departmentColor && (
                     <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold mb-3 ${departmentColor}`}>

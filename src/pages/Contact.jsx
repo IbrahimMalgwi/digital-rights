@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { siteContent } from '../data/content';
+import Hero from '../components/cards/Hero';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -110,6 +111,7 @@ const Contact = () => {
 
     return (
         <div className="overflow-hidden">
+            <Hero compact eyebrow="Get in touch" title="Let's create change together" subtitle="Talk with our team about partnerships, programs, support, or opportunities to collaborate." />
             <section className="page-section-white pt-32 md:pt-36">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="section-intro mb-12 animate-slide-up">

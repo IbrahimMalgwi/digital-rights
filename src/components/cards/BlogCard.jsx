@@ -29,7 +29,7 @@ const BlogCard = ({ post, featured = false }) => {
                         />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/75 via-secondary-950/10 to-transparent" />
-                    <span className="absolute left-5 top-5 px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-secondary-900 shadow-soft backdrop-blur">
+                    <span className="absolute left-5 top-5 bg-primary-500 px-3 py-2 font-display text-[10px] font-bold uppercase tracking-[0.15em] text-white">
                         {post.category}
                     </span>
                 </div>
@@ -39,7 +39,7 @@ const BlogCard = ({ post, featured = false }) => {
                         <span className="mx-2">•</span>
                         <span>{post.readTime}</span>
                     </div>
-                    <h3 className="text-2xl font-display font-bold text-secondary-950 mb-3 group-hover:text-primary-700 transition-colors line-clamp-2">
+                    <h3 className="mb-3 line-clamp-2 font-display text-2xl font-extrabold uppercase tracking-[0.04em] text-secondary-800 transition-colors group-hover:text-primary-700">
                         <Link to={`/blog/${post.id}`}>{post.title}</Link>
                     </h3>
                     <p className="text-sm text-secondary-600 mb-5 flex-1 line-clamp-3 leading-relaxed">{post.excerpt}</p>
@@ -76,7 +76,7 @@ const BlogCard = ({ post, featured = false }) => {
                     />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/65 to-transparent" />
-                <span className="absolute top-3 left-3 px-3 py-1 bg-white/95 backdrop-blur-sm text-secondary-700 text-xs font-semibold rounded-full">
+                <span className="absolute left-3 top-3 bg-primary-500 px-3 py-2 font-display text-[10px] font-bold uppercase tracking-[0.15em] text-white">
                     {post.category}
                 </span>
             </div>
@@ -86,7 +86,7 @@ const BlogCard = ({ post, featured = false }) => {
                     <span className="mx-2">•</span>
                     <span>{post.readTime}</span>
                 </div>
-                <h3 className="text-xl font-display font-bold text-secondary-950 mb-3 group-hover:text-primary-700 transition-colors line-clamp-2">
+                <h3 className="mb-3 line-clamp-2 font-display text-xl font-extrabold uppercase tracking-[0.04em] text-secondary-800 transition-colors group-hover:text-primary-700">
                     <Link to={`/blog/${post.id}`}>{post.title}</Link>
                 </h3>
                 <p className="text-sm text-secondary-600 mb-5 flex-1 line-clamp-3 leading-relaxed">{post.excerpt}</p>

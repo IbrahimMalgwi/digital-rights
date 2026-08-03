@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { siteContent } from '../data/content';
 import { getAssetUrl } from '../utils/assets.js';
+import Hero from '../components/cards/Hero';
 
 const Gallery = () => {
     const [activeFilter, setActiveFilter] = useState('All');
@@ -154,6 +155,7 @@ const Gallery = () => {
 
     return (
         <div className="overflow-hidden">
+            <Hero compact eyebrow="In the field" title="Our work in pictures" subtitle="Moments from community outreach, training, advocacy, partnerships, and events across Africa." />
             {/* Filter Bar */}
             {galleryItems.length > 0 && (
                 <section className="filter-section pt-12 md:pt-16">
@@ -189,7 +191,7 @@ const Gallery = () => {
             )}
 
             {/* Main Gallery Section */}
-            <section className="page-section-white page-top">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {isLoading ? (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

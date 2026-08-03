@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TeamCard from '../components/cards/TeamCard';
 import { siteContent } from '../data/content';
+import Hero from '../components/cards/Hero';
 
 const Team = () => {
     const [activeDepartment, setActiveDepartment] = useState('All');
@@ -34,8 +35,9 @@ const Team = () => {
 
     return (
         <div className="overflow-hidden">
+            <Hero compact eyebrow="People behind the mission" title="Meet our team" subtitle="Researchers, advocates, practitioners, and community leaders working for safer digital futures." />
             {/* Main Team Section */}
-            <section className="page-section-white page-top">
+            <section className="page-section-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h3 className="text-center text-3xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-500 mb-12 animate-slide-up">
                         Team Members

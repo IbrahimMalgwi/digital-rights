@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BlogCard from '../components/cards/BlogCard';
+import Hero from '../components/cards/Hero';
 import ProjectCard from '../components/cards/ProjectCard';
 import { siteContent } from '../data/content';
 import { getAssetUrl } from '../utils/assets.js';
@@ -14,55 +15,7 @@ const Home = () => {
     return (
         <div className="overflow-hidden aurora-bg">
 
-            {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-24">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(147,51,234,0.24),transparent_24rem),radial-gradient(circle_at_80%_35%,rgba(217,70,239,0.22),transparent_26rem),linear-gradient(135deg,#ffffff_0%,#faf5ff_48%,#f8fafc_100%)]"></div>
-                <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-primary-300/20 blur-3xl animate-pulse"></div>
-                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
-
-                <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <div className="animate-fade-in section-intro">
-                        <span className="section-eyebrow mb-8">{siteContent.hero.eyebrow}</span>
-                        <h1 className="text-6xl md:text-8xl font-display font-bold text-secondary-950 leading-[0.95] tracking-tight">
-                            {siteContent.hero.title}
-                        </h1>
-                        <p className="text-xl md:text-2xl text-secondary-700 max-w-3xl mx-auto leading-relaxed">
-                            {siteContent.hero.subtitle}
-                        </p>
-                        <p className="text-lg text-primary-700 font-bold">
-                            {siteContent.hero.summary}
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up mt-10">
-                        <Link
-                            to={siteContent.hero.primaryButton.link}
-                            className="btn-primary group px-8 py-4"
-                        >
-                            {siteContent.hero.primaryButton.text}
-                            <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
-                        </Link>
-                        <Link
-                            to={siteContent.hero.secondaryButton.link}
-                            className="btn-secondary px-8 py-4"
-                        >
-                            {siteContent.hero.secondaryButton.text}
-                        </Link>
-                    </div>
-
-                    <div className="mt-10 flex flex-wrap justify-center gap-3 animate-fade-in">
-                        <div className="rounded-full border border-white/70 bg-white/80 px-4 py-2 text-sm font-medium text-secondary-700 shadow-soft backdrop-blur">
-                            Digital literacy workshops
-                        </div>
-                        <div className="rounded-full border border-white/70 bg-white/80 px-4 py-2 text-sm font-medium text-secondary-700 shadow-soft backdrop-blur">
-                            Mental health support pathways
-                        </div>
-                        <div className="rounded-full border border-white/70 bg-white/80 px-4 py-2 text-sm font-medium text-secondary-700 shadow-soft backdrop-blur">
-                            Policy advocacy for safe online spaces
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Hero />
 
             {/* Our Impact Section */}
             <section className="page-section-white">
