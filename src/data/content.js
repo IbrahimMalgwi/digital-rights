@@ -243,7 +243,7 @@ export const siteContent = {
         name: "DRMHI Africa",
         fullName: "Digital Rights and Mental Health Initiative Africa",
         tagline: "Advancing digital rights and mental health awareness across Africa",
-        email: "Info@digitalandmentalhealthinitiative.org",
+        email: "Info@digitalrightsandmentalhealthinitiativeafrica.org",
         phone: "+23480 8524 3034",
         address: "Abuja, Nigeria",
         social: {
