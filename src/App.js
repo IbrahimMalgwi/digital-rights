@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 const About = lazy(() => import('./pages/About'));
 const Awards = lazy(() => import('./pages/Awards'));
 const Blog = lazy(() => import('./pages/Blog'));
+const Careers = lazy(() => import('./pages/Careers'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Donate = lazy(() => import('./pages/Donate'));
 const Gallery = lazy(() => import('./pages/Gallery'));
@@ -46,6 +47,7 @@ function App() {
                             <Route path="/blog" element={<Blog />} />
                             <Route path="/gallery" element={<Gallery />} />
                             <Route path="/awards" element={<Awards />} />
+                            <Route path="/careers" element={<Careers />} />
                             <Route path="/donate" element={<Donate />} />
                             <Route path="/team" element={<Team />} />
                             <Route path="/partners" element={<Partners />} />

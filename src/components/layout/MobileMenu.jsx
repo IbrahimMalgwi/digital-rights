@@ -142,6 +142,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         { name: 'Team', href: '/team', icon: '👥', external: false },
         { name: 'Awards', href: '/awards', icon: '🏆', external: false },
         { name: 'Partners', href: '/partners', icon: '🤝', external: false },
+        { name: 'Careers', href: '/careers', icon: '💼', external: false },
         { name: 'Blog', href: '/blog', icon: '✍️', external: false },
         { name: 'Gallery', href: '/gallery', icon: '🖼️', external: false },
         { name: 'Contact', href: '/contact', icon: '📧', external: false }

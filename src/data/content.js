@@ -591,6 +591,52 @@ export const siteContent = {
         ]
     },
 
+    careers: {
+        intro: "Join DRMHI Africa in advancing digital rights and mental wellbeing across the continent. Browse our current openings below.",
+        emptyStateImage: "",
+        positions: [
+            {
+                id: 1,
+                title: "HR/Admin Officer",
+                type: "Volunteer",
+                department: "Human Resources & Administration",
+                location: "Remote / Flexible",
+                postedDate: "2026-08-27",
+                summary: "Support DRMHI's people operations, from recruitment coordination to maintaining volunteer records, as part of our growing team.",
+                applyLink: "https://forms.gle/oGhQXs7UzaT4ZVGo7",
+                detailsLink: "https://docs.google.com/document/d/1xn-IBS9Q-7OAV2oSC7O7T8AGY0yUyYDotOGQKSARBaU/edit?usp=drivesdk",
+                image: "",
+                isOpen: true
+            },
+            {
+                id: 2,
+                title: "Procurement/Logistics Officer",
+                type: "Volunteer",
+                department: "Operations",
+                location: "Remote / Flexible",
+                postedDate: "2026-08-27",
+                summary: "Coordinate procurement and logistics for DRMHI's programs, ensuring resources and materials reach the communities we serve.",
+                applyLink: "https://forms.gle/oGhQXs7UzaT4ZVGo7",
+                detailsLink: "https://docs.google.com/document/d/1xn-IBS9Q-7OAV2oSC7O7T8AGY0yUyYDotOGQKSARBaU/edit?usp=drivesdk",
+                image: "",
+                isOpen: true
+            },
+            {
+                id: 3,
+                title: "Operations Officer",
+                type: "Volunteer",
+                department: "Operations",
+                location: "Remote / Flexible",
+                postedDate: "2026-08-27",
+                summary: "Help keep DRMHI's day-to-day operations running smoothly, supporting our teams across digital rights and mental health programs.",
+                applyLink: "https://forms.gle/oGhQXs7UzaT4ZVGo7",
+                detailsLink: "https://docs.google.com/document/d/1xn-IBS9Q-7OAV2oSC7O7T8AGY0yUyYDotOGQKSARBaU/edit?usp=drivesdk",
+                image: "",
+                isOpen: true
+            }
+        ]
+    },
+
     gallery: [
         {
             id: 1,
