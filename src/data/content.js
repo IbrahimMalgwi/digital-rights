@@ -604,9 +604,60 @@ export const siteContent = {
                 postedDate: "2026-08-27",
                 summary: "Support DRMHI's people operations, from recruitment coordination to maintaining volunteer records, as part of our growing team.",
                 applyLink: "https://forms.gle/oGhQXs7UzaT4ZVGo7",
-                detailsLink: "https://docs.google.com/document/d/1xn-IBS9Q-7OAV2oSC7O7T8AGY0yUyYDotOGQKSARBaU/edit?usp=drivesdk",
                 image: "",
-                isOpen: true
+                isOpen: true,
+                details: {
+                    positionTitle: "Human Resources/Administration Volunteer",
+                    meta: {
+                        Department: "Human Resources",
+                        Location: "To be assigned",
+                        "Number of Positions": 2,
+                        "Engagement Type": "Volunteer",
+                        Duration: "Six (6) Months",
+                        Period: "September 2026 – February 2027"
+                    },
+                    about: [
+                        "Digital Rights and Mental Health Initiative (DRMHI) is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion, and related humanitarian and development initiatives.",
+                        "DRMHI is seeking a committed and organized individual to serve as a Human Resources Volunteer."
+                    ],
+                    jobDescription: "The Human Resources Volunteer will support DRMHI's recruitment, volunteer management, personnel documentation, onboarding, records management, and HR administrative activities.",
+                    responsibilities: [
+                        "Support recruitment and selection processes.",
+                        "Assist with preparation of recruitment documents.",
+                        "Maintain personnel and volunteer records.",
+                        "Support volunteer onboarding and orientation.",
+                        "Assist with attendance and leave records.",
+                        "Maintain HR trackers and databases.",
+                        "Support training coordination.",
+                        "Assist with HR reports.",
+                        "Support preparation of HR correspondence.",
+                        "Assist with performance documentation.",
+                        "Support volunteer engagement activities.",
+                        "Assist with exit and handover documentation.",
+                        "Maintain strict confidentiality of personnel information.",
+                        "Support implementation of DRMHI HR policies."
+                    ],
+                    requirements: [
+                        "Possess BSc or HND in Human Resources, Business Administration, Management, Social Sciences or a related discipline.",
+                        "Have good communication and interpersonal skills.",
+                        "Demonstrate strong organizational skills.",
+                        "Be trustworthy and able to maintain confidentiality.",
+                        "Have basic knowledge of HR practices.",
+                        "Be computer literate.",
+                        "Have good knowledge of Microsoft Word and Excel.",
+                        "Possess a working personal laptop and reliable internet access.",
+                        "Be available for a minimum of ten (10) hours per week.",
+                        "Be willing to report physically to the DRMHI office once weekly, as agreed with DRMHI, if applicable.",
+                        "Be willing to prepare and implement bi-monthly work plans.",
+                        "Be able to respond to official DRMHI communication within one (1) hour during agreed availability periods."
+                    ],
+                    volunteerTerms: [
+                        "This is a strictly voluntary and unpaid position.",
+                        "DRMHI will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for this volunteer position.",
+                        "The Volunteer will be required to provide and use a working personal laptop for assigned duties."
+                    ],
+                    deadlineNote: "Only shortlisted applicants will be contacted."
+                }
             },
             {
                 id: 2,
@@ -617,9 +668,60 @@ export const siteContent = {
                 postedDate: "2026-08-27",
                 summary: "Coordinate procurement and logistics for DRMHI's programs, ensuring resources and materials reach the communities we serve.",
                 applyLink: "https://forms.gle/oGhQXs7UzaT4ZVGo7",
-                detailsLink: "https://docs.google.com/document/d/1xn-IBS9Q-7OAV2oSC7O7T8AGY0yUyYDotOGQKSARBaU/edit?usp=drivesdk",
                 image: "",
-                isOpen: true
+                isOpen: true,
+                details: {
+                    positionTitle: "Human Resources/Administration Volunteer",
+                    meta: {
+                        Department: "Human Resources",
+                        Location: "To be assigned",
+                        "Number of Positions": 2,
+                        "Engagement Type": "Volunteer",
+                        Duration: "Six (6) Months",
+                        Period: "September 2026 – February 2027"
+                    },
+                    about: [
+                        "Digital Rights and Mental Health Initiative (DRMHI) is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion, and related humanitarian and development initiatives.",
+                        "DRMHI is seeking a committed and organized individual to serve as a Human Resources Volunteer."
+                    ],
+                    jobDescription: "The Human Resources Volunteer will support DRMHI's recruitment, volunteer management, personnel documentation, onboarding, records management, and HR administrative activities.",
+                    responsibilities: [
+                        "Support recruitment and selection processes.",
+                        "Assist with preparation of recruitment documents.",
+                        "Maintain personnel and volunteer records.",
+                        "Support volunteer onboarding and orientation.",
+                        "Assist with attendance and leave records.",
+                        "Maintain HR trackers and databases.",
+                        "Support training coordination.",
+                        "Assist with HR reports.",
+                        "Support preparation of HR correspondence.",
+                        "Assist with performance documentation.",
+                        "Support volunteer engagement activities.",
+                        "Assist with exit and handover documentation.",
+                        "Maintain strict confidentiality of personnel information.",
+                        "Support implementation of DRMHI HR policies."
+                    ],
+                    requirements: [
+                        "Possess BSc or HND in Human Resources, Business Administration, Management, Social Sciences or a related discipline.",
+                        "Have good communication and interpersonal skills.",
+                        "Demonstrate strong organizational skills.",
+                        "Be trustworthy and able to maintain confidentiality.",
+                        "Have basic knowledge of HR practices.",
+                        "Be computer literate.",
+                        "Have good knowledge of Microsoft Word and Excel.",
+                        "Possess a working personal laptop and reliable internet access.",
+                        "Be available for a minimum of ten (10) hours per week.",
+                        "Be willing to report physically to the DRMHI office once weekly, as agreed with DRMHI, if applicable.",
+                        "Be willing to prepare and implement bi-monthly work plans.",
+                        "Be able to respond to official DRMHI communication within one (1) hour during agreed availability periods."
+                    ],
+                    volunteerTerms: [
+                        "This is a strictly voluntary and unpaid position.",
+                        "DRMHI will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for this volunteer position.",
+                        "The Volunteer will be required to provide and use a working personal laptop for assigned duties."
+                    ],
+                    deadlineNote: "Only shortlisted applicants will be contacted."
+                }
             },
             {
                 id: 3,
@@ -630,9 +732,59 @@ export const siteContent = {
                 postedDate: "2026-08-27",
                 summary: "Help keep DRMHI's day-to-day operations running smoothly, supporting our teams across digital rights and mental health programs.",
                 applyLink: "https://forms.gle/oGhQXs7UzaT4ZVGo7",
-                detailsLink: "https://docs.google.com/document/d/1xn-IBS9Q-7OAV2oSC7O7T8AGY0yUyYDotOGQKSARBaU/edit?usp=drivesdk",
                 image: "",
-                isOpen: true
+                isOpen: true,
+                details: {
+                    positionTitle: "Operations Team Lead Volunteer",
+                    meta: {
+                        Department: "Operations",
+                        Location: "To be assigned",
+                        "Number of Positions": 2,
+                        "Engagement Type": "Volunteer",
+                        Duration: "Six (6) Months",
+                        Period: "September 2026 – February 2027"
+                    },
+                    about: [
+                        "Digital Rights and Mental Health Initiative (DRMHI) is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion and related humanitarian and development initiatives.",
+                        "DRMHI is seeking a committed and organized individual to serve as an Operations Volunteer."
+                    ],
+                    jobDescription: "The Operations Volunteer will support the day-to-day operational, administrative, and logistical functions of DRMHI.",
+                    responsibilities: [
+                        "Support daily office operations.",
+                        "Assist with administrative coordination.",
+                        "Support logistics for DRMHI activities.",
+                        "Assist with meetings, workshops, and events.",
+                        "Maintain operational records.",
+                        "Support inventory and asset documentation.",
+                        "Assist with transportation and logistical arrangements.",
+                        "Support field activity preparation.",
+                        "Assist departments with operational requests.",
+                        "Support filing and documentation.",
+                        "Identify operational challenges and report them.",
+                        "Perform other assigned operational duties."
+                    ],
+                    requirements: [
+                        "Possess BSc or HND from a recognized institution.",
+                        "Have good organizational and administrative skills.",
+                        "Have strong communication and interpersonal skills.",
+                        "Be detail-oriented and dependable.",
+                        "Be computer literate.",
+                        "Have knowledge of Microsoft Word and Excel.",
+                        "Be able to work independently and in a team.",
+                        "Possess a working personal laptop and reliable internet access.",
+                        "Have good knowledge of Microsoft Office applications.",
+                        "Be available for a minimum of ten (10) hours per week.",
+                        "Be willing to report physically to the DRMHI office once weekly, as agreed with DRMHI, if applicable.",
+                        "Be willing to prepare and implement bi-monthly work plans.",
+                        "Be able to respond to official DRMHI communication within one (1) hour during agreed availability periods."
+                    ],
+                    volunteerTerms: [
+                        "This is a strictly voluntary and unpaid position.",
+                        "DRMHI will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for this volunteer position.",
+                        "Possess a working personal laptop and reliable internet access."
+                    ],
+                    deadlineNote: "Only shortlisted applicants will be contacted."
+                }
             }
         ]
     },
