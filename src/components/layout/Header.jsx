@@ -64,15 +64,12 @@ const Header = () => {
                 <div className="flex items-center justify-between">
                     <Link to="/" className="flex items-center space-x-3 group">
                         <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/10 p-1.5 transition-transform group-hover:scale-110">
-                            <img src="/images/logo.png" alt="DRMHI Africa Logo" className="h-full w-full object-contain" />
+                            <img src="/images/logo.png" alt="Digital Rights and Mental Health Initiative Africa Logo" className="h-full w-full object-contain" />
                         </div>
 
                         <div className="flex flex-col">
-                            <span className="font-display text-sm font-bold text-white transition-colors">
-                                {siteContent.site?.name || 'DRMHI Africa'}
-                            </span>
-                            <span className="hidden text-xs font-medium text-white/70 sm:block">
-                                Digital Rights & Mental Health
+                            <span className="font-display text-sm font-bold leading-tight text-white transition-colors">
+                                {siteContent.site?.name || 'Digital Rights and Mental Health Initiative Africa'}
                             </span>
                         </div>
                     </Link>

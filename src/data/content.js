@@ -240,7 +240,7 @@ export const siteContent = {
     ],
 
     site: {
-        name: "DRMHI Africa",
+        name: "Digital Rights and Mental Health Initiative Africa",
         fullName: "Digital Rights and Mental Health Initiative Africa",
         tagline: "Advancing digital rights and mental health awareness across Africa",
         email: "Info@digitalrightsandmentalhealthinitiativeafrica.org",
@@ -311,7 +311,7 @@ export const siteContent = {
         {
             id: 1,
             name: "Kauna Ibrahim Malgwi",
-            role: "Executive Director and Founder, DRMHI",
+            role: "Executive Director and Founder, Digital Rights and Mental Health Initiative Africa",
             bio: "Clinical psychologist & Former Facebook content moderator. Recognized by BBC as one of the 100 most inspiring women of 2024 and by TIME as one of the most influential people in AI.",
             image: "/images/Kauna.jpeg",
             social: {
@@ -592,7 +592,7 @@ export const siteContent = {
     },
 
     careers: {
-        intro: "Join DRMHI Africa in advancing digital rights and mental wellbeing across the continent. Browse our current openings below.",
+        intro: "Join Digital Rights and Mental Health Initiative Africa in advancing digital rights and mental wellbeing across the continent. Browse our current openings below.",
         emptyStateImage: "",
         positions: [
             {
@@ -602,7 +602,7 @@ export const siteContent = {
                 department: "Human Resources & Administration",
                 location: "Remote / Flexible",
                 postedDate: "2026-08-27",
-                summary: "Support DRMHI's people operations, from recruitment coordination to maintaining volunteer records, as part of our growing team.",
+                summary: "Support Digital Rights and Mental Health Initiative Africa's people operations, from recruitment coordination to maintaining volunteer records, as part of our growing team.",
                 applyLink: "https://forms.gle/oGhQXs7UzaT4ZVGo7",
                 image: "",
                 isOpen: true,
@@ -617,10 +617,10 @@ export const siteContent = {
                         Period: "September 2026 – February 2027"
                     },
                     about: [
-                        "Digital Rights and Mental Health Initiative (DRMHI) is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion, and related humanitarian and development initiatives.",
-                        "DRMHI is seeking a committed and organized individual to serve as a Human Resources Volunteer."
+                        "Digital Rights and Mental Health Initiative Africa is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion, and related humanitarian and development initiatives.",
+                        "Digital Rights and Mental Health Initiative Africa is seeking a committed and organized individual to serve as a Human Resources Volunteer."
                     ],
-                    jobDescription: "The Human Resources Volunteer will support DRMHI's recruitment, volunteer management, personnel documentation, onboarding, records management, and HR administrative activities.",
+                    jobDescription: "The Human Resources Volunteer will support Digital Rights and Mental Health Initiative Africa's recruitment, volunteer management, personnel documentation, onboarding, records management, and HR administrative activities.",
                     responsibilities: [
                         "Support recruitment and selection processes.",
                         "Assist with preparation of recruitment documents.",
@@ -635,7 +635,7 @@ export const siteContent = {
                         "Support volunteer engagement activities.",
                         "Assist with exit and handover documentation.",
                         "Maintain strict confidentiality of personnel information.",
-                        "Support implementation of DRMHI HR policies."
+                        "Support implementation of Digital Rights and Mental Health Initiative Africa HR policies."
                     ],
                     requirements: [
                         "Possess BSc or HND in Human Resources, Business Administration, Management, Social Sciences or a related discipline.",
@@ -647,13 +647,13 @@ export const siteContent = {
                         "Have good knowledge of Microsoft Word and Excel.",
                         "Possess a working personal laptop and reliable internet access.",
                         "Be available for a minimum of ten (10) hours per week.",
-                        "Be willing to report physically to the DRMHI office once weekly, as agreed with DRMHI, if applicable.",
+                        "Be willing to report physically to the Digital Rights and Mental Health Initiative Africa office once weekly, as agreed with Digital Rights and Mental Health Initiative Africa, if applicable.",
                         "Be willing to prepare and implement bi-monthly work plans.",
-                        "Be able to respond to official DRMHI communication within one (1) hour during agreed availability periods."
+                        "Be able to respond to official Digital Rights and Mental Health Initiative Africa communication within one (1) hour during agreed availability periods."
                     ],
                     volunteerTerms: [
                         "This is a strictly voluntary and unpaid position.",
-                        "DRMHI will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for this volunteer position.",
+                        "Digital Rights and Mental Health Initiative Africa will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for this volunteer position.",
                         "The Volunteer will be required to provide and use a working personal laptop for assigned duties."
                     ],
                     deadlineNote: "Only shortlisted applicants will be contacted."
@@ -666,7 +666,7 @@ export const siteContent = {
                 department: "Operations",
                 location: "Remote / Flexible",
                 postedDate: "2026-08-27",
-                summary: "Coordinate procurement and logistics for DRMHI's programs, ensuring resources and materials reach the communities we serve.",
+                summary: "Coordinate procurement and logistics for Digital Rights and Mental Health Initiative Africa's programs, ensuring resources and materials reach the communities we serve.",
                 applyLink: "https://forms.gle/oGhQXs7UzaT4ZVGo7",
                 image: "",
                 isOpen: true,
@@ -681,10 +681,10 @@ export const siteContent = {
                         Period: "September 2026 – February 2027"
                     },
                     about: [
-                        "Digital Rights and Mental Health Initiative (DRMHI) is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion, and related humanitarian and development initiatives.",
-                        "DRMHI is seeking a committed and organized individual to serve as a Human Resources Volunteer."
+                        "Digital Rights and Mental Health Initiative Africa is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion, and related humanitarian and development initiatives.",
+                        "Digital Rights and Mental Health Initiative Africa is seeking a committed and organized individual to serve as a Human Resources Volunteer."
                     ],
-                    jobDescription: "The Human Resources Volunteer will support DRMHI's recruitment, volunteer management, personnel documentation, onboarding, records management, and HR administrative activities.",
+                    jobDescription: "The Human Resources Volunteer will support Digital Rights and Mental Health Initiative Africa's recruitment, volunteer management, personnel documentation, onboarding, records management, and HR administrative activities.",
                     responsibilities: [
                         "Support recruitment and selection processes.",
                         "Assist with preparation of recruitment documents.",
@@ -699,7 +699,7 @@ export const siteContent = {
                         "Support volunteer engagement activities.",
                         "Assist with exit and handover documentation.",
                         "Maintain strict confidentiality of personnel information.",
-                        "Support implementation of DRMHI HR policies."
+                        "Support implementation of Digital Rights and Mental Health Initiative Africa HR policies."
                     ],
                     requirements: [
                         "Possess BSc or HND in Human Resources, Business Administration, Management, Social Sciences or a related discipline.",
@@ -711,13 +711,13 @@ export const siteContent = {
                         "Have good knowledge of Microsoft Word and Excel.",
                         "Possess a working personal laptop and reliable internet access.",
                         "Be available for a minimum of ten (10) hours per week.",
-                        "Be willing to report physically to the DRMHI office once weekly, as agreed with DRMHI, if applicable.",
+                        "Be willing to report physically to the Digital Rights and Mental Health Initiative Africa office once weekly, as agreed with Digital Rights and Mental Health Initiative Africa, if applicable.",
                         "Be willing to prepare and implement bi-monthly work plans.",
-                        "Be able to respond to official DRMHI communication within one (1) hour during agreed availability periods."
+                        "Be able to respond to official Digital Rights and Mental Health Initiative Africa communication within one (1) hour during agreed availability periods."
                     ],
                     volunteerTerms: [
                         "This is a strictly voluntary and unpaid position.",
-                        "DRMHI will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for this volunteer position.",
+                        "Digital Rights and Mental Health Initiative Africa will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for this volunteer position.",
                         "The Volunteer will be required to provide and use a working personal laptop for assigned duties."
                     ],
                     deadlineNote: "Only shortlisted applicants will be contacted."
@@ -730,7 +730,7 @@ export const siteContent = {
                 department: "Operations",
                 location: "Remote / Flexible",
                 postedDate: "2026-08-27",
-                summary: "Help keep DRMHI's day-to-day operations running smoothly, supporting our teams across digital rights and mental health programs.",
+                summary: "Help keep Digital Rights and Mental Health Initiative Africa's day-to-day operations running smoothly, supporting our teams across digital rights and mental health programs.",
                 applyLink: "https://forms.gle/oGhQXs7UzaT4ZVGo7",
                 image: "",
                 isOpen: true,
@@ -745,14 +745,14 @@ export const siteContent = {
                         Period: "September 2026 – February 2027"
                     },
                     about: [
-                        "Digital Rights and Mental Health Initiative (DRMHI) is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion and related humanitarian and development initiatives.",
-                        "DRMHI is seeking a committed and organized individual to serve as an Operations Volunteer."
+                        "Digital Rights and Mental Health Initiative Africa is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion and related humanitarian and development initiatives.",
+                        "Digital Rights and Mental Health Initiative Africa is seeking a committed and organized individual to serve as an Operations Volunteer."
                     ],
-                    jobDescription: "The Operations Volunteer will support the day-to-day operational, administrative, and logistical functions of DRMHI.",
+                    jobDescription: "The Operations Volunteer will support the day-to-day operational, administrative, and logistical functions of Digital Rights and Mental Health Initiative Africa.",
                     responsibilities: [
                         "Support daily office operations.",
                         "Assist with administrative coordination.",
-                        "Support logistics for DRMHI activities.",
+                        "Support logistics for Digital Rights and Mental Health Initiative Africa activities.",
                         "Assist with meetings, workshops, and events.",
                         "Maintain operational records.",
                         "Support inventory and asset documentation.",
@@ -774,13 +774,13 @@ export const siteContent = {
                         "Possess a working personal laptop and reliable internet access.",
                         "Have good knowledge of Microsoft Office applications.",
                         "Be available for a minimum of ten (10) hours per week.",
-                        "Be willing to report physically to the DRMHI office once weekly, as agreed with DRMHI, if applicable.",
+                        "Be willing to report physically to the Digital Rights and Mental Health Initiative Africa office once weekly, as agreed with Digital Rights and Mental Health Initiative Africa, if applicable.",
                         "Be willing to prepare and implement bi-monthly work plans.",
-                        "Be able to respond to official DRMHI communication within one (1) hour during agreed availability periods."
+                        "Be able to respond to official Digital Rights and Mental Health Initiative Africa communication within one (1) hour during agreed availability periods."
                     ],
                     volunteerTerms: [
                         "This is a strictly voluntary and unpaid position.",
-                        "DRMHI will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for this volunteer position.",
+                        "Digital Rights and Mental Health Initiative Africa will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for this volunteer position.",
                         "Possess a working personal laptop and reliable internet access."
                     ],
                     deadlineNote: "Only shortlisted applicants will be contacted."

@@ -72,11 +72,8 @@ const Footer = () => {
                                 {site.name?.[0] || 'D'}
                             </div>
                             <div className="flex flex-col">
-                                <span className="font-display text-sm font-bold text-white">
-                                    {site.name || 'DRMHI Africa'}
-                                </span>
-                                <span className="text-xs font-medium text-white/70">
-                                    Digital Rights & Mental Health
+                                <span className="font-display text-sm font-bold leading-tight text-white">
+                                    {site.name || 'Digital Rights and Mental Health Initiative Africa'}
                                 </span>
                             </div>
                         </Link>
@@ -154,7 +151,7 @@ const Footer = () => {
                 <div className="my-10 h-px bg-white/10" />
 
                 <div className="flex flex-col items-center justify-between gap-4 text-sm text-white/60 md:flex-row">
-                    <p>© {currentYear} {site.fullName || 'DRMHI Africa'}. All rights reserved.</p>
+                    <p>© {currentYear} {site.fullName || 'Digital Rights and Mental Health Initiative Africa'}. All rights reserved.</p>
                     <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em]">
                         <Link to="/about" className="transition-colors hover:text-[#e84a3c]">Mission</Link>
                         <Link to="/projects" className="transition-colors hover:text-[#e84a3c]">Impact</Link>

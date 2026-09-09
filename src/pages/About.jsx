@@ -35,7 +35,7 @@ const About = () => {
 
     return (
         <div className="overflow-hidden">
-            <Hero compact eyebrow="Who we are" title="About DRMHI Africa" subtitle="Building a future where digital participation strengthens rights, dignity, and mental wellbeing." />
+            <Hero compact eyebrow="Who we are" title="About Digital Rights and Mental Health Initiative Africa" subtitle="Building a future where digital participation strengthens rights, dignity, and mental wellbeing." />
 
             {/* Mission & Vision – Split Screen with new colors */}
             <section className="grid md:grid-cols-2 min-h-[600px] bg-white">

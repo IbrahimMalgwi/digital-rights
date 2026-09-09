@@ -47,7 +47,7 @@ const Donate = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="max-w-6xl mx-auto">
                         {/* Account Cards Grid - updated colors */}
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                             {/* Naira Account */}
                             <div className="card-hover p-6 animate-fade-in">
                                 <div className="flex items-center justify-between mb-4">
@@ -125,7 +125,7 @@ const Donate = () => {
                             </div>
 
                             {/* Euro Account */}
-                            <div className="card-hover p-6 md:col-span-2 lg:col-span-1 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                            <div className="card-hover p-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="w-12 h-12 bg-gradient-to-br from-secondary-600 to-secondary-700 rounded-xl flex items-center justify-center text-white text-2xl shadow-soft">
                                         €
@@ -160,6 +160,37 @@ const Donate = () => {
 
                                 <p className="text-xs text-secondary-500 mb-1">Bank</p>
                                 <p className="font-medium text-secondary-800">{accounts.euro.bankName}</p>
+                            </div>
+
+                            {/* GoFundMe Card */}
+                            <div className="card-hover p-6 flex flex-col animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center text-white text-2xl shadow-soft">
+                                        💚
+                                    </div>
+                                    <span className="text-xs font-medium bg-primary-100 text-primary-800 px-3 py-1 rounded-full">
+                                        Quick Donate
+                                    </span>
+                                </div>
+
+                                <p className="text-xs text-secondary-500 mb-1">Prefer online?</p>
+                                <p className="font-semibold text-secondary-900 text-base mb-3">GoFundMe Campaign</p>
+
+                                <p className="text-secondary-500 text-sm mb-3 flex-1">
+                                    Give by card in a few clicks through our GoFundMe page.
+                                </p>
+
+                                <a
+                                    href="https://gofund.me/93827c0c6"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn-primary inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold mt-auto"
+                                >
+                                    Donate on GoFundMe
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </a>
                             </div>
                         </div>
 
