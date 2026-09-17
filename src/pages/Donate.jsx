@@ -5,6 +5,7 @@ import Hero from '../components/cards/Hero';
 
 const Donate = () => {
     const [copiedAccount, setCopiedAccount] = useState(null);
+    const onlineDonationOptions = siteContent.donation?.onlineOptions || [];
 
     // Get account information from siteContent
     const accounts = siteContent.donation?.accounts || {
@@ -41,6 +42,52 @@ const Donate = () => {
     return (
         <div className="overflow-hidden">
             <Hero compact eyebrow="Give with purpose" title="Support our mission" subtitle="Your contribution expands access to digital safety education, advocacy, research, and mental health support." />
+
+            <section className="page-section-white" aria-labelledby="online-donation-heading">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="section-intro mb-12 animate-slide-up">
+                        <span className="section-eyebrow">Donate online</span>
+                        <h2 id="online-donation-heading" className="section-heading">Make a Donation</h2>
+                        <p className="section-copy">Choose your preferred currency to make a secure online donation.</p>
+                    </div>
+
+                    <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {onlineDonationOptions.map((option, index) => (
+                            <article
+                                key={option.currency}
+                                className="card-hover flex h-full flex-col p-6 text-center md:p-8"
+                                style={{ animationDelay: `${index * 0.1}s` }}
+                            >
+                                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#222222] font-display text-3xl font-extrabold text-white" aria-hidden="true">
+                                    {option.symbol}
+                                </div>
+                                <p className="mt-6 font-display text-xs font-bold uppercase tracking-[0.15em] text-[#e84a3c]">{option.currency}</p>
+                                <h3 className="mt-2 font-display text-2xl font-extrabold text-secondary-900">{option.name}</h3>
+                                <p className="mt-3 flex-1 text-sm text-secondary-500">{option.label}</p>
+                                <a
+                                    href={option.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Donate in ${option.currency} through Flutterwave (opens in a new tab)`}
+                                    className="btn-primary mt-7 w-full"
+                                >
+                                    Donate in {option.currency}
+                                    <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5h5m0 0v5m0-5L10 14M19 13v5a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5" />
+                                    </svg>
+                                </a>
+                            </article>
+                        ))}
+                    </div>
+
+                    <p className="mt-8 flex items-center justify-center gap-2 text-center text-sm text-secondary-500">
+                        <svg className="h-4 w-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 11V7a4 4 0 118 0v4m-8 0H6a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2v-6a2 2 0 00-2-2h-4zm0 0h4" />
+                        </svg>
+                        Secure donations are processed through Flutterwave.
+                    </p>
+                </div>
+            </section>
 
             {/* Main Donation Section - Account Details */}
             <section id="donate-form" className="page-section-soft">

@@ -9,6 +9,8 @@ const Blog = lazy(() => import('./pages/Blog'));
 const Careers = lazy(() => import('./pages/Careers'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Donate = lazy(() => import('./pages/Donate'));
+const EventDetails = lazy(() => import('./pages/EventDetails'));
+const Events = lazy(() => import('./pages/Events'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const Home = lazy(() => import('./pages/Home'));
 const Partners = lazy(() => import('./pages/Partners'));
@@ -49,6 +51,8 @@ function App() {
                             <Route path="/awards" element={<Awards />} />
                             <Route path="/careers" element={<Careers />} />
                             <Route path="/donate" element={<Donate />} />
+                            <Route path="/events" element={<Events />} />
+                            <Route path="/events/:eventSlug" element={<EventDetails />} />
                             <Route path="/team" element={<Team />} />
                             <Route path="/partners" element={<Partners />} />
                             <Route path="/contact" element={<Contact />} />

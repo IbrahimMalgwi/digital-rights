@@ -47,6 +47,7 @@ const Header = () => {
         { name: 'Awards', href: '/awards' },
         { name: 'Partners', href: '/partners' },
         { name: 'Careers', href: '/careers' },
+        { name: 'Events', href: '/events' },
         { name: 'Blog', href: '/blog' },
         { name: 'Gallery', href: '/gallery' },
         { name: 'Contact', href: '/contact' }
@@ -74,7 +75,7 @@ const Header = () => {
                         </div>
                     </Link>
 
-                    <div className="hidden items-center space-x-1 lg:flex">
+                    <div className="hidden items-center space-x-1 xl:flex">
                         {navigationItems.map((item) => (
                             <Link
                                 key={item.name}
@@ -95,7 +96,7 @@ const Header = () => {
                     </div>
 
                     <button
-                        className="relative h-10 w-10 rounded-lg border border-white/10 bg-white/10 transition-colors hover:bg-white/20 lg:hidden"
+                        className="relative h-10 w-10 rounded-lg border border-white/10 bg-white/10 transition-colors hover:bg-white/20 xl:hidden"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle menu"
                         aria-expanded={isMobileMenuOpen}

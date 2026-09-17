@@ -143,6 +143,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         { name: 'Awards', href: '/awards', icon: '🏆', external: false },
         { name: 'Partners', href: '/partners', icon: '🤝', external: false },
         { name: 'Careers', href: '/careers', icon: '💼', external: false },
+        { name: 'Events', href: '/events', icon: '📅', external: false },
         { name: 'Blog', href: '/blog', icon: '✍️', external: false },
         { name: 'Gallery', href: '/gallery', icon: '🖼️', external: false },
         { name: 'Contact', href: '/contact', icon: '📧', external: false }
@@ -167,7 +168,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         <>
             {/* Backdrop */}
             <div
-                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 lg:hidden ${
+                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 xl:hidden ${
                     isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
                 }`}
                 onClick={onClose}
@@ -180,7 +181,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 aria-modal="true"
                 aria-label="Navigation menu"
                 className={`
-                    fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out lg:hidden
+                    fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out xl:hidden
                     ${isOpen ? 'translate-x-0' : 'translate-x-full'}
                 `}
             >

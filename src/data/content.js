@@ -904,6 +904,29 @@ export const siteContent = {
     ],
 
     donation: {
+        onlineOptions: [
+            {
+                currency: "NGN",
+                symbol: "₦",
+                name: "Nigerian Naira",
+                label: "Donate in Nigerian Naira",
+                url: "https://flutterwave.com/donate/3blzenyugoq8"
+            },
+            {
+                currency: "USD",
+                symbol: "$",
+                name: "US Dollar",
+                label: "Donate in US Dollars",
+                url: "https://flutterwave.com/donate/tgymuo9afajp"
+            },
+            {
+                currency: "EUR",
+                symbol: "€",
+                name: "Euro",
+                label: "Donate in Euros",
+                url: "https://flutterwave.com/donate/j3eudjcoq2c4"
+            }
+        ],
         tiers: [
             {
                 name: "Supporter",
