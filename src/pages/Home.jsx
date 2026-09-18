@@ -7,6 +7,7 @@ import { siteContent } from '../data/content';
 import { getAssetUrl } from '../utils/assets.js';
 
 const Home = () => {
+    const about = siteContent.about || {};
     const featuredProjects = siteContent.projects?.filter(project => project.featured) || [];
     const featuredHighlights = (siteContent.gallery || [])
         .filter(item => ['Community Outreach', 'Trainings', 'Advocacy Campaigns'].includes(item.category))
@@ -16,6 +17,60 @@ const Home = () => {
         <div className="overflow-hidden aurora-bg">
 
             <Hero />
+
+            {/* Organizational identity */}
+            <section className="page-section-soft" aria-labelledby="who-we-are-heading">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
+                        <div className="animate-slide-up">
+                            <span className="section-eyebrow">Who We Are</span>
+                            <h2 id="who-we-are-heading" className="mt-4 font-display text-4xl font-bold leading-tight text-secondary-900 md:text-5xl">{about.introduction?.title}</h2>
+                            <div className="mt-6 h-[3px] w-20 bg-[#e84a3c]" aria-hidden="true" />
+                        </div>
+                        <div className="space-y-5 text-base leading-8 text-secondary-600 md:text-lg">
+                            {about.introduction?.paragraphs?.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+                            <Link to="/about" className="inline-flex items-center font-bold text-primary-700 transition-colors hover:text-accent-700">
+                                Learn more about DRMHI
+                                <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="mt-16 grid gap-6 md:grid-cols-2">
+                        <article className="border-t-4 border-[#e84a3c] bg-white p-7 shadow-sm animate-fade-in sm:p-9">
+                            <div className="flex h-12 w-12 items-center justify-center bg-[#e84a3c] font-display text-sm font-extrabold text-white" aria-hidden="true">01</div>
+                            <h3 className="mt-6 font-display text-3xl font-bold text-secondary-900">{about.mission?.title}</h3>
+                            <p className="mt-4 leading-8 text-secondary-600">{about.mission?.content}</p>
+                        </article>
+                        <article className="border-t-4 border-[#222222] bg-white p-7 shadow-sm animate-fade-in sm:p-9" style={{ animationDelay: '0.1s' }}>
+                            <div className="flex h-12 w-12 items-center justify-center bg-[#222222] font-display text-sm font-extrabold text-white" aria-hidden="true">02</div>
+                            <h3 className="mt-6 font-display text-3xl font-bold text-secondary-900">{about.vision?.title}</h3>
+                            <p className="mt-4 leading-8 text-secondary-600">{about.vision?.content}</p>
+                        </article>
+                    </div>
+
+                    <div className="mt-20">
+                        <div className="section-intro mb-12 animate-slide-up">
+                            <span className="section-eyebrow">What guides us</span>
+                            <h2 className="section-heading">Our Core Values</h2>
+                        </div>
+                        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+                            {about.values?.map((value, index) => {
+                                const balanceClass = index === 3
+                                    ? 'lg:col-start-2'
+                                    : index === 4
+                                        ? 'sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.625rem)] lg:col-span-2 lg:mx-0 lg:w-auto'
+                                        : '';
+                                return <article key={value.title} className={`card-hover flex min-h-48 flex-col p-6 animate-fade-in lg:col-span-2 ${balanceClass}`} style={{ animationDelay: `${index * 0.08}s` }}>
+                                    <span className="font-display text-4xl font-extrabold text-[#e84a3c]/25" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                                    <h3 className="mt-auto pt-8 font-display text-xl font-extrabold leading-snug text-secondary-900">{value.title}</h3>
+                                    {value.description && <p className="mt-3 text-sm leading-6 text-secondary-600">{value.description}</p>}
+                                </article>;
+                            })}
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* Our Impact Section */}
             <section className="page-section-white">
@@ -178,46 +233,8 @@ const Home = () => {
                         </Link>
                     </div>
 
-                    {/* Projects Grid - Featured (large) */}
-                    <div className="grid lg:grid-cols-2 gap-6 mb-6">
-                        {featuredProjects.slice(0, 2).map((project, index) => {
-                            // Updated category colors to match new theme
-                            const categoryColor = {
-                                Education: 'bg-primary-50 text-primary-700',
-                                'Mental Health': 'bg-accent-50 text-accent-700',
-                                Advocacy: 'bg-secondary-100 text-secondary-800',
-                                Research: 'bg-primary-100 text-primary-800',
-                            }[project.category] || 'bg-secondary-50 text-secondary-700';
-
-                            return (
-                                <ProjectCard
-                                    key={index}
-                                    project={project}
-                                    variant="featured"
-                                    categoryColor={categoryColor}
-                                />
-                            );
-                        })}
-                    </div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {featuredProjects.slice(2, 5).map((project, index) => {
-                            const categoryColor = {
-                                Education: 'bg-primary-50 text-primary-700',
-                                'Mental Health': 'bg-accent-50 text-accent-700',
-                                Advocacy: 'bg-secondary-100 text-secondary-800',
-                                Research: 'bg-primary-100 text-primary-800',
-                            }[project.category] || 'bg-secondary-50 text-secondary-700';
-
-                            return (
-                                <ProjectCard
-                                    key={index}
-                                    project={project}
-                                    variant="compact"
-                                    categoryColor={categoryColor}
-                                />
-                            );
-                        })}
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {featuredProjects.map(project => <ProjectCard key={project.id} project={project} variant="featured" />)}
                     </div>
 
                     {/* Mobile View All Link */}

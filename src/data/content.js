@@ -1,6 +1,190 @@
 //src/data/content.js
+const CAREERS_APPLICATION_LINK = "https://forms.gle/oGhQXs7UzaT4ZVGo7";
+const CAREERS_ABOUT = "Digital Rights and Mental Health Initiative (DRMHI) is a non-profit organization committed to advancing digital rights, mental health awareness, psychosocial wellbeing, community resilience, inclusion, and related humanitarian and development initiatives.";
+const VOLUNTEER_TERMS = [
+    "These are strictly voluntary and unpaid positions.",
+    "DRMHI will not provide salary, stipend, allowance, honorarium, remuneration, financial compensation or any other form of payment for these volunteer positions.",
+    "Volunteers are required to have access to a working personal laptop and reliable internet connection."
+];
+const APPLICATION_REQUIREMENTS = [
+    "Updated CV",
+    "Application letter",
+    "Copies of relevant academic qualifications",
+    "Active telephone number and email address"
+];
+const COMMON_VOLUNTEER_META = {
+    "Engagement Type": "Volunteer",
+    Duration: "Six (6) Months",
+    Period: "September 2026 – February 2027"
+};
+
+const makeVolunteerVacancy = ({ id, title, department, location, positions, summary, jobDescription, responsibilities, requirements }) => ({
+    id,
+    title,
+    type: "Volunteer",
+    department,
+    location,
+    duration: "Six (6) Months",
+    numberOfPositions: positions,
+    postedDate: "2026-09-18",
+    summary,
+    applyLink: CAREERS_APPLICATION_LINK,
+    image: "",
+    isOpen: true,
+    details: {
+        positionTitle: title,
+        meta: { Department: department, Location: location, "Number of Positions": positions, ...COMMON_VOLUNTEER_META },
+        about: [CAREERS_ABOUT],
+        jobDescription,
+        responsibilities,
+        requirements,
+        volunteerTerms: VOLUNTEER_TERMS,
+        applicationRequirements: APPLICATION_REQUIREMENTS,
+        deadlineNote: "Only shortlisted applicants will be contacted."
+    }
+});
+
+const NEW_VOLUNTEER_VACANCIES = [
+    makeVolunteerVacancy({
+        id: "finance-accounting-volunteer-2026",
+        title: "Finance / Accounting Volunteer",
+        department: "Finance & Accounts",
+        location: "To be assigned",
+        positions: 1,
+        summary: "Support DRMHI's financial documentation, record-keeping, budget monitoring, and approved accounting activities under supervision.",
+        jobDescription: "The Finance/Accounting Volunteer will support DRMHI's financial documentation, record-keeping, budget monitoring, and other approved accounting activities under supervision.",
+        responsibilities: ["Support organization of financial records.", "Assist with financial documentation and filing.", "Support preparation of financial reports.", "Assist with budget tracking.", "Support financial data entry.", "Assist with reconciliation under supervision.", "Maintain financial trackers.", "Support audit documentation.", "Maintain confidentiality of financial information.", "Assist with other approved finance activities."],
+        requirements: ["BSc or HND in Accounting, Finance, Economics, Business Administration or a related discipline.", "Knowledge of basic accounting principles.", "Proficiency in Microsoft Excel.", "Integrity and strong attention to detail.", "Ability to maintain confidentiality.", "Working personal laptop and reliable internet access.", "Good knowledge of Microsoft Office applications.", "Minimum availability of ten (10) hours per week.", "Willingness to report physically to the DRMHI office once weekly, as agreed with DRMHI, if applicable.", "Willingness to prepare and implement bi-monthly work plans.", "Ability to respond to official DRMHI communication within one (1) hour during agreed availability periods."]
+    }),
+    makeVolunteerVacancy({
+        id: "state-coordinator-2026",
+        title: "State Coordinator",
+        department: "Coordination",
+        location: "Maiduguri, Borno State",
+        positions: 1,
+        summary: "Coordinate DRMHI programmes, volunteers, field communication, community engagement, and activity reporting within Borno State.",
+        responsibilities: ["Coordinate and support DRMHI activities within the assigned state.", "Support implementation of organizational programmes and projects.", "Coordinate volunteers and support effective team collaboration.", "Facilitate communication between DRMHI departments and field teams.", "Support engagement with communities, stakeholders and partners.", "Participate in organizational planning and coordination meetings.", "Monitor assigned activities and provide regular updates.", "Support identification of partnerships and relevant opportunities.", "Prepare coordination reports and activity updates.", "Support effective implementation of DRMHI policies and procedures.", "Escalate operational, programme, safeguarding and security concerns.", "Represent DRMHI professionally when authorized.", "Perform other reasonable duties assigned by the supervisor."],
+        requirements: ["Minimum BSc or HND from a recognized institution.", "Leadership and coordination abilities.", "Excellent communication and interpersonal skills.", "Organized, proactive and dependable.", "Ability to work independently and as part of a team.", "Interest in digital rights, mental health, humanitarian work, community development or related areas.", "Computer literacy.", "Good knowledge of Microsoft Office.", "Working personal laptop and reliable internet access.", "Minimum availability of ten (10) hours per week.", "Willingness to report physically once weekly as agreed with DRMHI, if applicable.", "Willingness to prepare and implement bi-monthly work plans.", "Ability to respond to official DRMHI communication within one (1) hour during agreed availability periods."]
+    }),
+    makeVolunteerVacancy({
+        id: "protection-officer-2026",
+        title: "Protection Officer",
+        department: "Programs",
+        location: "Maiduguri, Borno State / Assigned Duty Station",
+        positions: 1,
+        summary: "Support protection activities that promote the safety, dignity, and rights of vulnerable individuals and communities.",
+        jobDescription: "The Protection Officer Volunteer will support DRMHI in implementing protection-related activities and promoting the safety, dignity and rights of vulnerable individuals and communities.",
+        responsibilities: ["Support implementation of DRMHI protection activities.", "Assist with protection assessments and community engagement.", "Support protection awareness and sensitization activities.", "Assist in identifying protection concerns and appropriate referral pathways.", "Support community-based protection activities.", "Assist with collection and documentation of programme information.", "Participate in protection meetings, trainings and field activities.", "Assist in preparing protection reports.", "Maintain confidentiality of sensitive information.", "Support community feedback mechanisms.", "Promote safe and respectful engagement with beneficiaries.", "Immediately report safeguarding, protection and PSEA concerns through approved channels.", "Perform other duties assigned by the supervisor."],
+        requirements: ["BSc or HND from a recognized institution.", "Interest in protection, humanitarian assistance, human rights, community development or a related field.", "Good communication and interpersonal skills.", "Empathy, integrity and professionalism.", "Ability to work respectfully with vulnerable populations.", "Computer literacy.", "Good knowledge of Microsoft Office.", "Working personal laptop and reliable internet access.", "Minimum availability of ten (10) hours per week.", "Willingness to report physically once weekly as agreed with DRMHI, if applicable.", "Willingness to prepare and implement bi-monthly work plans.", "Ability to respond to official DRMHI communication within one (1) hour during agreed availability periods."]
+    }),
+    makeVolunteerVacancy({
+        id: "mhpss-officer-2026",
+        title: "MHPSS Officer",
+        department: "Programs",
+        location: "Maiduguri, Borno State / Assigned Duty Station",
+        positions: 1,
+        summary: "Support DRMHI's mental health and psychosocial support activities, community awareness, and wellbeing programmes.",
+        jobDescription: "The MHPSS Officer Volunteer will support DRMHI's mental health and psychosocial support activities, community awareness initiatives and psychosocial wellbeing programmes.",
+        responsibilities: ["Support implementation of MHPSS activities.", "Assist with mental health and psychosocial awareness activities.", "Support community engagement and sensitization.", "Assist with identification and referral of individuals requiring specialized support.", "Support MHPSS-related assessments and activities.", "Participate in relevant meetings, trainings and workshops.", "Assist in preparation of MHPSS activity reports.", "Maintain confidentiality of sensitive information.", "Support development of MHPSS communication and awareness materials.", "Promote safe, respectful and inclusive engagement.", "Report safeguarding and protection concerns through approved channels.", "Perform other duties assigned by the supervisor."],
+        requirements: ["BSc or HND from a recognized institution.", "Preferably a background in Psychology, Social Work, Counselling, Sociology, Public Health or a related discipline.", "Interest in mental health and psychosocial support.", "Strong interpersonal and communication skills.", "Empathy, professionalism and confidentiality.", "Basic computer skills.", "Working personal laptop and reliable internet access.", "Good knowledge of Microsoft Office.", "Minimum availability of ten (10) hours per week.", "Willingness to report physically once weekly as agreed with DRMHI, if applicable.", "Willingness to prepare and implement bi-monthly work plans.", "Ability to respond to official DRMHI communication within one (1) hour during agreed availability periods."]
+    }),
+    makeVolunteerVacancy({
+        id: "monitoring-evaluation-volunteer-2026",
+        title: "Monitoring & Evaluation Volunteer",
+        department: "Monitoring & Evaluation",
+        location: "To be assigned",
+        positions: 2,
+        summary: "Support programme monitoring, data collection and analysis, indicator tracking, and evidence-based programme management.",
+        jobDescription: "The Monitoring & Evaluation Volunteer will support DRMHI in monitoring programme activities, collecting and analysing data, tracking indicators, and supporting evidence-based programme management.",
+        responsibilities: ["Support monitoring of DRMHI activities.", "Assist with data collection.", "Support development and use of data collection tools.", "Assist with data entry and cleaning.", "Maintain M&E databases and trackers.", "Track programme indicators.", "Support monitoring visits.", "Assist with data analysis.", "Support preparation of M&E reports.", "Assist with beneficiary feedback mechanisms.", "Identify data quality issues.", "Support documentation of lessons learned.", "Assist with programme evaluations.", "Maintain confidentiality of programme and beneficiary information."],
+        requirements: ["BSc or HND in Statistics, Economics, Social Sciences, Development Studies, Information Management, Computer Science or a related field.", "Good analytical and problem-solving skills.", "Proficiency in Microsoft Excel.", "Strong attention to detail.", "Good reporting skills.", "Knowledge of data collection and analysis tools is an advantage.", "Computer literacy.", "Ability to work independently and as part of a team.", "Working personal laptop and reliable internet access.", "Minimum availability of ten (10) hours per week.", "Willingness to report physically once weekly as agreed with DRMHI, if applicable.", "Willingness to prepare and implement bi-monthly work plans.", "Ability to respond to official DRMHI communication within one (1) hour during agreed availability periods."]
+    }),
+    makeVolunteerVacancy({
+        id: "media-communications-volunteer-2026",
+        title: "Media & Communications Volunteer",
+        department: "Communications",
+        location: "Maiduguri, Borno State",
+        positions: 2,
+        summary: "Support DRMHI's communication, visibility, digital media, programme documentation, and storytelling activities.",
+        jobDescription: "The Communications Volunteer will support DRMHI's communication, visibility, digital media, documentation and storytelling activities.",
+        responsibilities: ["Support DRMHI's social media platforms.", "Develop approved communication content.", "Support digital communication activities.", "Assist with photography and videography.", "Support video editing and graphic content development.", "Document DRMHI programmes and activities.", "Assist with newsletters, reports and visibility materials.", "Maintain a content calendar.", "Support development of success stories.", "Assist with event documentation.", "Support communication campaigns.", "Ensure appropriate consent before publishing beneficiary images or stories.", "Protect confidential information.", "Follow DRMHI communication and social media policies."],
+        requirements: ["BSc or HND from a recognized institution.", "Excellent written and verbal communication skills.", "Creativity and interest in digital communication.", "Knowledge of social media platforms.", "Computer literacy.", "Working personal laptop and reliable internet access.", "Good knowledge of Microsoft Office.", "Minimum availability of ten (10) hours per week.", "Willingness to report physically once weekly as agreed with DRMHI, if applicable.", "Willingness to prepare and implement bi-monthly work plans.", "Ability to respond to official DRMHI communication within one (1) hour during agreed availability periods."]
+    }),
+    makeVolunteerVacancy({
+        id: "fundraiser-partnerships-volunteer-2026",
+        title: "Fundraiser / Partnerships Volunteer",
+        department: "Grants / Resource Mobilization",
+        location: "Maiduguri, Borno State",
+        positions: 2,
+        summary: "Support DRMHI's fundraising, donor research, proposal development, partnerships, and resource mobilization activities.",
+        jobDescription: "The Fundraiser/Partnerships Volunteer will support DRMHI's fundraising, donor research, proposal development and resource mobilization activities.",
+        responsibilities: ["Research donor and funding opportunities.", "Maintain funding opportunity trackers.", "Review donor calls and eligibility requirements.", "Support development of concept notes.", "Assist with proposal writing.", "Support Expressions of Interest.", "Conduct donor research and mapping.", "Support development of logical frameworks.", "Assist with proposal budgets in collaboration with Finance.", "Support preparation of organizational capacity statements.", "Assist with donor reports.", "Maintain grant documentation.", "Monitor donor deadlines.", "Support resource mobilization activities.", "Assist with partnership development materials."],
+        requirements: ["BSc or HND from a recognized institution.", "Excellent written and verbal English.", "Strong research and analytical skills.", "Interest in humanitarian, development or non-profit work.", "Proficiency in Microsoft Word and Excel.", "Ability to research funding opportunities online.", "Detail-oriented and deadline-driven.", "Working personal laptop and reliable internet access.", "Minimum availability of ten (10) hours per week.", "Willingness to report physically once weekly as agreed with DRMHI, if applicable.", "Willingness to prepare and implement bi-monthly work plans.", "Ability to respond to official DRMHI communication within one (1) hour during agreed availability periods."]
+    })
+];
+
 export const siteContent = {
     projects: [
+        {
+            id: "free-mental-health-therapy-sessions",
+            slug: "free-mental-health-therapy-sessions",
+            title: "Free Mental Health Therapy Sessions",
+            description: "Delivered specialized one-on-one mental health care to data workers facing occupational trauma and women recovering from digital violence.",
+            category: "Mental Health",
+            status: "Ongoing",
+            location: "Nigeria",
+            impactMetric: "100+",
+            impactLabel: "Pro-Bono Therapy Sessions",
+            confidentialityNote: "Participant privacy and confidentiality are protected.",
+            visualType: "privacy",
+            image: "",
+            imageAlt: "",
+            primaryCTA: "Sign Up for Free Therapy",
+            primaryUrl: "https://docs.google.com/forms/d/e/1FAIpQLSd6a9INIER8j8fVuPZ-J4--1g0s96gSz1I4nJkom7lS3yZKrg/viewform",
+            featured: true
+        },
+        {
+            id: "back-to-school-campaigns",
+            slug: "back-to-school-campaigns",
+            title: "Back-to-School Campaigns",
+            description: "Equipped vulnerable children and young girls across conflict-affected areas in Nigeria with essential educational kits to maintain schooling and build digital literacy.",
+            category: "Education",
+            status: "Ongoing",
+            location: "Nigeria",
+            impactMetric: "1,000+",
+            impactLabel: "Back-to-School Kits Distributed",
+            image: "/images/bts.jpeg",
+            imageAlt: "DRMHI back-to-school campaign activities in Nigeria",
+            primaryCTA: "Learn More",
+            featured: true
+        },
+        {
+            id: "ai-data-work-research",
+            slug: "ai-data-work-research",
+            title: "AI and Data Work Research",
+            description: "DRMHI researches the mental health, labour and human-rights implications of AI data work and uses the evidence to support worker protections.",
+            overview: "DRMHI protects AI data workers by researching the severe psychological trauma associated with reviewing graphic content without adequate mental health support, documenting low pay and precarious gig contracts within outsourcing arrangements, and using this evidence to support advocacy for fair wages, worker dignity, mental health protections and stronger labour protections.",
+            additionalContext: "The work also contributes to international discussions about AI labour and worker protections, including engagement with international institutions.",
+            category: "Research",
+            status: "Ongoing",
+            location: "Africa and international forums",
+            visualType: "research",
+            image: "",
+            imageAlt: "",
+            primaryCTA: "Explore Our Research",
+            featured: true,
+            resources: [
+                { title: "View Research", type: "Research", url: "https://data-workers.org/kauna/" },
+                { title: "Read Publication", type: "Publication", url: "https://dl.acm.org/doi/10.1145/3772318.3791639" },
+                { title: "Read Publication", type: "Publication", url: "https://arxiv.org/abs/2605.11699" },
+                { title: "Read Publication", type: "Publication", url: "https://dl.acm.org/doi/10.1145/3805689.3812227" },
+                { title: "Read Article", type: "Article", url: "https://theconversation.com/africas-data-workers-are-being-exploited-by-foreign-tech-firms-4-ways-to-protect-them-252957" },
+                { title: "Read Article", type: "Article", url: "https://time.com/collections/time100-ai-2024/7012799/kauna-malgwi/" },
+                { title: "View Resource", type: "Resource", url: "https://share.google/s7f3ybZy77z5vFcdO" },
+                { title: "View Resource", type: "Resource", url: "https://share.google/mKrcY8c1InNJPcYK2" },
+                { title: "Read Article", type: "Media", url: "https://www.ft.com/content/ef42e78f-e578-450b-9e43-36fbd1e20d01?syn-25a6b1a6=1" }
+            ]
+        },
         {
             id: 1,
             title: "Digital Literacy for Rural Communities",
@@ -17,7 +201,7 @@ export const siteContent = {
                 "Access to digital resources"
             ],
             partners: ["Local Community Centers", "Government Education Dept"],
-            featured: true
+            featured: false
         },
         {
             id: 2,
@@ -35,7 +219,7 @@ export const siteContent = {
                 "Referral to local support"
             ],
             partners: ["Mental Health Professionals", "Telecom Partners"],
-            featured: true
+            featured: false
         },
         {
             id: 3,
@@ -53,7 +237,7 @@ export const siteContent = {
                 "Legislative advocacy"
             ],
             partners: ["African Union", "Local NGOs"],
-            featured: true
+            featured: false
         },
         {
             id: 4,
@@ -127,7 +311,7 @@ export const siteContent = {
                 "Practical, hands-on training"
             ],
             partners: ["Local Women's Organizations", "Tech Companies", "Educational Institutions"],
-            featured: true,
+            featured: false,
             programs: [
                 {
                     name: "Trainings",
@@ -164,7 +348,7 @@ export const siteContent = {
                 "Create scalable mental health interventions"
             ],
             partners: ["DAIR Institute", "Academic Institutions", "Worker Collectives"],
-            featured: true,
+            featured: false,
             methodology: "The Data Workers' Inquiry is a community-based project where data workers join as community researchers to lead their own inquiries in their workplaces. Using Workers' Inquiry as a Research Methodology (WIRM), it turns hidden and precarious labor into a shared, politicized site for knowledge-making and tangible change.",
             inquiries: [
                 {
@@ -279,31 +463,27 @@ export const siteContent = {
     },
 
     about: {
+        introduction: {
+            title: "Digital Rights and Mental Health Initiative (DRMHI)",
+            paragraphs: [
+                "The Digital Rights and Mental Health Initiative (DRMHI) is an African non-profit organization operating at the intersection of artificial intelligence (AI), digital rights, mental health, gender, labor, and crisis response.",
+                "DRMHI exists to address the acute psychological, social, economic, and human rights harms created by the rapid expansion of digital platforms and AI infrastructure across Africa."
+            ]
+        },
         mission: {
-            title: "OUR MISSION",
-            content: "Our mission is to empower women by providing them with the tools, resources, and opportunities needed to overcome social, economic, and cultural barriers. We strive to create a world where every woman can live with dignity, free from discrimination and inequality. Through education, advocacy, and community-driven programs, we aim to inspire positive change, promote gender equality, and build a more inclusive society where women's rights are respected and upheld."
+            title: "Our Mission",
+            content: "To protect mental health, dignity and fundamental rights in communities affected by conflict, digital harm, technology-facilitated gender-based violence and exploitative digital labour through accessible care, African-led research, community action and responsible technology governance."
         },
         vision: {
             title: "Our Vision",
-            content: "Our vision is a digitally inclusive Africa where every individual can exercise their digital rights freely while maintaining optimal mental health and wellbeing, with particular focus on empowering women and marginalized communities."
+            content: "An Africa where technology expands human agency rather than harm, and where people, particularly women, young people, digital workers and crisis-affected communities, can live, work and participate in digital society with dignity, safety and access to mental health support."
         },
         values: [
-            {
-                title: "Innovation",
-                description: "Pioneering new approaches to digital rights and mental health intersectionality"
-            },
-            {
-                title: "Collaboration",
-                description: "Working with communities, governments, and organizations across Africa"
-            },
-            {
-                title: "Empowerment",
-                description: "Equipping individuals and communities with knowledge and tools for digital wellbeing"
-            },
-            {
-                title: "Advocacy",
-                description: "Championing policies that protect digital rights and promote mental health"
-            }
+            { title: "Human Rights & Dignity" },
+            { title: "Mental Health Equity" },
+            { title: "Platform Governance, TFGBV Prevention & AI Accountability" },
+            { title: "Survivor-Centered Care" },
+            { title: "Community Empowerment" }
         ]
     },
 
@@ -785,7 +965,8 @@ export const siteContent = {
                     ],
                     deadlineNote: "Only shortlisted applicants will be contacted."
                 }
-            }
+            },
+            ...NEW_VOLUNTEER_VACANCIES
         ]
     },
 
@@ -946,29 +1127,6 @@ export const siteContent = {
                 description: "Fund research on digital mental health",
                 benefits: ["All previous benefits", "Recognition on website", "Invitation to events"]
             }
-        ],
-        accounts: {
-            naira: {
-                currency: "₦",
-                accountName: "Digital and Mental Health Initiative",
-                accountNumber: "1028622735",
-                bankName: "United Bank of Africa (UBA)",
-                type: "Naira Account"
-            },
-            usd: {
-                currency: "$",
-                accountName: "Digital and Mental Health Initiative",
-                accountNumber: "3004920282",
-                bankName: "United Bank of Africa (UBA)",
-                type: "USD Account"
-            },
-            euro: {
-                currency: "€",
-                accountName: "Digital and Mental Health Initiative",
-                accountNumber: "3004921698",
-                bankName: "United Bank of Africa (UBA)",
-                type: "Euro Account"
-            }
-        }
+        ]
     }
 };

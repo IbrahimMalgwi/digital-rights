@@ -15,6 +15,7 @@ const Gallery = lazy(() => import('./pages/Gallery'));
 const Home = lazy(() => import('./pages/Home'));
 const Partners = lazy(() => import('./pages/Partners'));
 const Projects = lazy(() => import('./pages/Projects'));
+const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
 const Team = lazy(() => import('./pages/Team'));
 
 const PageLoader = () => (
@@ -56,7 +57,7 @@ function App() {
                             <Route path="/team" element={<Team />} />
                             <Route path="/partners" element={<Partners />} />
                             <Route path="/contact" element={<Contact />} />
-                            <Route path="/projects/:projectId" element={<Navigate to="/projects" replace />} />
+                            <Route path="/projects/:projectId" element={<ProjectDetails />} />
                             <Route path="/blog/:postId" element={<Navigate to="/blog" replace />} />
                             <Route path="/wdfa" element={<Navigate to="/projects" replace />} />
                             <Route path="/data-workers-inquiry" element={<Navigate to="/projects" replace />} />

@@ -45,7 +45,7 @@ const Projects = () => {
     return (
         <div className="bg-[#f5f5f5] font-['Open_Sans'] text-[#666666]">
             <section className="relative isolate flex min-h-[500px] items-center overflow-hidden pt-24 text-white">
-                <img src={getAssetUrl(featuredProjects[0]?.image)} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+                {featuredProjects[0]?.image && <img src={getAssetUrl(featuredProjects[0].image)} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />}
                 <div className="absolute inset-0 -z-10 bg-black/70" />
                 <div className="mx-auto w-full max-w-[1200px] px-5 py-20 sm:px-8">
                     <p className="font-['Raleway'] text-xs font-bold uppercase tracking-[0.15em] text-[#e84a3c]">What we do</p>
