@@ -43,6 +43,10 @@ const Header = () => {
         { name: 'Home', href: '/' },
         { name: 'About', href: '/about' },
         { name: 'Projects', href: '/projects' },
+        { name: 'Community Care', href: '/community-care' },
+        { name: 'Data Worker Training', href: '/data-workers-training' },
+        { name: 'Mental Health Professionals', href: '/mental-health-professionals' },
+        { name: 'Research Publications', href: '/research-publications' },
         { name: 'Team', href: '/team' },
         { name: 'Awards', href: '/awards' },
         { name: 'Partners', href: '/partners' },
@@ -80,7 +84,7 @@ const Header = () => {
                             <Link
                                 key={item.name}
                                 to={item.href}
-                                className={`px-4 py-2 font-display text-xs font-bold uppercase tracking-[0.15em] transition-all ${
+                                className={`px-2 py-2 font-display text-[10px] font-bold uppercase tracking-[0.08em] transition-all ${
                                     location.pathname === item.href
                                         ? 'bg-white/10 text-white'
                                         : 'text-white/80 hover:bg-white/10 hover:text-white'

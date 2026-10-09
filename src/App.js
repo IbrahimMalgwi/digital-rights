@@ -7,15 +7,19 @@ const About = lazy(() => import('./pages/About'));
 const Awards = lazy(() => import('./pages/Awards'));
 const Blog = lazy(() => import('./pages/Blog'));
 const Careers = lazy(() => import('./pages/Careers'));
+const CommunityCare = lazy(() => import('./pages/CommunityCare'));
 const Contact = lazy(() => import('./pages/Contact'));
+const DataWorkersTraining = lazy(() => import('./pages/DataWorkersTraining'));
 const Donate = lazy(() => import('./pages/Donate'));
 const EventDetails = lazy(() => import('./pages/EventDetails'));
 const Events = lazy(() => import('./pages/Events'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const Home = lazy(() => import('./pages/Home'));
+const MentalHealthProfessionals = lazy(() => import('./pages/MentalHealthProfessionals'));
 const Partners = lazy(() => import('./pages/Partners'));
 const Projects = lazy(() => import('./pages/Projects'));
 const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
+const ResearchPublications = lazy(() => import('./pages/ResearchPublications'));
 const Team = lazy(() => import('./pages/Team'));
 
 const PageLoader = () => (
@@ -47,6 +51,10 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/projects" element={<Projects />} />
+                            <Route path="/community-care" element={<CommunityCare />} />
+                            <Route path="/data-workers-training" element={<DataWorkersTraining />} />
+                            <Route path="/mental-health-professionals" element={<MentalHealthProfessionals />} />
+                            <Route path="/research-publications" element={<ResearchPublications />} />
                             <Route path="/blog" element={<Blog />} />
                             <Route path="/gallery" element={<Gallery />} />
                             <Route path="/awards" element={<Awards />} />
