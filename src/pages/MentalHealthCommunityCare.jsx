@@ -105,7 +105,7 @@ const MentalHealthCommunityCare = () => {
             </h2>
             <p className="mt-4 text-secondary-600">
               Connect with the wider community to talk, learn and act together
-              in support of data worker wellbeing.
+              in support of data worker wellbeing. All fields are required.
             </p>
 
             <form
@@ -158,7 +158,7 @@ const MentalHealthCommunityCare = () => {
                   <label htmlFor="language" className="block text-sm font-medium text-secondary-700 mb-2">
                     Preferred language
                   </label>
-                  <select id="language" name="language" className="input bg-white">
+                  <select id="language" name="language" required className="input bg-white">
                     <option>English</option>
                     <option>French</option>
                     <option>Hausa</option>
@@ -168,13 +168,14 @@ const MentalHealthCommunityCare = () => {
               </div>
 
               <div>
-                <label htmlFor="supportNeeds" className="block text-sm font-medium text-secondary-700 mb-2">
+                <label htmlFor="Occupation/affiliation" className="block text-sm font-medium text-secondary-700 mb-2">
                   Occupation / affiliation
                 </label>
                 <textarea
-                  id="supportNeeds"
-                  name="supportNeeds"
+                  id="Occupation/affiliation"
+                  name="Occupation/affiliation"
                   rows="5"
+                  required
                   className="input"
                   placeholder="Share your occupation or affiliation and your interest in the community."
                 />
