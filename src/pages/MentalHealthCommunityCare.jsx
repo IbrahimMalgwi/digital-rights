@@ -1,7 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Hero from "../components/cards/Hero";
 
 const MentalHealthCommunityCare = () => {
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    const form = event.currentTarget;
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/3c18f07d99b10e35cc2415e67824330c ",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        }
+      );
+      const result = await response.json().catch(() => null);
+      if (!result) {
+        setSubmitError("The registration service returned an unexpected response. Please try again later.");
+        return;
+      }
+      if (!response.ok || (result.success !== true && result.success !== "true")) {
+        setSubmitError(
+          typeof result.message === "string" && result.message.trim()
+            ? result.message
+            : "The registration service rejected this submission. Please try again later."
+        );
+        return;
+      }
+
+      window.alert("Registration successful");
+      form.reset();
+      navigate("/");
+    } catch {
+      setSubmitError(
+        "Unable to reach the registration service. Please check your connection and try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="overflow-hidden">
       <Hero
@@ -60,6 +111,7 @@ const MentalHealthCommunityCare = () => {
             <form
               action="https://formsubmit.co/3c18f07d99b10e35cc2415e67824330c"
               method="POST"
+              onSubmit={handleSubmit}
               className="mt-8 space-y-6"
             >
               <input type="hidden" name="_subject" value="Mental Health Community of Care registration" />
@@ -129,10 +181,11 @@ const MentalHealthCommunityCare = () => {
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <button type="submit" className="btn-primary">
-                  Join the community
+                <button type="submit" className="btn-primary" disabled={isSubmitting}>
+                  {isSubmitting ? "Registering…" : "Join the community"}
                 </button>
               </div>
+              {submitError && <p role="alert" className="text-red-700">{submitError}</p>}
             </form>
           </div>
         </div>
