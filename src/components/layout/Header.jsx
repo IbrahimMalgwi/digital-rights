@@ -43,7 +43,7 @@ const Header = () => {
         { name: 'Home', href: '/' },
         { name: 'About', href: '/about' },
         { name: 'Projects', href: '/projects' },
-        { name: 'Community Care', href: '/community-care' },
+        { name: 'Mental Health Community Care', href: '/community-care' },
         { name: 'Data Worker Training', href: '/data-workers-training' },
         { name: 'Mental Health Professionals', href: '/mental-health-professionals' },
         { name: 'Research Publications', href: '/research-publications' },

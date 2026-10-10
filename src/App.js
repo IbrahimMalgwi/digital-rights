@@ -7,7 +7,7 @@ const About = lazy(() => import('./pages/About'));
 const Awards = lazy(() => import('./pages/Awards'));
 const Blog = lazy(() => import('./pages/Blog'));
 const Careers = lazy(() => import('./pages/Careers'));
-const CommunityCare = lazy(() => import('./pages/CommunityCare'));
+const MentalHealthCommunityCare = lazy(() => import('./pages/./MentalHealthCommunityCare'));
 const Contact = lazy(() => import('./pages/Contact'));
 const DataWorkersTraining = lazy(() => import('./pages/DataWorkersTraining'));
 const Donate = lazy(() => import('./pages/Donate'));
@@ -51,7 +51,7 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/projects" element={<Projects />} />
-                            <Route path="/community-care" element={<CommunityCare />} />
+                            <Route path="/community-care" element={<MentalHealthCommunityCare />} />
                             <Route path="/data-workers-training" element={<DataWorkersTraining />} />
                             <Route path="/mental-health-professionals" element={<MentalHealthProfessionals />} />
                             <Route path="/research-publications" element={<ResearchPublications />} />

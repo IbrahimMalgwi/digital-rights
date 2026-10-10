@@ -139,7 +139,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         { name: 'Home', href: '/', icon: '🏠', external: false },
         { name: 'About', href: '/about', icon: 'ℹ️', external: false },
         { name: 'Projects', href: '/projects', icon: '📁', hasDropdown: true, external: false },
-        { name: 'Community Care', href: '/community-care', icon: '💚', external: false },
+        { name: 'Mental Health Community Care', href: '/community-care', icon: '💚', external: false },
         { name: 'Data Worker Training', href: '/data-workers-training', icon: '📊', external: false },
         { name: 'Mental Health Professionals', href: '/mental-health-professionals', icon: '🧠', external: false },
         { name: 'Research Publications', href: '/research-publications', icon: '📚', external: false },
