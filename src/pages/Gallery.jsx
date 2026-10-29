@@ -1,151 +1,163 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { siteContent } from '../data/content';
 import { getAssetUrl } from '../utils/assets.js';
 import Hero from '../components/cards/Hero';
 
+const mentalHealthDayLocations = [
+    {
+        name: 'Abuja',
+        country: 'Nigeria',
+        folders: ['WMHD-Abuja', 'WMHD-ABUJA'],
+        prefixes: ['WMHDABJ'],
+        count: 10,
+        extensions: ['JPG', 'jpg', 'jpeg', 'JPEG']
+    },
+    {
+        name: 'Nairobi',
+        country: 'Kenya',
+        folders: ['WMHD-Nairobi', 'WMHD-NAIROBI'],
+        prefixes: ['WMHDNRB', 'WHMDNRB'],
+        count: 10,
+        extensions: ['jpg', 'JPG', 'jpeg', 'JPEG']
+    },
+    {
+        name: 'Maiduguri',
+        country: 'Nigeria',
+        folders: ['WMHD-Maiduguri', 'WMHDMDG-Maiduguri'],
+        prefixes: ['WMHDMDG'],
+        count: 12,
+        extensions: ['jpg', 'JPG', 'jpeg', 'JPEG']
+    }
+];
+
+const mentalHealthDayCategories = mentalHealthDayLocations.map((location) => ({
+    name: `World Mental Health Day 2026 · ${location.name}`,
+    location: location.name,
+    items: Array.from({ length: location.count }, (_, index) => {
+        const suffix = index === 0 ? '' : index;
+        const candidates = location.folders.flatMap((folder) =>
+            location.prefixes.flatMap((prefix) =>
+                location.extensions.map((extension) => `/images/${folder}/${prefix}${suffix}.${extension}`)
+            )
+        );
+
+        return {
+            id: `wmhd-${location.name}-${index}`,
+            title: `World Mental Health Day 2026 in ${location.name}`,
+            image: candidates[0],
+            imageCandidates: candidates,
+            category: `World Mental Health Day 2026 · ${location.name}`,
+            description: `A moment from the World Mental Health Day 2026 collection in ${location.name}.`,
+            location: `${location.name}, ${location.country}`,
+            date: 'October 10, 2026'
+        };
+    })
+}));
+
+const categoryStyles = {
+    'Community Outreach': { icon: '🤝', color: 'bg-primary-50 text-primary-700' },
+    Webinars: { icon: '💻', color: 'bg-accent-50 text-accent-700' },
+    Trainings: { icon: '🛠️', color: 'bg-secondary-100 text-secondary-800' },
+    Conferences: { icon: '🎤', color: 'bg-primary-100 text-primary-800' },
+    'Advocacy Campaigns': { icon: '📢', color: 'bg-accent-100 text-accent-800' },
+    'Team Activities': { icon: '👥', color: 'bg-secondary-100 text-secondary-800' },
+    'Partner Engagements': { icon: '🤝', color: 'bg-primary-50 text-primary-700' },
+    'Media Appearances': { icon: '📺', color: 'bg-accent-50 text-accent-700' }
+};
+
+const getCategoryStyle = (category) => categoryStyles[category] || {
+    icon: '📸',
+    color: 'bg-primary-50 text-primary-700'
+};
+
+const GalleryImage = ({ item, alt, className }) => {
+    if (!item.image) return null;
+
+    const candidates = item.imageCandidates || [item.image];
+
+    return (
+        <img
+            src={getAssetUrl(candidates[0])}
+            alt={alt}
+            className={className}
+            loading="lazy"
+            decoding="async"
+            onError={(event) => {
+                const image = event.currentTarget;
+                const nextIndex = Number(image.dataset.fallbackIndex || 0) + 1;
+                if (nextIndex < candidates.length) {
+                    image.dataset.fallbackIndex = String(nextIndex);
+                    image.src = getAssetUrl(candidates[nextIndex]);
+                } else {
+                    image.style.display = 'none';
+                }
+            }}
+        />
+    );
+};
+
 const Gallery = () => {
-    const [activeFilter, setActiveFilter] = useState('All');
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [visibleCount, setVisibleCount] = useState(9);
-
-    // Get gallery items from siteContent
     const galleryItems = siteContent.gallery || [];
+    const existingCategories = Array.from(new Set(galleryItems.map((item) => item.category)))
+        .map((name) => ({
+            name,
+            items: galleryItems.filter((item) => item.category === name)
+        }));
+    const categories = [...existingCategories, ...mentalHealthDayCategories];
+    const [activeCategory, setActiveCategory] = useState(categories[0]?.name || '');
+    const [selectedImage, setSelectedImage] = useState(null);
+    const activeCategoryIndex = categories.findIndex((category) => category.name === activeCategory);
+    const activeCollection = categories[activeCategoryIndex];
+    const activeItems = activeCollection?.items || [];
+    const categoryPanelId = 'gallery-panel';
 
-    const categoryStyles = {
-        'Community Outreach': { icon: '🤝', color: 'bg-primary-50 text-primary-700' },
-        'Webinars': { icon: '💻', color: 'bg-accent-50 text-accent-700' },
-        'Trainings': { icon: '🛠️', color: 'bg-secondary-100 text-secondary-800' },
-        'Conferences': { icon: '🎤', color: 'bg-primary-100 text-primary-800' },
-        'Advocacy Campaigns': { icon: '📢', color: 'bg-accent-100 text-accent-800' },
-        'Team Activities': { icon: '👥', color: 'bg-secondary-100 text-secondary-800' },
-        'Partner Engagements': { icon: '🤝', color: 'bg-primary-50 text-primary-700' },
-        'Media Appearances': { icon: '📺', color: 'bg-accent-50 text-accent-700' }
-    };
-
-    const getCategoryStyle = (category) => categoryStyles[category] || { icon: '📸', color: 'bg-primary-50 text-primary-700' };
-
-    const categories = [
-        { name: 'All', count: galleryItems.length, icon: '🖼️', color: 'bg-secondary-100 text-secondary-800' },
-        ...Array.from(new Set(galleryItems.map(item => item.category))).map(category => ({
-            name: category,
-            count: galleryItems.filter(item => item.category === category).length,
-            icon: getCategoryStyle(category).icon,
-            color: getCategoryStyle(category).color
-        }))
-    ];
-
-    // Filter gallery items
-    const filteredItems = activeFilter === 'All'
-        ? galleryItems
-        : galleryItems.filter(item => item.category === activeFilter);
-
-    const visibleItems = filteredItems.slice(0, visibleCount);
-
-    // Simulate loading
-    useEffect(() => {
-        const timeoutId = setTimeout(() => setIsLoading(false), 1000);
-        return () => clearTimeout(timeoutId);
-    }, []);
-
-    useEffect(() => {
-        setVisibleCount(9);
-    }, [activeFilter]);
-
-    // Load more items
-    const loadMore = () => {
-        setVisibleCount(prev => prev + 6);
-    };
-
-    // Lightbox component – updated colors
     const Lightbox = ({ item, onClose }) => (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
             onClick={onClose}
+            role="presentation"
         >
             <div
-                className="visual-panel max-w-5xl w-full animate-fade-in"
-                onClick={e => e.stopPropagation()}
+                className="visual-panel relative w-full max-w-5xl animate-fade-in"
+                onClick={(event) => event.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-label={item.title}
             >
                 <button
+                    type="button"
                     onClick={onClose}
-                    className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center text-secondary-900 hover:bg-secondary-100 transition-colors shadow-lg"
+                    className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-secondary-900 shadow-lg transition-colors hover:bg-secondary-100"
                     aria-label="Close image preview"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-
                 <div className="grid md:grid-cols-2">
-                    <div className="relative h-80 md:h-[500px] bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
-                        <span className="text-8xl text-white/30">🖼️</span>
-                        {item.image ? (
-                            <img
-                                src={getAssetUrl(item.image)}
-                                alt={item.title}
-                                className="absolute inset-0 w-full h-full object-cover"
-                                decoding="async"
-                                onError={(event) => {
-                                    event.currentTarget.style.display = 'none';
-                                }}
-                            />
-                        ) : null}
+                    <div className="relative flex min-h-72 items-center justify-center bg-gradient-to-br from-primary-100 to-accent-100 md:min-h-[500px]">
+                        <span className="text-6xl text-primary-400" aria-hidden="true">📷</span>
+                        <GalleryImage
+                            item={item}
+                            alt={item.title}
+                            className="absolute inset-0 h-full w-full object-contain"
+                        />
                     </div>
-
-                    <div className="p-8">
-                        <div className="mb-6">
-                            <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-4 ${
-                                getCategoryStyle(item.category).color
-                            }`}>
-                                {item.category}
-                            </span>
-                            <h2 className="text-2xl font-display font-bold text-secondary-900 mb-2">
-                                {item.title}
-                            </h2>
-                            <p className="text-secondary-600 mb-4">
-                                {item.description}
-                            </p>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-3 mb-6">
-                            <div className="card p-3 rounded-2xl">
-                                <div className="text-xs text-secondary-500 mb-1">Location</div>
-                                <div className="font-medium text-secondary-900 text-sm">{item.location || 'N/A'}</div>
+                    <div className="p-6 md:p-8">
+                        <span className={`mb-4 inline-flex rounded-full px-3 py-1 text-xs font-medium ${getCategoryStyle(item.category).color}`}>
+                            {item.category}
+                        </span>
+                        <h2 className="mb-2 text-2xl font-display font-bold text-secondary-900">{item.title}</h2>
+                        <p className="mb-6 text-secondary-600">{item.description}</p>
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="card rounded-xl p-3">
+                                <div className="mb-1 text-xs text-secondary-500">Location</div>
+                                <div className="text-sm font-medium text-secondary-900">{item.location || 'N/A'}</div>
                             </div>
-                            <div className="card p-3 rounded-2xl">
-                                <div className="text-xs text-secondary-500 mb-1">Date</div>
-                                <div className="font-medium text-secondary-900 text-sm">{item.date || 'N/A'}</div>
+                            <div className="card rounded-xl p-3">
+                                <div className="mb-1 text-xs text-secondary-500">Date</div>
+                                <div className="text-sm font-medium text-secondary-900">{item.date || 'N/A'}</div>
                             </div>
-                            <div className="card p-3 rounded-2xl">
-                                <div className="text-xs text-secondary-500 mb-1">Participants</div>
-                                <div className="font-medium text-secondary-900 text-sm">{item.participants || 0}+</div>
-                            </div>
-                            <div className="card p-3 rounded-2xl">
-                                <div className="text-xs text-secondary-500 mb-1">Status</div>
-                                <div className="font-medium text-primary-600 text-sm">Completed</div>
-                            </div>
-                        </div>
-
-                        {item.tags && item.tags.length > 0 && (
-                            <div className="mb-6">
-                                <div className="flex flex-wrap gap-2">
-                                    {item.tags.map((tag, idx) => (
-                                        <span key={idx} className="px-2 py-1 bg-secondary-100 text-secondary-600 rounded text-xs">
-                                            #{tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        <div className="flex space-x-3">
-                            <button className="btn-primary flex-1 px-4 py-2 text-sm">
-                                Share
-                            </button>
-                            <button className="btn-outline flex-1 px-4 py-2 text-sm">
-                                Download
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -155,34 +167,148 @@ const Gallery = () => {
 
     return (
         <div className="overflow-hidden">
-            <Hero compact eyebrow="In the field" title="Our work in pictures" subtitle="Moments from community outreach, training, advocacy, partnerships, and events across Africa." />
-            {/* Filter Bar */}
-            {galleryItems.length > 0 && (
-                <section className="filter-section pt-12 md:pt-16">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h3 className="text-sm font-medium text-secondary-400 uppercase tracking-wider text-center mb-4">Filter by Category</h3>
-                        <div className="flex flex-wrap gap-3 justify-center">
-                            {categories.map((category) => (
+            <Hero
+                compact
+                eyebrow="In the field"
+                title="Our work in pictures"
+                subtitle="Moments from community outreach, training, advocacy, partnerships, and events across Africa."
+            />
+
+            <section aria-labelledby="gallery-heading" className="bg-gradient-to-b from-primary-50 via-white to-white py-14 md:py-20">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <header className="mx-auto mb-10 max-w-3xl text-center md:mb-14">
+                        <span className="inline-flex rounded-full bg-primary-100 px-4 py-1.5 text-sm font-semibold text-primary-800">
+                            Community highlights
+                        </span>
+                        <h2 id="gallery-heading" className="mt-5 text-3xl font-display font-bold tracking-tight text-secondary-900 md:text-5xl">
+                            Explore the gallery
+                        </h2>
+                        <p className="mt-4 text-base leading-relaxed text-secondary-600 md:text-lg">
+                            Browse every collection, or choose a category to explore all its photos.
+                        </p>
+                    </header>
+
+                    <div role="tablist" aria-label="Gallery categories" className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {categories.map((category, index) => {
+                            const isActive = category.name === activeCategory;
+                            const previewItems = category.items.slice(0, 2);
+                            const color = getCategoryStyle(category.name).color;
+
+                            return (
                                 <button
                                     key={category.name}
-                                    onClick={() => setActiveFilter(category.name)}
-                                    className={`
-                                        group px-5 py-3 rounded-full text-sm font-medium transition-all hover:scale-105
-                                        ${activeFilter === category.name
-                                        ? 'bg-secondary-900 text-white'
-                                        : `${category.color} hover:shadow-md`
-                                    }
-                                    `}
+                                    id={`gallery-tab-${index}`}
+                                    type="button"
+                                    role="tab"
+                                    aria-selected={isActive}
+                                    aria-controls={categoryPanelId}
+                                    onClick={() => {
+                                        setActiveCategory(category.name);
+                                        setSelectedImage(null);
+                                    }}
+                                    className={`group overflow-hidden rounded-2xl bg-white text-left shadow-sm ring-1 transition duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${
+                                        isActive ? 'ring-primary-500 shadow-md' : 'ring-secondary-200'
+                                    }`}
                                 >
-                                    <span className="mr-2">{category.icon}</span>
-                                    {category.name}
-                                    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                                        activeFilter === category.name
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-white/60 text-secondary-600'
-                                    }`}>
-                                        {category.count}
-                                    </span>
+                                    <div className="grid aspect-[2/1] grid-cols-2 gap-1 overflow-hidden bg-secondary-100">
+                                        {[0, 1].map((previewIndex) => {
+                                            const item = previewItems[previewIndex];
+                                            return (
+                                                <div key={item?.id || previewIndex} className="relative overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100">
+                                                    <span className="absolute inset-0 flex items-center justify-center text-3xl text-primary-400" aria-hidden="true">📷</span>
+                                                    {item && (
+                                                        <GalleryImage
+                                                            item={item}
+                                                            alt={`${category.name} gallery preview${previewIndex ? ' 2' : ' 1'}`}
+                                                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                        />
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                    <div className="flex items-center justify-between gap-3 p-4 md:p-5">
+                                        <div className="min-w-0">
+                                            <span className={`mb-2 inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${color}`}>
+                                                {category.name.startsWith('World Mental Health Day 2026')
+                                                    ? 'World Mental Health Day 2026'
+                                                    : 'Gallery collection'}
+                                            </span>
+                                            <h3 className="truncate text-base font-semibold text-secondary-900 md:text-lg">
+                                                {category.name.startsWith('World Mental Health Day 2026')
+                                                    ? category.name.split(' · ')[1]
+                                                    : category.name}
+                                            </h3>
+                                        </div>
+                                        <span className="shrink-0 rounded-full bg-secondary-50 px-3 py-1 text-xs font-medium text-secondary-600">
+                                            {category.items.length} photos
+                                        </span>
+                                    </div>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            {activeCollection && (
+                <section
+                    id={categoryPanelId}
+                    role="tabpanel"
+                    aria-labelledby={`gallery-tab-${activeCategoryIndex}`}
+                    className="page-section-white"
+                >
+                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                            <div>
+                                {activeCategory.startsWith('World Mental Health Day 2026') && (
+                                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary-700">
+                                        World Mental Health Day 2026
+                                    </p>
+                                )}
+                                <h2 className="text-2xl font-display font-bold text-secondary-900 md:text-3xl">
+                                    {activeCategory.startsWith('World Mental Health Day 2026')
+                                        ? activeCategory.split(' · ')[1]
+                                        : activeCategory}
+                                </h2>
+                                <p className="mt-2 text-secondary-600">
+                                    {activeItems.length} {activeItems.length === 1 ? 'photo' : 'photos'} in this collection
+                                </p>
+                            </div>
+                            {activeCategory.startsWith('World Mental Health Day 2026') && (
+                                <span className="rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-800">
+                                    October 10, 2026
+                                </span>
+                            )}
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                            {activeItems.map((item) => (
+                                <button
+                                    key={item.id}
+                                    type="button"
+                                    onClick={() => setSelectedImage(item)}
+                                    aria-label={`View ${item.title}`}
+                                    className="group overflow-hidden rounded-2xl bg-white text-left shadow-sm ring-1 ring-secondary-200 transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                                >
+                                    <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100">
+                                        <span className="absolute inset-0 flex items-center justify-center text-5xl text-primary-400" aria-hidden="true">📷</span>
+                                        <GalleryImage
+                                            item={item}
+                                            alt={item.title}
+                                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                        <span className="absolute bottom-3 left-3 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                                            {item.location || item.category}
+                                        </span>
+                                    </div>
+                                    <div className="p-4">
+                                        <h3 className="font-semibold text-secondary-900 group-hover:text-primary-700">{item.title}</h3>
+                                        {item.description && (
+                                            <p className="mt-1 line-clamp-2 text-sm text-secondary-500">{item.description}</p>
+                                        )}
+                                        {item.date && <p className="mt-3 text-xs text-secondary-400">{item.date}</p>}
+                                    </div>
                                 </button>
                             ))}
                         </div>
@@ -190,128 +316,9 @@ const Gallery = () => {
                 </section>
             )}
 
-            {/* Main Gallery Section */}
-            <section className="page-section-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {isLoading ? (
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <div key={i} className="animate-pulse">
-                                    <div className="h-64 bg-secondary-200 rounded-2xl mb-4"></div>
-                                    <div className="h-4 bg-secondary-200 rounded w-3/4 mb-2"></div>
-                                    <div className="h-3 bg-secondary-200 rounded w-1/2"></div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <>
-                            {galleryItems.length > 0 ? (
-                                <>
-                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {visibleItems.map((item, index) => {
-                                            return (
-                                                <div
-                                                    key={item.id}
-                                                    className="group card-hover cursor-pointer overflow-hidden animate-fade-in"
-                                                    style={{ animationDelay: `${index * 0.05}s` }}
-                                                    onClick={() => setSelectedImage(item)}
-                                                >
-                                                    <div className="relative h-64 overflow-hidden bg-gradient-to-br from-primary-500 to-accent-500">
-                                                        <div className="absolute inset-0 flex items-center justify-center">
-                                                            <span className="text-6xl text-white/30">🖼️</span>
-                                                        </div>
-                                                        {item.image ? (
-                                                            <img
-                                                                src={getAssetUrl(item.image)}
-                                                                alt={item.title}
-                                                                className="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                                                loading="lazy"
-                                                                decoding="async"
-                                                                onError={(event) => {
-                                                                    event.currentTarget.style.display = 'none';
-                                                                }}
-                                                            />
-                                                        ) : null}
-
-                                                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                                            <span className="text-white text-sm font-medium">Click to enlarge</span>
-                                                        </div>
-
-                                                        {item.featured && (
-                                                            <div className="absolute top-3 right-3">
-                                                                <span className="px-2 py-1 bg-white text-secondary-900 rounded-full text-xs font-medium shadow-lg">
-                                                                    ⭐ Featured
-                                                                </span>
-                                                            </div>
-                                                        )}
-                                                    </div>
-
-                                                    <div className="p-5">
-                                                        <div className="flex items-start justify-between mb-2">
-                                                            <h3 className="font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors">
-                                                                {item.title}
-                                                            </h3>
-                                                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getCategoryStyle(item.category).color}`}>
-                                                                {item.category}
-                                                            </span>
-                                                        </div>
-                                                        <p className="text-sm text-secondary-500 mb-3 line-clamp-2">
-                                                            {item.description}
-                                                        </p>
-                                                        <p className="text-xs text-secondary-400">
-                                                            📍 {item.location || 'N/A'} 📅 {item.date || 'N/A'}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-
-                                    {visibleCount < filteredItems.length && (
-                                        <div className="text-center mt-16">
-                                            <button
-                                                onClick={loadMore}
-                                                className="btn-primary group px-8 py-4"
-                                            >
-                                                Load more photos
-                                                <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">↓</span>
-                                            </button>
-                                        </div>
-                                    )}
-                                </>
-                            ) : (
-                                <div className="card text-center py-20 px-6 max-w-2xl mx-auto">
-                                    <div className="text-6xl mb-4">📷</div>
-                                    <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">No photos found</h3>
-                                    <p className="text-secondary-500">Gallery will be updated soon.</p>
-                                </div>
-                            )}
-                        </>
-                    )}
-                </div>
-            </section>
-
-            {/* Results Count */}
-            {galleryItems.length > 0 && (
-                <section className="pb-12 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center">
-                            <p className="text-secondary-500">
-                                Showing <span className="font-semibold text-secondary-900">{visibleItems.length}</span> of{' '}
-                                <span className="font-semibold text-secondary-900">{filteredItems.length}</span> photos
-                            </p>
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {/* Lightbox */}
-            {selectedImage && (
-                <Lightbox item={selectedImage} onClose={() => setSelectedImage(null)} />
-            )}
+            {selectedImage && <Lightbox item={selectedImage} onClose={() => setSelectedImage(null)} />}
         </div>
     );
 };
 
 export default Gallery;
-
