@@ -3,6 +3,8 @@ import { siteContent } from '../data/content';
 import { getAssetUrl } from '../utils/assets.js';
 import Hero from '../components/cards/Hero';
 
+const mentalHealthDayCategoryPrefix = 'World Mental Health Day/Week 2026';
+
 const mentalHealthDayLocations = [
     {
         name: 'Abuja',
@@ -31,7 +33,7 @@ const mentalHealthDayLocations = [
 ];
 
 const mentalHealthDayCategories = mentalHealthDayLocations.map((location) => ({
-    name: `World Mental Health Day 2026 · ${location.name}`,
+    name: `${mentalHealthDayCategoryPrefix} · ${location.name}`,
     location: location.name,
     items: Array.from({ length: location.count }, (_, index) => {
         const suffix = index === 0 ? '' : index;
@@ -43,11 +45,11 @@ const mentalHealthDayCategories = mentalHealthDayLocations.map((location) => ({
 
         return {
             id: `wmhd-${location.name}-${index}`,
-            title: `World Mental Health Day 2026 in ${location.name}`,
+            title: `World Mental Health Day/Week 2026 in ${location.name}`,
             image: candidates[0],
             imageCandidates: candidates,
-            category: `World Mental Health Day 2026 · ${location.name}`,
-            description: `A moment from the World Mental Health Day 2026 collection in ${location.name}.`,
+            category: `${mentalHealthDayCategoryPrefix} · ${location.name}`,
+            description: `A moment from the World Mental Health Day/Week 2026 collection in ${location.name}.`,
             location: `${location.name}, ${location.country}`,
             date: 'October 10, 2026'
         };
@@ -103,11 +105,10 @@ const Gallery = () => {
             name,
             items: galleryItems.filter((item) => item.category === name)
         }));
-    const categories = [...existingCategories, ...mentalHealthDayCategories];
-    const [activeCategory, setActiveCategory] = useState(categories[0]?.name || '');
+    const categories = [...mentalHealthDayCategories, ...existingCategories];
+    const [activeCategory, setActiveCategory] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
-    const activeCategoryIndex = categories.findIndex((category) => category.name === activeCategory);
-    const activeCollection = categories[activeCategoryIndex];
+    const activeCollection = categories.find((category) => category.name === activeCategory);
     const activeItems = activeCollection?.items || [];
     const categoryPanelId = 'gallery-panel';
 
@@ -188,86 +189,82 @@ const Gallery = () => {
                         </p>
                     </header>
 
-                    <div role="tablist" aria-label="Gallery categories" className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {categories.map((category, index) => {
-                            const isActive = category.name === activeCategory;
-                            const previewItems = category.items.slice(0, 2);
-                            const color = getCategoryStyle(category.name).color;
+                    {!activeCollection && (
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {categories.map((category) => {
+                                const previewItems = category.items.slice(0, 2);
+                                const color = getCategoryStyle(category.name).color;
 
-                            return (
-                                <button
-                                    key={category.name}
-                                    id={`gallery-tab-${index}`}
-                                    type="button"
-                                    role="tab"
-                                    aria-selected={isActive}
-                                    aria-controls={categoryPanelId}
-                                    onClick={() => {
-                                        setActiveCategory(category.name);
-                                        setSelectedImage(null);
-                                    }}
-                                    className={`group overflow-hidden rounded-2xl bg-white text-left shadow-sm ring-1 transition duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${
-                                        isActive ? 'ring-primary-500 shadow-md' : 'ring-secondary-200'
-                                    }`}
-                                >
-                                    <div className="grid aspect-[2/1] grid-cols-2 gap-1 overflow-hidden bg-secondary-100">
-                                        {[0, 1].map((previewIndex) => {
-                                            const item = previewItems[previewIndex];
-                                            return (
-                                                <div key={item?.id || previewIndex} className="relative overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100">
-                                                    <span className="absolute inset-0 flex items-center justify-center text-3xl text-primary-400" aria-hidden="true">📷</span>
-                                                    {item && (
-                                                        <GalleryImage
-                                                            item={item}
-                                                            alt={`${category.name} gallery preview${previewIndex ? ' 2' : ' 1'}`}
-                                                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                                        />
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                    <div className="flex items-center justify-between gap-3 p-4 md:p-5">
-                                        <div className="min-w-0">
-                                            <span className={`mb-2 inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${color}`}>
-                                                {category.name.startsWith('World Mental Health Day 2026')
-                                                    ? 'World Mental Health Day 2026'
-                                                    : 'Gallery collection'}
-                                            </span>
-                                            <h3 className="truncate text-base font-semibold text-secondary-900 md:text-lg">
-                                                {category.name.startsWith('World Mental Health Day 2026')
-                                                    ? category.name.split(' · ')[1]
-                                                    : category.name}
-                                            </h3>
+                                return (
+                                    <button
+                                        key={category.name}
+                                        type="button"
+                                        onClick={() => {
+                                            setActiveCategory(category.name);
+                                            setSelectedImage(null);
+                                        }}
+                                        aria-label={`Open ${category.name}, ${category.items.length} photos`}
+                                        className="group overflow-hidden rounded-2xl bg-white text-left shadow-sm ring-1 ring-secondary-200 transition duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                                    >
+                                        <div className="grid aspect-[2/1] grid-cols-2 gap-1 overflow-hidden bg-secondary-100">
+                                            {[0, 1].map((previewIndex) => {
+                                                const item = previewItems[previewIndex];
+                                                return (
+                                                    <div key={item?.id || previewIndex} className="relative overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100">
+                                                        <span className="absolute inset-0 flex items-center justify-center text-3xl text-primary-400" aria-hidden="true">📷</span>
+                                                        {item && (
+                                                            <GalleryImage
+                                                                item={item}
+                                                                alt={`${category.name} gallery preview ${previewIndex + 1}`}
+                                                                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                            />
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
-                                        <span className="shrink-0 rounded-full bg-secondary-50 px-3 py-1 text-xs font-medium text-secondary-600">
-                                            {category.items.length} photos
-                                        </span>
-                                    </div>
-                                </button>
-                            );
-                        })}
-                    </div>
+                                        <div className="flex items-center justify-between gap-3 p-4 md:p-5">
+                                            <div className="min-w-0">
+                                                <span className={`mb-2 inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${color}`}>
+                                                    {category.name.startsWith(mentalHealthDayCategoryPrefix)
+                                                        ? mentalHealthDayCategoryPrefix
+                                                        : 'Gallery collection'}
+                                                </span>
+                                                <h3 className="truncate text-base font-semibold text-secondary-900 md:text-lg">
+                                                    {category.name.startsWith(mentalHealthDayCategoryPrefix)
+                                                        ? category.name.split(' · ')[1]
+                                                        : category.name}
+                                                </h3>
+                                            </div>
+                                            <span className="shrink-0 rounded-full bg-secondary-50 px-3 py-1 text-xs font-medium text-secondary-600">
+                                                {category.items.length} photos
+                                            </span>
+                                        </div>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
             </section>
 
             {activeCollection && (
                 <section
                     id={categoryPanelId}
-                    role="tabpanel"
-                    aria-labelledby={`gallery-tab-${activeCategoryIndex}`}
+                    role="region"
+                    aria-labelledby="gallery-collection-heading"
                     className="page-section-white"
                 >
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
                             <div>
-                                {activeCategory.startsWith('World Mental Health Day 2026') && (
+                                {activeCategory.startsWith(mentalHealthDayCategoryPrefix) && (
                                     <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary-700">
-                                        World Mental Health Day 2026
+                                        {mentalHealthDayCategoryPrefix}
                                     </p>
                                 )}
-                                <h2 className="text-2xl font-display font-bold text-secondary-900 md:text-3xl">
-                                    {activeCategory.startsWith('World Mental Health Day 2026')
+                                <h2 id="gallery-collection-heading" className="text-2xl font-display font-bold text-secondary-900 md:text-3xl">
+                                    {activeCategory.startsWith(mentalHealthDayCategoryPrefix)
                                         ? activeCategory.split(' · ')[1]
                                         : activeCategory}
                                 </h2>
@@ -275,11 +272,23 @@ const Gallery = () => {
                                     {activeItems.length} {activeItems.length === 1 ? 'photo' : 'photos'} in this collection
                                 </p>
                             </div>
-                            {activeCategory.startsWith('World Mental Health Day 2026') && (
-                                <span className="rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-800">
-                                    October 10, 2026
-                                </span>
-                            )}
+                            <div className="flex flex-wrap items-center gap-3">
+                                {activeCategory.startsWith(mentalHealthDayCategoryPrefix) && (
+                                    <span className="rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-800">
+                                        October 10, 2026
+                                    </span>
+                                )}
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setActiveCategory('');
+                                        setSelectedImage(null);
+                                    }}
+                                    className="rounded-full border border-secondary-200 bg-white px-4 py-2 text-sm font-semibold text-secondary-700 transition-colors hover:border-primary-300 hover:text-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                                >
+                                    All categories
+                                </button>
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
